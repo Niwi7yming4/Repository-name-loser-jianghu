@@ -4145,7 +4145,7 @@ function ensureCardCombatState(s = state) {
 }
 
 const chapterGateConfig = {
-    5: { need: 2, label: '第五章心門', unlock: s => !!s.flags?.chap4_cleared && ((s.stats?.rep || 0) >= 130 || (s.stats?.insight || 0) >= 75), unlockText: '需第四章完成，且聲望 130 或洞察 75' },
+    5: { need: 2, label: '第五章心門', unlock: s => (!!s.flags?.chap4_cleared || !!s.endings?.hero_true || !!s.endings?.godfather || !!s.endings?.wanderer) && ((s.stats?.rep || 0) >= 130 || (s.stats?.insight || 0) >= 75), unlockText: '需第四章完成，且聲望 130 或洞察 75' },
     6: { need: 2, label: '第六章心門', unlock: s => !!s.flags?.chap6_started || !!s.flags?.chap6_cleared || (!!s.flags?.chap5_cleared && !!s.flags?.chap5SafeDone), unlockText: '需第五章完成並破解園區保險箱' },
     7: { need: 2, label: '第七章心門', unlock: s => !!s.flags?.chap7_started || !!s.flags?.chap7_cleared || (!!s.flags?.chap6_cleared && !!s.flags?.chap6BikeTuneDone), unlockText: '需第六章完成並機車改裝成功' },
     8: { need: 2, label: '第八章心門', unlock: s => !!s.flags?.chap8_started || !!s.flags?.chap8_cleared || (!!s.flags?.chap7_cleared && !!s.flags?.chap7LiveBattleDone), unlockText: '需第七章完成直播輿論戰' },
@@ -12080,7 +12080,7 @@ function grantRandomEquipment(sourceLabel, rarity = 'rare', baseType = null) {
 }
 
 function calculateSetBonuses(s = state) {
-    if (!s.equipment) return [];
+    if (!s || !s.equipment || typeof s.equipment !== 'object') return [];
     const equippedNames = Object.values(s.equipment).map(ref => resolveEquipmentRef(ref, s)?.name).filter(Boolean);
     const active = [];
     Object.entries(setDefinitions).forEach(([setName, set]) => {
@@ -12094,7 +12094,7 @@ function calculateSetBonuses(s = state) {
 
 function getEquipmentBonuses(s = state) {
     const bonuses = { force: 0, forcePercent: 0, insight: 0, speech: 0, thickSkin: 0, hp: 0, crit: 0, critDamage: 0, workBonus: 0, encounterRate: 0, apCostReduce: 0, repGain: 0, lifeSteal: 0, goldFind: 0, intimidate: 0, expBonus: 0, defendReduce: 0, rentEvade: 0, gangPowerReduction: 1, postCombatHeal: 0, extraWorkCashChance: 0, extraWorkCash: 0, storeBonus: 0, extraGamble: 0, shamelessSuccess: 0, surrenderThickBonus: 0, undying: false, equipped: [], setTexts: [] };
-    if (!s || !s.equipment) return bonuses;
+    if (!s || !s.equipment || typeof s.equipment !== 'object') return bonuses;
 
     const applyEq = (eq) => {
         if (!eq) return;
@@ -13908,7 +13908,7 @@ const storyNodes = {
             "「媽。」妳輕聲說，「我把牆，修好了。」",
             "【恭喜通關。結局：武林盟主】"
         ], 
-        onEnter: () => { state.enemy=null; state.endings.hero_true = true; state.skills.push("武林盟主威壓"); window.checkAchievements(); triggerSave(); }, 
+        onEnter: () => { state.enemy=null; state.flags.chap4_cleared = true; state.endings.hero_true = true; state.skills.push("武林盟主威壓"); window.checkAchievements(); triggerSave(); }, 
         choices: [ { label: "繼續遊蕩", action: s => s, next: "hub" } ] 
     },
     chap4_path_boss: { 
@@ -13941,7 +13941,7 @@ const storyNodes = {
             "「江湖？」妳輕笑一聲，晃了晃手中的紅酒杯，「不，這只是生意。」",
             "【恭喜通關。結局：影子教父】"
         ], 
-        onEnter: () => { state.endings.godfather = true; state.money += 500000; window.checkAchievements(); triggerSave(); }, 
+        onEnter: () => { state.flags.chap4_cleared = true; state.endings.godfather = true; state.money += 500000; window.checkAchievements(); triggerSave(); }, 
         choices: [ { label: "繼續遊蕩", action: s => s, next: "hub" } ] 
     },
     chap4_path_wanderer: { 
@@ -13972,7 +13972,7 @@ const storyNodes = {
             "真正的敗犬，不會被拴在一個地方。",
             "【恭喜通關。結局：隱世高手】"
         ], 
-        onEnter: () => { state.endings.wanderer = true; window.checkAchievements(); triggerSave(); }, 
+        onEnter: () => { state.flags.chap4_cleared = true; state.endings.wanderer = true; window.checkAchievements(); triggerSave(); }, 
         choices: [ { label: "繼續遊蕩", action: s => s, next: "hub" } ] 
     },
 
@@ -14295,6 +14295,10 @@ const storyNodes = {
                 }
                 // 計算總權重並隨機選擇
                 let totalWeight = allEncounters.reduce((sum, e) => sum + e.weight, 0);
+                if (totalWeight <= 0) {
+                    state.nextEncounter = 'encounter_thug';
+                    return;
+                }
                 let rand = Math.random() * totalWeight;
                 let accum = 0;
                 for (let e of allEncounters) {
@@ -14619,16 +14623,17 @@ const storyNodes = {
             "『我去堵以前幫金錢幫做拆遷的老包工。那傢伙喝醉了，說這是妳媽當年留在工地上的。』",
             "他沉默了很久，才補一句：『有些人不是不記得，是記得太清楚，所以一直裝沒事。』"
         ],
-        onEnter: () => {
-            state.flags.tieShu_memory_done = true;
-            state.companions.tieShu.level = Math.max(state.companions.tieShu.level, 2);
-            if (!state.inventory.includes('母親的玉佩')) state.inventory.push('母親的玉佩');
-            state.stats.force += 6;
-            state.stats.rep += 8;
-            state.gangPower = Math.max(0, state.gangPower - 10);
+        onEnter: () => {},
+        choices: [{ label: "把玉佩收進懷裡", action: s => {
+            if (s.flags.tieShu_memory_done) return;
+            s.flags.tieShu_memory_done = true;
+            s.companions.tieShu.level = Math.max(s.companions.tieShu.level, 2);
+            if (!s.inventory.includes('母親的玉佩')) s.inventory.push('母親的玉佩');
+            s.stats.force += 6;
+            s.stats.rep += 8;
+            s.gangPower = Math.max(0, s.gangPower - 10);
             triggerSave();
-        },
-        choices: [{ label: "把玉佩收進懷裡", action: s => s, next: "hub" }]
+        }, next: "hub" }]
     },
     xiaoye_secret_story: {
         title: "小夜的夜班影本",
@@ -14709,16 +14714,17 @@ const storyNodes = {
             "鐵叔蹲在門口看了一眼：『牠把收保護費的那幾個垃圾桶都巡完了。現在整條巷子的流浪貓都在替妳盯消息。』",
             "其中一隻小黑貓叼來一副工地護腕，還順手把一張黑市交易紙條踩在爪下。很顯然，這不是普通的抓老鼠班底。"
         ],
-        onEnter: () => {
-            state.flags.cat_king_done = true;
-            state.companions.cat.level = Math.max(state.companions.cat.level, 2);
-            if (!state.inventory.includes('護腕')) state.inventory.push('護腕');
-            state.maxDispatchSlots = Math.max(state.maxDispatchSlots, 3);
-            state.gangPower = Math.max(0, state.gangPower - 8);
-            state.flags.blackmarket_unlocked = true;
+        onEnter: () => {},
+        choices: [{ label: "給貓王開罐頭慶功", action: s => {
+            if (s.flags.cat_king_done) return;
+            s.flags.cat_king_done = true;
+            s.companions.cat.level = Math.max(s.companions.cat.level, 2);
+            if (!s.inventory.includes('護腕')) s.inventory.push('護腕');
+            s.maxDispatchSlots = Math.max(s.maxDispatchSlots, 3);
+            s.gangPower = Math.max(0, s.gangPower - 8);
+            s.flags.blackmarket_unlocked = true;
             triggerSave();
-        },
-        choices: [{ label: "給貓王開罐頭慶功", action: s => s, next: "hub" }]
+        }, next: "hub" }]
     },
     xiaoye_rooftop_story: {
         title: "天台那杯即期咖啡",
@@ -20318,6 +20324,14 @@ window.confirmNewGamePlusWithName = function(mode = 'standard') {
 
 function migrateState(s) {
     if(!s.flags) s.flags = {}; if(!s.buffs) s.buffs = {}; if(!s.workCount) s.workCount = {};
+    if(s.flags.newbieProtectionEndDay === undefined || !Number.isFinite(Number(s.flags.newbieProtectionEndDay))) s.flags.newbieProtectionEndDay = 7;
+    else s.flags.newbieProtectionEndDay = Math.max(1, Math.floor(Number(s.flags.newbieProtectionEndDay)));
+    if(s.currentDay === undefined || !Number.isFinite(Number(s.currentDay))) s.currentDay = 1;
+    if(s.money === undefined || !Number.isFinite(Number(s.money))) s.money = 100;
+    if(s.maxAp === undefined || !Number.isFinite(Number(s.maxAp))) s.maxAp = 5;
+    if(s.ap === undefined || !Number.isFinite(Number(s.ap))) s.ap = s.maxAp;
+    if(s.maxHp === undefined || !Number.isFinite(Number(s.maxHp))) s.maxHp = 100;
+    if(s.hp === undefined || !Number.isFinite(Number(s.hp))) s.hp = s.maxHp;
     if(s.combatTurns === undefined) s.combatTurns = 0;
     if(s.hubView === undefined) s.hubView = 'home';
     if(s.rentFreezeUntil === undefined) s.rentFreezeUntil = null;
@@ -21261,13 +21275,19 @@ function decodeSaveData(raw) {
     }
     return unwrapSavePayload(parsed);
 }
+function needsCoreStateRepair(data) {
+    if (!data || typeof data !== 'object') return false;
+    const requiredNumericKeys = ['currentDay', 'money', 'ap', 'maxAp', 'hp', 'maxHp'];
+    return requiredNumericKeys.some(key => !Number.isFinite(Number(data[key])));
+}
 function applyImportedState(parsed) {
     if (!(parsed && parsed.stats)) throw new Error('Invalid save');
+    const repaired = needsCoreStateRepair(parsed);
     state = migrateState(parsed);
     applySettings();
     closeModal();
-    showToast("✅ 存檔匯入成功！");
-    triggerSave();
+    showToast(repaired ? "✅ 存檔匯入成功，已自動修復舊版欄位並重存。" : "✅ 存檔匯入成功！");
+    triggerSave('import', true);
     renderCurrentView();
 }
 window.exportSave = function() {
@@ -21601,12 +21621,23 @@ window.triggerNewspaper = function() {
 function updateHUD() {
     ensureExtendedWorldState(state);
     tickDispatchProgressFeed(state);
-    const cal = getCalendarInfo(state.currentDay);
+    const safeDay = Number.isFinite(Number(state.currentDay)) ? Math.max(1, Math.floor(Number(state.currentDay))) : 1;
+    const safeMoney = Number.isFinite(Number(state.money)) ? Math.floor(Number(state.money)) : 0;
+    const safeAp = Number.isFinite(Number(state.ap)) ? Math.max(0, Number(state.ap)) : 0;
+    const safeMaxHp = Number.isFinite(Number(state.maxHp)) ? Math.max(1, Math.floor(Number(state.maxHp))) : 100;
+    const safeHpRaw = Number.isFinite(Number(state.hp)) ? Number(state.hp) : safeMaxHp;
+    const safeHp = Math.max(0, Math.min(safeMaxHp, Math.floor(safeHpRaw)));
+    if (!Number.isFinite(Number(state.currentDay))) state.currentDay = safeDay;
+    if (!Number.isFinite(Number(state.money))) state.money = safeMoney;
+    if (!Number.isFinite(Number(state.ap))) state.ap = safeAp;
+    if (!Number.isFinite(Number(state.maxHp))) state.maxHp = safeMaxHp;
+    if (!Number.isFinite(Number(state.hp))) state.hp = safeHp;
+    const cal = getCalendarInfo(safeDay);
     const weather = getCurrentWeatherMeta(state);
-    document.getElementById('hud-money').innerText = state.money; document.getElementById('hud-ap').innerText = Math.floor(state.ap); document.getElementById('hud-hp').innerText = `${state.hp}/${state.maxHp}`; document.getElementById('hud-current-day').innerText = `Day ${state.currentDay}｜${cal.month}/${cal.date} ${cal.seasonLabel}｜${weather.icon} ${weather.name}`;
-    if(state.ap <= 2) document.getElementById('hud-ap-container').classList.replace('text-blue-400', 'text-red-500'); else document.getElementById('hud-ap-container').classList.replace('text-red-500', 'text-blue-400');
-    if(state.hp <= state.maxHp*0.3) document.getElementById('hud-hp').parentElement.classList.add('animate-pulse'); else document.getElementById('hud-hp').parentElement.classList.remove('animate-pulse');
-    if(state.unlockedNotes.length > 0) document.getElementById('btn-notebook').classList.remove('hidden');
+    document.getElementById('hud-money').innerText = safeMoney; document.getElementById('hud-ap').innerText = Math.floor(safeAp); document.getElementById('hud-hp').innerText = `${safeHp}/${safeMaxHp}`; document.getElementById('hud-current-day').innerText = `Day ${safeDay}｜${cal.month}/${cal.date} ${cal.seasonLabel}｜${weather.icon} ${weather.name}`;
+    if(safeAp <= 2) document.getElementById('hud-ap-container').classList.replace('text-blue-400', 'text-red-500'); else document.getElementById('hud-ap-container').classList.replace('text-red-500', 'text-blue-400');
+    if(safeHp <= safeMaxHp*0.3) document.getElementById('hud-hp').parentElement.classList.add('animate-pulse'); else document.getElementById('hud-hp').parentElement.classList.remove('animate-pulse');
+    if((state.unlockedNotes || []).length > 0) document.getElementById('btn-notebook').classList.remove('hidden');
     const sectBadge = document.getElementById('hud-sect-title');
     if (sectBadge) {
         const title = getSectTitle();
@@ -22856,14 +22887,14 @@ function renderStory() {
         return; 
     }
 
-    if (node.type !== 'combat') {
+    const isEnd = state.lineIdx >= node.text.length - 1;
+    if (node.type !== 'combat' || !isEnd) {
         for(let i=0; i<=state.lineIdx && i<node.text.length; i++) {
             const isLatest = i === state.lineIdx; const animSpeed = state.settings.visuals.reduceMotion ? '' : `style="animation-duration: ${state.settings.textSpeed}ms"`;
             html += `<div class="text-lg md:text-xl leading-loose font-serif ${isLatest ? 'text-gray-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-fade-in-up' : 'text-gray-500'}" ${animSpeed}>${formatNarrativeText(node.text[i], state, { replaceLegacyAlias: true })}</div>`;
         }
     }
 
-    const isEnd = state.lineIdx >= node.text.length - 1;
     if (node.type === 'combat') {
         const combatUi = ensureCombatUiPanelState(state);
         const autoCollapseHand = !!ensureCombatLayoutState(state).visual.autoCollapseHand;
@@ -23134,6 +23165,14 @@ window.handleChoice = function(choiceIdx, event) {
 
 window.triggerQTE = function(evt = null) {
     if (!qteTimer) return;
+    const node = storyNodes[state.scene];
+    if (node?.type !== 'combat' || !state.enemy) {
+        clearTimeout(qteTimer);
+        qteTimer = null;
+        document.getElementById('qte-overlay').classList.add('hidden');
+        clearBossWeakspotQte();
+        return;
+    }
     clearTimeout(qteTimer);
     qteTimer = null;
     let pass = true;
@@ -23165,6 +23204,10 @@ window.triggerQTE = function(evt = null) {
 }
 
 function finalizeCombatChoice(qteSuccess) {
+    if (qteTimer) {
+        clearTimeout(qteTimer);
+        qteTimer = null;
+    }
     document.getElementById('qte-overlay').classList.add('hidden');
     clearBossWeakspotQte();
     const choice = currentChoice; const node = storyNodes[state.scene];
@@ -25196,6 +25239,8 @@ window.eatForFree = function() {
 
 function advanceDay(days) {
     ensureExtendedWorldState(state);
+    const newbieProtectionEndDay = Math.max(1, Number(state.flags?.newbieProtectionEndDay || 7));
+    const isNewbieProtectionActive = () => Number(state.currentDay || 1) <= newbieProtectionEndDay;
     for(let d=0; d<days; d++) {
         const prevDiaryMetrics = { ...(ensureDiaryDailyMetrics(state) || {}) };
         state.currentDay++;
@@ -25230,7 +25275,7 @@ function advanceDay(days) {
         const factionFx = getFactionEffects(state);
         const animalFx = getAnimalBonuses(state);
         const communityDiscount = (state.flags.communityRentBuffUntil || 0) >= state.currentDay ? 0.95 : 1;
-        const chapterDiscount = !state.flags.chap1_cleared ? 0.5 : 1;
+        const chapterDiscount = isNewbieProtectionActive() ? 0.5 : 1;
         const inflation = (1 + Math.min(0.28, state.currentDay * 0.002) + ((state.gangPower || 0) > 70 ? 0.03 : 0)) * communityDiscount * Number(state.economyMultiplier || 1);
         state.rentDue = Math.max(chapterDiscount < 1 ? 400 : 800, Math.floor(housing.rent * inflation * chapterDiscount * seasonFx.rent * factionFx.residentRentMult * animalFx.rentMult * (1 - (talent.rentReduce || 0)) * Number(rules.rentPressure || 1)));
         applyDailyHomeAndAnimalEffects(state);
@@ -25648,8 +25693,8 @@ function resolveSectLeagueBattle(mode = 'weekly', silent = false) {
     state.sect.reputation = Math.max(0, (state.sect.reputation || 0) - (mode === 'weekly' ? 8 : 12));
     const damagedBranchId = Object.keys(state.sect.branches || {}).find(key => state.sect.branches[key].owned);
     let damagedText = '';
-    if (damagedBranchId) {
-        state.sect.branches[damagedBranchId].health = Math.max(35, (state.sect.branches[damagedBranchId].health || 100) - 15);
+    if (damagedBranchId && state.sect.branches?.[damagedBranchId]) {
+        state.sect.branches[damagedBranchId].health = Math.max(35, (state.sect.branches[damagedBranchId]?.health || 100) - 15);
         damagedText = `，${sectBranchMeta[damagedBranchId]?.name || '分舵'}耐久下降`;
     }
     state.sect.weeklyWarResult = `${enemyLabel} 反撲，損失 $${loss}`;
@@ -25673,6 +25718,9 @@ function processSectWeekly(silent = false) {
     if (daysSinceLast < 7) return;
 
     const weeks = Math.floor(daysSinceLast / 7);
+    let totalPersonalCover = 0;
+    let totalEmergencySupport = 0;
+    let totalRankDrops = 0;
     for (let i = 0; i < weeks; i++) {
         if (state.sect.type === 'joined') {
             const faction = sectFactions[state.sect.joinedSect];
@@ -25695,15 +25743,23 @@ function processSectWeekly(silent = false) {
             if (state.sect.funds >= upkeep) {
                 state.sect.funds -= upkeep;
             } else {
-                const deficit = upkeep - state.sect.funds;
+                let deficit = upkeep - state.sect.funds;
                 state.sect.funds = 0;
-                if (state.money >= deficit) {
-                    state.money -= deficit;
-                    if (!silent) showToast(`🏛️ 門派週轉不足，妳自掏腰包補了 $${deficit}。`);
-                } else {
+                const personalCover = Math.min(Math.max(0, Math.floor(state.money || 0)), deficit);
+                if (personalCover > 0) {
+                    state.money -= personalCover;
+                    deficit -= personalCover;
+                    totalPersonalCover += personalCover;
+                }
+                if (deficit > 0) {
+                    const emergencySupport = Math.min(deficit, 300 + Math.floor((state.sect.rank || 1) * 120));
+                    deficit -= emergencySupport;
+                    totalEmergencySupport += emergencySupport;
+                }
+                if (deficit > 0) {
                     state.sect.rank = Math.max(1, (state.sect.rank || 1) - 1);
                     state.sect.weeklyCost = Math.max(1000, Math.floor((state.sect.weeklyCost || 2000) * 0.85));
-                    if (!silent) showToast(`💸 門派資金見底，門派等級下降為 Lv.${state.sect.rank}！`);
+                    totalRankDrops += 1;
                 }
             }
             const weeklyTechGain = 1 + Math.floor((state.sect.reputation || 0) / 100) + (getOwnedSectBranchCount() >= 2 ? 1 : 0);
@@ -25727,6 +25783,13 @@ function processSectWeekly(silent = false) {
             if (!silent && battle?.toast) showToast(battle.toast);
             state.sect.reputation = Math.max(0, (state.sect.reputation || 0) - 5);
         }
+    }
+    if (!silent && state.sect.type === 'created') {
+        const notes = [];
+        if (totalPersonalCover > 0) notes.push(`妳補了 $${totalPersonalCover}`);
+        if (totalEmergencySupport > 0) notes.push(`互助金托底 $${totalEmergencySupport}`);
+        if (totalRankDrops > 0) notes.push(`門派降級 ${totalRankDrops} 次`);
+        if (notes.length) showToast(`🏛️ 週結算保底：${notes.join('｜')}`);
     }
     state.sect.lastPayDay += weeks * 7;
     ensureSectShopStock();
@@ -27683,9 +27746,11 @@ function renderHub() {
     ensureOnboardingState(state);
     maybeShowUnlockGuides();
 
-    if (state.flags.chap1_cleared && !state.flags.rent_restore_notice_seen) {
+    const newbieProtectionEndDay = Math.max(1, Number(state.flags?.newbieProtectionEndDay || 7));
+    const newbieProtectionActive = Number(state.currentDay || 1) <= newbieProtectionEndDay;
+    if (!newbieProtectionActive && !state.flags.rent_restore_notice_seen) {
         state.flags.rent_restore_notice_seen = true;
-        setTimeout(() => showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-4">🏠 房東恢復原價</h2><p class="text-gray-300 mb-4">第一章的新手保護結束了。接下來租金會恢復正常節奏，記得提早準備現金流。</p><button onclick="closeModal()" class="premium-btn text-center">我知道了</button>`), 160);
+        setTimeout(() => showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-4">🏠 房東恢復原價</h2><p class="text-gray-300 mb-4">新手保護期（前 7 天）已結束。接下來租金會恢復正常節奏，記得提早準備現金流。</p><button onclick="closeModal()" class="premium-btn text-center">我知道了</button>`), 160);
     }
 
     if (state.stats.thickSkin >= 100) unlockNote('loser', 'survival_route');
@@ -27841,7 +27906,7 @@ let questHtml = "";
 
     const chapterOneQuest = getChapterOneQuestInfo();
     const guideCardHtml = renderJianghuGuideCard();
-    const newbieRentHtml = !state.flags.chap1_cleared ? `<div class="text-[11px] text-emerald-300 mt-3 border-t border-white/10 pt-2">🏠 新手保護中：第一章期間租金 5 折。</div>` : '';
+    const newbieRentHtml = newbieProtectionActive ? `<div class="text-[11px] text-emerald-300 mt-3 border-t border-white/10 pt-2">🏠 新手保護中：前 7 天租金 5 折。</div>` : '';
     const metaLifeHtml = `<div class="glass-panel p-4 border ${creditInfo.border} bg-slate-950/50"><div class="grid grid-cols-2 gap-3 text-sm"><div><div class="text-[10px] text-gray-400 uppercase tracking-wider">住處</div><div class="text-amber-300 font-bold">${homeInfo.name}</div><div class="text-[10px] text-gray-500">AP 上限 ${getMaxApValue()}｜週租 $${state.rentDue || homeInfo.rent}</div></div><div><div class="text-[10px] text-gray-400 uppercase tracking-wider">信用</div><div class="${creditInfo.color} font-bold">${state.creditScore}｜${creditInfo.label}</div><div class="text-[10px] text-gray-500">利息倍率 ${(getCurrentInterestRate(state) * 100).toFixed(0)}%</div></div></div><div class="text-[11px] text-sky-200 mt-3 border-t border-white/10 pt-2">${getWeatherSummaryText(state)}</div>${latestPost ? `<div class="text-[11px] text-gray-300 mt-3 border-t border-white/10 pt-2">📱 ${latestPost.text}</div>` : ''}${newbieRentHtml}</div>`;
     const currentHubView = state.hubView || 'home';
     const storyEntryHtml = `${chapterOneQuest ? `<button onclick="state.scene='${chapterOneQuest.scene}'; state.lineIdx=0; switchTab('story');" class="premium-btn text-center border-red-500/50 animate-pulse flex justify-between items-center px-6"><span class="text-red-400">${chapterOneQuest.label}</span><span class="text-[10px] text-red-300 bg-red-900/30 px-2 py-1 rounded">${chapterOneQuest.tag}</span></button>` : ''}${questHtml}${bondHtml}`;
@@ -27962,10 +28027,38 @@ function renderWork() {
         let countHtml = state.workCount[job.id] > 0 ? `<span class="text-[10px] text-gray-500 ml-2">已做 ${state.workCount[job.id]} 次</span>` : '';
         html += `<div class="glass-panel p-5 flex items-center justify-between transition-transform hover:scale-[1.02]"><div><h3 class="font-bold text-lg text-gray-100">${job.title} <span class="text-xs text-green-400 ml-1">~$${displayEarn}</span></h3><p class="text-sm text-gray-400 mb-2">${job.desc}${countHtml}</p><span class="text-[10px] text-amber-500/70 border border-amber-500/30 px-2 py-1 rounded">消耗 ${actualCost} AP | 提升 ${job.statName}</span></div><button onclick="doWork('${job.id}', ${actualCost}, '${job.stat}', ${job.earn}, ${isCh1})" class="premium-btn !w-auto !mb-0 px-4 py-2 text-sm">上工</button></div>`;
     }); 
-    html += `</div><div class="glass-panel p-4 border border-purple-500/30 bg-purple-950/20"><div class="text-purple-300 font-bold mb-2">🍺 超商角落補給</div><div class="text-[11px] text-gray-300 mb-3">店長懶得報帳的東西，妳剛好也懶得問來源。</div><div class="grid md:grid-cols-2 gap-2"><button onclick="buyCornerStoreItem('能量飲料', 120)" class="premium-btn text-center !mb-0 border-blue-500/40">🥤 能量飲料 $120</button><button onclick="buyCornerStoreItem('米酒頭', 180)" class="premium-btn text-center !mb-0 border-purple-500/40">🍶 米酒頭 $180</button></div></div></div>`; elViewContainer.innerHTML = html;
+    const cornerStoreDaily = ensureCornerStoreDailyState(state);
+    const energyBoughtToday = Number(cornerStoreDaily.energyDrinkBought || 0) >= 1;
+    const riceWineBoughtToday = Number(cornerStoreDaily.riceWineBought || 0) >= 1;
+    html += `</div><div class="glass-panel p-4 border border-purple-500/30 bg-purple-950/20"><div class="text-purple-300 font-bold mb-2">🍺 超商角落補給</div><div class="text-[11px] text-gray-300 mb-3">店長懶得報帳的東西，妳剛好也懶得問來源。<span class="text-blue-300">能量飲料每日限購 1 瓶</span>｜<span class="text-purple-300">米酒頭每日限購 1 瓶</span></div><div class="grid md:grid-cols-2 gap-2"><button onclick="buyCornerStoreItem('能量飲料', 120)" ${energyBoughtToday ? 'disabled' : ''} class="premium-btn text-center !mb-0 border-blue-500/40 ${energyBoughtToday ? 'opacity-50 cursor-not-allowed' : ''}">🥤 能量飲料 ${energyBoughtToday ? '（今日售完）' : '$120'}</button><button onclick="buyCornerStoreItem('米酒頭', 180)" ${riceWineBoughtToday ? 'disabled' : ''} class="premium-btn text-center !mb-0 border-purple-500/40 ${riceWineBoughtToday ? 'opacity-50 cursor-not-allowed' : ''}">🍶 米酒頭 ${riceWineBoughtToday ? '（今日售完）' : '$180'}</button></div></div></div>`; elViewContainer.innerHTML = html;
+}
+
+function ensureCornerStoreDailyState(s = state) {
+    s.flags = s.flags || {};
+    if (!s.flags.cornerStoreDaily || typeof s.flags.cornerStoreDaily !== 'object') {
+        s.flags.cornerStoreDaily = { day: Number(s.currentDay || 1), energyDrinkBought: 0, riceWineBought: 0 };
+    }
+    const daily = s.flags.cornerStoreDaily;
+    const today = Number(s.currentDay || 1);
+    if (Number(daily.day || 0) !== today) {
+        daily.day = today;
+        daily.energyDrinkBought = 0;
+        daily.riceWineBought = 0;
+    }
+    if (typeof daily.riceWineBought !== 'number') daily.riceWineBought = 0;
+    return daily;
 }
 
 window.buyCornerStoreItem = function(itemName, price) {
+    const daily = ensureCornerStoreDailyState(state);
+    if (itemName === '能量飲料' && Number(daily.energyDrinkBought || 0) >= 1) {
+        showToast('今天的能量飲料已經被妳買完了，店員不肯再賣。');
+        return;
+    }
+    if (itemName === '米酒頭' && Number(daily.riceWineBought || 0) >= 1) {
+        showToast('今天的米酒頭已經賣完了，店員說再喝要出事。');
+        return;
+    }
     const discount = getFateTalentEffects().shopDiscount || 0;
     const actualPrice = Math.max(10, Math.floor(price * (1 - discount)));
     if ((state.creditScore || 0) < 300 && actualPrice >= 180) { showToast('店長搖頭：妳信用太差，高級補品不賣妳。'); return; }
@@ -27981,6 +28074,8 @@ window.buyCornerStoreItem = function(itemName, price) {
         recordJianghuTendency('chaos', 1);
     }
     addInventoryItem(itemName);
+    if (itemName === '能量飲料') daily.energyDrinkBought = Math.max(0, Number(daily.energyDrinkBought || 0) + 1);
+    if (itemName === '米酒頭') daily.riceWineBought = Math.max(0, Number(daily.riceWineBought || 0) + 1);
     setDiaryLastFood(itemName, state);
     addDiaryStep(1, state);
     setDiaryLastAction(`超商補給：${itemName}`, state);
@@ -30243,7 +30338,14 @@ function handleAddictionPenalty() {
     }
 }
 
+let scratchPointerUpHandler = null;
+
 window.playScratch = function() {
+    if (scratchPointerUpHandler) {
+        window.removeEventListener('mouseup', scratchPointerUpHandler);
+        window.removeEventListener('touchend', scratchPointerUpHandler);
+        scratchPointerUpHandler = null;
+    }
     document.getElementById('minigame-zone').innerHTML = `<div class="glass-panel !p-6 md:!p-8 text-center w-full shadow-2xl relative overflow-hidden border-amber-600/50 animate-fade-in-up"><h3 class="text-xl font-serif text-amber-400 mb-2">阿財刮刮樂</h3><p class="text-xs text-gray-400 mb-6">每日限量 ${state.maxDailyGamble} 次。</p><div class="relative w-full aspect-[2/1] max-w-[280px] mx-auto bg-gray-800 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(245,158,11,0.15)] border-2 border-amber-700 z-10"><div id="scratch-result" class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-amber-100 to-amber-300 text-gray-800 pointer-events-none opacity-0 transition-opacity duration-500"><div id="scratch-text" class="font-bold text-3xl tracking-widest text-center">槓龜</div><div id="scratch-prize" class="font-bold text-red-600 text-xl mt-1 font-mono"></div></div><canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-crosshair touch-none"></canvas></div><button id="btn-buy-scratch" onclick="buyScratchCard()" class="premium-btn mt-8 text-center text-sm py-3 relative z-10 font-bold">花 $500 買一張</button></div>`;
     const canvas = document.getElementById('scratch-canvas'); if (canvas) { const ctx = canvas.getContext('2d'); const rect = canvas.getBoundingClientRect(); canvas.width = rect.width; canvas.height = rect.height; ctx.fillStyle = '#9CA3AF'; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = '#4B5563'; ctx.font = 'bold 20px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('點擊購買彩券', canvas.width/2, canvas.height/2); }
 }
@@ -30316,6 +30418,11 @@ window.buyScratchCard = function() {
         if (scratchedPixels > totalPixels * 0.45 && !finished) {
             finished = true;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (scratchPointerUpHandler) {
+                window.removeEventListener('mouseup', scratchPointerUpHandler);
+                window.removeEventListener('touchend', scratchPointerUpHandler);
+                scratchPointerUpHandler = null;
+            }
             if (prize > 0) {
                 state.money += prize;
                 updateHUD();
@@ -30330,8 +30437,9 @@ window.buyScratchCard = function() {
     };
 
     // 清理舊監聽器，避免多次購買疊加
-    window.onmouseup = () => { isDrawing = false; };
-    window.ontouchend = () => { isDrawing = false; };
+    scratchPointerUpHandler = () => { isDrawing = false; };
+    window.addEventListener('mouseup', scratchPointerUpHandler);
+    window.addEventListener('touchend', scratchPointerUpHandler);
     canvas.onmousedown = (e) => { isDrawing = true; scratch(e); };
     canvas.onmousemove = scratch;
     canvas.ontouchstart = (e) => { isDrawing = true; scratch(e); };
@@ -31413,6 +31521,8 @@ function generateEndingDiaryEntry(endingType) {
         neighborhood_chief: "最後我最強的武器不是拳頭，是一張會議桌和一支麥克風。原來把事情喬好，也能算一種江湖絕學。",
         mlm_king: "我終於明白，這個年代最值錢的不是刀，是包裝。只要講得夠像希望，就會有人排隊掏錢。",
         white_guard: "我把騙術、宗教、流量與苦難全都拆過一遍，最後發現自己也學會了最難看的那套生存術。但我活下來了。",
+        fallen_hero: "我本來想當個俠，最後卻把最該保護的人留在了雨裡。贏了仇，輸了心，整座城市都替我記著那一拳的回音。",
+        fortune_monk: "我退到巷口之外，替人算命、替人聽哭。沒有江湖頭銜，卻第一次覺得自己活得像個完整的人。",
         true_loser: "我沒有成仙，也沒有發財，只是終於不再追著別人的標準跑。原來承認自己是敗犬，也能很自由。",
         longbo_secret: "龍伯走後，殘局還留在我手上。我終於明白，最難算的從來不是棋，而是人心和欠債。算贏了別人，不一定算得過自己。",
         slack: "我躺了七天。世界沒有我，依然照常運轉。奇怪的是，我竟沒有想像中難過。原來被社會遺忘，有時比被社會利用還安靜。",
@@ -31429,6 +31539,8 @@ function getEndingArchiveMeta() {
         { key: 'godfather', name: '影子教父', desc: '接管黑市。', type: 'godfather' },
         { key: 'wanderer', name: '隱世高手', desc: '放棄權力。', type: 'wanderer' },
         { key: 'community_master', name: '武館宗師', desc: '以俠義與守序護住街坊。', type: 'community_master' },
+        { key: 'fallen_hero', name: '墮落英雄', desc: '高俠義卻在終局選擇復仇。', type: 'fallen_hero' },
+        { key: 'fortune_monk', name: '命師隱士', desc: '高命理、低聲望且未入門派。', type: 'fortune_monk' },
         { key: 'neighborhood_chief', name: '里長伯', desc: '靠話術與公評喬定整條街。', type: 'neighborhood_chief' },
         { key: 'mlm_king', name: '直銷天王', desc: '把流量與包裝變成王道。', type: 'mlm_king' },
         { key: 'white_guard', name: '白毛護法', desc: '從邪教與混亂中活成新的傳說。', type: 'white_guard' },
@@ -32141,6 +32253,43 @@ window.closeScreenshotModal = function() { const ol = document.getElementById('s
 // ==========================================
 // 6. 初始化與系統迴圈
 // ==========================================
+function runOfflineLightweightWorldTick(days = 0) {
+    const totalDays = Math.max(0, Math.floor(Number(days || 0)));
+    if (totalDays <= 0) return { gangDelta: 0, bondDelta: 0 };
+    ensureExtendedWorldState(state);
+    ensureNightMarketState(state);
+    if (!state.bondValues || typeof state.bondValues !== 'object') state.bondValues = getDefaultBondValues();
+
+    let gangDelta = 0;
+    let bondDelta = 0;
+    for (let i = 0; i < totalDays; i++) {
+        const dayCursor = Number(state.currentDay || 1) + i + 1;
+        const currentPower = Number(state.gangPower || 0);
+        if (currentPower < 180) {
+            state.gangPower = Math.min(180, currentPower + 1);
+            gangDelta += 1;
+        }
+        Object.values(state.companions || {}).forEach(comp => {
+            if (!comp || comp.status !== 'idle' || Number(comp.level || 0) < 1) return;
+            if (Math.random() < 0.08) {
+                const key = String(comp.id || '');
+                if (!key) return;
+                const oldVal = Number(state.bondValues[key] || 0);
+                const nextVal = Math.min(100, oldVal + 1);
+                if (nextVal > oldVal) {
+                    state.bondValues[key] = nextVal;
+                    bondDelta += 1;
+                }
+            }
+        });
+        if (state.marketState && Number(state.marketState.lastRefreshDay || 0) < dayCursor) {
+            state.marketState.lastRefreshDay = dayCursor;
+        }
+    }
+    if (gangDelta > 0) updateGangPowerState();
+    return { gangDelta, bondDelta };
+}
+
 function calculateOfflineEarnings() {
     const lastSaved = localStorage.getItem('udg_time_v4');
     if (!lastSaved) return;
@@ -32257,6 +32406,7 @@ function calculateOfflineEarnings() {
         state.nextRentDay = simRentDay;
         state.rentDue = simRentDue;
         state.nextInterestDay = simInterestDay;
+        const liteTick = runOfflineLightweightWorldTick(passedDays);
         
         if (hpLoss > 0 || moneyReward > 0 || totalRent > 0 || totalInterest > 0 || storedEnergyGain > 0 || rentEvades > 0) {
             state.hp = Math.max(1, state.hp - hpLoss);
@@ -32272,6 +32422,8 @@ function calculateOfflineEarnings() {
             if (moneyReward > 0) msg += `<div class="text-green-400 flex justify-between"><span>打工/武館收益</span> <span>+$${moneyReward}</span></div>`;
             if (expReward > 0) msg += `<div class="text-blue-400 flex justify-between"><span>武力成長</span> <span>+${expReward}</span></div>`;
             if (storedEnergyGain > 0) msg += `<div class="text-cyan-400 flex justify-between"><span>厚積薄發儲能</span> <span>+${storedEnergyGain}</span></div><div class="text-cyan-300 text-[11px] pt-1">教學：每 50 精力可換 5 次 x2.0 打工收益，已加入首頁與打工頁。</div>`;
+            if (liteTick.gangDelta > 0) msg += `<div class="text-violet-300 flex justify-between"><span>街頭勢力自然回溫</span> <span>+${liteTick.gangDelta}</span></div>`;
+            if (liteTick.bondDelta > 0) msg += `<div class="text-pink-300 flex justify-between"><span>夥伴日常互動</span> <span>羈絆 +${liteTick.bondDelta}</span></div>`;
             if (rentEvades > 0) msg += `<div class="text-yellow-400 flex justify-between"><span>厚臉皮躲過房租</span> <span>${rentEvades} 次</span></div>`;
             if (totalRent > 0) msg += `<div class="text-gray-400 flex justify-between"><span>自動扣繳房租</span> <span>-$${totalRent}</span></div>`;
             if (totalInterest > 0) msg += `<div class="text-gray-400 flex justify-between"><span>自動扣繳利息</span> <span>-$${totalInterest}</span></div>`;
@@ -32472,7 +32624,14 @@ if (!window.__bdogCombatResultHotkeyBound) {
 }
 
 const saved = localStorage.getItem('udg_save_v4') || localStorage.getItem('udg_save_v4_backup');
-if(saved) { try { state = migrateState(decodeSaveData(saved)); } catch(e) { console.warn('save load fallback failed', e); } }
+if(saved) {
+    try {
+        const decoded = decodeSaveData(saved);
+        const needsRepair = needsCoreStateRepair(decoded);
+        state = migrateState(decoded);
+        if (needsRepair) saveGame('repair');
+    } catch(e) { console.warn('save load fallback failed', e); }
+}
 saveWorldChronicle(loadWorldChronicle());
 
 applySettings(); calculateOfflineEarnings(); renderCurrentView(); showStartScreen();
