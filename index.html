@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>敗犬江湖 Ultimate Director's Cut - 官方介紹頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-neon-pink: #f472b6;
+            --color-amber: #f59e0b;
+        }
+
+        body {
+            background-color: var(--color-bg-dark);
+            color: #e2e8f0;
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-serif-tc { font-family: 'Noto Serif TC', serif; }
+
+        .bg-iron-roof {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='%230f172a'/%3E%3Cpath d='M0,0 L10,10 L30,10 L40,0 Z' fill='%231e293b' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+
+        @keyframes neon-pulse {
+            0% { box-shadow: 0 0 10px rgba(244, 114, 182, 0.4), inset 0 0 5px rgba(244, 114, 182, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(244, 114, 182, 0.8), inset 0 0 15px rgba(244, 114, 182, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(244, 114, 182, 0.4), inset 0 0 5px rgba(244, 114, 182, 0.4); }
+        }
+
+        .btn-neon {
+            border: 2px solid var(--color-neon-pink);
+            color: var(--color-neon-pink);
+            animation: neon-pulse 2s infinite;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(244, 114, 182, 0.5);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-neon:hover {
+            background: rgba(244, 114, 182, 0.15);
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(244, 114, 182, 1), inset 0 0 20px rgba(244, 114, 182, 0.8);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+        }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(245, 158, 11, 0.3); }
+
+        .post-it {
+            background: #fef08a;
+            color: #3f3f46;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .post-it::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 40px; height: 15px;
+            background: rgba(255,255,255,0.4);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .typewriter-cursor { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* 開發者信件手風琴動畫 */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="bg-iron-roof min-h-screen flex flex-col relative antialiased">
+
+    <!-- 飄動的催繳單 -->
+    <svg class="absolute top-20 right-[10%] w-24 h-32 opacity-20 rotate-12 pointer-events-none" viewBox="0 0 100 140">
+        <polygon points="0,0 80,0 100,20 100,140 0,140" fill="#f472b6" />
+        <polygon points="80,0 80,20 100,20" fill="#db2777" />
+        <rect x="15" y="40" width="70" height="8" fill="#831843" />
+        <rect x="15" y="60" width="50" height="8" fill="#831843" />
+        <rect x="15" y="80" width="60" height="8" fill="#831843" />
+        <circle cx="70" cy="100" r="15" stroke="#9f1239" stroke-width="3" fill="none" transform="rotate(-15 70 100)"/>
+        <text x="70" y="105" font-family="sans-serif" font-weight="900" font-size="14" fill="#9f1239" text-anchor="middle" transform="rotate(-15 70 100)">拆</text>
+    </svg>
+
+    <!-- 區塊一：主視覺 -->
+    <header class="min-h-screen flex flex-col items-center justify-center relative px-4 text-center overflow-hidden pt-10">
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-2xl max-h-2xl bg-pink-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="w-full max-w-4xl mx-auto mb-6 relative z-10">
+            <svg viewBox="0 0 800 200" class="w-full h-auto drop-shadow-2xl">
+                <defs>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="6" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                    <filter id="noise">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.15 0" />
+                    </filter>
+                    <linearGradient id="textGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#fbbf24"/>
+                        <stop offset="100%" stop-color="#b45309"/>
+                    </linearGradient>
+                </defs>
+                <rect x="50" y="20" width="700" height="150" rx="15" fill="#8B4513" opacity="0.6" filter="url(#noise)"/>
+                <text x="400" y="125" font-family="'Noto Serif TC', serif" font-weight="900" font-size="110" text-anchor="middle" fill="none" stroke="#f59e0b" stroke-width="8" filter="url(#glow)" opacity="0.6">敗犬江湖</text>
+                <text x="400" y="125" font-family="'Noto Serif TC', serif" font-weight="900" font-size="110" text-anchor="middle" fill="url(#textGrad)" stroke="#3b2f1f" stroke-width="3">敗犬江湖</text>
+                <text x="730" y="155" font-family="'Noto Sans TC', sans-serif" font-weight="900" font-size="22" text-anchor="end" fill="#d97706" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Ultimate Director's Cut</text>
+                <polygon points="100,30 110,25 115,40" fill="#2c1e0e" />
+                <polygon points="680,150 690,140 700,160" fill="#2c1e0e" />
+            </svg>
+        </div>
+
+        <p class="text-xl md:text-2xl text-gray-300 mb-12 font-bold tracking-[0.2em] relative z-10">
+            房租比武學更難練，臉皮比拳頭更管用。<span class="typewriter-cursor">_</span>
+        </p>
+
+        <a href="./game.html" class="btn-neon inline-block px-12 py-5 text-2xl md:text-3xl font-black tracking-widest rounded-sm relative z-20">
+            進入江湖 [ENTER]
+        </a>
+
+        <div class="absolute bottom-10 animate-bounce flex flex-col items-center text-gray-500 opacity-60">
+            <span class="text-xs tracking-widest mb-2 uppercase">向下滾動，認識你的爛命</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- 區塊二：一句話核心 -->
+    <section class="py-24 relative z-10 bg-slate-900/80 border-y border-slate-800 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto px-6 text-center relative">
+            <svg class="absolute top-0 left-0 md:-left-12 w-16 h-16 opacity-30 -rotate-12" viewBox="0 0 60 60">
+                <rect x="5" y="5" width="50" height="50" rx="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+                <circle cx="20" cy="20" r="4" fill="#ef4444"/>
+                <circle cx="40" cy="40" r="4" fill="#ef4444"/>
+            </svg>
+            <svg class="absolute bottom-0 right-0 md:-right-12 w-16 h-20 opacity-30 rotate-12" viewBox="0 0 80 110">
+                <rect x="5" y="5" width="70" height="100" rx="6" fill="#1e293b" stroke="#d97706" stroke-width="3"/>
+                <rect x="15" y="15" width="50" height="40" fill="#334155" rx="4"/>
+                <text x="40" y="75" font-size="14" fill="#d97706" text-anchor="middle" font-weight="bold">認慫</text>
+            </svg>
+            <span class="text-6xl text-amber-600/40 font-serif-tc absolute -top-8 left-1/2 -translate-x-1/2">"</span>
+            <h3 class="text-2xl md:text-4xl font-serif-tc text-gray-200 leading-relaxed tracking-wide">
+                這不是成為大俠的故事。<br>
+                這是關於如何在月底付不出房租時，<br>
+                還能笑著跟房東說『下個月一定』的生存實錄。
+            </h3>
+        </div>
+    </section>
+
+    <!-- 區塊三：玩法迴圈 -->
+    <section class="py-20 max-w-6xl mx-auto px-4 relative z-10">
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-amber-500 font-serif-tc tracking-widest">每天都是一場硬仗</h2>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 relative">
+            <div class="glass-card flex-1 p-8 rounded-xl text-center w-full max-w-sm z-10">
+                <div class="text-5xl mb-4">🏠</div>
+                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2">從頂樓醒來</h3>
+                <p class="text-sm text-gray-400 leading-relaxed text-left">確認錢包餘額、躲避房東訊息、分配僅存的行動點數（AP）。</p>
+            </div>
+            <svg class="w-8 h-8 text-slate-600 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7-7m7-7H3"></path></svg>
+            <svg class="w-8 h-8 text-slate-600 md:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            <div class="glass-card flex-1 p-8 rounded-xl text-center w-full max-w-sm z-10">
+                <div class="text-5xl mb-4">🛵</div>
+                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2">打工跑腿掙扎</h3>
+                <p class="text-sm text-gray-400 leading-relaxed text-left">超商大夜、外送跑單、工地搬磚……每一份工都消耗 AP，也磨練你的武力與臉皮。</p>
+            </div>
+            <svg class="w-8 h-8 text-slate-600 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7-7m7-7H3"></path></svg>
+            <svg class="w-8 h-8 text-slate-600 md:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            <div class="glass-card flex-1 p-8 rounded-xl text-center w-full max-w-sm z-10">
+                <div class="text-5xl mb-4">⚔️</div>
+                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2">用卡牌討生活</h3>
+                <p class="text-sm text-gray-400 leading-relaxed text-left">遭遇混混或金錢幫，以「融合卡牌」系統出招。記住，認慫也是一種策略。</p>
+            </div>
+            <div class="hidden md:block absolute -bottom-10 left-[10%] w-[80%] h-12 border-b-2 border-l-2 border-r-2 border-dashed border-slate-700 rounded-b-3xl">
+                <div class="absolute bottom-[-14px] left-1/2 -translate-x-1/2 bg-slate-900 px-4 text-xs text-amber-600">領錢、繳租、再撐一天</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊四：核心系統 -->
+    <section class="py-20 bg-slate-900/50">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-gray-100 font-serif-tc tracking-widest">敗犬的生存工具箱</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-amber-500">
+                    <div class="text-4xl">🃏</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-amber-400 mb-2">打架靠牌技</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">收集超過 120 張招式卡，涵蓋硬派、取巧、話術、認慫四大流派。戰鬥前編輯牌組，戰鬥中看穿敵方架勢，用 QTE 抓住破綻。</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-blue-400 relative overflow-hidden">
+                    <svg class="absolute right-[-20px] bottom-[-20px] w-32 h-32 opacity-10" viewBox="0 0 300 400">
+                        <rect x="100" y="50" width="100" height="120" fill="#d4b594" rx="10"/>
+                        <path d="M 120 200 L 120 150 L 180 150 L 180 220 Z" fill="#9ca3af"/>
+                    </svg>
+                    <div class="text-4xl relative z-10">👥</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-blue-400 mb-2">兄弟幫你跑腿</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">鐵叔、小夜、金錢豹、阿傑……提升羈絆後可派他們外出打工、蒐集情報，甚至觸發專屬劇情。小心高風險任務。</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-pink-500">
+                    <div class="text-4xl">📱</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-pink-400 mb-2">發廢文抒壓</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">在遊戲內的社群平台上按讚、留言、轉發。你的每一篇廢文都可能影響聲望，甚至釣出隱藏的江湖祕聞。</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-emerald-500">
+                    <div class="text-4xl">🏛️</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-emerald-400 mb-2">從敗犬到掌門</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">加入外送聯盟、健身集團，或自創門派。招募弟子、擴建道場、搶佔分舵地盤，在城中村建立你的勢力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊五：角色與數值 (全新塗鴉火柴人阿琳 SVG) -->
+    <section class="py-24 max-w-5xl mx-auto px-4 border-t border-slate-800">
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-gray-100 font-serif-tc tracking-widest">你的命，由數字決定</h2>
+        
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            
+            <!-- 左側：全新塗鴉火柴人風格 (Stickman + Loser Vibe) -->
+            <div class="w-full md:w-5/12 flex justify-center relative">
+                <svg viewBox="0 0 300 400" class="w-full max-w-[320px] drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" aria-label="火柴人阿琳">
+                    <defs>
+                        <!-- 粉筆/手繪質感的濾鏡 -->
+                        <filter id="start-sketchy" x="-10%" y="-10%" width="120%" height="120%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+                        </filter>
+                    </defs>
+                    <circle cx="150" cy="212" r="130" fill="#1e293b" opacity="0.38" />
+                    <g filter="url(#start-sketchy)" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                        <path d="M 40 78 L 272 78" stroke="#334155" stroke-width="6" />
+                        <path d="M 58 52 L 240 52" stroke="#475569" stroke-width="4" />
+                        <path d="M 74 52 L 62 78 M 110 52 L 98 78 M 146 52 L 134 78 M 182 52 L 170 78 M 218 52 L 206 78" stroke="#475569" stroke-width="3" />
+
+                        <path d="M 28 38 L 58 66 M 34 24 L 66 58 M 46 18 L 80 54" stroke="#fde68a" stroke-width="3" opacity="0.75" />
+
+                        <circle cx="150" cy="112" r="23" stroke="#e2e8f0" stroke-width="5" />
+                        <path d="M 168 100 Q 190 112 194 136" stroke="#94a3b8" stroke-width="5" />
+                        <path d="M 194 136 Q 188 150 172 146" stroke="#94a3b8" stroke-width="4" />
+                        <circle cx="142" cy="108" r="2.5" fill="#e2e8f0" class="start-alin-eye" stroke="none" />
+                        <path d="M 144 122 Q 151 126 160 121" stroke="#cbd5e1" stroke-width="3" />
+
+                        <line x1="150" y1="136" x2="150" y2="212" stroke="#e2e8f0" stroke-width="6" />
+                        <line x1="150" y1="158" x2="116" y2="206" stroke="#e2e8f0" stroke-width="5" />
+                        <line x1="150" y1="160" x2="193" y2="198" stroke="#e2e8f0" stroke-width="5" />
+                        <circle cx="112" cy="210" r="5" fill="#e2e8f0" stroke="none" />
+                        <circle cx="194" cy="199" r="5" fill="#e2e8f0" stroke="none" />
+
+                        <line x1="193" y1="198" x2="225" y2="240" stroke="#cbd5e1" stroke-width="4" />
+                        <path d="M 224 240 L 252 262 L 237 270 L 214 246 Z" stroke="#e2e8f0" stroke-width="3" fill="#94a3b8" opacity="0.42" />
+                        <line x1="236" y1="268" x2="210" y2="247" stroke="#f8fafc" stroke-width="2" />
+
+                        <line x1="150" y1="212" x2="118" y2="334" stroke="#e2e8f0" stroke-width="6" />
+                        <line x1="150" y1="212" x2="182" y2="334" stroke="#e2e8f0" stroke-width="6" />
+                        <path d="M 134 272 L 122 272 M 168 272 L 180 272" stroke="#93c5fd" stroke-width="3" />
+                        <path d="M 130 296 L 118 296 M 172 296 L 184 296" stroke="#93c5fd" stroke-width="3" />
+
+                        <path d="M 102 338 L 132 338 L 136 345 L 100 345 Z" stroke="#cbd5e1" stroke-width="4" />
+                        <path d="M 164 338 L 196 338 L 200 345 L 162 345 Z" stroke="#cbd5e1" stroke-width="4" />
+
+                        <path d="M 78 352 L 224 352" stroke="#334155" stroke-width="4" opacity="0.75" />
+                        <g transform="translate(88,344)">
+                            <circle cx="0" cy="0" r="12" fill="#fb923c" stroke="#ea580c" stroke-width="3" />
+                            <path d="M -7 -4 Q 0 3 7 -3" stroke="#fdba74" stroke-width="2" />
+                            <path d="M 0 -12 L 2 -18" stroke="#65a30d" stroke-width="2" />
+                        </g>
+                        <g transform="translate(114,360)">
+                            <path d="M -14 -6 Q 0 -18 14 -6 Q 0 2 -14 -6 Z" fill="#fb923c" stroke="#ea580c" stroke-width="3" />
+                            <path d="M 0 -8 L 3 -14" stroke="#65a30d" stroke-width="2" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 右側：屬性面板 -->
+            <div class="w-full md:w-7/12 bg-[#020617] border border-slate-700 p-6 md:p-8 rounded-xl font-mono text-sm relative shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                <div class="text-xs text-slate-500 mb-4 border-b border-slate-800 pb-2">SYS.CHAR.STATUS // ALIN</div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <span class="w-24 text-red-400">🫀 HP</span>
+                        <div class="flex-1 bg-slate-800 h-3 rounded-full overflow-hidden relative">
+                            <div class="bg-red-500 w-[56%] h-full"></div>
+                        </div>
+                        <span class="w-16 text-right text-gray-400">68/120</span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <span class="w-24 text-yellow-400">⚡ AP</span>
+                        <div class="flex-1 flex gap-1">
+                            <div class="w-4 h-4 bg-yellow-400 rounded-sm"></div>
+                            <div class="w-4 h-4 bg-yellow-400 rounded-sm"></div>
+                            <div class="w-4 h-4 bg-yellow-400 rounded-sm"></div>
+                            <div class="w-4 h-4 bg-yellow-400 rounded-sm"></div>
+                            <div class="w-4 h-4 bg-slate-800 rounded-sm"></div>
+                            <div class="w-4 h-4 bg-slate-800 rounded-sm"></div>
+                        </div>
+                        <span class="w-16 text-right text-gray-400">4/8</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-4 pt-4 border-t border-slate-800">
+                        <div>
+                            <span class="text-gray-400 block mb-1">💪 武力</span>
+                            <div class="text-xl text-gray-200">85</div>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block mb-1">👁️ 洞察</span>
+                            <div class="text-xl text-gray-200">72</div>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block mb-1">🗣️ 話術</span>
+                            <div class="text-xl text-gray-200">68</div>
+                        </div>
+                        
+                        <div class="col-span-2 mt-2 p-3 bg-pink-900/20 border border-pink-900/50 rounded">
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-pink-400 font-bold">🛡️ 臉皮</span>
+                                <span class="text-pink-400 text-lg">142 (Maxed out!)</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-4 rounded-full relative">
+                                <div class="bg-gradient-to-r from-pink-600 to-pink-400 w-full h-full rounded-full shadow-[0_0_10px_rgba(244,114,182,0.8)]"></div>
+                                <div class="absolute top-0 -right-4 h-full w-6 bg-pink-300 animate-pulse rounded-r-full shadow-[0_0_15px_rgba(244,114,182,1)] text-[8px] flex items-center justify-center text-pink-900 font-black overflow-hidden">++</div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-3 font-sans leading-relaxed">
+                                「臉皮」是你最重要的資產。臉皮夠厚，能乞討、吃霸王餐、甚至賴掉房租。但小心，自尊心也會因此受損。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between pt-4 border-t border-slate-800 text-sm">
+                        <span class="text-emerald-400">💰 現金: $12,450</span>
+                        <span class="text-red-400">📉 信用評等: 380 (高風險)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊六：世界觀與選擇 -->
+    <section class="py-20 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-gray-100 font-serif-tc tracking-widest">每個選擇，都寫下不同的爛尾</h2>
+            <div class="space-y-6">
+                <div class="glass-card p-6 flex flex-col md:flex-row items-center gap-6 rounded-r-3xl border-l-4 border-l-purple-500">
+                    <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center text-3xl flex-shrink-0">🕶️</div>
+                    <p class="text-lg text-gray-300">「要原諒那個曾經背叛你的人，還是讓她付出代價？」</p>
+                </div>
+                <div class="glass-card p-6 flex flex-col md:flex-row items-center gap-6 rounded-r-3xl border-l-4 border-l-orange-500 ml-0 md:ml-8">
+                    <div class="w-16 h-16 rounded-full bg-orange-900/50 flex items-center justify-center text-3xl flex-shrink-0">🐈</div>
+                    <p class="text-lg text-gray-300">「跟流浪貓搶地盤，還是收編牠成為你最忠實的線民？」</p>
+                </div>
+                <div class="glass-card p-6 flex flex-col md:flex-row items-center gap-6 rounded-r-3xl border-l-4 border-l-red-800 ml-0 md:ml-16">
+                    <div class="w-16 h-16 rounded-full bg-red-900/30 flex items-center justify-center text-3xl flex-shrink-0">🏯</div>
+                    <p class="text-lg text-gray-300">「守住母親留下的破道場，還是把它賣給建商，從此躺平？」</p>
+                </div>
+            </div>
+            <div class="text-center mt-16 pt-8 border-t border-slate-800">
+                <p class="text-amber-500/80 font-bold tracking-widest">超過 15 種結局。從武林盟主、地下教父，到被社會徹底遺忘的廢人。<br>你的江湖，你自己收尾。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊七：玩家證言 -->
+    <section class="py-24 overflow-hidden relative border-y border-slate-800 bg-iron-roof">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-8 justify-center items-center">
+            <div class="post-it w-72 p-6 rotate-[-3deg] transform hover:rotate-0 transition-transform">
+                <p class="font-bold text-lg mb-4 leading-relaxed">「我本來只是想找個武俠遊戲，結果一直在算房租跟躲債主。莫名寫實。」</p>
+                <p class="text-sm text-gray-600 text-right">— 某位不想上班的玩家</p>
+            </div>
+            <div class="post-it w-72 p-6 rotate-[4deg] transform hover:rotate-0 transition-transform mt-8 md:mt-0" style="background-color: #bbf7d0;">
+                <p class="font-bold text-lg mb-4 leading-relaxed">「第一次發現，原來在遊戲裡耍廢一整天，也會有滿滿的罪惡感。」</p>
+                <p class="text-sm text-gray-600 text-right">— 躺平大師</p>
+            </div>
+            <div class="post-it w-72 p-6 rotate-[-2deg] transform hover:rotate-0 transition-transform mt-8 md:mt-0" style="background-color: #fbcfe8;">
+                <p class="font-bold text-lg mb-4 leading-relaxed">「金錢豹比我家貓還跩，但我還是每天餵牠。」</p>
+                <p class="text-sm text-gray-600 text-right">— 貓奴認證</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 新增區塊：開發者的信與內容日誌                  -->
+    <!-- ============================================== -->
+    <section class="py-16 bg-[#050505] border-t border-slate-900">
+        <details class="group max-w-4xl mx-auto px-4 cursor-pointer">
+            <summary class="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-500 animate-pulse">▶</span>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-300 tracking-widest">系統解密：開發者的信 & V1.0 內容日誌</h3>
+                </div>
+                <span class="text-xs text-gray-600 uppercase tracking-widest group-open:hidden">點擊展開 [Expand]</span>
+                <span class="text-xs text-gray-600 uppercase tracking-widest hidden group-open:block">點擊收合 [Collapse]</span>
+            </summary>
+            
+            <div class="mt-4 p-6 md:p-10 bg-slate-900 border border-slate-800 rounded-lg text-gray-400 text-sm md:text-base leading-relaxed font-sans shadow-inner">
+                
+                <!-- 開發者的信 -->
+                <div class="mb-12">
+                    <h4 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">開發者的信</h4>
+                    <p class="mb-4">各位遊玩者：</p>
+                    <p class="mb-4">我是《敗犬江湖》的開發者，一名還在唸書的學生。</p>
+                    <p class="mb-4">這款遊戲的起點，是這個禮拜四，也就是 2026 年 4 月 9 日。那天深夜，我腦中突然冒出兩個字：「敗犬」。</p>
+                    <p class="mb-4">敗犬。江湖。</p>
+                    <p class="mb-4">如果把它們放在一起，會長出什麼東西？不是什麼大俠成名錄，而是一群在社會夾縫裡掙扎求生的人，用拳頭、嘴砲、還有厚到子彈打不穿的臉皮，在城市的暗面寫自己的爛命故事。</p>
+                    <p class="mb-4">那個晚上，我打開編輯器，同時也打開了 AI 對話框。在接下來不到三天的時間裡，我把我心中那套有點窩囊、有點倔強、又充滿臺式底層幽默的「敗犬哲學」，一句一句地、一場一場地，協同 AI 輕輕放進了這座用鐵皮、霓虹、催繳單和夜市油煙搭建起來的江湖裡。</p>
+                    <p class="mb-4">然後就到了今天，禮拜天，4 月 12 日。</p>
+                    <p class="mb-4">你現在看到的，是第一個可以試玩的雛形。它還很粗糙，很多地方像還沒拆模的工地，但阿琳已經可以在城中村裡走跳、挨揍、認慫、再硬著頭皮活過今天。</p>
+                    <p class="mb-4">我想謝謝每一個點進來的人。</p>
+                    <p class="mb-4">無論你是滑到、被朋友推坑、還是對「敗犬江湖」這四個字感到荒謬又好奇，我都非常感激。如果你願意玩下去，甚至告訴我哪裡卡關、哪裡出 bug、哪裡讓你笑出來或嘆了一口氣——那對我來說，就是最紮實的鼓勵。</p>
+                    <p class="mb-4">這遊戲還會繼續長大。我會把 UI 修得更順手，把故事寫得更深，把那些你還沒看到的結局、夥伴、門派鬥爭，一個一個實裝進去。</p>
+                    <p class="mb-8">謝謝你來。希望阿琳的爛命，能陪你度過幾個有點狼狽、又有點好笑的夜晚。</p>
+                    <p class="text-right text-gray-500 italic">— 一名邊寫 code 邊吃泡麵的學生開發者 敬上<br>2026 年 4 月 12 日，禮拜天深夜</p>
+                </div>
+
+                <!-- 內容日誌 -->
+                <div class="border-t border-slate-700 pt-8">
+                    <h4 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">《敗犬江湖》V1.0 內容日誌（專業開發者版）</h4>
+                    
+                    <div class="mb-8 p-4 bg-slate-950 rounded text-cyan-500 font-mono text-xs md:text-sm">
+                        <p>· 版本代號：Ultimate Director's Cut V1.0</p>
+                        <p>· 發布型態：單一 HTML 離線可執行檔（約 3.8 MB）</p>
+                        <p>· 核心技術：Vanilla JavaScript + Tailwind CSS + SVG 向量圖形</p>
+                        <p>· 開發週期：72 小時原型衝刺（2026.04.09 – 2026.04.12）</p>
+                    </div>
+
+                    <h5 class="text-lg font-bold text-amber-500 mb-3">一、設計哲學：敗犬精神與臺式江湖</h5>
+                    <p class="mb-4">本作的核心設計命題為：「如果武俠發生在當代臺灣的底層社會，會是什麼模樣？」</p>
+                    <p class="mb-4">傳統武俠的「內力」被替換為「臉皮」；「門派」被替換為「外送聯盟、健身集團、超商大夜班」；「絕世武功」被替換為「從工地搬磚、夜市賭攤、廢文牆流量中提煉出來的生存技」。遊戲透過以下三大支柱貫徹此哲學：</p>
+                    <ul class="list-disc pl-6 mb-8 space-y-2 text-gray-400">
+                        <li><strong class="text-gray-300">資源焦慮驅動：</strong>房租、利息、信用評等、AP（行動點數）上限構成緊迫的生存壓力，所有系統均圍繞「如何活過下一個繳租日」運轉。</li>
+                        <li><strong class="text-gray-300">道德彈性與後果：</strong>戰鬥中的「認慫」選項、日常中的乞討與霸王餐，均以「臉皮」屬性作為代價與資源，並累積隱性的「自尊／心魔」數值，影響後期結局走向。</li>
+                        <li><strong class="text-gray-300">系統性敘事：</strong>夥伴派遣、廢文牆、街頭傳聞、門派經營等子系統，均會動態生成符合世界觀的小故事，形成「玩家行為 → 世界回應 → 新敘事觸發」的閉環。</li>
+                    </ul>
+
+                    <h5 class="text-lg font-bold text-amber-500 mb-3">二、核心系統架構</h5>
+                    
+                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.1 時間與資源循環</h6>
+                    <ul class="list-disc pl-6 mb-6 space-y-1">
+                        <li><strong>日循環（Day Cycle）：</strong>以 AP（行動點數）為主要限制。AP 耗盡後可選擇「睡覺」推進一日，或「耍廢」跳過一日並承受負面效果。</li>
+                        <li><strong>週期性壓力：</strong>房租（每 7 日）、利息（每 3 日）結算。欠費會觸發 HP 扣除、聲望下降、討債事件等連鎖反應。</li>
+                        <li><strong>離線進程：</strong>支援真實時間流逝結算。離線期間 AP 溢出會轉為「儲備精力」，可手動啟動短期打工收益爆發，平衡掛機與主動遊玩的回報曲線。</li>
+                    </ul>
+
+                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.2 角色成長：四維與雙重道德</h6>
+                    <div class="overflow-x-auto mb-4">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-800 border-b border-slate-700">
+                                    <th class="p-2 w-24">屬性</th>
+                                    <th class="p-2">設計意圖</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">武力</td><td class="p-2">傳統 RPG 力量，影響硬派戰鬥、工地／保鑣打工收益。</td></tr>
+                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">洞察</td><td class="p-2">感知與智取，影響取巧戰鬥、情報類打工、破解小遊戲。</td></tr>
+                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">話術</td><td class="p-2">社交與操縱，影響嘴砲戰鬥、超商／推銷類打工、廢文牆互動。</td></tr>
+                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-pink-400">臉皮</td><td class="p-2">本作核心屬性。影響認慫成功率、乞討／霸王餐解鎖、房租賴帳機率。但過高會引發 NPC 反感與自尊懲罰。</td></tr>
+                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">聲望</td><td class="p-2">社會評價，影響打工薪水加成、部分劇情解鎖。</td></tr>
+                                <tr><td class="p-2 font-bold text-white">信用評等</td><td class="p-2">動態金融標籤，影響貸款利率、商店折扣、部分任務觸發。歸零觸發破產清算事件。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mb-6 text-sm"><strong class="text-gray-300">隱性數值：</strong>心魔值（累積自戰鬥失利、道德敗壞）、希望值（影響戰鬥士氣）、自尊值（影響 NPC 態度）。</p>
+
+                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.3 戰鬥系統：融合卡牌與姿態克制</h6>
+                    <ul class="list-disc pl-6 mb-6 space-y-1">
+                        <li><strong>底層邏輯：</strong>每次戰鬥均為回合制。玩家手牌來自預組牌庫（上限 15 張），每回合抽滿 5 張，消耗 AP（能量）出牌。</li>
+                        <li><strong>四種流派：</strong>硬派（武力）、取巧（洞察）、話術（話術）、認慫（臉皮）。每張卡牌歸屬一流派，並對應判定門檻。</li>
+                        <li><strong>姿態克制鏈：</strong>硬派→取巧→話術→認慫→硬派。敵我雙方均有當前姿態，克制時判定門檻大幅下降，被克制時上升。</li>
+                        <li><strong>戰意與崩潰：</strong>BOSS 級敵人擁有「戰意」條。使用話術與認慫可削減戰意。歸零時進入「崩潰」狀態。</li>
+                        <li><strong>QTE 破綻系統：</strong>出牌時觸發快速反應事件，成功可降低本次判定門檻。</li>
+                    </ul>
+
+                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.4 夥伴系統：派遣、羈絆與協同作戰</h6>
+                    <p class="mb-2">四位核心夥伴：鐵叔（刀客）、小夜（唐門後人／超商店員）、金錢豹（橘貓）、阿傑（被霸凌高中生）。</p>
+                    <ul class="list-disc pl-6 mb-6 space-y-1">
+                        <li><strong>羈絆層級：</strong>每名夥伴擁有 0-3 級羈絆，透過專屬劇情、派遣成功、特定對話累積。</li>
+                        <li><strong>派遣系統：</strong>夥伴可被派往執行任務（跑單、蒐集情報、討債等），真實時間冷卻。任務有失敗風險。</li>
+                        <li><strong>連續劇情鏈：</strong>重複派遣同一夥伴執行同類任務，會觸發多階段故事線，最終解鎖強力專屬卡牌或裝備。</li>
+                    </ul>
+
+                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.5 門派經營：自創勢力與動態競爭</h6>
+                    <ul class="list-disc pl-6 mb-6 space-y-1">
+                        <li><strong>雙軌制：</strong>玩家可選擇加入六大預設勢力（如外送聯盟、健身集團），或達成條件後自創門派。</li>
+                        <li><strong>建設與研究：</strong>升級大廳、練功房、藏經閣等設施，解鎖技能樹（如速遞專精、金鐘罩）。</li>
+                        <li><strong>分舵佔領：</strong>地圖上存在可爭奪的據點（舊工廠、夜市情報站），提供每週被動收入與戰略 buff。</li>
+                    </ul>
+
+                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.6 敘事生成系統</h6>
+                    <ul class="list-disc pl-6 mb-6 space-y-1">
+                        <li><strong>動態廢文牆：</strong>基於模板與變數池，每日生成 NPC 貼文。互動可累積聲望、觸發隱藏事件。</li>
+                        <li><strong>街頭傳聞：</strong>根據玩家近期行為生成流言，影響地區勢力好感。</li>
+                        <li><strong>廢柴日記：</strong>每日結束時自動生成日記，總結當日收支與關鍵選擇，並附上敗犬式自嘲金句。</li>
+                    </ul>
+
+                    <h5 class="text-lg font-bold text-amber-500 mt-10 mb-3">技術實現亮點</h5>
+                    <ul class="list-disc pl-6 mb-8 space-y-2">
+                        <li><strong>單檔案架構：</strong>所有遊戲邏輯、UI 渲染、資料庫、樣式均封裝於單一 HTML，無外部依賴（除 Tailwind CDN 與 LZ-String），便於分發與離線遊玩。</li>
+                        <li><strong>狀態管理：</strong>全域 state 物件統一管理遊戲數據，透過 migrateState 等函數處理版本相容。</li>
+                        <li><strong>存檔系統：</strong>支援 LZ-String 壓縮、Base64 編碼、多槽位管理、匯出／匯入。</li>
+                    </ul>
+
+                    <h5 class="text-lg font-bold text-amber-500 mt-8 mb-3">結語</h5>
+                    <p class="mb-4">《敗犬江湖》V1.0 是一次將「底層生存焦慮」與「武俠 RPG 框架」嫁接的實驗。它用極短的開發週期證明了，即使在技術限制下，透過密集的系統交織與一致的敘事語調，仍能創造出具有辨識度與沉浸感的作品。後續版本將聚焦於打磨互動體驗與深化世界回應，讓這座鐵皮屋頂下的江湖，繼續長出更多令人苦笑的故事。</p>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- 區塊八：Footer CTA -->
+    <footer class="py-24 flex flex-col items-center justify-center relative text-center bg-black overflow-hidden mt-auto">
+        <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none overflow-hidden">
+            <span class="text-[15vw] font-black text-red-600 whitespace-nowrap transform -rotate-12 select-none">欠債還錢</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black text-white mb-10 tracking-widest relative z-10 drop-shadow-lg" style="text-shadow: 2px 2px 0 #831843, -2px -2px 0 #831843;">
+            房租要繳，日子要過，拳頭要握緊。
+        </h2>
+        <a href="./game.html" class="btn-neon inline-block px-14 py-6 text-2xl md:text-3xl font-black tracking-widest rounded-sm relative z-10 mb-4">
+            進入江湖 [ENTER]
+        </a>
+        <p class="text-gray-500 text-sm tracking-widest mb-16 relative z-10">無需下載，點擊即玩。支援手機與電腦瀏覽器。</p>
+        <div class="w-full max-w-lg border-t border-slate-800 pt-6 relative z-10">
+            <p class="text-gray-600 text-xs tracking-wider">
+                &copy; 2026 敗犬江湖 Ultimate Director's Cut.<br>
+                <span class="text-gray-500">把你的爛命，活成傳說。</span>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
