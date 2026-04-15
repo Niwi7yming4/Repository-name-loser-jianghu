@@ -234,7 +234,38 @@
         .hub-tab { border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.75); color: #cbd5e1; padding: 0.48rem 0.9rem; border-radius: 999px; font-size: 0.84rem; font-weight: 700; transition: all 0.2s ease; }
         .hub-tab.active { background: linear-gradient(135deg, rgba(217,119,6,0.24), rgba(124,58,237,0.24)); border-color: rgba(245,158,11,0.45); color: #fde68a; box-shadow: 0 0 18px rgba(245,158,11,0.12); }
         .hub-pill { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.28rem 0.65rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(15,23,42,0.72); font-size: 0.76rem; color: #dbeafe; }
-        .hub-action { min-height: 4.35rem; }
+        .hub-action {
+            min-height: 3.5rem;
+            border-radius: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: linear-gradient(180deg, rgba(15,23,42,0.86), rgba(2,6,23,0.92));
+            color: #e2e8f0;
+            padding: 0.62rem 0.72rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.25;
+            transition: all .2s ease;
+        }
+        .hub-action:hover:not(:disabled) { border-color: rgba(56,189,248,0.45); background: linear-gradient(180deg, rgba(8,47,73,0.46), rgba(2,6,23,0.95)); transform: translateY(-1px); }
+        .hub-action:disabled { opacity: 0.48; cursor: not-allowed; }
+        .hub-tile-btn {
+            min-height: 4.05rem;
+            border-radius: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: linear-gradient(180deg, rgba(15,23,42,0.86), rgba(2,6,23,0.95));
+            color: #e2e8f0;
+            padding: 0.56rem 0.62rem;
+            text-align: left;
+            transition: all .2s ease;
+            width: 100%;
+        }
+        .hub-tile-btn:hover:not(:disabled) { border-color: rgba(56,189,248,0.42); transform: translateY(-1px); background: linear-gradient(180deg, rgba(8,47,73,0.48), rgba(2,6,23,0.96)); }
+        .hub-tile-btn:disabled { opacity: 0.46; cursor: not-allowed; }
+        .hub-tile-title { font-size: 0.84rem; font-weight: 700; line-height: 1.2; color: #dbeafe; }
+        .hub-tile-sub { font-size: 0.72rem; color: rgba(186,230,253,0.72); margin-top: 0.18rem; line-height: 1.22; }
         .inv-filter-btn { border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.72); color: #cbd5e1; padding: 0.4rem 0.78rem; border-radius: 999px; font-size: 0.74rem; font-weight: 700; transition: all 0.2s ease; }
         .inv-filter-btn.active { background: linear-gradient(135deg, rgba(217,119,6,0.24), rgba(124,58,237,0.22)); border-color: rgba(245,158,11,0.42); color: #fde68a; box-shadow: 0 0 14px rgba(245,158,11,0.1); }
         .inventory-tile { min-height: 7.2rem; border-radius: 0.95rem; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(17,24,39,0.82), rgba(2,6,23,0.92)); padding: 0.95rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.34rem; text-align: center; transition: all 0.18s ease; position: relative; cursor: pointer; }
@@ -276,10 +307,14 @@
         .combat-hand-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 0.55rem; }
         @media (min-width: 768px) { .combat-hand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         .combat-layout-shell { border: 1px solid rgba(251, 191, 36, 0.28); background: linear-gradient(180deg, rgba(120,53,15,0.14), rgba(2,6,23,0.82)); border-radius: 1rem; padding: var(--combat-density-panel-padding, 0.78rem); }
-        .combat-card-float { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0.8rem; z-index: 52; width: min(96vw, 820px); pointer-events: none; }
+        .combat-card-float { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0.8rem; z-index: 120; width: min(96vw, 820px); pointer-events: none; }
         .combat-card-float > * { pointer-events: auto; }
         .combat-card-float .combat-layout-shell { box-shadow: 0 14px 34px rgba(0,0,0,0.52); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        .combat-card-float-spacer { height: min(50vh, 420px); }
+        .combat-card-bottom-layer { border-radius: 1rem; border: 1px solid rgba(56,189,248,0.24); background: linear-gradient(180deg, rgba(2,6,23,0.84), rgba(2,6,23,0.92)); box-shadow: 0 16px 34px rgba(0,0,0,0.54); padding: 0.55rem; margin-top: 0.45rem; }
+        .combat-card-bottom-layer .combat-layout-extra { margin-top: 0.35rem; }
+        .combat-float-handle { cursor: grab; user-select: none; }
+        .combat-float-dragging, .combat-float-dragging * { cursor: grabbing !important; user-select: none !important; }
+        .combat-card-float-spacer { height: min(46vh, 360px); }
         .combat-layout-main { display: grid; grid-template-columns: 1fr auto; gap: var(--combat-density-main-gap, 0.9rem); align-items: stretch; }
         .combat-layout-main.mobile { grid-template-columns: 1fr; }
         .combat-card-rail { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: rgba(251,191,36,0.45) rgba(15,23,42,0.45); }
@@ -302,6 +337,15 @@
         .combat-fixed-btn { width: var(--combat-action-size, 48px); height: var(--combat-action-size, 48px); border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(15,23,42,0.88); color: #e2e8f0; display: inline-flex; align-items: center; justify-content: center; font-size: 1.05rem; transition: all 0.2s ease; }
         .combat-fixed-btn:hover:not(:disabled) { border-color: rgba(251,191,36,0.85); background: rgba(120,53,15,0.45); transform: translateY(-1px); }
         .combat-fixed-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .combat-endturn-cue { animation: combatEndTurnPulse 1s ease-in-out infinite; border-color: rgba(251,191,36,0.9) !important; box-shadow: 0 0 0 2px rgba(251,191,36,0.28), 0 0 18px rgba(251,191,36,0.24); }
+        @keyframes combatEndTurnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+        .combat-action-legend { display: flex; flex-wrap: wrap; gap: 0.32rem; align-items: center; margin: 0.05rem 0 0.4rem; }
+        .combat-action-legend-chip { border-radius: 999px; border: 1px solid rgba(148,163,184,0.28); background: rgba(2,6,23,0.45); color: #cbd5e1; font-size: 0.62rem; padding: 0.12rem 0.38rem; }
+        .combat-action-legend { display: flex; flex-wrap: wrap; gap: 0.32rem; align-items: center; margin: 0.05rem 0 0.4rem; }
+        .combat-action-legend-chip { border-radius: 999px; border: 1px solid rgba(148,163,184,0.28); background: rgba(2,6,23,0.45); color: #cbd5e1; font-size: 0.62rem; padding: 0.12rem 0.38rem; }
         .combat-layout-extra { margin-top: var(--combat-density-extra-margin-top, 0.55rem); display: grid; gap: var(--combat-density-extra-gap, 0.45rem); }
         .story-skill-bar { border: 1px solid rgba(56,189,248,0.3); background: linear-gradient(180deg, rgba(8,47,73,0.25), rgba(2,6,23,0.72)); border-radius: 0.85rem; padding: var(--combat-density-story-skill-padding, 0.45rem); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--combat-density-story-skill-gap, 0.38rem); }
         .story-skill-btn { border-radius: 0.7rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(15,23,42,0.78); color: #e2e8f0; min-height: 3.2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.16rem; font-size: 1.15rem; transition: all .18s ease; }
@@ -315,7 +359,7 @@
         .story-skill-btn[data-tip]:hover::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); width: min(52vw, 240px); padding: 0.35rem 0.45rem; border-radius: 0.45rem; border: 1px solid rgba(56,189,248,0.4); background: rgba(2,6,23,0.95); color: #cbd5e1; font-size: 0.62rem; line-height: 1.35; white-space: pre-line; z-index: 90; pointer-events: none; box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
         .story-skill-preview { border-radius: 0.75rem; border: 1px solid rgba(56,189,248,0.35); background: rgba(8,47,73,0.2); padding: var(--combat-density-preview-padding, 0.42rem 0.55rem); margin-bottom: var(--combat-density-preview-margin-bottom, 0.35rem); }
         .combat-round-summary { border-radius: 0.7rem; border: 1px solid rgba(56,189,248,0.34); background: rgba(8,47,73,0.22); padding: var(--combat-density-round-summary-padding, 0.4rem 0.5rem); margin-bottom: var(--combat-density-round-summary-margin-bottom, 0.45rem); }
-        .combat-story-scroll { max-height: min(34vh, 360px); overflow-y: auto; padding-right: var(--combat-density-story-scroll-padding-right, 0.35rem); margin-bottom: var(--combat-density-story-scroll-margin-bottom, 0.4rem); scrollbar-width: thin; scrollbar-color: rgba(148,163,184,0.45) rgba(2,6,23,0.3); }
+        .combat-story-scroll { min-height: clamp(150px, 25vh, 250px); max-height: min(33vh, 360px); overflow-y: auto; overscroll-behavior: contain; padding-right: var(--combat-density-story-scroll-padding-right, 0.46rem); margin-bottom: var(--combat-density-story-scroll-margin-bottom, 0.42rem); scrollbar-width: thin; scrollbar-color: rgba(148,163,184,0.45) rgba(2,6,23,0.3); }
         .combat-story-scroll::-webkit-scrollbar { width: 7px; }
         .combat-story-scroll::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.45); border-radius: 999px; }
         .combat-story-scroll::-webkit-scrollbar-track { background: rgba(2,6,23,0.3); border-radius: 999px; }
@@ -325,7 +369,7 @@
         .combat-card-mini-meta { font-size: 0.67rem; color: #9ca3af; }
         .combat-card-mini-tags { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.25rem; }
         .combat-card-mini-tags span { font-size: 0.58rem; padding: 0.06rem 0.28rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(2,6,23,0.62); color: #cbd5e1; }
-        .combat-personal-hub { position: fixed; right: 1rem; bottom: 5.2rem; z-index: 46; width: min(92vw, 330px); border-radius: 0.9rem; border: 1px solid rgba(56,189,248,0.35); background: linear-gradient(180deg, rgba(2,6,23,0.9), rgba(2,6,23,0.82)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 12px 28px rgba(0,0,0,0.32); padding: 0.55rem; }
+        .combat-personal-hub { position: fixed; right: 1rem; bottom: clamp(12.5rem, 33vh, 18.2rem); z-index: 56; width: min(92vw, 330px); border-radius: 0.9rem; border: 1px solid rgba(56,189,248,0.35); background: linear-gradient(180deg, rgba(2,6,23,0.9), rgba(2,6,23,0.82)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 12px 28px rgba(0,0,0,0.32); padding: 0.55rem; }
         .combat-personal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.25rem; margin-bottom: 0.45rem; }
         .combat-personal-cell { border-radius: 0.55rem; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.22); padding: 0.28rem 0.35rem; }
         .combat-personal-k { font-size: 0.56rem; color: #94a3b8; }
@@ -333,9 +377,9 @@
         .combat-personal-actions { display: grid; grid-template-columns: 1fr auto auto auto; gap: 0.28rem; }
         .combat-personal-btn { border-radius: 0.6rem; border: 1px solid rgba(255,255,255,0.18); background: rgba(15,23,42,0.88); color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 0.42rem 0.55rem; }
         .combat-personal-btn.primary { border-color: rgba(251,191,36,0.48); background: rgba(120,53,15,0.4); color: #fde68a; }
-        .combat-log-dock { position: fixed; left: 0.9rem; bottom: 5.2rem; z-index: 47; pointer-events: auto; }
+        .combat-log-dock { position: fixed; left: 0.9rem; bottom: 5.2rem; z-index: 55; pointer-events: auto; }
         .combat-log-pill { border-radius: 999px; border: 1px solid rgba(56,189,248,0.45); background: rgba(2,6,23,0.88); color: #bae6fd; font-size: 0.76rem; font-weight: 700; padding: 0.44rem 0.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
-        .combat-log-card { width: min(92vw, 360px); border-radius: 0.85rem; border: 1px solid rgba(56,189,248,0.35); background: linear-gradient(180deg, rgba(2,6,23,0.95), rgba(2,6,23,0.88)); box-shadow: 0 14px 34px rgba(0,0,0,0.48); overflow: hidden; }
+        .combat-log-card { width: min(96vw, 460px); border-radius: 0.85rem; border: 1px solid rgba(56,189,248,0.35); background: rgba(0,0,0,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 14px 34px rgba(0,0,0,0.48); overflow: hidden; }
         .combat-log-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.45rem 0.55rem; border-bottom: 1px solid rgba(148,163,184,0.2); }
         .combat-log-body { max-height: min(36vh, 320px); overflow-y: auto; padding: 0.45rem 0.55rem 0.55rem; display: grid; gap: 0.42rem; scrollbar-width: thin; scrollbar-color: rgba(56,189,248,0.45) rgba(2,6,23,0.35); }
         .combat-log-body.compact .combat-log-item { font-size: 0.67rem; line-height: 1.35; }
@@ -350,15 +394,32 @@
         .combat-log-item.good { border-color: rgba(16,185,129,0.35); }
         .combat-log-item.warn { border-color: rgba(245,158,11,0.35); }
         .combat-log-item.bad { border-color: rgba(239,68,68,0.35); }
+        .combat-shell { display: grid; grid-template-columns: minmax(220px, 340px) minmax(0, 1fr) minmax(220px, 320px); gap: 0.9rem; align-items: start; }
+        .combat-shell .combat-log-dock { position: sticky; top: 4.2rem; left: auto; bottom: auto; z-index: 20; }
+        .combat-shell .combat-log-card { width: 100%; min-width: 0; }
+        .combat-shell .combat-personal-hub { position: sticky; top: 4.2rem; right: auto; bottom: auto; width: 100%; z-index: 20; }
+        .combat-shell .combat-personal-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .enemy-detail-toggle { margin-top: 0.45rem; border: 1px solid rgba(148,163,184,0.26); border-radius: 0.72rem; background: rgba(2,6,23,0.42); overflow: hidden; }
+        .enemy-detail-toggle summary { list-style: none; cursor: pointer; padding: 0.45rem 0.6rem; font-size: 0.72rem; color: #cbd5e1; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
+        .enemy-detail-toggle summary::-webkit-details-marker { display: none; }
+        .enemy-detail-body { border-top: 1px solid rgba(148,163,184,0.2); padding: 0.5rem 0.6rem 0.6rem; font-size: 0.72rem; color: #cbd5e1; line-height: 1.6; opacity: 0.88; filter: saturate(0.86); }
+        #combat-hud { scrollbar-width: thin; scrollbar-color: rgba(56,189,248,0.5) rgba(2,6,23,0.35); }
+        #combat-hud::-webkit-scrollbar { width: 7px; }
+        #combat-hud::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.5); border-radius: 999px; }
+        #combat-hud::-webkit-scrollbar-track { background: rgba(2,6,23,0.35); border-radius: 999px; }
         @media (max-width: 768px) {
-            .combat-personal-hub { right: 0.5rem; left: 0.5rem; width: auto; bottom: 4.9rem; }
-            .combat-card-float { left: 0.5rem; right: 0.5rem; transform: none; width: auto; bottom: 0.5rem; }
-            .combat-card-float-spacer { height: min(60vh, 500px); }
+            .combat-personal-hub { right: 0.5rem; left: 0.5rem; width: auto; bottom: clamp(11.8rem, 38vh, 16.5rem); }
+            .combat-card-float { left: 50%; right: auto; transform: translateX(-50%); width: min(98vw, 500px); bottom: 0.5rem; }
+            .combat-card-float-spacer { height: min(52vh, 410px); }
             .story-skill-bar { gap: 0.28rem; padding: 0.35rem; }
             .story-skill-btn { min-height: 2.65rem; font-size: 1rem; border-radius: 0.6rem; }
             .story-skill-btn .label { font-size: 0.58rem; }
             .story-skill-btn .meta { font-size: 0.52rem; }
             .story-skill-btn[data-tip]:hover::after { width: min(82vw, 280px); font-size: 0.58rem; }
+            .combat-shell { grid-template-columns: 1fr; }
+            .combat-shell .combat-log-dock,
+            .combat-shell .combat-personal-hub { position: static; width: 100%; }
+            .combat-action-legend-chip { font-size: 0.58rem; }
         }
         .combat-low-glare #combat-hud,
         .combat-low-glare .combat-layout-shell,
@@ -4724,9 +4785,12 @@ function getHybridStanceThresholdShift(stance = 'balance', school = 'hard') {
 function getEnemyResistanceValue(enemy, stat = 'force') {
     const ai = Number(enemy?.aiLevel || 1);
     const stance = enemy?.stance || 'hard';
-    let resist = Math.max(0, Math.floor(((enemy?.maxHp || 0) / 24) + ((enemy?.maxWillpower || 0) / 18) + ai * 4));
+    const hasWillBar = Number(enemy?.maxWillpower || 0) > 0;
+    let resist = hasWillBar
+        ? Math.max(0, Math.floor(((enemy?.maxHp || 0) / 24) + ((enemy?.maxWillpower || 0) / 18) + ai * 4))
+        : Math.max(0, Math.floor(((enemy?.maxHp || 0) / 42) + ai * 2));
     if ((stance === 'hard' && stat === 'force') || (stance === 'smart' && stat === 'insight') || (stance === 'speech' && stat === 'speech') || (stance === 'surrender' && stat === 'thickSkin')) {
-        resist += 8;
+        resist += hasWillBar ? 8 : 4;
     }
     return resist;
 }
@@ -5837,17 +5901,24 @@ function renderStorySkillBar(node, storySkillEntries = [], s = state) {
 function renderCombatChoiceLayout(node, handEntries = [], controlEntries = [], storySkillEntries = [], s = state) {
     const layout = getCombatLayoutForViewport(s);
     const combatUi = ensureCombatUiPanelState(s);
+    const combatMode = getCombatMode(s);
+    const isCardMode = combatMode === 'card';
     const useFan = combatUi.fanLayout && handEntries.length > 0;
     const autoCollapseHand = !!layout.autoCollapseHand;
     const recommended = new Set(layout.showRecommendation ? getCombatRecommendedCardIds(node, s) : []);
     const battle = ensureCombatBattleState(s, node);
+    const needEndTurnCue = !!(battle && Number(battle.energy || 0) <= 0);
     const getPlainLabel = (choice) => String(choice?.label || '').replace(/<[^>]*>/g, '');
     const defendEntry = controlEntries.find(entry => entry.choice?.type === 'defend' || /防禦|防守|格擋/.test(getPlainLabel(entry.choice)));
-    const filteredControls = controlEntries.filter(entry => !defendEntry || entry.idx !== defendEntry.idx);
+    const filteredControls = controlEntries.filter(entry => {
+        if (defendEntry && entry.idx === defendEntry.idx) return false;
+        if (entry?.choice?.__envActionId) return false;
+        return true;
+    });
     const actionButtons = [];
     actionButtons.push(`<button onclick="openCombatItemModal(event)" class="combat-fixed-btn" title="道具包" aria-label="道具包">💊</button>`);
     actionButtons.push(`<button ${defendEntry ? `onclick="handleChoice(${defendEntry.idx}, event)"` : 'disabled'} class="combat-fixed-btn" title="防禦" aria-label="防禦">🛡️</button>`);
-    actionButtons.push(`<button onclick="endCombatTurn(event)" class="combat-fixed-btn" title="手動結束回合" aria-label="手動結束回合">⏭️</button>`);
+    actionButtons.push(`<button onclick="endCombatTurn(event)" class="combat-fixed-btn ${needEndTurnCue ? 'combat-endturn-cue' : ''}" title="集結（結束回合）" aria-label="集結（結束回合）">⏭️</button>`);
     actionButtons.push(`<button onclick="toggleCombatAutoCollapse(event)" class="combat-fixed-btn" title="手牌自動收合：${autoCollapseHand ? '開' : '關'}" aria-label="手牌自動收合">${autoCollapseHand ? '📌' : '📍'}</button>`);
     if (canUseQuickCombat(node, s)) actionButtons.push(`<button onclick="triggerQuickCombat(event)" class="combat-fixed-btn" title="快速戰鬥" aria-label="快速戰鬥">⚡</button>`);
     actionButtons.push(`<button onclick="openCombatLayoutEditor()" class="combat-fixed-btn" title="布局設定" aria-label="布局設定">🎛️</button>`);
@@ -5856,6 +5927,27 @@ function renderCombatChoiceLayout(node, handEntries = [], controlEntries = [], s
     const styleVars = `--combat-card-width:${layout.cardWidth}px;--combat-card-height:${layout.cardHeight}px;--combat-card-gap:${layout.gap}px;--combat-rail-height:${Math.max(layout.railHeight, layout.cardHeight + 10)}px;--combat-action-size:${layout.actionSize}px;`;
     const fanModeBtn = `<button onclick="toggleFanLayout(event)" class="px-2 py-0.5 rounded border text-[10px] ${useFan ? 'border-amber-400/55 bg-amber-500/18 text-amber-200' : 'border-white/20 text-slate-300 bg-black/35 hover:bg-black/55'}" title="${useFan ? '切換橫列' : '切換扇型'}">${useFan ? '🀄 扇型' : '≡ 橫列'}</button>`;
     const scaleButtons = `<button onclick="adjustCombatCardScale(-8)" class="px-2 py-0.5 rounded border border-white/20 text-[10px] text-slate-300 bg-black/35 hover:bg-black/55">A-</button><button onclick="adjustCombatCardScale(8)" class="px-2 py-0.5 rounded border border-white/20 text-[10px] text-slate-300 bg-black/35 hover:bg-black/55">A+</button><button onclick="resetCombatCardScale()" class="px-2 py-0.5 rounded border border-white/20 text-[10px] text-slate-300 bg-black/35 hover:bg-black/55">重設</button>`;
+    const modeSwitchBtn = `<button onclick="toggleCombatMode()" class="px-2 py-0.5 rounded border border-cyan-500/45 bg-cyan-950/25 text-[10px] text-cyan-200" title="切換戰鬥模式">${isCardMode ? '切到技能模式' : '切到卡牌模式'}</button>`;
+
+    if (!isCardMode) {
+        const pickSkill = type => storySkillEntries.find(entry => entry?.choice?.type === type);
+        const hard = pickSkill('hard');
+        const smart = pickSkill('smart');
+        const speech = pickSkill('speech');
+        const surrender = pickSkill('surrender');
+        const simpleSkillBtns = [
+            { entry: hard, cls: 'border-red-500/40', label: '👊 硬派' },
+            { entry: smart, cls: 'border-cyan-500/40', label: '🧠 取巧' },
+            { entry: speech, cls: 'border-pink-500/40', label: '🗣️ 話術' },
+            { entry: surrender, cls: 'border-purple-500/40', label: '🙇 認慫' }
+        ].map(row => `<button ${row.entry ? `onclick="handleChoice(${row.entry.idx}, event)"` : 'disabled'} class="premium-btn text-center !mb-0 text-[12px] ${row.cls}">${row.label}</button>`).join('');
+        const defendBtn = `<button ${defendEntry ? `onclick="handleChoice(${defendEntry.idx}, event)"` : 'disabled'} class="premium-btn text-center !mb-0 border-emerald-500/40 text-[12px]">🛡️ 防禦</button>`;
+        const endTurnBtn = `<button onclick="endCombatTurn(event)" class="premium-btn text-center !mb-0 border-slate-500/40 text-[12px] ${needEndTurnCue ? 'combat-endturn-cue' : ''}">⏭️ 集結</button>`;
+        const quickBtn = canUseQuickCombat(node, s) ? `<button onclick="triggerQuickCombat(event)" class="premium-btn text-center !mb-0 border-yellow-500/40 text-[12px]">⚡ 快速戰鬥</button>` : '';
+        const itemBtn = `<button onclick="openCombatItemModal(event)" class="premium-btn text-center !mb-0 border-cyan-500/35 text-[12px]">💊 道具</button>`;
+        const panelHtml = `<div class="combat-layout-shell border-cyan-500/30 bg-gradient-to-b from-cyan-950/35 to-black/70"><div class="flex items-center justify-between gap-2 mb-2.5"><div><div class="text-xs font-bold text-cyan-200">🎮 技能模式（簡化）</div><div class="text-[10px] text-slate-400 mt-0.5">只保留四系招式，節奏更快</div></div><div class="flex items-center gap-1">${modeSwitchBtn}</div></div><div class="grid grid-cols-2 sm:grid-cols-4 gap-2">${simpleSkillBtns}</div><div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2.5">${defendBtn}${itemBtn}${endTurnBtn}${quickBtn || `<button disabled class="premium-btn text-center !mb-0 border-slate-600/40 text-[12px]">⚡ 快速戰鬥</button>`}</div></div>`;
+        return `<div id="bottom-action-bar" class="fixed bottom-0 left-0 w-full flex flex-col items-center pb-[5.4rem] md:pb-4 z-[120] pointer-events-none"><div class="combat-card-float">${panelHtml}</div></div><div class="combat-card-float-spacer" aria-hidden="true"></div>`;
+    }
 
     let cardsAreaHtml = '';
     if (useFan) {
@@ -5933,12 +6025,17 @@ function renderCombatChoiceLayout(node, handEntries = [], controlEntries = [], s
         cardsAreaHtml = `<div class="${mainClass}"><div class="${railClass}"><div class="combat-rail-track" style="min-height:${railCH + 10}px;">${handEntries.length ? handCardsHtml : emptyRail}</div></div><div class="${barClass}">${actionButtons.join('')}</div></div>`;
     }
 
+    const actionLegend = `<div class="combat-action-legend"><span class="combat-action-legend-chip">💊 道具</span><span class="combat-action-legend-chip">🛡️ 防禦</span><span class="combat-action-legend-chip">⏭️ 結束回合</span><span class="combat-action-legend-chip">⚡ 快戰</span></div>`;
     const actionBarFan = useFan ? `<div class="flex justify-center gap-2 mt-3">${actionButtons.join('')}</div>` : '';
     const shellExtra = useFan ? 'overflow:visible;' : '';
-    const storySkillBar = renderStorySkillBar(node, storySkillEntries, s);
-    const handPanel = `<div class="combat-layout-shell" style="${styleVars}${shellExtra}"><div class="flex items-center justify-between gap-2 mb-2"><div class="text-xs font-bold text-amber-300">🃏 手牌區${useFan ? '（扇型）' : '（橫向滑動）'}・懸浮視窗</div><div class="flex items-center gap-1">${fanModeBtn}${scaleButtons}</div></div>${storySkillBar}${storySkillBar ? '<div class="h-1"></div>' : ''}${cardsAreaHtml}${actionBarFan}</div>`;
+    const storySkillBar = '';
+    const floatPosStyle = getCombatFloatInlineStyle(s);
+    const dragHandle = `<button onmousedown="startCombatFloatDrag(event)" ontouchstart="startCombatFloatDrag(event)" class="combat-float-handle px-2 py-0.5 rounded border border-cyan-500/35 bg-cyan-950/25 text-[10px] text-cyan-200" title="拖曳視窗">⠿ 拖曳</button>`;
+    const resetFloatBtn = `<button onclick="resetCombatFloatPosition(event)" class="px-2 py-0.5 rounded border border-white/20 text-[10px] text-slate-300 bg-black/35 hover:bg-black/55" title="重設位置">置中</button>`;
+    const topShell = `<div class="combat-layout-shell"><div class="flex items-center justify-between gap-2"><div class="text-xs font-bold text-amber-300">🃏 卡牌模式（深度）</div><div class="flex items-center gap-1">${dragHandle}${resetFloatBtn}${modeSwitchBtn}${fanModeBtn}${scaleButtons}</div></div>${storySkillBar ? `<div class="mt-2">${storySkillBar}</div>` : ''}</div>`;
     const extraControls = filteredControls.length ? `<div class="combat-layout-extra">${filteredControls.map(entry => entry.rendered).join('')}</div>` : '';
-    return `<div class="combat-card-float">${handPanel}${extraControls}</div><div class="combat-card-float-spacer" aria-hidden="true"></div>`;
+    const cardLayer = `<div class="combat-card-bottom-layer" style="${styleVars}${shellExtra}">${actionLegend}${cardsAreaHtml}${actionBarFan}${extraControls}</div>`;
+    return `<div id="bottom-action-bar" class="fixed bottom-0 left-0 w-full flex flex-col items-center pb-[5.4rem] md:pb-4 z-[120] pointer-events-none"><div class="combat-card-float" style="${floatPosStyle}">${topShell}${cardLayer}</div></div><div class="combat-card-float-spacer" aria-hidden="true"></div>`;
 }
 
 window.adjustCombatCardScale = function(delta = 8) {
@@ -5967,9 +6064,9 @@ window.resetCombatCardScale = function() {
 
 function ensureCombatUiPanelState(s = state) {
     if (!s.combatUi || typeof s.combatUi !== 'object') {
-        s.combatUi = { actionPanelExpanded: false, lastAutoCollapseKey: '', fusionPanelOpen: false, fanLayout: false, keepExpandedAfterResult: false, combatLogOpen: true, combatLogCompact: false, combatLogManualClosed: false, skillPreviewType: '', skillPreviewLockedType: '' };
+        s.combatUi = { actionPanelExpanded: true, lastAutoCollapseKey: '', fusionPanelOpen: false, fanLayout: false, keepExpandedAfterResult: false, combatLogOpen: true, combatLogCompact: false, combatLogManualClosed: false, skillPreviewType: '', skillPreviewLockedType: '', showSkillPanel: true, floatPos: null };
     }
-    if (typeof s.combatUi.actionPanelExpanded !== 'boolean') s.combatUi.actionPanelExpanded = false;
+    if (typeof s.combatUi.actionPanelExpanded !== 'boolean') s.combatUi.actionPanelExpanded = true;
     if (typeof s.combatUi.lastAutoCollapseKey !== 'string') s.combatUi.lastAutoCollapseKey = '';
     if (typeof s.combatUi.fusionPanelOpen !== 'boolean') s.combatUi.fusionPanelOpen = false;
     if (typeof s.combatUi.fanLayout !== 'boolean') s.combatUi.fanLayout = false;
@@ -5979,8 +6076,79 @@ function ensureCombatUiPanelState(s = state) {
     if (typeof s.combatUi.combatLogManualClosed !== 'boolean') s.combatUi.combatLogManualClosed = false;
     if (typeof s.combatUi.skillPreviewType !== 'string') s.combatUi.skillPreviewType = '';
     if (typeof s.combatUi.skillPreviewLockedType !== 'string') s.combatUi.skillPreviewLockedType = '';
+    if (typeof s.combatUi.showSkillPanel !== 'boolean') s.combatUi.showSkillPanel = true;
+    if (s.combatUi.floatPos && (typeof s.combatUi.floatPos !== 'object' || !Number.isFinite(Number(s.combatUi.floatPos.x)) || !Number.isFinite(Number(s.combatUi.floatPos.y)))) s.combatUi.floatPos = null;
     return s.combatUi;
 }
+
+function getCombatFloatInlineStyle(s = state) {
+    const ui = ensureCombatUiPanelState(s);
+    const pos = ui.floatPos;
+    if (!pos || window.innerWidth <= 820) return '';
+    const x = Math.max(8, Number(pos.x || 8));
+    const y = Math.max(56, Number(pos.y || 56));
+    return `left:${x}px;top:${y}px;bottom:auto;transform:none;`;
+}
+
+window.startCombatFloatDrag = function(event = null) {
+    if (window.innerWidth <= 820) return;
+    const touch = event?.touches?.[0] || null;
+    const clientX = touch ? touch.clientX : Number(event?.clientX || 0);
+    const clientY = touch ? touch.clientY : Number(event?.clientY || 0);
+    if (!Number.isFinite(clientX) || !Number.isFinite(clientY)) return;
+    const host = event?.currentTarget?.closest?.('.combat-card-float') || document.querySelector('.combat-card-float');
+    if (!host) return;
+    const rect = host.getBoundingClientRect();
+    const ui = ensureCombatUiPanelState(state);
+    if (!ui.floatPos) ui.floatPos = { x: rect.left, y: rect.top };
+    window.__combatFloatDrag = { el: host, offsetX: clientX - rect.left, offsetY: clientY - rect.top, width: rect.width, height: rect.height };
+    document.body.classList.add('combat-float-dragging');
+    if (event?.preventDefault) event.preventDefault();
+};
+
+window.moveCombatFloatDrag = function(event = null) {
+    const drag = window.__combatFloatDrag;
+    if (!drag || !drag.el) return;
+    const touch = event?.touches?.[0] || null;
+    const clientX = touch ? touch.clientX : Number(event?.clientX || 0);
+    const clientY = touch ? touch.clientY : Number(event?.clientY || 0);
+    if (!Number.isFinite(clientX) || !Number.isFinite(clientY)) return;
+    const xMax = Math.max(8, window.innerWidth - drag.width - 8);
+    const yMax = Math.max(56, window.innerHeight - drag.height - 8);
+    const nextX = Math.max(8, Math.min(xMax, clientX - drag.offsetX));
+    const nextY = Math.max(56, Math.min(yMax, clientY - drag.offsetY));
+    drag.el.style.left = `${nextX}px`;
+    drag.el.style.top = `${nextY}px`;
+    drag.el.style.bottom = 'auto';
+    drag.el.style.transform = 'none';
+    ensureCombatUiPanelState(state).floatPos = { x: nextX, y: nextY };
+    if (event?.preventDefault) event.preventDefault();
+};
+
+window.endCombatFloatDrag = function() {
+    if (!window.__combatFloatDrag) return;
+    window.__combatFloatDrag = null;
+    document.body.classList.remove('combat-float-dragging');
+    triggerSave('combat-float', true);
+};
+
+if (!window.__combatFloatDragBound) {
+    window.__combatFloatDragBound = true;
+    document.addEventListener('mousemove', (ev) => window.moveCombatFloatDrag(ev));
+    document.addEventListener('mouseup', () => window.endCombatFloatDrag());
+    document.addEventListener('touchmove', (ev) => window.moveCombatFloatDrag(ev), { passive: false });
+    document.addEventListener('touchend', () => window.endCombatFloatDrag());
+    document.addEventListener('touchcancel', () => window.endCombatFloatDrag());
+}
+
+window.resetCombatFloatPosition = function(event = null) {
+    if (event?.stopPropagation) event.stopPropagation();
+    if (event?.preventDefault) event.preventDefault();
+    const ui = ensureCombatUiPanelState(state);
+    ui.floatPos = null;
+    renderCurrentView();
+    triggerSave('combat-float-reset', true);
+};
 
 function ensureCombatLogState(s = state, sceneId = '') {
     if (!s.combatLog || typeof s.combatLog !== 'object') {
@@ -6076,8 +6244,8 @@ window.endCombatTurn = function(event = null) {
     currentChoice = {
         type: 'defend',
         __endTurn: true,
-        label: '【手動結束回合】',
-        onSuccess: { text: '妳先收勢換氣，保留手牌，把本回合提早結算。', effect: () => {} },
+        label: '【集結】',
+        onSuccess: { text: '妳先集結換氣，保留手牌，把本回合提早結算。', effect: () => {} },
         onFailure: { text: '妳暫時拉開距離，穩住呼吸。', effect: () => {} }
     };
     clearBossWeakspotQte();
@@ -6107,6 +6275,29 @@ window.toggleFanLayout = function(event = null) {
     ui.fanLayout = !ui.fanLayout;
     const layout = ensureCombatLayoutState(state);
     layout.visual.fanMode = ui.fanLayout;
+    renderCurrentView();
+    triggerSave();
+};
+
+window.triggerCombatEnvAction = function(envActionId = '', event = null) {
+    if (event?.stopPropagation) event.stopPropagation();
+    if (event?.preventDefault) event.preventDefault();
+    const targetId = String(envActionId || '');
+    if (!targetId) return;
+    const list = Array.isArray(window.activeChoices) ? window.activeChoices : [];
+    const idx = list.findIndex(choice => String(choice?.__envActionId || '') === targetId);
+    if (idx < 0) {
+        showToast('環境招式暫時不可用。');
+        return;
+    }
+    handleChoice(idx, event || { stopPropagation() {}, preventDefault() {} });
+};
+
+window.toggleCombatSkillPanel = function(event = null) {
+    if (event?.stopPropagation) event.stopPropagation();
+    if (event?.preventDefault) event.preventDefault();
+    const ui = ensureCombatUiPanelState(state);
+    ui.showSkillPanel = !ui.showSkillPanel;
     renderCurrentView();
     triggerSave();
 };
@@ -6151,14 +6342,22 @@ window.combatCardDragEnd = function(event) {
 // ── Touch drag-to-play ──
 window._combatTouchState = null;
 window.combatCardTouchStart = function(idx, event) {
-    window._combatTouchState = { idx, startY: event.touches[0].clientY };
-    _combatEnsureDropzone().classList.remove('hidden');
+    const touch = event?.touches?.[0];
+    if (!touch) return;
+    window._combatTouchState = { idx, startY: touch.clientY, dragActive: false };
 };
 window.combatCardTouchMove = function(event) {
     if (!window._combatTouchState) return;
     event.preventDefault();
     const touch = event.touches[0];
     const dz = document.getElementById('combat-fan-dz');
+    const moveY = Number(touch.clientY || 0) - Number(window._combatTouchState.startY || 0);
+    if (moveY >= -15) {
+        if (dz) { dz.classList.add('hidden'); dz.classList.remove('active'); }
+        return;
+    }
+    window._combatTouchState.dragActive = true;
+    _combatEnsureDropzone().classList.remove('hidden');
     if (dz) {
         const dzR = dz.getBoundingClientRect();
         if (touch.clientY <= dzR.bottom) dz.classList.add('active');
@@ -6173,8 +6372,9 @@ window.combatCardTouchEnd = function(event) {
     const dz2 = document.getElementById('combat-fan-dz');
     const dzBottom = dz2 ? dz2.getBoundingClientRect().bottom : window.innerHeight * 0.26;
     const idx = window._combatTouchState.idx;
+    const dragActive = !!window._combatTouchState.dragActive;
     window._combatTouchState = null;
-    if (touch.clientY <= dzBottom || touch.clientY <= window.innerHeight * 0.28) {
+    if (dragActive && (touch.clientY <= dzBottom || touch.clientY <= window.innerHeight * 0.28)) {
         const fakeEv = { stopPropagation: () => {}, preventDefault: () => {} };
         handleChoice(idx, fakeEv);
     }
@@ -13030,6 +13230,10 @@ function prepareEnemyForCombat(enemy) {
     enemy.readPattern = 0;
     enemy.lastPlayerChoice = null;
     if (!enemy.intention) enemy.intention = `正在試探妳的 ${getCombatStanceLabel(enemy.stance)} 破綻。`;
+    const currentNode = storyNodes?.[state.scene] || null;
+    const defaultExit = String(currentNode?.nextRound || currentNode?.next || 'hub');
+    if (!enemy.onHpZero) enemy.onHpZero = defaultExit;
+    if (!enemy.onWillZero) enemy.onWillZero = enemy.onHpZero || defaultExit;
     enemy._worldScaled = true;
     return enemy;
 }
@@ -17452,15 +17656,17 @@ window.openLaundryMysteryQuest = function() {
     const q = state.quests?.laundry_mystery;
     if (!q || q.completed) return;
     const hasCoin = hasInventoryItem('第二枚買命銅錢', state);
-    if (!hasCoin) { showToast('洗衣店牆後的字還看不清（需要第二枚買命銅錢）。'); return; }
+    const hasAltUnlock = !!state.flags.memoryCorridorFirstClear;
+    if (!hasCoin && !hasAltUnlock) { showToast('洗衣店牆後的字還看不清（需要第二枚買命銅錢）。'); return; }
     if (q.stage === 0) q.stage = 1;
-    showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-3">🧺 洗衣店的神秘包裹</h2><p class="text-gray-300 mb-3">4 號烘衣機後方的牆孔通到舊防空道。裡面有個工程師，和一顆快沒電的硬碟。</p><div class="grid gap-2"><button onclick="resolveLaundryMystery('media')" class="premium-btn text-center !mb-0 border-cyan-500/40">【俠義】交給媒體（聲望 +50）</button><button onclick="resolveLaundryMystery('sell')" class="premium-btn text-center !mb-0 border-red-500/40">【現實】賣給建商（+$50000）</button><button onclick="resolveLaundryMystery('loser')" class="premium-btn text-center !mb-0 border-amber-500/40">【敗犬】換城中村免戰金牌</button></div>`);
+    showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-3">🧺 洗衣店的神祕包裹</h2><p class="text-gray-300 mb-3">4 號烘衣機後方的牆孔通到舊防空道。裡面有個工程師，和一顆快沒電的硬碟。</p><div class="grid gap-2"><button onclick="resolveLaundryMystery('media')" class="premium-btn text-center !mb-0 border-cyan-500/40">【俠義】交給媒體（聲望 +50）</button><button onclick="resolveLaundryMystery('sell')" class="premium-btn text-center !mb-0 border-red-500/40">【現實】賣給建商（+$50000）</button><button onclick="resolveLaundryMystery('loser')" class="premium-btn text-center !mb-0 border-amber-500/40">【敗犬】換城中村免戰金牌</button></div>`);
 };
 
 window.resolveLaundryMystery = function(mode = 'media') {
     ensureExtendedWorldState(state);
     const q = state.quests?.laundry_mystery;
     if (!q || q.completed) return;
+    closeModal();
     if (mode === 'media') {
         state.stats.rep += 50;
         state.achievements = Array.isArray(state.achievements) ? state.achievements : [];
@@ -22648,6 +22854,10 @@ function getSaveSlotKey(slot) {
     return `udg_save_v4_slot_${slot}`;
 }
 
+function postDebugLog(runId, hypothesisId, location, message, data = {}) {
+    fetch('http://127.0.0.1:7437/ingest/d5e53104-c9ef-4f17-b431-d001f45001df',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'710688'},body:JSON.stringify({sessionId:'710688',runId,hypothesisId,location,message,data,timestamp:Date.now()})}).catch(()=>{});
+}
+
 function getSaveSlotSummary(slot) {
     const raw = localStorage.getItem(getSaveSlotKey(slot));
     if (!raw) return null;
@@ -22739,8 +22949,18 @@ window.manualSaveToSlot = function(slot) {
 window.loadSaveSlot = function(slot) {
     const raw = localStorage.getItem(getSaveSlotKey(slot));
     if (!raw) { showToast('這個槽位還是空的。'); return; }
+    // #region agent log
+    postDebugLog('initial', 'H3', '拜犬江湖.html:22943', 'loadSaveSlot before decode', { slot, rawLength: String(raw || '').length });
+    // #endregion
     const parsed = decodeSaveData(raw);
     applyImportedState(parsed);
+    // #region agent log
+    postDebugLog('initial', 'H3', '拜犬江湖.html:22947', 'loadSaveSlot applied state', {
+        slot,
+        day: Number(state?.currentDay || 0),
+        scene: String(state?.scene || '')
+    });
+    // #endregion
     state.saveSlot = slot;
     showToast(`📂 已讀取存檔槽 ${slot}`);
 };
@@ -24827,11 +25047,15 @@ function renderStory() {
     if (node.onEnter && state.lineIdx === 0) node.onEnter();
     elSceneBg.className = `scene-bg ${node.bg || 'bg-black-void'}`;
 
-    const storyMaxWidthClass = node.type === 'combat' ? 'max-w-5xl' : 'max-w-2xl';
+    const storyMaxWidthClass = node.type === 'combat' ? 'max-w-6xl' : 'max-w-2xl';
     const combatLayoutView = node.type === 'combat' ? getCombatLayoutForViewport(state) : null;
     const combatLowGlare = !!combatLayoutView?.lowGlare;
     const storyWrapClass = combatLowGlare ? 'combat-low-glare' : '';
-    let html = `<div class="${storyMaxWidthClass} ${storyWrapClass} mx-auto w-full mt-auto space-y-6 pt-4 pb-48 px-6" onclick="advanceStory()">`;
+    const storyBottomPadding = node.type === 'combat' ? 'pb-[19rem] md:pb-[21rem]' : 'pb-48';
+    const storyGapClass = node.type === 'combat' ? 'space-y-4' : 'space-y-6';
+    const storyTopFlowClass = node.type === 'combat' ? 'mt-0' : 'mt-auto';
+    const clickHandler = node.type === 'combat' ? '' : 'onclick="advanceStory()"';
+    let html = `<div class="${storyMaxWidthClass} ${storyWrapClass} mx-auto w-full ${storyTopFlowClass} ${storyGapClass} pt-4 ${storyBottomPadding} px-6" ${clickHandler}>`;
     const isBossCombat = node.type === 'combat' && state.enemy && isBossCombatEncounter(state.enemy, node);
     const isFinalBoss = isBossCombat && isFinalBossEncounter(state.enemy, node);
     const finalBossMeta = isFinalBoss ? getSituPhaseTransitionMeta(state.scene) : null;
@@ -24895,6 +25119,10 @@ function renderStory() {
     }
 
     if (node.type === 'combat' && state.enemy) {
+        if (state.lineIdx === 0) {
+            const _ui = ensureCombatUiPanelState(state);
+            _ui.floatPos = null;
+        }
         // 處理 skipNextTurn
         if (state.enemy.skipNextTurn) {
             state.enemy.intention = "陷入異常狀態，無法行動！";
@@ -24930,7 +25158,7 @@ function renderStory() {
         if (bossEnvSvg) {
             html += `<svg id="boss-env-svg" class="boss-env-svg-layer" viewBox="0 0 960 540">${bossEnvSvg}</svg>`;
         }
-        const combatHudPinClass = window.innerHeight >= 860 ? 'sticky top-2 z-[25]' : 'relative z-[18]';
+        const combatHudPinClass = 'sticky top-1 z-[24]';
         const weatherCombatDescMap = {
             sunny: '☀️ 晴：無特殊戰鬥修正。',
             cloudy: '☁️ 陰：話術判定門檻 +3。',
@@ -24944,8 +25172,28 @@ function renderStory() {
         const schoolCounterHtml = schoolCounterState
             ? `<div class="mt-2 rounded-xl border ${schoolCounterState.icon === '🔥' ? 'border-amber-400/50 bg-amber-900/25' : schoolCounterState.icon === '💧' ? 'border-cyan-400/50 bg-cyan-900/25' : 'border-slate-500/40 bg-slate-900/25'} px-2.5 py-2"><p class="text-[12px] leading-relaxed ${schoolCounterState.icon === '🔥' ? 'text-amber-200' : schoolCounterState.icon === '💧' ? 'text-cyan-200' : 'text-slate-200'}"><span class="font-bold">${schoolCounterState.icon} 流派相剋：</span>${playerSchoolName} vs ${enemySchoolName}｜${schoolCounterState.label}${schoolCounterState.icon === '🔥' ? '（門檻 -8、輸出 +25%）' : schoolCounterState.icon === '💧' ? '（門檻 +8、輸出 -20%）' : ''}</p></div>`
             : '';
+        const envActionDockHtml = Array.isArray(node.environmentActions) && node.environmentActions.length
+            ? `<div class="mt-2.5 p-2 rounded-xl border border-cyan-500/25 bg-cyan-950/18">
+                <div class="text-[11px] text-cyan-200 font-bold mb-1.5">🌐 環境招式</div>
+                <div class="grid grid-cols-1 gap-1.5">
+                    ${node.environmentActions.map((act, idx) => `<button onclick="triggerCombatEnvAction('env_${idx}', event)" class="text-left rounded-lg border border-white/12 bg-black/25 px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-cyan-400/45">${String(act?.label || '環境操作')}</button>`).join('')}
+                </div>
+            </div>`
+            : '';
+        const enemyDetailHtml = `
+            <details class="enemy-detail-toggle">
+                <summary><span>📑 查看詳情</span><span>▾</span></summary>
+                <div class="enemy-detail-body">
+                    ${weaknessHtml}
+                    ${cultivationHintHtml}
+                    <p class="text-blue-300 text-[11px] mt-1.5 leading-relaxed"><span class="font-bold">📍 環境：</span>${formatNarrativeText(node.environment, state, { replaceLegacyAlias: true })}</p>
+                    <p class="text-sky-300 text-[11px] mt-1 leading-relaxed"><span class="font-bold">🌦️ 天氣戰鬥：</span>${weatherCombatDesc}</p>
+                    ${schoolCounterHtml}
+                    ${envActionDockHtml}
+                </div>
+            </details>`;
         html += `
-            <div id="combat-hud" class="glass-panel p-3 mb-5 border-red-900/50 ${combatHudPinClass} shadow-[0_10px_30px_rgba(0,0,0,0.8)] transition-transform duration-100 ${isEnrage ? 'enrage-border' : ''}">
+            <div id="combat-hud" class="glass-panel p-3 mb-3 border-red-900/50 ${combatHudPinClass} shadow-[0_10px_30px_rgba(0,0,0,0.8)] transition-transform duration-100 max-h-[34vh] overflow-y-auto leading-relaxed ${isEnrage ? 'enrage-border' : ''}">
                 <div class="flex justify-between items-center mb-1">
                     <span class="text-red-400 font-bold text-xl tracking-widest">⚔️ ${state.enemy.name} <span class="text-gray-400 text-[10px] ml-1 bg-gray-900 px-1 rounded border border-gray-700">T${state.combatTurns}</span><span class="text-[10px] ml-1 bg-slate-900 px-1 rounded border border-cyan-500/30 text-cyan-200">${getCombatStanceIcon(state.enemy.stance)} ${getCombatStanceLabel(state.enemy.stance)}</span>${state.settings.difficulty===3?'<span class="text-[10px] bg-red-800 text-white px-1 rounded ml-1">鋼鐵</span>':''}${eliteBadge}${brokenBadge}<button onclick="openEnemyInspectModal()" class="ml-1 text-[10px] px-1 rounded border border-amber-500/30 bg-amber-950/30 text-amber-200">🔍</button></span>
                     <span class="text-gray-300 text-sm font-mono font-bold">HP: ${state.enemy.hp}/${state.enemy.maxHp}</span>
@@ -24960,12 +25208,7 @@ function renderStory() {
                     </div>
                     <p class="${isEnrage ? 'text-red-200 font-bold animate-pulse' : 'text-amber-200'} text-[13px] italic mt-1.5 leading-relaxed">【敵方意圖】${formatNarrativeText(state.enemy.intention, state, { replaceLegacyAlias: true })}</p>
                 </div>
-                ${weaknessHtml}
-                ${cultivationHintHtml}
-                <p class="text-blue-300 text-[11px] mt-1.5 leading-relaxed"><span class="font-bold">📍 環境：</span>${formatNarrativeText(node.environment, state, { replaceLegacyAlias: true })}</p>
-                <p class="text-sky-300 text-[11px] mt-1 leading-relaxed"><span class="font-bold">🌦️ 天氣戰鬥：</span>${weatherCombatDesc}</p>
-                ${schoolCounterHtml}
-                <div class="mt-2"><button onclick="toggleCombatMode()" class="text-[11px] px-2 py-1 rounded border ${getCombatMode(state) === 'card' ? 'border-fuchsia-500/50 bg-fuchsia-950/30 text-fuchsia-200' : 'border-cyan-500/50 bg-cyan-950/30 text-cyan-200'}">${getCombatMode(state) === 'card' ? '🃏 卡牌模式' : '🎮 經典模式'}｜點擊切換</button></div>
+                ${enemyDetailHtml}
             </div>`;
         html += renderCombatRealmSkillBar(state);
         // 融合牌局浮動面板
@@ -25097,44 +25340,46 @@ function renderStory() {
     }
 
     const isEnd = state.lineIdx >= node.text.length - 1;
+    if (node.type === 'combat' && !isEnd) html += `<div id="combat-narrative-anchor" class="cursor-pointer" onclick="advanceStory(); event.stopPropagation();">`;
     if (node.type !== 'combat' || !isEnd) {
         for(let i=0; i<=state.lineIdx && i<node.text.length; i++) {
             const isLatest = i === state.lineIdx; const animSpeed = state.settings.visuals.reduceMotion ? '' : `style="animation-duration: ${state.settings.textSpeed}ms"`;
-            html += `<div class="text-lg md:text-xl leading-loose font-serif ${isLatest ? 'text-gray-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-fade-in-up' : 'text-gray-500'}" ${animSpeed}>${formatNarrativeText(node.text[i], state, { replaceLegacyAlias: true })}</div>`;
+            const spacingClass = node.type === 'combat'
+                ? 'mb-3 md:mb-3.5 last:mb-0 text-[1.68rem] md:text-[1.92rem] leading-[1.62]'
+                : 'mb-3 md:mb-3.5 last:mb-0 text-[1.68rem] md:text-[1.92rem] leading-[1.62]';
+            html += `<div class="${spacingClass} font-serif ${isLatest ? 'text-gray-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-fade-in-up' : 'text-gray-500'}" ${animSpeed}>${formatNarrativeText(node.text[i], state, { replaceLegacyAlias: true })}</div>`;
         }
     }
+    if (node.type === 'combat' && !isEnd) html += `</div>`;
 
     if (node.type === 'combat') {
         const combatUi = ensureCombatUiPanelState(state);
-        const autoCollapseHand = !!ensureCombatLayoutState(state).visual.autoCollapseHand;
         const autoKey = `${state.scene}:${state.combatTurns || 0}:${state.lineIdx}`;
         if (combatUi.lastAutoCollapseKey !== autoKey && isEnd) {
-            if (combatUi.keepExpandedAfterResult) {
-                combatUi.actionPanelExpanded = true;
-                combatUi.keepExpandedAfterResult = false;
-            } else if (autoCollapseHand) {
-                combatUi.actionPanelExpanded = false;
-            } else {
-                combatUi.actionPanelExpanded = !!combatUi.actionPanelExpanded;
-            }
+            combatUi.actionPanelExpanded = true;
+            combatUi.keepExpandedAfterResult = false;
             combatUi.lastAutoCollapseKey = autoKey;
         }
     } else if (state.combatUi?.actionPanelExpanded) {
         state.combatUi.actionPanelExpanded = false;
     }
-    if(!isEnd) html += `<div class="text-amber-500/50 text-sm animate-pulse pt-8 pb-10 text-center tracking-[0.3em]">▼ 點擊繼續 ▼</div>`;
+    if(!isEnd && node.type !== 'combat') html += `<div class="text-amber-500/50 text-sm animate-pulse pt-8 pb-10 text-center tracking-[0.3em]">▼ 點擊繼續 ▼</div>`;
+    if(!isEnd && node.type === 'combat') html += `<div class="text-cyan-300/80 text-[12px] pt-1 pb-1 text-center tracking-[0.16em]">點擊此段敘事可繼續</div>`;
     
     if(isEnd && (node.choices || node.actions)) {
         const isCombatChoiceNode = node.type === 'combat' && state.enemy;
         const combatUi = ensureCombatUiPanelState(state);
+        if (isCombatChoiceNode && combatUi.actionPanelExpanded === false) combatUi.actionPanelExpanded = true;
         const actionExpanded = !isCombatChoiceNode ? true : !!combatUi.actionPanelExpanded;
         if (isCombatChoiceNode) {
             const hpPct = Math.max(0, Math.min(100, Math.round((Number(state.hp || 0) / Math.max(1, Number(state.maxHp || 1))) * 100)));
-            const apMax = Math.max(1, Number(getMaxApValue(state) || 1));
-            const apPct = Math.max(0, Math.min(100, Math.round((Number(state.ap || 0) / apMax) * 100)));
-            const shield = Number(state.cardSystem?.battle?.shield || 0);
-            const dodge = Number(state.cardSystem?.battle?.dodge || 0);
-            html += `<div class="combat-personal-hub"><div class="combat-personal-grid"><div class="combat-personal-cell"><div class="combat-personal-k">HP</div><div class="combat-personal-v text-rose-200">${state.hp}/${state.maxHp}</div></div><div class="combat-personal-cell"><div class="combat-personal-k">AP</div><div class="combat-personal-v text-emerald-200">${state.ap}/${apMax}</div></div><div class="combat-personal-cell"><div class="combat-personal-k">🛡️</div><div class="combat-personal-v text-cyan-200">${shield}</div></div><div class="combat-personal-cell"><div class="combat-personal-k">💨</div><div class="combat-personal-v text-fuchsia-200">${dodge}</div></div></div><div class="text-[10px] text-slate-300 mb-2">狀態：HP ${hpPct}%｜AP ${apPct}%</div><div class="combat-personal-actions"><button onclick="toggleCombatActionPanel(null, event)" class="combat-personal-btn primary">${actionExpanded ? '收合戰鬥面板' : '展開手牌與戰鬥'}</button>${canUseQuickCombat(node, state) ? `<button onclick="triggerQuickCombat(event)" class="combat-personal-btn" title="快速戰鬥">⚡</button>` : `<button disabled class="combat-personal-btn" title="快速戰鬥">⚡</button>`}<button onclick="openCombatLayoutEditor()" class="combat-personal-btn" title="布局設定">🎛️</button><button onclick="toggleFusionPanel(null, event)" class="combat-personal-btn${combatUi.fusionPanelOpen ? ' primary' : ''}" title="融合牌局">🃏</button></div></div>`;
+            const battleHud = state.cardSystem?.battle || null;
+            const apMax = Math.max(1, Number(battleHud?.maxEnergy || getMaxApValue(state) || 1));
+            const apNow = Math.max(0, Number(battleHud?.energy ?? state.ap ?? 0));
+            const apPct = Math.max(0, Math.min(100, Math.round((apNow / apMax) * 100)));
+            const shield = Number(battleHud?.shield || 0);
+            const dodge = Number(battleHud?.dodge || 0);
+            html += `<div class="combat-personal-hub"><div class="combat-personal-grid"><div class="combat-personal-cell"><div class="combat-personal-k">HP</div><div class="combat-personal-v text-rose-200">${state.hp}/${state.maxHp}</div></div><div class="combat-personal-cell"><div class="combat-personal-k">AP</div><div class="combat-personal-v text-emerald-200">${Math.floor(apNow)}/${apMax}</div></div><div class="combat-personal-cell"><div class="combat-personal-k">🛡️</div><div class="combat-personal-v text-cyan-200">${shield}</div></div><div class="combat-personal-cell"><div class="combat-personal-k">💨</div><div class="combat-personal-v text-fuchsia-200">${dodge}</div></div></div><div class="text-[10px] text-slate-300 mb-2">狀態：HP ${hpPct}%｜AP ${apPct}%</div><div class="combat-personal-actions"><button onclick="toggleCombatActionPanel(null, event)" class="combat-personal-btn primary">${actionExpanded ? '收合戰鬥面板' : '展開手牌與戰鬥'}</button>${canUseQuickCombat(node, state) ? `<button onclick="triggerQuickCombat(event)" class="combat-personal-btn" title="快速戰鬥">⚡</button>` : `<button disabled class="combat-personal-btn" title="快速戰鬥">⚡</button>`}<button onclick="openCombatLayoutEditor()" class="combat-personal-btn" title="布局設定">🎛️</button><button onclick="toggleFusionPanel(null, event)" class="combat-personal-btn${combatUi.fusionPanelOpen ? ' primary' : ''}" title="融合牌局">🃏</button></div></div>`;
         }
 
         if (actionExpanded) {
@@ -25147,11 +25392,13 @@ function renderStory() {
         html += `<div class="${choiceShellClass}"><div class="${choiceInnerClass}">`;
         if (node.type === 'combat' && state.enemy) {
             const hpPct = Math.max(0, Math.min(100, Math.round((Number(state.hp || 0) / Math.max(1, Number(state.maxHp || 1))) * 100)));
-            const apMax = Math.max(1, Number(getMaxApValue(state) || 1));
-            const apPct = Math.max(0, Math.min(100, Math.round((Number(state.ap || 0) / apMax) * 100)));
-            const shield = Number(state.cardSystem?.battle?.shield || 0);
-            const dodge = Number(state.cardSystem?.battle?.dodge || 0);
-            html += `<div class="glass-panel p-3 border border-cyan-500/30 bg-cyan-950/20"><div class="grid grid-cols-2 md:grid-cols-4 gap-2"><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">❤️ HP</div><div class="text-[11px] text-rose-200 font-bold">${Math.floor(state.hp)}/${state.maxHp}（${hpPct}%）</div></div><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">⚡ AP</div><div class="text-[11px] text-emerald-200 font-bold">${Math.floor(state.ap)}/${apMax}（${apPct}%）</div></div><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">🛡️ 護盾</div><div class="text-[11px] text-cyan-200 font-bold">${shield}</div></div><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">💨 閃避</div><div class="text-[11px] text-fuchsia-200 font-bold">${dodge}</div></div></div></div>`;
+            const battleHud = state.cardSystem?.battle || null;
+            const apMax = Math.max(1, Number(battleHud?.maxEnergy || getMaxApValue(state) || 1));
+            const apNow = Math.max(0, Number(battleHud?.energy ?? state.ap ?? 0));
+            const apPct = Math.max(0, Math.min(100, Math.round((apNow / apMax) * 100)));
+            const shield = Number(battleHud?.shield || 0);
+            const dodge = Number(battleHud?.dodge || 0);
+            html += `<div class="glass-panel p-3 border border-cyan-500/30 bg-cyan-950/20"><div class="grid grid-cols-2 md:grid-cols-4 gap-2"><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">❤️ HP</div><div class="text-[11px] text-rose-200 font-bold">${Math.floor(state.hp)}/${state.maxHp}（${hpPct}%）</div></div><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">⚡ AP</div><div class="text-[11px] text-emerald-200 font-bold">${Math.floor(apNow)}/${apMax}（${apPct}%）</div></div><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">🛡️ 護盾</div><div class="text-[11px] text-cyan-200 font-bold">${shield}</div></div><div class="rounded border border-white/10 bg-black/20 px-2 py-1"><div class="text-[10px] text-gray-500">💨 閃避</div><div class="text-[11px] text-fuchsia-200 font-bold">${dodge}</div></div></div></div>`;
         }
         
         let availableActions = [...(node.choices || node.actions)];
@@ -25161,7 +25408,10 @@ function renderStory() {
             const cardChoices = (battle?.hand || []).map(cardId => createChoiceFromCombatCard(cardId, node, state)).filter(Boolean);
             availableActions = [...cardChoices, ...availableActions];
         }
-        if (node.environmentActions) availableActions = availableActions.concat(node.environmentActions);
+        if (node.environmentActions) {
+            const envActs = node.environmentActions.map((action, idx) => ({ ...action, __envActionId: `env_${idx}` }));
+            availableActions = availableActions.concat(envActs);
+        }
         window.activeChoices = availableActions;
         // ---------- 【新增：掛機修煉動態選項】 ----------
         const availableDummy = state.cultivation?.dummyCombo || 0;
@@ -25304,10 +25554,26 @@ function renderStory() {
         }
     }
     if (node.type === 'combat') html += renderCombatLogPanel(node, state);
-    html += `</div>`; elViewContainer.innerHTML = html;
+    html += `</div>`;
+    elViewContainer.innerHTML = html;
 }
 
-window.advanceStory = function() { const node = storyNodes[state.scene]; if(state.lineIdx < node.text.length - 1) { state.lineIdx++; renderStory(); setTimeout(()=>elViewContainer.scrollTop=elViewContainer.scrollHeight,50); } }
+window.advanceStory = function() {
+    const node = storyNodes[state.scene];
+    if (state.lineIdx < node.text.length - 1) {
+        state.lineIdx++;
+        renderStory();
+        setTimeout(() => {
+            if (node?.type === 'combat') {
+                const anchor = document.getElementById('combat-narrative-anchor');
+                if (anchor?.scrollIntoView) anchor.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                else elViewContainer.scrollTop = 0;
+            } else {
+                elViewContainer.scrollTop = elViewContainer.scrollHeight;
+            }
+        }, 50);
+    }
+}
 
 let qteTimer = null; let currentChoice = null;
 let skillPreviewHoldTimer = null;
@@ -25372,7 +25638,10 @@ window.handleStorySkill = function(choiceIdx, event = null) {
     handleChoice(Number(choiceIdx), fakeEv);
 };
 window.handleChoice = function(choiceIdx, event) {
-    event.stopPropagation(); const node = storyNodes[state.scene]; currentChoice = (window.activeChoices || (node.choices || node.actions))[choiceIdx];
+    if (event?.stopPropagation) event.stopPropagation();
+    if (event?.preventDefault) event.preventDefault();
+    const node = storyNodes[state.scene]; currentChoice = (window.activeChoices || (node.choices || node.actions))[choiceIdx];
+    const isCardChoice = !!(node?.type === 'combat' && currentChoice?.__card);
     const isStorySkillChoice = !!(node?.type === 'combat' && currentChoice && !currentChoice.__card && ['hard', 'smart', 'speech', 'surrender'].includes(currentChoice.type || ''));
     if (isStorySkillChoice) {
         const battle = ensureCombatBattleState(state, node);
@@ -25382,6 +25651,12 @@ window.handleChoice = function(choiceIdx, event) {
         }
     }
     if (currentChoice?.__card && state.cardSystem?.battle) {
+        const needAp = Number(getCombatCardCost(currentChoice.cardMeta, state) || 0);
+        const nowAp = Number(state.cardSystem.battle.energy || 0);
+        if (nowAp < needAp) {
+            showToast(`戰鬥 AP 不足（需 ${needAp}），請先按「集結」回合。`);
+            return;
+        }
         state.cardSystem.battle.previewCardId = currentChoice.cardMeta?.id || state.cardSystem.battle.previewCardId;
     }
     if (currentChoice?.condition && !currentChoice.condition(state)) {
@@ -25397,10 +25672,12 @@ window.handleChoice = function(choiceIdx, event) {
             return;
         }
     }
-    const compositeCheck = getCompositeThresholdResult(currentChoice, state);
-    if (!compositeCheck.ok) {
-        showToast(`複合條件不足：${compositeCheck.text}`);
-        return;
+    if (!isCardChoice && node.type !== 'combat') {
+        const compositeCheck = getCompositeThresholdResult(currentChoice, state);
+        if (!compositeCheck.ok) {
+            showToast(`複合條件不足：${compositeCheck.text}`);
+            return;
+        }
     }
     if (isStorySkillChoice) {
         const battle = ensureCombatBattleState(state, node);
@@ -25408,132 +25685,88 @@ window.handleChoice = function(choiceIdx, event) {
         state.combatFlags = state.combatFlags || {};
         state.combatFlags.skillUsedThisTurn = true;
     }
-    if (node.type === 'combat' && currentChoice.threshold && isStorySkillChoice) {
-        state.qteTelemetryCurrent = {
-            attempted: true,
-            weakspotActive: false,
-            weakspotHit: false,
-            clicked: false,
-            success: false,
-            startAt: Date.now()
-        };
-        document.getElementById('qte-overlay').classList.remove('hidden'); 
-        const ring = document.getElementById('qte-ring'); ring.classList.remove('animate-qte-shrink'); void ring.offsetWidth; ring.classList.add('animate-qte-shrink');
-        if (isBossCombatEncounter(state.enemy, node)) {
-            setupBossWeakspotQte(state.enemy);
-            if (state.qteTelemetryCurrent) state.qteTelemetryCurrent.weakspotActive = true;
-        } else {
-            clearBossWeakspotQte();
-        }
-        qteTimer = setTimeout(() => {
-            if (state.qteTelemetryCurrent) {
-                state.qteTelemetryCurrent.timeout = true;
-                state.qteTelemetryCurrent.success = false;
-                state.qteTelemetryCurrent.failReason = '太慢';
-            }
-            showToast('🎯 QTE 失敗：太慢');
-            finalizeCombatChoice(false);
-        }, 1500); return;
-    } else if (node.type === 'combat' && currentChoice.onSuccess) { 
+    if (node.type === 'combat' && currentChoice.onSuccess) { 
         clearBossWeakspotQte();
-        finalizeCombatChoice(false); return; 
+        finalizeCombatChoice(true); return; 
     }
     if(currentChoice.action && currentChoice.action(state) === false) return;
     if(currentChoice.next) proceedToNode(currentChoice.next);
 }
 
-window.triggerQTE = function(evt = null) {
-    if (!qteTimer) return;
-    const node = storyNodes[state.scene];
-    if (node?.type !== 'combat' || !state.enemy) {
-        clearTimeout(qteTimer);
-        qteTimer = null;
-        document.getElementById('qte-overlay').classList.add('hidden');
-        clearBossWeakspotQte();
-        return;
-    }
-    clearTimeout(qteTimer);
-    qteTimer = null;
-    let pass = true;
-    const weakspot = state.qteWeakspot || {};
-    const showQteTapRing = (x, y) => {
-        const ring = document.createElement('div');
-        ring.className = 'qte-click-ring';
-        ring.style.left = `${x}px`;
-        ring.style.top = `${y}px`;
-        document.body.appendChild(ring);
-        setTimeout(() => ring.remove(), 360);
-    };
-    if (!state.qteTelemetryCurrent) {
-        state.qteTelemetryCurrent = { attempted: true, weakspotActive: !!weakspot.active, weakspotHit: false, clicked: false, success: false, startAt: Date.now() };
-    }
-    state.qteTelemetryCurrent.clicked = true;
-    if (weakspot.active && evt) {
-        const hitX = Number(evt.clientX || 0);
-        const hitY = Number(evt.clientY || 0);
-        showQteTapRing(hitX, hitY);
-        const centerX = window.innerWidth * (Number(weakspot.xPct || 50) / 100);
-        const centerY = window.innerHeight * (Number(weakspot.yPct || 50) / 100);
-        const dist = Math.hypot(hitX - centerX, hitY - centerY);
-        const elapsed = Date.now() - Number(weakspot.startAt || Date.now());
-        const timingRatio = Math.max(0, Math.min(1, elapsed / 1500));
-        const inside = dist <= Number(weakspot.radius || 54);
-        const timingGood = timingRatio >= 0.56 && timingRatio <= 0.94;
-        const hitWeakspot = inside && timingGood;
-        pass = hitWeakspot;
-        state.qteTelemetryCurrent.weakspotActive = true;
-        state.qteTelemetryCurrent.weakspotHit = hitWeakspot;
-        state.qteTelemetryCurrent.timingRatio = timingRatio;
-        state.qteTelemetryCurrent.distance = dist;
-        if (!pass) {
-            let reason = '歪了';
-            if (!inside) reason = '歪了';
-            else if (timingRatio < 0.56) reason = '太快';
-            else if (timingRatio > 0.94) reason = '太慢';
-            state.qteTelemetryCurrent.failReason = reason;
-            showToast(`🎯 QTE 失敗：${reason}`);
-        }
-    } else if (evt) {
-        const hitX = Number(evt.clientX || (window.innerWidth / 2));
-        const hitY = Number(evt.clientY || (window.innerHeight / 2));
-        showQteTapRing(hitX, hitY);
-    }
-    state.qteTelemetryCurrent.success = pass;
-    clearBossWeakspotQte();
-    if (navigator.vibrate && pass) navigator.vibrate(50);
-    finalizeCombatChoice(pass);
-}
-
-function finalizeCombatChoice(qteSuccess) {
+window.triggerQTE = function() {
+    // QTE 已移除；保留空函式避免舊節點 onclick 報錯。
     if (qteTimer) {
         clearTimeout(qteTimer);
         qteTimer = null;
     }
-    document.getElementById('qte-overlay').classList.add('hidden');
+    const qteOverlayEl = document.getElementById('qte-overlay');
+    if (qteOverlayEl?.classList) qteOverlayEl.classList.add('hidden');
+    clearBossWeakspotQte();
+    state.qteTelemetryCurrent = null;
+}
+
+function finalizeCombatChoice(qteSuccess) {
+    // 先做硬清理，避免任何殘留 QTE 導致點擊被攔截。
+    if (qteTimer) {
+        clearTimeout(qteTimer);
+        qteTimer = null;
+    }
+    const qteOverlayEl = document.getElementById('qte-overlay');
+    if (qteOverlayEl?.classList) qteOverlayEl.classList.add('hidden');
     clearBossWeakspotQte();
     const choice = currentChoice; const node = storyNodes[state.scene];
-    const qteTelemetry = state.qteTelemetryCurrent || null;
+    const qteTelemetry = null;
     state.qteTelemetryCurrent = null;
     if (!choice || !node) {
         state.combatResult = null;
         clearCombatLogState(state);
-        showToast('⚠️ 戰鬥選項資料遺失，已安全返回。');
-        switchTab('hub');
+        showToast('⚠️ 戰鬥選項資料遺失，已重整本回合。');
+        renderStory();
         return;
     }
     const passiveMods = getClassicPassiveModifiers(state);
+    let eventText = '';
     if (node.type === 'combat' && !state.enemy) {
-        state.combatResult = null;
-        clearCombatLogState(state);
-        showToast('⚠️ 敵人資料遺失，已中止本次戰鬥。');
-        proceedToNode('hub');
-        return;
+        if (node.enemy) {
+            state.enemy = prepareEnemyForCombat(JSON.parse(JSON.stringify(node.enemy)));
+            showToast('⚠️ 敵人資料短暫遺失，已自動重建戰局。');
+        } else if (node._enemyBackup) {
+            state.enemy = prepareEnemyForCombat(JSON.parse(JSON.stringify(node._enemyBackup)));
+            showToast('⚠️ 戰鬥資料異常，已用備援敵人重建。');
+        } else {
+            state.combatResult = null;
+            clearCombatLogState(state);
+            showToast('⚠️ 戰鬥資料損壞，已返回大廳。');
+            state.scene = 'hub';
+            switchTab('hub');
+            return;
+        }
     }
     const chapterId = getSceneChapterId(state.scene);
     ensureChapterProgressState(state);
     ensureCardCombatState(state);
     ensureClassicsState(state);
     const battle = node?.type === 'combat' ? ensureCombatBattleState(state, node) : null;
+    if (node?.type === 'combat' && choice?.__card && choice?.cardMeta) {
+        const cardCost = Number(getCombatCardCost(choice.cardMeta, state) || 0);
+        const energyNow = Number(battle?.energy || 0);
+        if (!battle || energyNow < cardCost) {
+            showToast(`戰鬥 AP 不足（需 ${cardCost}），先集結回合。`);
+            renderStory();
+            return;
+        }
+        battle.energy = Math.max(0, energyNow - cardCost);
+        // #region agent log
+        postDebugLog('post-fix', 'H5', '拜犬江湖.html:25753', 'card choice consumed AP', {
+            cardId: String(choice?.cardMeta?.id || ''),
+            cardCost,
+            energyBefore: energyNow,
+            energyAfter: Number(battle.energy || 0),
+            enemyHpBefore: Number(state?.enemy?.hp || 0)
+        });
+        // #endregion
+        eventText += `<div class="text-amber-300 text-xs font-bold mb-2">🔋 出牌消耗 AP：-${cardCost}（剩餘 ${battle.energy}）</div>`;
+    }
     state.combatFlags = state.combatFlags || {};
     if (choice?.type && !choice.__card && ['hard', 'smart', 'speech', 'surrender'].includes(choice.type)) {
         state.combatUsage[choice.type] = (state.combatUsage[choice.type] || 0) + 1;
@@ -25592,8 +25825,11 @@ function finalizeCombatChoice(qteSuccess) {
     }
     // -------------------------------------------
     
-    let isSuccess = true; let outcomeType = 'success'; let criticalSuccess = false; let eventText = assistMessage ? `<div class="text-purple-400 text-xs font-bold mb-2">🤝 ${assistMessage}</div>` : "";
-    if (node?.type === 'combat' && !choice?.__card && getCombatMode(state) === 'classic') {
+    let isSuccess = true; let outcomeType = 'success'; let criticalSuccess = false;
+    const isSimpleSkillMode = !!(node?.type === 'combat' && !choice?.__card && getCombatMode(state) === 'classic');
+    let usedClassicAutoCard = false;
+    if (assistMessage) eventText += `<div class="text-purple-400 text-xs font-bold mb-2">🤝 ${assistMessage}</div>`;
+    if (isSimpleSkillMode) {
         const battleRef = ensureCombatBattleState(state, node);
         const handIds = Array.isArray(battleRef?.hand) ? [...battleRef.hand] : [];
         let best = null;
@@ -25615,12 +25851,10 @@ function finalizeCombatChoice(qteSuccess) {
             battleRef.discardPile = battleRef.discardPile || [];
             battleRef.discardPile.push(best.card.id);
             eventText += `<div class="text-amber-200 text-xs font-bold mb-2">🃏 經典模式自動出牌：${best.card.name}</div>`;
+            usedClassicAutoCard = true;
         } else {
             eventText += `<div class="text-slate-300 text-xs font-bold mb-2">🃏 經典模式：本回合無對應手牌可接，改用基礎架勢應對。</div>`;
         }
-    }
-    if (qteTelemetry?.attempted && !qteTelemetry?.success && qteTelemetry?.failReason) {
-        eventText += `<div class="text-amber-300 text-xs font-bold mb-2">🎯 QTE 判定：${qteTelemetry.failReason}</div>`;
     }
     let forcedFailureReason = "";
     let damageBonus = 0;
@@ -25715,30 +25949,12 @@ function finalizeCombatChoice(qteSuccess) {
         dodgeBonus += 0.2;
         eventText += `<div class="text-purple-400 text-xs font-bold mb-2">🍺 醉拳：閃避 +20%，命中下降</div>`;
     }
-    if (choice.threshold) {
+    if (choice.threshold && !choice.__card && node.type !== 'combat') {
         const finalThreshold = getCombatChoiceThreshold(choice, qteSuccess, state, node);
         const statValue = getEffectiveStat(choice.threshold.stat, state);
         const diff = statValue - finalThreshold;
-        const ratio = statValue / Math.max(1, finalThreshold);
         if (qteSuccess) eventText += `<div class="text-amber-300 text-xs font-bold mb-2">🎯 QTE 命中：本次門檻額外下修。</div>`;
-
-        if (choice.__card) {
-            if (ratio >= 1.5) {
-                criticalSuccess = true;
-                damageBonus += 0.18;
-                eventText += `<div class="text-emerald-300 text-xs font-bold mb-2">✨ 大成功：${hybridCombatStatLabels[choice.threshold.stat] || '屬性'}遠遠壓過門檻，牌效被放大了。</div>`;
-            } else if (ratio < 0.7) {
-                isSuccess = false;
-                outcomeType = 'failure';
-            } else if (ratio < 1) {
-                outcomeType = 'partial';
-            }
-            if (choice.type === 'surrender' && (state.cardSystem?.alert || 0) >= 60) {
-                eventText += `<div class="text-rose-300 text-xs font-bold mb-2">🚨 警戒值過高：這種賣慘套路現在更容易被看穿。</div>`;
-            }
-        } else {
-            if(diff < -10) { isSuccess = false; outcomeType = 'failure'; } else if (diff < 0) outcomeType = 'partial';
-        }
+        if(diff < -10) { isSuccess = false; outcomeType = 'failure'; } else if (diff < 0) outcomeType = 'partial';
 
         if (choice.type === 'surrender' && (isFinalBossEncounter(state.enemy, node) || node?.noSurrender || isBossCombatEncounter(state.enemy, node))) {
             const thickSkin = Number(getEffectiveStat('thickSkin', state) || 0);
@@ -25761,13 +25977,36 @@ function finalizeCombatChoice(qteSuccess) {
         }
         if (choice.__card) choice.cardMeta.__resolutionTier = criticalSuccess ? 'great' : (isSuccess ? (outcomeType === 'partial' ? 'partial' : 'success') : 'failure');
     }
+    if (choice.__card) {
+        // 卡牌軌道完全獨立，不觸發判定失敗。
+        isSuccess = true;
+        outcomeType = 'success';
+        const statVal = Number(getEffectiveStat(choice.threshold?.stat || 'force', state) || 0);
+        const baseNeed = Number(choice.threshold?.value || 1);
+        if (statVal >= baseNeed * 1.45) {
+            criticalSuccess = true;
+            damageBonus += 0.18;
+            eventText += `<div class="text-emerald-300 text-xs font-bold mb-2">✨ 出牌大成功：牌效被放大。</div>`;
+        } else {
+            eventText += `<div class="text-cyan-300 text-xs font-bold mb-2">🃏 出牌成功：卡牌軌道不走判定。</div>`;
+        }
+        if (choice.cardMeta) choice.cardMeta.__resolutionTier = criticalSuccess ? 'great' : 'success';
+    }
     
     let outcome = outcomeType==='success' ? choice.onSuccess : (outcomeType==='partial' ? (choice.onPartial||{text:"妳勉強應對，雙方受損",effect:s=>{s.hp-=15;if(s.enemy)s.enemy.hp-=10}}) : choice.onFailure);
     const enemyHpBefore = state.enemy ? state.enemy.hp : null;
     const enemyWillBefore = (state.enemy && state.enemy.willpower !== undefined) ? Number(state.enemy.willpower || 0) : null;
-    if(outcome && outcome.effect) {
+    if(outcome && outcome.effect && !(isSimpleSkillMode && usedClassicAutoCard)) {
         const hpBeforeEffect = state.hp;
-        let oldThick = state.stats.thickSkin; outcome.effect(state);
+        let oldThick = state.stats.thickSkin;
+        try {
+            outcome.effect(state);
+        } catch (err) {
+            console.error('combat outcome effect failed', err);
+            const fallbackName = String(outcomeType === 'failure' ? '失敗' : '成功');
+            eventText += `<div class="text-amber-300 text-xs font-bold mb-2">⚠️ ${fallbackName}效果腳本發生錯誤，已忽略該特效並保持戰局。</div>`;
+            showToast('⚠️ 戰鬥腳本錯誤已被攔截，戰局持續。');
+        }
         const rawDamage = Math.max(0, hpBeforeEffect - state.hp);
         const eqBonus = getEquipmentBonuses(state);
         if (rawDamage > 0) {
@@ -25886,7 +26125,33 @@ function finalizeCombatChoice(qteSuccess) {
         if(state.settings.difficulty === 3 && choice.type === 'surrender' && state.stats.thickSkin > oldThick) { state.stats.thickSkin += (state.stats.thickSkin - oldThick)*2; eventText += `<div class="text-purple-400 text-xs font-bold mb-2">鋼鐵敗犬：獲得三倍臉皮</div>`; }
     }
 
-    if (brokenBeforeAction && state.enemy) {
+    // 簡易模式平衡保護：避免新手期一招秒怪，保留卡牌模式的深度優勢。
+    if (isSimpleSkillMode && state.enemy) {
+        const dayVal = Math.max(1, Number(state.currentDay || 1));
+        const chapterVal = Math.max(1, Number(chapterId || 1));
+        const hpBefore = Number(enemyHpBefore ?? state.enemy.hp ?? 0);
+        const hpAfterNow = Number(state.enemy.hp || 0);
+        const rawHpDamage = Math.max(0, hpBefore - hpAfterNow);
+        if (rawHpDamage > 0) {
+            const modeMult = chapterVal <= 1 ? 0.38 : chapterVal === 2 ? 0.5 : 0.62;
+            const hpCap = Math.min(85, 30 + dayVal * 3);
+            const tunedHpDamage = Math.max(1, Math.min(hpCap, Math.floor(rawHpDamage * modeMult)));
+            state.enemy.hp = Math.max(0, hpBefore - tunedHpDamage);
+        }
+        if (state.enemy.willpower !== undefined && enemyWillBefore !== null) {
+            const willBefore = Number(enemyWillBefore || 0);
+            const willAfterNow = Number(state.enemy.willpower || 0);
+            const rawWillDamage = Math.max(0, willBefore - willAfterNow);
+            if (rawWillDamage > 0) {
+                const willCap = Math.min(70, 24 + dayVal * 2);
+                const tunedWillDamage = Math.max(1, Math.min(willCap, Math.floor(rawWillDamage * 0.55)));
+                state.enemy.willpower = Math.max(0, willBefore - tunedWillDamage);
+            }
+        }
+        eventText += `<div class="text-cyan-300 text-xs font-bold mb-2">🎚️ 簡易模式平衡：本回合已套用新手期傷害上限。</div>`;
+    }
+
+    if (brokenBeforeAction && state.enemy && !(isSimpleSkillMode && usedClassicAutoCard)) {
         if (choice.type === 'hard' || choice.type === 'smart') {
             const baseDamage = enemyHpBefore !== null ? Math.max(0, enemyHpBefore - state.enemy.hp) : 0;
             if (baseDamage > 0) {
@@ -25939,7 +26204,7 @@ function finalizeCombatChoice(qteSuccess) {
         else if (choice.type === 'speech') playTonePattern([980, 740, 980], { step: 0.04, length: 0.08, wave: 'square', volume: 0.038 });
     }
 
-    if (isSuccess && state.enemy && choice.threshold) {
+    if (isSuccess && state.enemy && choice.threshold && !(isSimpleSkillMode && usedClassicAutoCard)) {
         if (state.skills.includes("庖丁解牛")) state.enemy.hp -= 10;
         if (choice.threshold.stat === 'insight' && state.skills.includes("漫天花雨")) { state.money += 50; eventText += "<div class='text-green-400 text-xs mt-1 mb-2'>順走 $50 (漫天花雨)</div>"; }
         if (choice.threshold.stat === 'speech' && state.skills.includes("打狗棒法")) { state.enemy.intention = "陷入混亂！"; }
@@ -25979,7 +26244,7 @@ function finalizeCombatChoice(qteSuccess) {
     }
     let shouldEndTurn = true;
     if (node?.type === 'combat' && choice?.__card && battle && state.enemy && Number(state.enemy.hp || 0) > 0 && Number(state.hp || 0) > 0) {
-        shouldEndTurn = !(Number(battle.energy || 0) > 0 && hasAffordableCardInHand(state));
+        shouldEndTurn = true;
     }
 
     if (node?.type === 'combat' && shouldEndTurn) {
@@ -25999,7 +26264,8 @@ function finalizeCombatChoice(qteSuccess) {
         }
     }
 
-    let nextTarget = node.nextRound; if (choice.type === 'surrender' && isSuccess && node.escapeTo) nextTarget = node.escapeTo;
+    let nextTarget = state.scene;
+    if (choice.type === 'surrender' && isSuccess && node.escapeTo) nextTarget = node.escapeTo;
     let localSurrenderVictory = false;
     if (state.scene === 'boss_fight_situ_round1' && state.enemy) {
         if (Number(state.enemy.hp || 0) <= Math.floor(Number(state.enemy.maxHp || 300) * 0.7)) {
@@ -26024,20 +26290,23 @@ function finalizeCombatChoice(qteSuccess) {
         const willBroken = brokenBeforeAction || (state.enemy.willpower !== undefined && Number(state.enemy.willpower) <= 0);
         const isBoss = isBossCombatEncounter(state.enemy, node);
         const canBePersuaded = !!state.enemy.canSurrender || isBoss;
+        // 無戰意條敵人不應被輕易觸發厭戰秒退：僅限 Boss 或明確可說服目標，且血量需更低。
         const noWillLowHp = canBePersuaded
+            && (isBoss || !!state.enemy.canSurrender)
             && (state.enemy.willpower === undefined)
             && Number(state.enemy.hp || 9999) > 0
-            && Number(state.enemy.hp || 9999) <= Math.max(1, Math.floor(Number(state.enemy.maxHp || 100) * 0.1));
+            && Number(state.enemy.hp || 9999) <= Math.max(1, Math.floor(Number(state.enemy.maxHp || 100) * 0.05));
         const svNodeId = getSurrenderVictoryNode(state.enemy.name, node);
         const hasBossFallback = isBoss && Math.random() < 0.25;
         if (svNodeId && (willBroken || noWillLowHp || hasBossFallback)) {
             const playerThick = Number(getEffectiveStat('thickSkin', state) || 0);
             const enemyInsight = Number(state.enemy.insight || 0);
-            let surrenderChance = 0.3 + ((playerThick - enemyInsight) / 500);
+            // 破戰意後厭戰退場機率下修：30% -> 10%
+            let surrenderChance = 0.1 + ((playerThick - enemyInsight) / 650);
             if (qteSuccess) surrenderChance += 0.2;
             if (isBoss) surrenderChance *= 0.5;
-            else surrenderChance *= 0.3;
-            surrenderChance = Math.max(0.05, Math.min(0.85, surrenderChance));
+            else surrenderChance *= 0.35;
+            surrenderChance = Math.max(0.01, Math.min(0.35, surrenderChance));
             if (Math.random() < surrenderChance) {
                 nextTarget = svNodeId;
                 localSurrenderVictory = true;
@@ -26051,11 +26320,18 @@ function finalizeCombatChoice(qteSuccess) {
         }
     }
 
-    // 解耦的勝利判斷邏輯
-    if (state.enemy && state.enemy.willpower !== undefined && state.enemy.willpower <= 0) {
+    // 解耦的勝利判斷邏輯：HP 歸零優先於戰意歸零
+    if (state.enemy && state.enemy.hp <= 0) {
+        nextTarget = state.enemy.onHpZero || node.nextRound || node.next || "hub";
+    } else if (state.enemy && state.enemy.willpower !== undefined && state.enemy.willpower <= 0) {
         if (!localSurrenderVictory && brokenBeforeAction && isSuccess && (choice.type === 'speech' || choice.type === 'surrender')) {
-            nextTarget = state.enemy.onWillZero || "hub";
+            nextTarget = state.enemy.onWillZero || node.nextRound || node.next || "hub";
         }
+    }
+    // 卡牌一般出牌不應離開戰局：敵人未倒下時，強制留在本場。
+    if (choice?.__card && state.enemy && Number(state.enemy.hp || 0) > 0 && !localSurrenderVictory) {
+        const forcedPhaseShift = nextTarget === 'boss_fight_situ_round2' || nextTarget === 'boss_fight_situ_round3' || nextTarget === 'chapter_alert_ambush';
+        if (!forcedPhaseShift) nextTarget = state.scene;
     }
     if (state.enemy && state.enemy.hp <= 0) {
         if (choice?.__card && choice?.cardMeta?.school) {
@@ -26129,7 +26405,7 @@ function finalizeCombatChoice(qteSuccess) {
             state.money += loot;
             eventText += `<div class='text-cyan-300 text-xs mb-2'>🪙 順手牽羊，獲得 $${loot}。</div>`;
         }
-        nextTarget = state.enemy.onHpZero || "hub";
+        nextTarget = state.enemy.onHpZero || node?.nextRound || node?.next || state.scene || "hub";
         if (Number(passiveMods.postCombatHealRate || 0) > 0) {
             const heal = Math.max(1, Math.floor((state.maxHp || 100) * Number(passiveMods.postCombatHealRate || 0)));
             state.hp = Math.min(state.maxHp || 100, (state.hp || 0) + heal);
@@ -26239,6 +26515,7 @@ function finalizeCombatChoice(qteSuccess) {
         eventText += `<div class='text-rose-300 text-xs mt-1 mb-2'>🚨 警戒值爆表：敵對勢力發動圍剿，妳被強制拖進無法脫離的戰鬥。</div>`;
     }
 
+    if (node?.type === 'combat' && !nextTarget) nextTarget = state.scene;
     const finalBossFinisherMode = isFinalBossEncounter(state.enemy, node) && ['ending_hero', 'ending_loser'].includes(String(nextTarget || ''))
         ? (nextTarget === 'ending_loser' ? 'loser' : 'hero')
         : null;
@@ -26248,12 +26525,7 @@ function finalizeCombatChoice(qteSuccess) {
         eventText = `<div class="text-fuchsia-200 text-xs font-bold mb-2">⏳ 終局慢鏡：妳高舉文件的那一秒，連停機坪的風都像停住了。</div>` + eventText;
     }
 
-    const qteStats = recordCombatQteTelemetry(state.enemy?.name || '', qteTelemetry || {
-        attempted: !!(node?.type === 'combat' && choice?.threshold),
-        weakspotActive: false,
-        weakspotHit: false,
-        success: !!qteSuccess
-    }, state);
+    const qteStats = null;
     if (qteStats) {
         const attemptDesc = qteStats.attempt.weakspotActive
             ? (qteStats.attempt.weakspotHit ? '弱點命中' : '弱點失手')
@@ -26264,12 +26536,37 @@ function finalizeCombatChoice(qteSuccess) {
     if (node?.type === 'combat') {
         const logTurn = Math.max(1, Number(state.combatTurns || 0) + 1);
         const choiceLabel = String(choice?.label || '出牌').replace(/<[^>]*>/g, '').trim();
-        const outcomeLabel = criticalSuccess ? '大成功' : (isSuccess ? (outcomeType === 'partial' ? '勉強應對' : '判定成功') : '判定失敗');
+        const outcomeLabel = choice.__card
+            ? (criticalSuccess ? '出牌爆發' : '出牌成功')
+            : (criticalSuccess ? '技能爆發' : '技能生效');
         const tone = criticalSuccess ? 'good' : (isSuccess ? (outcomeType === 'partial' ? 'warn' : 'good') : 'bad');
         const hpAfter = Number(state.enemy?.hp || 0);
         const willAfter = (state.enemy && state.enemy.willpower !== undefined) ? Number(state.enemy.willpower || 0) : null;
         const damageDealt = enemyHpBefore === null ? 0 : Math.max(0, Math.round(Number(enemyHpBefore || 0) - hpAfter));
         const willDealt = (enemyWillBefore === null || willAfter === null) ? 0 : Math.max(0, Math.round(enemyWillBefore - willAfter));
+        if (!state.combatSessionReport || state.combatSessionReport.scene !== state.scene) {
+            state.combatSessionReport = {
+                scene: state.scene,
+                skillCounts: { hard: 0, smart: 0, speech: 0, surrender: 0 },
+                totalDamage: 0,
+                totalWill: 0,
+                keyHit: 0,
+                keyHitMove: '',
+                lastMove: ''
+            };
+        }
+        const reportRef = state.combatSessionReport;
+        if (['hard', 'smart', 'speech', 'surrender'].includes(String(choice?.type || ''))) {
+            reportRef.skillCounts[choice.type] = Number(reportRef.skillCounts[choice.type] || 0) + 1;
+        }
+        reportRef.totalDamage = Number(reportRef.totalDamage || 0) + Number(damageDealt || 0);
+        reportRef.totalWill = Number(reportRef.totalWill || 0) + Number(willDealt || 0);
+        reportRef.lastMove = choiceLabel;
+        const impactScore = Number(damageDealt || 0) + Number(willDealt || 0);
+        if (impactScore >= Number(reportRef.keyHit || 0)) {
+            reportRef.keyHit = impactScore;
+            reportRef.keyHitMove = choiceLabel;
+        }
         state.lastRoundSummary = {
             turn: logTurn,
             skillName: choiceLabel,
@@ -26278,12 +26575,6 @@ function finalizeCombatChoice(qteSuccess) {
             effects: `傷害 ${damageDealt}｜戰意削減 ${willDealt}`
         };
         pushCombatLogEntry(`⚔️ T${logTurn}｜${choiceLabel} → ${outcomeLabel}`, tone, state);
-        if (qteStats) {
-            const qteShort = qteStats.attempt.weakspotActive
-                ? (qteStats.attempt.weakspotHit ? '弱點命中' : '弱點失手')
-                : (qteStats.attempt.success ? 'QTE 成功' : 'QTE 失敗');
-            pushCombatLogEntry(`🎯 QTE：${qteShort}｜敵方統計 QTE ${qteStats.enemyTotal.successRateText} / 弱點 ${qteStats.enemyTotal.weakspotRateText}`, qteStats.attempt.success || qteStats.attempt.weakspotHit ? 'good' : 'warn', state);
-        }
     }
 
     advanceCombatCardBattle(choice, state, nextTarget, shouldEndTurn);
@@ -26296,34 +26587,83 @@ function finalizeCombatChoice(qteSuccess) {
 
     state.combatTurns = (state.combatTurns || 0) + 1;
 
-    state.combatResult = {
-        title: criticalSuccess ? '✨ 大成功' : (isSuccess ? (outcomeType === 'partial' ? '⚠️ 勉強應對' : '✅ 判定成功') : '❌ 判定失敗'),
-        titleColor: isSuccess ? (outcomeType === 'partial' ? 'yellow' : 'green') : 'red',
-        outcomeKey: isSuccess ? (outcomeType === 'partial' ? 'mixed' : 'success') : 'fail',
-        isBoss: isBossCombatEncounter(state.enemy, node),
-        isFinalBoss: isFinalBossEncounter(state.enemy, node),
-        finisherMode: finalBossFinisherMode,
-        finisherAction: choice?.label || '',
-        enemyName: state.enemy?.name || '',
-        phaseTitle: node?.title || '',
-        turnCount: state.combatTurns || 0,
-        qteSuccess: qteSuccess,
-        qteStats: qteStats,
-        eventText: eventText,
-        outcomeText: finalOutcomeText,
-        intentionHint: intentionHint,
-        nextTarget: nextTarget,
-        specialVictory: localSurrenderVictory ? 'surrender' : null,
-        fxPlayed: false
-    };
+    state.combatResult = null;
+    const wonBattle = !!(node?.type === 'combat' && ((state.enemy && Number(state.enemy.hp || 0) <= 0) || localSurrenderVictory));
     
     if (!isSuccess && !state.settings.visuals.reduceMotion) {
         const hud = document.getElementById('combat-hud'); if(hud) { hud.classList.remove('animate-shake'); void hud.offsetWidth; hud.classList.add('animate-shake'); }
         document.body.style.background = 'rgba(200,0,0,0.4)'; setTimeout(()=>document.body.style.background='#000', 150);
     }
-    triggerSave(); renderStory();
+    if (wonBattle) {
+        const combatLog = ensureCombatLogState(state, String(state.scene || ''));
+        const recentEntries = (combatLog.entries || []).slice(-4).map(entry => `• ${String(entry?.text || '').replace(/<[^>]*>/g, '')}`).join('<br>');
+        const actionName = String(choice?.label || '本回合行動').replace(/<[^>]*>/g, '').trim();
+        const enemyName = state.enemy?.name || node?.enemy?.name || '對手';
+        const reportRef = state.combatSessionReport || { skillCounts: { hard: 0, smart: 0, speech: 0, surrender: 0 }, totalDamage: 0, totalWill: 0, keyHit: 0, keyHitMove: '', lastMove: actionName };
+        const counts = reportRef.skillCounts || {};
+        const skillRows = [
+            `👊 硬派 ${Number(counts.hard || 0)} 次`,
+            `🧠 取巧 ${Number(counts.smart || 0)} 次`,
+            `🗣️ 話術 ${Number(counts.speech || 0)} 次`,
+            `🙇 認慫 ${Number(counts.surrender || 0)} 次`
+        ];
+        const mvpType = ['hard', 'smart', 'speech', 'surrender'].sort((a, b) => Number(counts[b] || 0) - Number(counts[a] || 0))[0] || '';
+        const mvpLabelMap = { hard: '👊 硬派', smart: '🧠 取巧', speech: '🗣️ 話術', surrender: '🙇 認慫' };
+        const mvpLabel = Number(counts[mvpType] || 0) > 0 ? `${mvpLabelMap[mvpType]}（${counts[mvpType]} 次）` : (reportRef.lastMove || actionName);
+        const summaryTop = `<div class="text-[12px] text-slate-200">妳用 <span class="text-amber-200 font-bold">${actionName}</span> 收掉了這場戰鬥。</div>`;
+        const reportBoard = `<div class="mt-2 rounded-lg border border-cyan-500/30 bg-cyan-950/20 px-2.5 py-2 text-[11px] text-slate-200 leading-relaxed">
+            <div class="text-cyan-200 font-bold mb-1">📊 戰後報表</div>
+            <div>${skillRows.join(' ｜ ')}</div>
+            <div class="mt-1">總傷害：<span class="text-rose-200 font-bold">${Math.max(0, Math.round(Number(reportRef.totalDamage || 0)))}</span>｜總削戰意：<span class="text-fuchsia-200 font-bold">${Math.max(0, Math.round(Number(reportRef.totalWill || 0)))}</span></div>
+            <div class="mt-1">關鍵一擊：<span class="text-amber-200 font-bold">${Math.max(0, Math.round(Number(reportRef.keyHit || 0)))}</span>（${reportRef.keyHitMove || actionName}）</div>
+            <div class="mt-1">MVP 招式：<span class="text-emerald-200 font-bold">${mvpLabel}</span></div>
+        </div>`;
+        const summaryLog = recentEntries ? `<div class="mt-2 rounded-lg border border-white/10 bg-black/25 px-2.5 py-2 text-[11px] text-slate-300 leading-relaxed">${recentEntries}</div>` : '';
+        state.combatResult = {
+            title: localSurrenderVictory ? '🙇 厭戰勝利' : '🏁 戰鬥勝利',
+            titleColor: 'green',
+            outcomeKey: 'success',
+            isBoss: isBossCombatEncounter(state.enemy, node),
+            isFinalBoss: isFinalBossEncounter(state.enemy, node),
+            finisherMode: finalBossFinisherMode,
+            finisherAction: actionName,
+            enemyName: enemyName,
+            phaseTitle: node?.title || '',
+            turnCount: state.combatTurns || 0,
+            qteSuccess: false,
+            qteStats: null,
+            eventText: `${summaryTop}${reportBoard}${summaryLog}`,
+            outcomeText: finalOutcomeText || '戰局已結束。',
+            intentionHint: '',
+            nextTarget: nextTarget || 'hub',
+            specialVictory: localSurrenderVictory ? 'surrender' : null,
+            fxPlayed: false
+        };
+        state.combatSessionReport = null;
+        triggerSave();
+        renderStory();
+        return;
+    }
+    triggerSave();
+    if (nextTarget && nextTarget !== state.scene) {
+        const nextNode = storyNodes[nextTarget];
+        const leavingCombat = !nextNode || nextNode.type !== 'combat';
+        if (leavingCombat) {
+            clearCombatLogState(state);
+            state.lastRoundSummary = null;
+            const ui = ensureCombatUiPanelState(state);
+            ui.skillPreviewType = '';
+            ui.skillPreviewLockedType = '';
+        } else {
+            state.combatSkipToEnd = true;
+            ensureCombatUiPanelState(state).keepExpandedAfterResult = true;
+        }
+        proceedToNode(nextTarget);
+        return;
+    }
+    renderStory();
 }
-window.proceedAfterCombatResult = function(e) { e.stopPropagation(); const next = state.combatResult.nextTarget; const currScene = state.scene; state.combatResult = null; ensureCardCombatState(state); if (!next || next !== state.scene) state.cardSystem.battle = null; const nextNode = next ? storyNodes[next] : null; const leavingCombat = !nextNode || nextNode.type !== 'combat' || next !== currScene; if (leavingCombat) { clearCombatLogState(state); state.lastRoundSummary = null; const ui = ensureCombatUiPanelState(state); ui.skillPreviewType = ''; ui.skillPreviewLockedType = ''; } if(next) { const _nn = storyNodes[next]; if (_nn?.type === 'combat') { state.combatSkipToEnd = true; ensureCombatUiPanelState(state).keepExpandedAfterResult = true; } proceedToNode(next); } else switchTab('hub'); }
+window.proceedAfterCombatResult = function(e) { e.stopPropagation(); if (!state.combatResult) { renderStory(); return; } const next = state.combatResult.nextTarget; const currScene = state.scene; state.combatResult = null; ensureCardCombatState(state); if (!next || next !== state.scene) state.cardSystem.battle = null; const nextNode = next ? storyNodes[next] : null; const leavingCombat = !nextNode || nextNode.type !== 'combat' || next !== currScene; if (leavingCombat) { clearCombatLogState(state); state.lastRoundSummary = null; const ui = ensureCombatUiPanelState(state); ui.skillPreviewType = ''; ui.skillPreviewLockedType = ''; } if(next) { const _nn = storyNodes[next]; if (_nn?.type === 'combat') { state.combatSkipToEnd = true; ensureCombatUiPanelState(state).keepExpandedAfterResult = true; } proceedToNode(next); } else switchTab('hub'); }
 window.proceedToNode = function(nodeId) { 
     if (!nodeId) return; 
     ensureCardCombatState(state);
@@ -26347,11 +26687,21 @@ window.proceedToNode = function(nodeId) {
     state.combatFlags = { tieShuPrepBuff: false, tieShuGuardUsed: false, tieShuUltimateUsed: false, xiaoYeUltimateUsed: false, catSaveUsed: false, ajieShoutReady: false, ajieShoutUsed: false, skillUsedThisTurn: false };
     const node = storyNodes[nodeId];
     if (node && node.type === 'combat') {
+        state.combatSessionReport = {
+            scene: nodeId,
+            skillCounts: { hard: 0, smart: 0, speech: 0, surrender: 0 },
+            totalDamage: 0,
+            totalWill: 0,
+            keyHit: 0,
+            keyHitMove: '',
+            lastMove: ''
+        };
         ensureCombatLogState(state, nodeId);
         if (Array.isArray(node.text) && node.text.length) {
             if (!node.__baseIntroText) node.__baseIntroText = String(node.text[0] || '');
             node.text[0] = getDynamicCombatIntro(node, state);
         }
+            if (node.enemy && !node._enemyBackup) node._enemyBackup = JSON.parse(JSON.stringify(node.enemy));
         if (node.enemy) {
             if (!state.enemy || state.enemy.name !== node.enemy.name) {
                 state.enemy = prepareEnemyForCombat(JSON.parse(JSON.stringify(node.enemy)));
@@ -31300,8 +31650,8 @@ let questHtml = "";
         ? `<div class="hub-card border-rose-500/25 bg-rose-950/10"><div class="text-rose-300 font-bold mb-1">📋 當前任務</div><div class="text-sm text-gray-200 mb-2">${chapterOneQuest.label}</div><button onclick="state.scene='${chapterOneQuest.scene}'; state.lineIdx=0; switchTab('story');" class="premium-btn text-center !mb-0 border-rose-500/40">前往任務</button></div>`
         : `<div class="hub-card border-rose-500/20 bg-rose-950/10"><div class="text-rose-300 font-bold mb-1">📋 任務板</div><div class="text-sm text-gray-300">今晚沒有硬性任務，優先處理現金與 HP。</div></div>`;
     const storyFocusHtml = storyEntryHtml || `<div class="hub-card text-sm text-gray-300">今晚暫時沒有新的急件。妳可以先打工、探索，或去夜市找麻煩。</div>`;
-    const utilityButtonsHtml = `<div class="hub-card"><div class="text-sm text-cyan-300 font-bold mb-3">🧰 常用系統</div><div class="grid sm:grid-cols-3 gap-2"><button onclick="showHousingModal()" class="hub-action text-center">🏠 住處</button><button onclick="showTalentTree()" class="hub-action text-center">🧿 天賦</button><button onclick="openFeedView()" ${isSystemUnlocked('feed', state) ? '' : 'disabled'} class="hub-action text-center ${isSystemUnlocked('feed', state) ? '' : 'opacity-50'}">📱 廢文牆</button></div><button onclick="toggleHubMoreDrawer()" class="premium-btn text-center !mb-0 mt-2 border-cyan-500/40">${state.hubMoreOpen ? '收起更多' : '⋯ 更多系統'}</button>${state.hubMoreOpen ? `<div class="grid sm:grid-cols-2 gap-2 mt-2"><button onclick="showRelationshipWeb()" class="hub-action text-left">🕸️ 關係網</button><button onclick="showCompanionSkillTrees()" ${isSystemUnlocked('dispatch', state) ? '' : 'disabled'} class="hub-action text-left ${isSystemUnlocked('dispatch', state) ? '' : 'opacity-50'}">🧬 羈絆技能樹</button><button onclick="showFactionBoard()" ${isSystemUnlocked('sect', state) ? '' : 'disabled'} class="hub-action text-left ${isSystemUnlocked('sect', state) ? '' : 'opacity-50'}">🏛️ 勢力／節氣</button><button onclick="showRivalBoard()" class="hub-action text-left">🎭 死對頭追蹤</button><button onclick="openClassicsLibrary()" class="hub-action text-left">📚 古籍與內功</button><button onclick="openSettings()" class="hub-action text-left">⚙️ 系統設定</button></div>` : ''}</div>`;
-    const primaryActionHtml = `<div class="hub-card"><div class="text-sm text-amber-300 font-bold mb-3">🎯 今晚行動</div><div class="grid md:grid-cols-3 gap-3"><button onclick="state.mapView='main'; switchTab('map');" class="hub-action text-left border-cyan-500/40"><div class="font-bold text-cyan-300">🗺️ 出門搞錢</div><div class="text-xs text-cyan-100/70 mt-1">地圖、打工、探索</div></button><button onclick="state.scene='encounter_start'; state.lineIdx=0; switchTab('story');" class="hub-action text-left border-green-500/30"><div class="font-bold text-green-300">📖 劇情推進</div><div class="text-xs text-green-100/70 mt-1">主線與羈絆事件</div></button><button onclick="showEndDayModal()" class="hub-action text-left border-amber-500/40"><div class="font-bold text-amber-200">🌙 睡覺</div><div class="text-xs text-amber-100/70 mt-1">結束今日</div></button></div></div>`;
+    const utilityButtonsHtml = `<div class="hub-card"><div class="text-sm text-cyan-300 font-bold mb-3">🧰 常用系統</div><div class="grid grid-cols-2 md:grid-cols-3 gap-2.5"><button onclick="showHousingModal()" class="hub-tile-btn"><div class="hub-tile-title">🏠 住處</div><div class="hub-tile-sub">房租與維護</div></button><button onclick="showTalentTree()" class="hub-tile-btn"><div class="hub-tile-title">🧿 天賦</div><div class="hub-tile-sub">角色流派養成</div></button><button onclick="openFeedView()" ${isSystemUnlocked('feed', state) ? '' : 'disabled'} class="hub-tile-btn ${isSystemUnlocked('feed', state) ? '' : 'opacity-50'}"><div class="hub-tile-title">📱 廢文牆</div><div class="hub-tile-sub">社群與輿論</div></button><button onclick="showRelationshipWeb()" class="hub-tile-btn"><div class="hub-tile-title">🕸️ 關係網</div><div class="hub-tile-sub">人物線索</div></button><button onclick="showCompanionSkillTrees()" ${isSystemUnlocked('dispatch', state) ? '' : 'disabled'} class="hub-tile-btn ${isSystemUnlocked('dispatch', state) ? '' : 'opacity-50'}"><div class="hub-tile-title">🧬 羈絆技能樹</div><div class="hub-tile-sub">夥伴成長</div></button><button onclick="showFactionBoard()" ${isSystemUnlocked('sect', state) ? '' : 'disabled'} class="hub-tile-btn ${isSystemUnlocked('sect', state) ? '' : 'opacity-50'}"><div class="hub-tile-title">🏛️ 勢力／節氣</div><div class="hub-tile-sub">地區風向</div></button><button onclick="showRivalBoard()" class="hub-tile-btn"><div class="hub-tile-title">🎭 死對頭追蹤</div><div class="hub-tile-sub">威脅檢視</div></button><button onclick="openClassicsLibrary()" class="hub-tile-btn"><div class="hub-tile-title">📚 古籍與內功</div><div class="hub-tile-sub">典籍與境界</div></button><button onclick="openSettings()" class="hub-tile-btn"><div class="hub-tile-title">⚙️ 系統設定</div><div class="hub-tile-sub">介面與偏好</div></button></div></div>`;
+    const primaryActionHtml = `<div class="hub-card"><div class="text-sm text-amber-300 font-bold mb-3">🎯 今晚行動</div><div class="grid md:grid-cols-3 gap-2.5"><button onclick="state.mapView='main'; switchTab('map');" class="hub-tile-btn border-cyan-500/35"><div class="hub-tile-title text-cyan-200">🗺️ 出門搞錢</div><div class="hub-tile-sub">地圖、打工、探索</div></button><button onclick="state.scene='encounter_start'; state.lineIdx=0; switchTab('story');" class="hub-tile-btn border-emerald-500/35"><div class="hub-tile-title text-emerald-200">🚶 隨便逛逛</div><div class="hub-tile-sub">隨機遭遇與街頭事件</div></button><button onclick="showEndDayModal()" class="hub-tile-btn border-amber-500/35"><div class="hub-tile-title text-amber-200">🌙 睡覺</div><div class="hub-tile-sub">結束今日並結算</div></button></div></div>`;
     const overviewHtml = `<div class="hub-card"><div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm"><div class="rounded-xl border border-red-500/20 bg-black/25 p-3"><div class="text-[10px] text-gray-400 uppercase">武力</div><div class="text-red-300 font-bold text-lg">${getEffectiveStat('force', state)}</div></div><div class="rounded-xl border border-cyan-500/20 bg-black/25 p-3"><div class="text-[10px] text-gray-400 uppercase">洞察</div><div class="text-cyan-300 font-bold text-lg">${getEffectiveStat('insight', state)}</div></div><div class="rounded-xl border border-pink-500/20 bg-black/25 p-3"><div class="text-[10px] text-gray-400 uppercase">話術</div><div class="text-pink-300 font-bold text-lg">${getEffectiveStat('speech', state)}</div></div><div class="rounded-xl border border-purple-500/20 bg-black/25 p-3"><div class="text-[10px] text-gray-400 uppercase">臉皮</div><div class="text-purple-300 font-bold text-lg">${getEffectiveStat('thickSkin', state)}</div></div></div></div>`;
     const survivalPanelHtml = survivalHtml || `<div class="hub-card text-sm text-gray-300"><div class="text-emerald-300 font-bold mb-2">🌿 生存狀態</div><p>目前沒有額外生存提示。先把錢、血量與希望撐住就好。</p></div>`;
 
@@ -36402,6 +36752,288 @@ window.startScreenExit = function() {
     }
 };
 
+function openDevSmokeHiddenGate(source = 'unknown') {
+    window.__devSmokeUnlockedSession = true;
+    showModal(`<h2 class="text-2xl font-serif text-cyan-300 mb-3">🛠️ 開發者暗門</h2><p class="text-[12px] text-gray-300 mb-3">入口來源：${source}</p><div class="text-[11px] text-cyan-100/80 mb-4">這是隱藏測試面板，僅供除錯使用。預設會還原測試前狀態。</div><div class="grid gap-2"><button onclick="runDevSmokeTest().then(r => showToast(r.ok ? '✅ 煙霧測試完成' : '⚠️ 煙霧測試有錯誤，請看 Console 報告'));" class="premium-btn text-center !mb-0 border-cyan-500/50">執行一鍵煙霧測試</button><button onclick="runDevSmokeTest({ restoreAfterRun:false, includeCombatProbe:true, includeSleep:true }).then(r => showToast(r.ok ? '✅ 已完成（保留測試後狀態）' : '⚠️ 已完成但有錯誤')); " class="premium-btn text-center !mb-0 border-amber-500/40">執行並保留測試狀態</button><button onclick="closeModal()" class="premium-btn text-center !mb-0 border-gray-600 bg-gray-800">關閉</button></div>`);
+}
+
+function initDevSmokeSecretTrigger() {
+    if (window.__devSmokeSecretBound) return;
+    window.__devSmokeSecretBound = true;
+
+    const secret = ['d', 'e', 'v', 's', 'm', 'o', 'k', 'e'];
+    let seqIdx = 0;
+    let quoteTapCount = 0;
+    let quoteTapTimer = 0;
+
+    document.addEventListener('keydown', (ev) => {
+        const tag = String(ev.target?.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || ev.target?.isContentEditable) return;
+        const key = String(ev.key || '').toLowerCase();
+        if (!key || key.length !== 1) return;
+        if (key === secret[seqIdx]) {
+            seqIdx += 1;
+            if (seqIdx >= secret.length) {
+                seqIdx = 0;
+                openDevSmokeHiddenGate('key-sequence');
+            }
+        } else {
+            seqIdx = key === secret[0] ? 1 : 0;
+        }
+    });
+
+    document.addEventListener('click', (ev) => {
+        const target = ev.target;
+        if (!(target instanceof HTMLElement)) return;
+        const quoteEl = target.closest('#start-screen-quote');
+        if (!quoteEl) return;
+        const now = Date.now();
+        if (now - quoteTapTimer > 2200) quoteTapCount = 0;
+        quoteTapTimer = now;
+        quoteTapCount += 1;
+        if (quoteTapCount >= 7) {
+            quoteTapCount = 0;
+            openDevSmokeHiddenGate('start-quote-7tap');
+        }
+    });
+}
+
+window.runDevSmokeTest = async function(options = {}) {
+    const cfg = {
+        restoreAfterRun: options.restoreAfterRun !== false,
+        includeCombatProbe: options.includeCombatProbe !== false,
+        includeSleep: options.includeSleep !== false,
+        includeSaveSlotCycle: options.includeSaveSlotCycle !== false,
+        stopOnError: !!options.stopOnError,
+        quietUi: options.quietUi !== false,
+        showResultModal: options.showResultModal !== false
+    };
+    const report = {
+        startedAt: new Date().toISOString(),
+        endedAt: null,
+        ok: false,
+        config: cfg,
+        steps: [],
+        warnings: [],
+        errors: []
+    };
+    const wait = (ms = 40) => new Promise(resolve => setTimeout(resolve, ms));
+    const note = (msg, type = 'log') => {
+        const text = `[DEV-SMOKE] ${msg}`;
+        if (type === 'warn') console.warn(text);
+        else if (type === 'error') console.error(text);
+        else console.log(text);
+    };
+    const failStep = (name, err) => {
+        const message = `${name}: ${err?.message || err}`;
+        report.errors.push(message);
+        note(message, 'error');
+    };
+    const runStep = async (name, fn) => {
+        const started = performance.now();
+        try {
+            await fn();
+            const elapsed = Math.round(performance.now() - started);
+            report.steps.push({ name, ok: true, elapsedMs: elapsed });
+            note(`${name} ✓ (${elapsed}ms)`);
+        } catch (err) {
+            const elapsed = Math.round(performance.now() - started);
+            report.steps.push({ name, ok: false, elapsedMs: elapsed, error: String(err?.message || err) });
+            failStep(name, err);
+            if (cfg.stopOnError) throw err;
+        }
+    };
+
+    let snapshot = null;
+    let originalShowModal = null;
+    let originalShowDailyDiaryModal = null;
+    try {
+        if (typeof encodeSaveData !== 'function' || typeof decodeSaveData !== 'function' || typeof migrateState !== 'function') {
+            throw new Error('核心存檔函式缺失，無法安全執行煙霧測試。');
+        }
+        if (cfg.quietUi) {
+            if (typeof window.showModal === 'function') {
+                originalShowModal = window.showModal.bind(window);
+                window.showModal = function() {
+                    return null;
+                };
+            }
+            if (typeof window.showDailyDiaryModal === 'function') {
+                originalShowDailyDiaryModal = window.showDailyDiaryModal.bind(window);
+                window.showDailyDiaryModal = function() {
+                    return null;
+                };
+            }
+        }
+        snapshot = encodeSaveData(state);
+
+        await runStep('預先存檔', async () => {
+            if (typeof triggerSave === 'function') triggerSave('dev-smoke-pre', true);
+            else if (typeof saveGame === 'function') saveGame('dev-smoke-pre');
+            await wait();
+        });
+
+        await runStep('切換核心頁籤', async () => {
+            const tabs = ['story', 'map', 'work', 'stats', 'gallery', 'settings', 'hub'];
+            tabs.forEach(tab => {
+                try {
+                    if (typeof switchTab === 'function') switchTab(tab);
+                } catch (err) {
+                    report.warnings.push(`switchTab(${tab}) 失敗：${err?.message || err}`);
+                }
+            });
+            if (typeof switchTab === 'function') switchTab('story');
+            await wait();
+        });
+
+        await runStep('打工流程探針', async () => {
+            if (typeof doWork !== 'function') throw new Error('doWork 不存在');
+            state.ap = Math.max(4, Math.floor(Number(state.ap || 0)));
+            if (typeof switchTab === 'function') switchTab('work');
+            doWork('delivery', 1, 'force', 220, !!state.flags?.chap1_cleared);
+            await wait();
+        });
+
+        await runStep('儲備精力流程探針', async () => {
+            if (typeof useStoredEnergyBoost !== 'function') throw new Error('useStoredEnergyBoost 不存在');
+            if (!state.buffs || typeof state.buffs !== 'object') state.buffs = {};
+            state.buffs.storedEnergy = Math.max(50, Number(state.buffs.storedEnergy || 0));
+            state.buffs.workBoostRemaining = 0;
+            useStoredEnergyBoost();
+            await wait();
+        });
+
+        if (cfg.includeSleep) {
+            await runStep('睡覺推進一天', async () => {
+                if (typeof sleep !== 'function') throw new Error('sleep 不存在');
+                const beforeDay = Number(state.currentDay || 0);
+                if (!state.flags?.chap1_cleared) {
+                    state.flags = state.flags || {};
+                    state.flags.chap1_cleared = true;
+                }
+                sleep();
+                await wait(80);
+                if (Number(state.currentDay || 0) < beforeDay) throw new Error('日期異常倒退');
+            });
+        }
+
+        await runStep('編碼/解碼存檔循環', async () => {
+            const packed = encodeSaveData(state);
+            const parsed = decodeSaveData(packed);
+            if (!(parsed && parsed.stats && parsed.flags)) throw new Error('decode 後資料缺欄位');
+        });
+
+        if (cfg.includeSaveSlotCycle) {
+            await runStep('存檔槽循環', async () => {
+                if (typeof manualSaveToSlot !== 'function' || typeof loadSaveSlot !== 'function') {
+                    throw new Error('manualSaveToSlot / loadSaveSlot 不存在');
+                }
+                manualSaveToSlot(3);
+                await wait(60);
+                loadSaveSlot(3);
+                await wait(60);
+            });
+        }
+
+        if (cfg.includeCombatProbe) {
+            await runStep('戰鬥節點探針', async () => {
+                if (typeof proceedToNode !== 'function') throw new Error('proceedToNode 不存在');
+                if (typeof storyNodes !== 'object' || !storyNodes) throw new Error('storyNodes 不存在');
+                const enemyEntry = Object.entries(storyNodes).find(([, node]) => !!node?.enemy);
+                if (!enemyEntry) throw new Error('找不到帶 enemy 的劇情節點');
+                proceedToNode(enemyEntry[0]);
+                await wait(80);
+                if (!state.enemy) throw new Error(`節點 ${enemyEntry[0]} 未進入戰鬥狀態`);
+            });
+
+            await runStep('快速戰鬥探針', async () => {
+                if (!state.enemy) {
+                    report.warnings.push('無敵人狀態，略過快速戰鬥探針。');
+                    return;
+                }
+                if (typeof triggerQuickCombat === 'function') {
+                    try {
+                        const fakeBtn = document.createElement('button');
+                        fakeBtn.className = 'combat-fixed-btn';
+                        triggerQuickCombat({
+                            preventDefault() {},
+                            stopPropagation() {},
+                            currentTarget: fakeBtn,
+                            target: fakeBtn
+                        });
+                        await wait(80);
+                        return;
+                    } catch (err) {
+                        report.warnings.push(`triggerQuickCombat 探針失敗，改用 instant fallback：${err?.message || err}`);
+                    }
+                }
+                if (typeof resolveQuickCombatInstant === 'function') {
+                    resolveQuickCombatInstant();
+                    await wait(80);
+                    return;
+                }
+                throw new Error('triggerQuickCombat / resolveQuickCombatInstant 都不存在');
+            });
+        }
+
+        await runStep('最終渲染', async () => {
+            if (typeof closeModal === 'function') closeModal();
+            if (typeof renderCurrentView === 'function') renderCurrentView();
+            if (typeof updateHUD === 'function') updateHUD();
+            await wait();
+        });
+
+        report.ok = report.errors.length === 0;
+    } catch (err) {
+        failStep('SmokeTest 主流程', err);
+    } finally {
+        if (cfg.quietUi) {
+            if (originalShowModal) window.showModal = originalShowModal;
+            if (originalShowDailyDiaryModal) window.showDailyDiaryModal = originalShowDailyDiaryModal;
+        }
+        if (cfg.restoreAfterRun && snapshot) {
+            try {
+                state = migrateState(decodeSaveData(snapshot));
+                if (typeof applySettings === 'function') applySettings();
+                if (typeof closeModal === 'function') closeModal();
+                if (typeof renderCurrentView === 'function') renderCurrentView();
+                if (typeof updateHUD === 'function') updateHUD();
+                note('已還原測試前狀態。');
+            } catch (restoreErr) {
+                failStep('還原狀態', restoreErr);
+            }
+        }
+        report.endedAt = new Date().toISOString();
+        window.__lastDevSmokeReport = report;
+        try {
+            console.groupCollapsed(`[DEV-SMOKE] 測試報告 ${report.ok ? 'PASS' : 'FAIL'}`);
+            console.table(report.steps);
+            if (report.warnings.length) console.warn('[DEV-SMOKE] warnings', report.warnings);
+            if (report.errors.length) console.error('[DEV-SMOKE] errors', report.errors);
+            console.log('[DEV-SMOKE] full report', report);
+            console.groupEnd();
+        } catch (_) {}
+        if (cfg.showResultModal && typeof showModal === 'function') {
+            const total = report.steps.length;
+            const passed = report.steps.filter(s => s.ok).length;
+            const failed = total - passed;
+            const rows = report.steps.map((s, idx) => {
+                const mark = s.ok ? '✅' : '❌';
+                const err = s.ok ? '' : `｜${String(s.error || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}`;
+                return `<div class="text-[11px] ${s.ok ? 'text-emerald-300' : 'text-red-300'}">${idx + 1}. ${mark} ${s.name}（${s.elapsedMs || 0}ms）${err}</div>`;
+            }).join('');
+            const warnHtml = report.warnings.length
+                ? `<div class="mt-3 text-[11px] text-amber-200 border border-amber-500/35 rounded p-2 bg-amber-950/20">${report.warnings.map(w => `• ${String(w).replace(/</g, '&lt;').replace(/>/g, '&gt;')}`).join('<br>')}</div>`
+                : '';
+            const errHtml = report.errors.length
+                ? `<div class="mt-3 text-[11px] text-red-200 border border-red-500/35 rounded p-2 bg-red-950/20">${report.errors.map(e => `• ${String(e).replace(/</g, '&lt;').replace(/>/g, '&gt;')}`).join('<br>')}</div>`
+                : '';
+            showModal(`<h2 class="text-2xl font-serif ${report.ok ? 'text-emerald-300' : 'text-red-300'} mb-3">🧪 開發者煙霧測試 ${report.ok ? 'PASS' : 'FAIL'}</h2><div class="text-[12px] text-gray-300 mb-2">步驟 ${passed}/${total} 通過${failed > 0 ? `｜失敗 ${failed}` : ''}</div><div class="max-h-[52vh] overflow-y-auto space-y-1 pr-1 border border-white/10 rounded p-3 bg-black/25">${rows || '<div class="text-[11px] text-gray-400">沒有步驟資料。</div>'}</div>${warnHtml}${errHtml}<div class="grid gap-2 mt-4"><button onclick="closeModal()" class="premium-btn text-center !mb-0 border-cyan-500/40">關閉</button></div>`);
+        }
+    }
+    return report;
+};
+
 if (!window.__bdogCombatResultHotkeyBound) {
     window.__bdogCombatResultHotkeyBound = true;
     document.addEventListener('keydown', (ev) => {
@@ -36423,12 +37055,33 @@ if(saved) {
     try {
         const decoded = decodeSaveData(saved);
         const needsRepair = needsCoreStateRepair(decoded);
+        // #region agent log
+        postDebugLog('initial', 'H1', '拜犬江湖.html:36996', 'startup decoded save payload', {
+            hasSaved: true,
+            needsRepair: !!needsRepair,
+            decodedDay: Number(decoded?.currentDay || 0),
+            decodedScene: String(decoded?.scene || '')
+        });
+        // #endregion
         state = migrateState(decoded);
         if (needsRepair) saveGame('repair');
-    } catch(e) { console.warn('save load fallback failed', e); }
+    } catch(e) {
+        // #region agent log
+        postDebugLog('initial', 'H1', '拜犬江湖.html:37006', 'startup save decode failed', { error: String(e?.message || e) });
+        // #endregion
+        console.warn('save load fallback failed', e);
+    }
 }
 saveWorldChronicle(loadWorldChronicle());
 
+initDevSmokeSecretTrigger();
+// #region agent log
+postDebugLog('initial', 'H2', '拜犬江湖.html:37013', 'before initial render pipeline', {
+    scene: String(state?.scene || ''),
+    activeTab: String(state?.activeTab || ''),
+    companionCount: Object.keys(state?.companions || {}).length
+});
+// #endregion
 applySettings(); calculateOfflineEarnings(); renderCurrentView(); showStartScreen();
 
 let lastApTick = Date.now();
@@ -36481,6 +37134,23 @@ setInterval(() => {
 
 window.addEventListener('beforeunload', saveGame);
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === 'hidden') saveGame(); });
+window.addEventListener('error', (ev) => {
+    // #region agent log
+    postDebugLog('initial', 'H4', '拜犬江湖.html:37064', 'window error', {
+        message: String(ev?.message || ''),
+        source: String(ev?.filename || ''),
+        line: Number(ev?.lineno || 0),
+        col: Number(ev?.colno || 0)
+    });
+    // #endregion
+});
+window.addEventListener('unhandledrejection', (ev) => {
+    // #region agent log
+    postDebugLog('initial', 'H4', '拜犬江湖.html:37075', 'unhandled rejection', {
+        reason: String(ev?.reason?.message || ev?.reason || '')
+    });
+    // #endregion
+});
 
 </script>
 </body>
