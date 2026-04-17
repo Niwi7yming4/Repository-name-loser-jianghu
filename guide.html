@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+
+<html data-locale="zh" id="html-root" lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>敗犬江湖 Ultimate Director's Cut — 攻略書與深度分析</title>
+<style>
+html[data-locale="en"] .lzh{display:none!important}
+html[data-locale="zh"] .len{display:none!important}
+.locale-switch{position:fixed;top:1rem;right:1rem;z-index:100;display:flex;gap:0.35rem;align-items:center;font-size:0.7rem;letter-spacing:0.08em}
+.locale-switch button{padding:0.4rem 0.75rem;border-radius:0.35rem;border:1px solid var(--line);background:rgba(11,15,24,0.95);color:var(--ink-1);cursor:pointer;transition:border-color .2s,color .2s,background .2s;backdrop-filter:blur(8px)}
+.locale-switch button:hover{border-color:var(--amber);color:var(--amber-soft)}
+.locale-switch button.active{border-color:var(--amber);color:var(--amber-soft);background:rgba(120,53,15,0.35)}
+.guide-locale-note.len{margin-bottom:1rem;padding:0.75rem 1rem;border-radius:0.6rem;border:1px solid rgba(34,211,238,0.35);background:rgba(8,47,73,0.35);color:var(--cyan-soft);font-size:0.88rem;line-height:1.55}
+:root{--bg-0:#05060a;--bg-1:#0b0f18;--bg-2:#121826;--ink-0:#f5e9c7;--ink-1:#e2e8f0;--ink-2:#94a3b8;--ink-3:#64748b;--amber:#fbbf24;--amber-soft:#fde68a;--cyan:#22d3ee;--cyan-soft:#a5f3fc;--rose:#f472b6;--crimson:#ef4444;--violet:#a78bfa;--emerald:#34d399;--line:rgba(251,191,36,0.22);--line-soft:rgba(255,255,255,0.08)}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(ellipse at top,#1a0f0a 0%,#05060a 60%),linear-gradient(180deg,#05060a 0%,#0b0f18 100%);background-attachment:fixed;color:var(--ink-1);font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:16px;line-height:1.75;letter-spacing:0.02em}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(255,255,255,0.012) 2px 3px);z-index:0}
+a{color:var(--cyan);text-decoration:none}
+a:hover{color:var(--amber);text-decoration:underline}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh;position:relative;z-index:1}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static !important;height:auto !important;border-right:none !important;border-bottom:1px solid var(--line)}}
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:linear-gradient(180deg,rgba(11,15,24,0.95),rgba(5,6,10,0.98));border-right:1px solid var(--line);padding:1.4rem 1rem 2rem;backdrop-filter:blur(12px)}
+.brand{color:var(--amber);font-size:1.05rem;font-weight:800;letter-spacing:0.15em;padding-bottom:0.8rem;margin-bottom:0.8rem;border-bottom:1px solid var(--line);text-align:center}
+.brand small{display:block;color:var(--ink-3);font-size:0.65rem;letter-spacing:0.08em;margin-top:0.25rem}
+.nav-group{margin-bottom:1rem}
+.nav-group-title{color:var(--amber-soft);font-size:0.72rem;letter-spacing:0.2em;margin:0.6rem 0.4rem 0.3rem;opacity:0.7}
+.nav-item{display:block;padding:0.32rem 0.55rem;color:var(--ink-2);font-size:0.82rem;border-radius:0.35rem;border-left:2px solid transparent;transition:all 0.15s}
+.nav-item:hover{color:var(--amber);border-left-color:var(--amber);background:rgba(251,191,36,0.05);text-decoration:none}
+.nav-item.sub{padding-left:1.1rem;font-size:0.75rem;color:var(--ink-3)}
+main{padding:2.2rem clamp(1rem,3vw,3rem) 5rem;max-width:1100px}
+.cover{position:relative;padding:3rem 2rem 2.5rem;margin-bottom:2.5rem;border:1px solid var(--line);border-radius:1rem;background:radial-gradient(circle at 20% 20%,rgba(251,191,36,0.12),transparent 50%),radial-gradient(circle at 80% 80%,rgba(244,114,182,0.10),transparent 50%),linear-gradient(135deg,rgba(120,53,15,0.25),rgba(136,19,55,0.20),rgba(15,23,42,0.5));overflow:hidden}
+.cover::before{content:'';position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent,rgba(251,191,36,0.08),transparent 60%);animation:slow-spin 30s linear infinite;pointer-events:none}
+@keyframes slow-spin{to{transform:rotate(360deg)}}
+.cover h1{position:relative;font-size:clamp(1.8rem,3.4vw,2.8rem);color:#fff7ed;text-shadow:0 0 18px rgba(251,191,36,0.3);margin:0 0 0.4rem;letter-spacing:0.04em}
+.cover .subtitle{position:relative;color:var(--amber-soft);letter-spacing:0.2em;font-size:0.85rem;margin-bottom:1.4rem}
+.cover .sigstrip{position:relative;display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.8rem}
+.chip{display:inline-flex;align-items:center;gap:0.35rem;padding:0.32rem 0.7rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,0.3);color:var(--amber-soft);font-size:0.72rem;font-weight:600;letter-spacing:0.08em}
+.chip.cyan{color:var(--cyan-soft);border-color:rgba(34,211,238,0.32)}
+.chip.rose{color:#fbcfe8;border-color:rgba(244,114,182,0.3)}
+.chip.emerald{color:#a7f3d0;border-color:rgba(52,211,153,0.3)}
+.chip.violet{color:#ddd6fe;border-color:rgba(167,139,250,0.3)}
+section{margin-bottom:3.5rem;scroll-margin-top:1rem}
+h2{font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--amber);border-left:4px solid var(--amber);padding:0.2rem 0 0.2rem 0.8rem;margin:0 0 1rem;letter-spacing:0.05em}
+h3{font-size:1.15rem;color:var(--cyan-soft);margin:1.6rem 0 0.7rem;padding-bottom:0.3rem;border-bottom:1px dashed var(--line-soft);letter-spacing:0.04em}
+h4{font-size:0.98rem;color:var(--amber-soft);margin:1.2rem 0 0.5rem}
+p{margin:0.5rem 0 0.9rem;color:var(--ink-1)}
+.lead{color:var(--ink-1);font-size:1.02rem}
+.muted{color:var(--ink-2);font-size:0.88rem}
+.tiny{color:var(--ink-3);font-size:0.75rem;letter-spacing:0.06em}
+ul,ol{padding-left:1.3rem}
+li{margin:0.25rem 0}
+li::marker{color:var(--amber)}
+code{background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);color:var(--cyan-soft);padding:0.06rem 0.35rem;border-radius:0.25rem;font-size:0.82em}
+mark{background:linear-gradient(180deg,transparent 55%,rgba(251,191,36,0.35) 55%);color:inherit;padding:0 0.1rem}
+.panel{background:linear-gradient(135deg,rgba(18,24,38,0.85),rgba(11,15,24,0.9));border:1px solid var(--line-soft);border-radius:0.8rem;padding:1rem 1.2rem;margin:0.8rem 0 1.2rem;box-shadow:0 12px 30px -18px rgba(0,0,0,0.8)}
+.panel.amber{border-color:rgba(251,191,36,0.35);background:linear-gradient(135deg,rgba(120,53,15,0.15),rgba(11,15,24,0.9))}
+.panel.cyan{border-color:rgba(34,211,238,0.3);background:linear-gradient(135deg,rgba(8,47,73,0.35),rgba(11,15,24,0.9))}
+.panel.rose{border-color:rgba(244,114,182,0.3);background:linear-gradient(135deg,rgba(136,19,55,0.2),rgba(11,15,24,0.9))}
+.panel.emerald{border-color:rgba(52,211,153,0.3);background:linear-gradient(135deg,rgba(6,78,59,0.25),rgba(11,15,24,0.9))}
+.panel.violet{border-color:rgba(167,139,250,0.32);background:linear-gradient(135deg,rgba(76,29,149,0.22),rgba(11,15,24,0.9))}
+.panel.crimson{border-color:rgba(239,68,68,0.35);background:linear-gradient(135deg,rgba(127,29,29,0.22),rgba(11,15,24,0.9))}
+.panel-title{display:flex;align-items:center;gap:0.5rem;color:var(--amber);font-weight:700;margin-bottom:0.5rem;letter-spacing:0.08em}
+.panel.cyan .panel-title{color:var(--cyan-soft)}
+.panel.rose .panel-title{color:var(--rose)}
+.panel.emerald .panel-title{color:var(--emerald)}
+.panel.violet .panel-title{color:var(--violet)}
+.panel.crimson .panel-title{color:#fca5a5}
+.table-wrap{overflow-x:auto;margin:0.8rem 0 1.3rem;border-radius:0.7rem;border:1px solid var(--line-soft)}
+table{width:100%;border-collapse:collapse;font-size:0.88rem;min-width:640px}
+thead th{background:linear-gradient(180deg,rgba(120,53,15,0.5),rgba(88,28,135,0.3));color:var(--amber-soft);font-weight:700;text-align:left;padding:0.55rem 0.8rem;border-bottom:1px solid var(--line);letter-spacing:0.05em}
+tbody td{padding:0.55rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.015)}
+tbody tr:hover{background:rgba(251,191,36,0.05)}
+td.num{color:var(--cyan);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.id{color:var(--ink-3);font-family:monospace;font-size:0.82em;white-space:nowrap}
+td.name{color:var(--amber-soft);font-weight:600;white-space:nowrap}
+.flow{display:flex;flex-wrap:wrap;gap:0.6rem;margin:0.8rem 0 1.2rem;align-items:center}
+.flow-node{padding:0.45rem 0.85rem;border:1px solid var(--line);border-radius:0.5rem;background:rgba(0,0,0,0.35);color:var(--amber-soft);font-size:0.85rem;font-weight:600}
+.flow-node.cyan{color:var(--cyan-soft);border-color:rgba(34,211,238,0.3)}
+.flow-arrow{color:var(--ink-3);font-size:1.1rem}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.7rem;margin:0.8rem 0 1.3rem}
+.stat-card{padding:0.8rem 0.9rem;border:1px solid var(--line-soft);border-radius:0.6rem;background:rgba(0,0,0,0.3)}
+.stat-card .label{font-size:0.72rem;color:var(--ink-3);letter-spacing:0.1em}
+.stat-card .value{font-size:1.3rem;color:var(--amber);font-weight:800;margin-top:0.15rem;font-variant-numeric:tabular-nums}
+.stat-card .desc{font-size:0.75rem;color:var(--ink-2);margin-top:0.2rem}
+.ending-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.8rem;margin:1rem 0 1.5rem}
+.ending-card{padding:0.9rem 1rem;border:1px solid var(--line);border-radius:0.7rem;background:linear-gradient(135deg,rgba(18,24,38,0.85),rgba(11,15,24,0.95));position:relative;overflow:hidden}
+.ending-card::before{content:'';position:absolute;top:-30%;right:-30%;width:120px;height:120px;background:radial-gradient(circle,rgba(251,191,36,0.2),transparent 70%);pointer-events:none}
+.ending-card.hero{border-color:rgba(251,191,36,0.4)}
+.ending-card.dark{border-color:rgba(239,68,68,0.35)}
+.ending-card.wander{border-color:rgba(34,211,238,0.3)}
+.ending-card.hidden{border-color:rgba(167,139,250,0.35)}
+.ending-card.loser{border-color:rgba(148,163,184,0.35)}
+.ending-card .key{font-family:monospace;font-size:0.7rem;color:var(--ink-3)}
+.ending-card .name{font-size:1.05rem;color:var(--amber);font-weight:800;margin-top:0.2rem}
+.ending-card.dark .name{color:#fca5a5}
+.ending-card.wander .name{color:var(--cyan-soft)}
+.ending-card.hidden .name{color:#ddd6fe}
+.ending-card .cond{font-size:0.82rem;color:var(--ink-1);margin-top:0.5rem;line-height:1.6}
+.ending-card .reward{font-size:0.75rem;color:var(--emerald);margin-top:0.5rem}
+.chapter{margin:1.2rem 0;border:1px solid var(--line-soft);border-radius:0.8rem;overflow:hidden;background:linear-gradient(135deg,rgba(15,23,42,0.7),rgba(5,6,10,0.85))}
+.chapter-head{padding:0.8rem 1.1rem;background:linear-gradient(90deg,rgba(120,53,15,0.35),transparent);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.chapter-head .title{color:var(--amber);font-weight:800;font-size:1.05rem;letter-spacing:0.05em}
+.chapter-head .meta{color:var(--ink-3);font-size:0.75rem;font-family:monospace}
+.chapter-body{padding:1rem 1.2rem}
+.chapter-body h5{margin:0.7rem 0 0.3rem;color:var(--cyan-soft);font-size:0.88rem;letter-spacing:0.08em}
+.choice-row{display:flex;gap:0.5rem;margin:0.3rem 0;font-size:0.88rem}
+.choice-tag{flex-shrink:0;display:inline-block;min-width:4rem;text-align:center;padding:0.1rem 0.45rem;border-radius:0.3rem;font-size:0.72rem;font-weight:700}
+.ct-hard{background:rgba(239,68,68,0.2);color:#fca5a5;border:1px solid rgba(239,68,68,0.35)}
+.ct-smart{background:rgba(34,211,238,0.15);color:var(--cyan-soft);border:1px solid rgba(34,211,238,0.3)}
+.ct-speech{background:rgba(167,139,250,0.18);color:#ddd6fe;border:1px solid rgba(167,139,250,0.32)}
+.ct-surrender{background:rgba(251,191,36,0.18);color:var(--amber-soft);border:1px solid rgba(251,191,36,0.32)}
+.ct-boss{background:rgba(244,114,182,0.2);color:#fbcfe8;border:1px solid rgba(244,114,182,0.35)}
+.counter-ring{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;margin:1rem 0}
+.counter-cell{padding:0.7rem;text-align:center;border:1px solid var(--line-soft);border-radius:0.5rem;background:rgba(0,0,0,0.3)}
+.counter-cell .stance{font-size:1rem;font-weight:800}
+.counter-cell.hard .stance{color:#fca5a5}
+.counter-cell.smart .stance{color:var(--cyan-soft)}
+.counter-cell.speech .stance{color:#ddd6fe}
+.counter-cell.surrender .stance{color:var(--amber-soft)}
+.counter-cell .stat{font-size:0.72rem;color:var(--ink-3);letter-spacing:0.08em;margin-top:0.2rem}
+.counter-cell .beats{font-size:0.75rem;color:var(--emerald);margin-top:0.3rem}
+.callout{margin:1rem 0;padding:0.8rem 1rem;border-left:4px solid var(--amber);background:rgba(251,191,36,0.06);border-radius:0.3rem;font-size:0.9rem}
+.callout.warn{border-left-color:var(--crimson);background:rgba(239,68,68,0.08)}
+.callout.tip{border-left-color:var(--cyan);background:rgba(34,211,238,0.06)}
+.callout.secret{border-left-color:var(--violet);background:rgba(167,139,250,0.06)}
+.callout.spoiler{border-left-color:var(--rose);background:rgba(244,114,182,0.06)}
+.callout-title{font-weight:700;color:var(--amber);margin-bottom:0.2rem;letter-spacing:0.1em;font-size:0.82rem}
+.callout.warn .callout-title{color:#fca5a5}
+.callout.tip .callout-title{color:var(--cyan-soft)}
+.callout.secret .callout-title{color:#ddd6fe}
+.callout.spoiler .callout-title{color:#fbcfe8}
+details{border:1px solid var(--line-soft);border-radius:0.6rem;margin:0.6rem 0;background:rgba(0,0,0,0.25)}
+details summary{padding:0.7rem 1rem;cursor:pointer;color:var(--amber-soft);font-weight:600;letter-spacing:0.05em;font-size:0.92rem}
+details summary:hover{color:var(--amber)}
+details[open] summary{border-bottom:1px solid var(--line-soft)}
+details>ul{padding:0.6rem 1.5rem 1rem}
+footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--line);color:var(--ink-3);font-size:0.8rem;text-align:center;letter-spacing:0.1em}
+.top-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,rgba(120,53,15,0.9),rgba(136,19,55,0.7));border:1px solid var(--line);color:var(--amber-soft);font-weight:800;cursor:pointer;opacity:0;transition:opacity 0.3s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.4)}
+.top-btn.show{opacity:1}
+.top-btn:hover{background:linear-gradient(135deg,rgba(251,191,36,0.3),rgba(244,114,182,0.3))}
+@media print{.sidebar,.top-btn{display:none}.layout{grid-template-columns:1fr}body{background:#fff;color:#000}.panel,table,.ending-card,.chapter{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div aria-label="Language" class="locale-switch" role="navigation">
+<button class="active" data-set-locale="zh" title="中文" type="button">中文</button>
+<button data-set-locale="en" title="English" type="button">EN</button>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<div class="brand lzh">敗犬江湖<br/><small>攻略書 · Director's Cut</small></div>
+<div class="brand len">Baidog Jianghu<br/><small>Guide · Director's Cut</small></div>
+<div class="nav-group"><div class="nav-group-title lzh">封面</div><div class="nav-group-title len">Cover</div><a class="nav-item lzh" href="#cover">TL;DR 導覽</a><a class="nav-item len" href="#cover">TL;DR tour</a></div>
+<div class="nav-group"><div class="nav-group-title lzh">Part I｜遊戲體量</div><div class="nav-group-title len">Part I · Scale</div>
+<a class="nav-item lzh" href="#p1-scale">檔案與技術架構</a><a class="nav-item len" href="#en-p1-scale">Files &amp; tech stack</a>
+<a class="nav-item lzh" href="#p1-systems">14 大核心系統</a><a class="nav-item len" href="#en-p1-systems">14 core systems</a>
+<a class="nav-item lzh" href="#p1-numbers">內容規模量化</a><a class="nav-item len" href="#en-p1-numbers">Content metrics</a></div>
+<div class="nav-group"><div class="nav-group-title lzh">Part II｜劇情深度</div><div class="nav-group-title len">Part II · Story</div>
+<a class="nav-item lzh" href="#p2-theme">主題與美學</a><a class="nav-item len" href="#en-p2-theme">Themes &amp; aesthetics</a>
+<a class="nav-item lzh" href="#p2-cast">角色群像</a><a class="nav-item len" href="#en-p2-cast">Character gallery</a>
+<a class="nav-item lzh" href="#p2-issues">社會議題</a><a class="nav-item len" href="#en-p2-issues">Social themes</a>
+<a class="nav-item lzh" href="#p2-narrative">敘事手法</a><a class="nav-item len" href="#en-p2-narrative">Narrative craft</a></div>
+<div class="nav-group"><div class="nav-group-title lzh">Part III｜攻略書</div><div class="nav-group-title len">Part III · Walkthrough</div>
+<a class="nav-item lzh" href="#g-a">A. 新手 7 天 SOP</a><a class="nav-item len" href="#en-g-a">A. First-week SOP</a>
+<a class="nav-item lzh" href="#g-b">B. 戰鬥實戰</a><a class="nav-item len" href="#en-g-b">B. Combat primer</a>
+<a class="nav-item lzh" href="#g-c">C. 屬性建構流派</a><a class="nav-item len" href="#en-g-c">C. Stat builds</a>
+<a class="nav-item lzh" href="#g-d">D. 12 章通關路線</a><a class="nav-item len" href="#en-g-d">D. Chapters 1–12</a>
+<a class="nav-item sub lzh" href="#ch1">第 1～1.5 章</a><a class="nav-item sub len" href="#en-ch1">Ch. 1–1.5</a>
+<a class="nav-item sub lzh" href="#ch2">第 2 章</a><a class="nav-item sub len" href="#en-ch2">Chapter 2</a>
+<a class="nav-item sub lzh" href="#ch3">第 3 章（司徒）</a><a class="nav-item sub len" href="#en-ch3">Ch. 3 (Situo)</a>
+<a class="nav-item sub lzh" href="#ch4">第 4 章三岔</a><a class="nav-item sub len" href="#en-ch4">Ch. 4 branches</a>
+<a class="nav-item sub lzh" href="#ch5">第 5–10 章</a><a class="nav-item sub len" href="#en-ch5">Ch. 5–10</a>
+<a class="nav-item sub lzh" href="#ch11">第 11 章</a><a class="nav-item sub len" href="#en-ch11">Chapter 11</a>
+<a class="nav-item sub lzh" href="#ch12">第 12 章</a><a class="nav-item sub len" href="#en-ch12">Chapter 12</a>
+<a class="nav-item lzh" href="#g-e">E. 全結局達成表</a><a class="nav-item len" href="#en-g-e">E. Endings checklist</a>
+<a class="nav-item lzh" href="#g-f">F. 雨晴隱藏線</a><a class="nav-item len" href="#en-g-f">F. RainQing hidden arc</a>
+<a class="nav-item lzh" href="#g-g">G. 夥伴羈絆 4 階</a><a class="nav-item len" href="#en-g-g">G. Companion bonds (4 tiers)</a>
+<a class="nav-item lzh" href="#g-h">H. 六大門派系統</a><a class="nav-item len" href="#en-g-h">H. Six sect systems</a>
+<a class="nav-item lzh" href="#g-i">I. 記憶迴廊</a><a class="nav-item len" href="#en-g-i">I. Memory corridor</a>
+<a class="nav-item lzh" href="#g-j">J. 深淵 / 裏城</a><a class="nav-item len" href="#en-g-j">J. Abyss / inner city</a>
+<a class="nav-item lzh" href="#g-k">K. 世界變異</a><a class="nav-item len" href="#en-g-k">K. World mutations</a>
+<a class="nav-item lzh" href="#g-l">L. 經濟循環</a><a class="nav-item len" href="#en-g-l">L. Economy loop</a>
+<a class="nav-item lzh" href="#g-m">M. 成就速刷</a><a class="nav-item len" href="#en-g-m">M. Achievement routes</a>
+<a class="nav-item lzh" href="#g-n">N. 存檔 / NG+</a><a class="nav-item len" href="#en-g-n">N. Saves / NG+</a></div>
+<div class="nav-group"><div class="nav-group-title lzh">Part IV｜缺點</div><div class="nav-group-title len">Part IV · Critique</div>
+<a class="nav-item lzh" href="#p4-tech">技術面</a><a class="nav-item len" href="#p4-tech">Tech</a>
+<a class="nav-item lzh" href="#p4-system">系統面</a><a class="nav-item len" href="#p4-system">Systems</a>
+<a class="nav-item lzh" href="#p4-story">敘事面</a><a class="nav-item len" href="#p4-story">Narrative</a>
+<a class="nav-item lzh" href="#p4-ux">UX 面</a><a class="nav-item len" href="#p4-ux">UX</a>
+<a class="nav-item lzh" href="#p4-balance">平衡面</a><a class="nav-item len" href="#p4-balance">Balance</a>
+<a class="nav-item lzh" href="#p4-content">內容面</a><a class="nav-item len" href="#p4-content">Content</a></div>
+</aside>
+<main>
+<div class="cover" id="cover">
+<h1 class="lzh">敗犬江湖 <span style="color:var(--cyan-soft);font-size:0.75em;">· 攻略與深度分析</span></h1>
+<h1 class="len">Baidog Jianghu <span style="color:var(--cyan-soft);font-size:0.75em;">· Guide &amp; deep dive</span></h1>
+<div class="subtitle lzh">Ultimate Director's Cut｜Full Edition｜Save Schema v4</div>
+<div class="subtitle len">Ultimate Director's Cut · Full Edition · Save schema v4</div>
+<div class="lead lzh" style="position:relative;max-width:720px;">
+一份為台灣都市武俠文字冒險《敗犬江湖》整理的 <mark>全劇透、全系統、全結局</mark> 攻略書，兼具遊戲體量觀察、劇情主題分析、玩家路線規劃與缺點批評。無外部依賴，可離線閱讀，建議直接以瀏覽器開啟。
+</div>
+<div class="lead len" style="position:relative;max-width:720px;">
+A <mark>full-spoiler, all-systems, all-endings</mark> guide to the Taiwan urban-wuxia text adventure <em>Baidog Jianghu</em>: scale notes, thematic reading, route planning, and critique. No external assets required—open in a browser, works offline.
+</div>
+<div class="sigstrip">
+<span class="chip lzh">📦 3.26 MB</span><span class="chip len">📦 3.26 MB</span>
+<span class="chip lzh">📜 42,485 行</span><span class="chip len">📜 42,485 lines</span>
+<span class="chip cyan lzh">🎮 12 主線章 + 中間章 + 導演剪輯</span><span class="chip cyan len">🎮 12 chapters + interlude + Director's Cut</span>
+<span class="chip rose lzh">☔ 雨晴隱藏線</span><span class="chip rose len">☔ RainQing hidden route</span>
+<span class="chip emerald lzh">🏯 5 門派教義</span><span class="chip emerald len">🏯 Five sect tenets</span>
+<span class="chip violet lzh">♾️ 記憶迴廊 + 深淵循環</span><span class="chip violet len">♾️ Memory corridor + abyss loop</span>
+<span class="chip lzh">🏆 15 格緣之書 + 隱藏結局</span><span class="chip len">🏆 15 fate-book slots + secret endings</span>
+</div>
+<div class="tiny lzh" style="margin-top:1.2rem;position:relative;color:var(--ink-3);">
+本攻略行號對照於 <code>C:\Users\ASUS\Desktop\拜犬江湖.html</code>。檔案內 <code>SYSTEM_MAP</code> 註解偶有偏移，以下皆以實際程式位置為準。
+</div>
+<div class="tiny len" style="margin-top:1.2rem;position:relative;color:var(--ink-3);">
+Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comment line numbers may drift; treat in-file positions as ground truth.
+</div>
+</div>
+<div class="guide-stream-lzh lzh">
+<section id="p1">
+<h2>Part I · 遊戲體量觀察</h2>
+<p class="lead">
+《敗犬江湖》是一個以<strong>單一 HTML 檔案</strong>承載全部遊戲邏輯的個人開發作品——一份檔案、離線可跑、雲端可存。它比一般 Twine/Ren'Py 文字冒險複雜，實際上已接近<mark>「CRPG + 門派經營 + Roguelike 爬塔 + 都市擬真社群」</mark>的混種規模。
+</p>
+<h3 id="p1-scale">1. 檔案與技術架構</h3>
+<div class="stat-grid">
+<div class="stat-card"><div class="label">檔案體積</div><div class="value">3.26 MB</div><div class="desc">單一 .html 檔</div></div>
+<div class="stat-card"><div class="label">程式碼行數</div><div class="value">42,485</div><div class="desc">HTML + CSS + JS 合計</div></div>
+<div class="stat-card"><div class="label">存檔格式</div><div class="value">v4</div><div class="desc"><code>BDOG1:</code> LZ-String 壓縮</div></div>
+<div class="stat-card"><div class="label">外部依賴</div><div class="value">2</div><div class="desc">Tailwind CDN + lz-string</div></div>
+<div class="stat-card"><div class="label">主 <code>storyNodes</code></div><div class="value">L16052+</div><div class="desc">加上 8 處 <code>Object.assign</code> 補丁</div></div>
+<div class="stat-card"><div class="label">敘事補丁</div><div class="value">L32460+</div><div class="desc">導演剪輯長版 5–10 章</div></div>
+</div>
+<div class="panel amber">
+<div class="panel-title">🏗️ 架構一覽</div>
+<ul>
+<li><strong>前端</strong>：純 HTML + Tailwind（CDN 載入，含 suppressTailwindCdnWarning）+ 內嵌 CSS 動畫（雨、霓虹、聚光燈等場景）。</li>
+<li><strong>資料層</strong>：約 30 個常數字典（<code>notebookData</code>、<code>feedSystemData</code>、<code>itemDB</code>、<code>equipmentDB</code>、<code>AFFIX_DATABASE</code>、<code>memoryFragmentsData</code>、<code>urbanLegendsData</code>、<code>classicsCatalog</code>、<code>homeDecorCatalog</code>、<code>strayAnimalCatalog</code>…）。</li>
+<li><strong>敘事層</strong>：一個主 <code>storyNodes</code> 物件 + 延後載入節點（L1194–L1750）+ 後期 <code>Object.assign</code> 分段合併。</li>
+<li><strong>引擎層</strong>：主迴圈 <code>masterTick</code>（1 秒間隔）、<code>renderCurrentView</code> 路由、<code>updateHUD</code> 狀態條、<code>finalizeCombatChoice</code> 戰鬥結算、<code>encodeSaveData</code> 存檔。</li>
+<li><strong>開發者索引</strong>：<code>SYSTEM_MAP</code>（L984–L1026）是檔案自身的目錄，註解行號已略微過期但結構仍精準。</li>
+</ul>
+</div>
+<h3 id="p1-systems">2. 14 大核心系統</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>系統</th><th>程式入口</th><th>功能概要</th></tr></thead>
+<tbody>
+<tr><td class="name">回合戰鬥</td><td class="id">finalizeCombatChoice</td><td>四態度克制 + 戰意崩潰 + 狂暴 + 小遊戲門檻修正</td></tr>
+<tr><td class="name">劇情節點</td><td class="id">storyNodes</td><td>type: story / combat / choice；主線 + 導演剪輯 + 中間章</td></tr>
+<tr><td class="name">門派系統</td><td class="id">openSectFactionMechanic</td><td>5 派教義、招募、訓練、商店、分舵、派系戰、夜市</td></tr>
+<tr><td class="name">夥伴羈絆</td><td class="id">companionBondSkillDB</td><td>6 位夥伴 × 4 階被動技能</td></tr>
+<tr><td class="name">記憶迴廊</td><td class="id">enterMemoryCorridorRouteNode</td><td>Roguelike 爬塔，含事件／菁英／隱藏王</td></tr>
+<tr><td class="name">深淵 / 裏城</td><td class="id">state.abyss</td><td>結晶、祝福、詛咒、無限重玩</td></tr>
+<tr><td class="name">世界變異</td><td class="id">activeMutationCatalog</td><td>6 種變異（靈氣復甦…裏城裂隙）動態改寫事件</td></tr>
+<tr><td class="name">廢文牆 Feed</td><td class="id">generateDailyFeed</td><td>每日 10–15 篇擬真社群貼文 + 追蹤互動</td></tr>
+<tr><td class="name">雨晴共感</td><td class="id">syncRainQingSoul</td><td>天氣隱喻好感值 + 日記殘頁 + 長詩解鎖</td></tr>
+<tr><td class="name">導演剪輯</td><td class="id">evaluateDirectorCutEnding</td><td>以道德軸（俠／野心／秩序／混亂）判定終局</td></tr>
+<tr><td class="name">派遣 / 打工</td><td class="id">派遣欠費機制</td><td>離線結算、儲備精力、200% 爆發</td></tr>
+<tr><td class="name">存檔 v4</td><td class="id">encodeSaveData / migrateState</td><td>LZ-String 壓縮字串，可貼在雲端硬碟</td></tr>
+<tr><td class="name">成就圖鑑</td><td class="id">achievementsDB</td><td>按 group 分類（戰鬥 / 經濟 / 羈絆 / 特殊 / 輪迴）</td></tr>
+<tr><td class="name">第三空間 / 頂樓日記</td><td class="id">openThirdSpaceImmersive</td><td>沉浸打工發呆、凝視計時、古籍共讀；<code>thirdSpaceVisitLog</code> 記錄、狀態詩句、日記閱讀器含閃回段</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="p1-numbers">3. 內容規模量化</h3>
+<div class="stat-grid">
+<div class="stat-card"><div class="label">主線章</div><div class="value">12 + 0.5</div><div class="desc">1→1.5→12，含中間章</div></div>
+<div class="stat-card"><div class="label">緣之書結局</div><div class="value">15</div><div class="desc">+ 11/12 章另計旗標</div></div>
+<div class="stat-card"><div class="label">核心夥伴</div><div class="value">6</div><div class="desc">鐵叔 / 小夜 / 阿傑 / 金錢豹 / 雨晴 / 曉語</div></div>
+<div class="stat-card"><div class="label">門派教義</div><div class="value">5</div><div class="desc">外送 / 禪健 / 太極 / 唐門 / 霓虹</div></div>
+<div class="stat-card"><div class="label">住房等級</div><div class="value">4</div><div class="desc">地下室 → 頂加 → 套房 → 豪宅</div></div>
+<div class="stat-card"><div class="label">世界變異</div><div class="value">6</div><div class="desc">靈氣 / 傳說 / 記憶 / 因果 / 市場 / 裏城</div></div>
+<div class="stat-card"><div class="label">稀有度階</div><div class="value">6</div><div class="desc">凡品→良品→稀有→史詩→傳說→神話</div></div>
+<div class="stat-card"><div class="label">態度小遊戲</div><div class="value">4</div><div class="desc">節奏 / 記憶 / 辯駁 / 忍耐</div></div>
+</div>
+<p class="muted">
+純敘事字元（包括選項與旁白）保守估計約 <strong>十萬至三十萬字級</strong>——遠超一般 Jam 作品；若加上成就說明、筆記、緣之書條目與隨機社群貼文，實際玩家可讀中文量更大。本作在「單檔」規模下達到的內容密度，已屬個人遊戲的上游水準。
+</p>
+</section>
+<section id="p2">
+<h2>Part II · 劇情深度與內容分析</h2>
+<h3 id="p2-theme">1. 主題與美學：都市武林中的「敗犬」詩學</h3>
+<p>
+「敗犬」一詞源自日文<em>「負け犬」</em>（maketainu），原指三十歲以上、未婚未育的女性。《敗犬江湖》把這個標籤直接寫成遊戲副主角 <strong>阿琳（林阿琳，25 歲）</strong> 的處境：頂樓加蓋、欠租、泡麵度日、夢想早已被現實磨平——但遊戲以<mark>武俠江湖的外殼</mark>包住這份都市挫敗，讓她同時在「繳房租」與「闖武林」之間往返。
+</p>
+<div class="panel rose">
+<div class="panel-title">🏮 四大主題支柱</div>
+<ul>
+<li><strong>自嘲美學</strong>：每一則廢文、每一次認慫勝利、臉皮 ≥150 的「賴帳」、臉皮 300 的結局——遊戲把「輸不丟人」做成機制。</li>
+<li><strong>台灣在地江湖</strong>：星咖啡、頂樓加蓋、夜市、便利商店大夜班、派遣、里長伯、廢棄武館——把武俠套進真實地景，卻不刻意奇觀化。</li>
+<li><strong>母女羈絆</strong>：母親 <strong>林淑儀</strong> 是一切的錨——她教妳馬步，她留下錄音「不要活成我」，她的遺願貫穿雨晴線到導演剪輯第 10 章。</li>
+<li><strong>單身女性生存</strong>：租屋壓力、身體疲勞、社群焦慮、被動消失、被當成閒置資產——這些寫實痛點被做進 AP、信用、欠租、廢文牆權重等數字裡。</li>
+</ul>
+</div>
+<h3 id="p2-cast">2. 角色群像</h3>
+<h4>🥋 主角與母親</h4>
+<div class="panel amber">
+<strong style="color:var(--amber);">阿琳 · 林阿琳</strong>
+<p>25 歲，曾經的武術少女，現在租住頂加。自我介紹是「戶頭比體脂率還低」。玩家即她，所有廢文、日記、選項都是她的聲音。</p>
+<strong style="color:var(--amber);">林淑儀（母）</strong>
+<p>敘事時已不在場，卻無所不在：序章馬步教學、木人樁、第五章母親未接來電、雨晴線最終「淑儀的遺願」（Tier 4 +希望上限）、第 10 章終局錄音——她是遊戲情感錨點，也是最大謎底。</p>
+</div>
+<h4>🤝 六位核心夥伴</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>角色</th><th>定位</th><th>關鍵意象</th><th>羈絆關卡</th></tr></thead>
+<tbody>
+<tr><td class="name">鐵叔</td><td>守武館的沉默父兄</td><td>削蘋果、一刀傳承</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">小夜</td><td>夜班暗器街頭感</td><td>即期咖啡、飛針</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">阿傑</td><td>熱血學徒後輩</td><td>武館門面、站場</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">金錢豹</td><td>巷弄街貓</td><td>命硬、帶物資</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">雨晴</td><td>失散姊妹 / 共感主題</td><td>傘、太陽雨、日記</td><td>20 → 100（四階）</td></tr>
+<tr><td class="name">蘇曉語</td><td>廢文牆擴充作者</td><td>風箏、海邊、沉默</td><td>（社群羈絆）</td></tr>
+</tbody>
+</table>
+</div>
+<h4>👥 反派與支援 NPC</h4>
+<div class="panel violet">
+<ul style="margin:0;">
+<li><strong style="color:var(--rose);">司徒摘星</strong>（金錢幫 / 資本線 Boss）——稱阿琳「淑儀的女兒」。三回合戰鬥機制：法律顧問、假帳報表、狂暴。決定第 3 章結局（<code>hero</code> HP 勝 / <code>loser</code> 戰意勝）。</li>
+<li><strong style="color:var(--rose);">林佳宜（Jessica）</strong>——鏡像姊妹、第 9 章停車場戰、原諒／手刃決定導演剪輯走向（<code>fallen_hero</code> 由此衍生）。</li>
+<li><strong style="color:var(--rose);">白靈聖母（林淑華）</strong>——邪教領袖、第 8 章擴充主反派，聖母真相揭露後影響 <code>holy_mother_visit_unlocked</code>。</li>
+<li><strong>阿強（陳志強）</strong>——第 9 章救不救決定 <code>aqiang_saved</code>，影響結局夥伴場面。</li>
+<li><strong>龍伯</strong>——公園棋友、前金錢幫精算師；解鎖股市、隱藏結局 <code>longbo_secret</code>。</li>
+<li><strong>林阿姨（房東）</strong>——永遠在催租，但序章第一個有名有姓的對手。</li>
+<li><strong>里長伯</strong>——聲望 ≥100 可追蹤，米粉湯外交專家。</li>
+</ul>
+</div>
+<h3 id="p2-issues">3. 社會議題：選擇的灰度</h3>
+<p>本作沒有明確的「正確答案」，每個關鍵分叉都把議題拋給玩家：</p>
+<div class="panel cyan">
+<ul>
+<li><strong>資本 vs 俠義</strong>：第 3 章對司徒是 HP 勝（王道）還是戰意勝（認輸拿資本）？「資本新星」不是羞辱，是一種活法。</li>
+<li><strong>真相公開 vs 守住當下</strong>：第 11 章血脈殘響「封卷」保護生者，「揭幕」讓真相流血但有聲望 +14。</li>
+<li><strong>斬斷 vs 背負</strong>：第 12 章棄神之地的斷鏈（心魔 -10）vs 吸收（心魔 +12、現金 +2500）——懲罰與承擔的抉擇。</li>
+<li><strong>原諒 vs 手刃</strong>：第 9 章設 <code>jessica_forgiven</code> 或 <code>jessica_executed</code>。「帳務管理」每週 +$500 須第 10 章結算時<strong>心魔 ≤ 15</strong>（且已原諒）等條件；「母親的擁抱」HP +20 須<strong>已原諒</strong>且<strong>希望 ≥ 80</strong>。手刃且俠義 ≥70 → <code>fallen_hero</code>。</li>
+<li><strong>加入體制 vs 保持敗犬</strong>：加入門派、當里長、搞直銷，都是「適應社會」；真·敗犬是不改變社會，但接受自己。</li>
+</ul>
+</div>
+<h3 id="p2-narrative">4. 敘事手法</h3>
+<ul>
+<li><strong>天氣隱喻</strong>：雨晴整條線以雨、傘、太陽雨、墓前黑傘堆疊情緒，不直接寫好感度而用「共感值」。</li>
+<li><strong>道德軸替代好感度</strong>：<code>morality</code> 四軸（justice / ambition / order / chaos）影響導演剪輯結局，不以單一「好壞分」判定。</li>
+<li><strong>記憶碎片圖鑑</strong>：母親日記、鐵叔／金錢幫典故以可收集殘片組成前史。</li>
+<li><strong>廢文牆擬真</strong>：每日 10–15 則動態貼文影射當前事件（變異、欠租、門派），低成本維持世界活性。</li>
+<li><strong>「德賈維」系統</strong>：NG+ 各地點有冷卻的既視感短句（<code>dejaVuEventPool</code>／<code>triggerDejaVu</code>）。舊版以 <code>pendingDejaVu</code> 推送的寫法僅作概念參考。</li>
+<li><strong>名詞本地化</strong>：星咖啡（Starbucks 諧擬）、霓虹夜總會（紫醉金迷）、信義區豪宅、廢棄武館——地景即人物。</li>
+</ul>
+</section>
+<section class="part" id="part3">
+<h1>Part III · 玩家攻略書（全劇透）</h1>
+<p class="lead">
+本攻略以「先活下來 → 再站起來 → 再談翻身」為節奏。每一節都附上<strong>實際出自遊戲 DB 的數字</strong>（屬性門檻、AP、金額、章節旗標），並用可檢索的 <code>程式名稱</code> 標注來源，方便玩家直接與遊戲內系統對照。
+</p>
+<h2 id="g-a">A · 新手 7 天 SOP（Day 1–7）</h2>
+<p>第一章的節奏是<strong>七日內穩住房租與基礎屬性，再準備打小九</strong>。目標：Day7 時身上仍有 ≥ $3,000、街坊信任 ≥ 20、備有 2 瓶基礎飲品、AP 機制上手。</p>
+<div class="panel amber">
+<div class="panel-title">📅 每日行動表</div>
+<ol>
+<li><strong>Day 1</strong>：看完開場對話 → 到 Hub 先選擇<em>打工</em>（消耗 AP、拿基礎現金）。目標 $600+。<strong>切勿</strong> Day1 就衝小九。</li>
+<li><strong>Day 2–3</strong>：白天打工、晚上跑 1–2 個隨機事件（<code>encounter_*</code>）。碰到<em>混混 / 流浪狗 / 醉漢</em>優先用【硬派】或【取巧】練手感；【認慫】可換臉皮。</li>
+<li><strong>Day 4</strong>：準備值 ≥ 20 後，<strong>鐵叔</strong>會在公園釋出<em>回憶戰教學</em>，照著走能白拿示範：戰意條、崩潰追擊節奏。</li>
+<li><strong>Day 5</strong>：去超商打工解鎖<strong>小夜</strong>（夜班津貼 +20%）；HP &lt; 60 請回家睡覺而不是硬撐。</li>
+<li><strong>Day 6</strong>：繳清房租 $2,000（<code>chap1_rent_paid</code>）。沒錢就使用<em>派遣</em>，或臉皮 ≥ 100 去<em>路邊乞討</em>（0 AP）。</li>
+<li><strong>Day 7</strong>：準備值 ≥ 28、HP 滿、AP 滿 → 至武館觸發 <strong>小九</strong>。小九 HP 135、戰意 88<span class="muted">（劇情基底）</span>；<strong><code>combatTurns ≥ 4</code></strong>（HUD 出現「🔥 狂暴」）起進入狂暴加壓，與筆記本／司徒戰一致。</li>
+</ol>
+</div>
+<div class="callout tip"><div class="callout-title">🪙 Day 1–7 致命錯誤排行</div>
+<ol>
+<li>Day 1 就挑隨機戰鬥消耗 HP，Day 3 躺平 → 房租一毛未繳。</li>
+<li>AP 全拿去練功 → 忘了繳租 → 鐵叔不放行進第二章。</li>
+<li>臉皮視為廢屬性 → 關鍵時刻沒賴帳可用，小九狂暴直接被錘。</li>
+<li>沒繳房租又拒絕小夜的夜班 → 後期討債集團攔截派遣 40% 機率起跳。</li>
+</ol>
+</div>
+</section>
+<section>
+<h2 id="g-b">B · 戰鬥系統完整解析</h2>
+<div class="callout tip"><div class="callout-title">📐 敵方數值怎麼看</div>攻略中多處 HP／戰意為劇情<strong>基底</strong>；進戰鬥時程式會依天數、四維平均、難度規則（<code>scaleEnemyByPlayerProgress</code>／<code>prepareEnemyForCombat</code>）再<strong>動態加成</strong>，Boss 總係數約 ≤1.5×，實戰面板高於基底屬正常。下文通關路線與記憶迴廊條目所標之 Boss／殘影 HP、戰意，除另行說明外皆同此「基底」概念。</div>
+<p>戰鬥以「<strong>四種態度</strong>」為主幹，後期加入卡牌系統（<code>cardSystem.battle</code>）。<strong>屬性高 → 該態度成功率高</strong>；屬性不足也可靠<em>態度小遊戲</em>修正門檻。</p>
+<h3>1. 四種態度剋制循環</h3>
+<div class="counter-ring">
+<div class="counter-cell hard"><div class="stance">硬派</div><div class="stat">主屬：武力</div><div class="beats">克 取巧</div></div>
+<div class="counter-cell smart"><div class="stance">取巧</div><div class="stat">主屬：洞察</div><div class="beats">克 話術</div></div>
+<div class="counter-cell speech"><div class="stance">話術</div><div class="stat">主屬：話術</div><div class="beats">克 認慫</div></div>
+<div class="counter-cell surrender"><div class="stance">認慫</div><div class="stat">主屬：臉皮</div><div class="beats">克 硬派</div></div>
+</div>
+<p class="muted">剋制態度 ×1.25 收益、被剋 ×0.8。大多數主線 Boss 的慣用態度會被 <code>enemy.style</code> 欄位透露（<em>hard / smart / speech / surrender</em>），可在選單中觀察。</p>
+<h3>2. 戰意條、崩潰連擊與狂暴</h3>
+<div class="panel cyan">
+<ul>
+<li><strong>戰意（willpower）</strong>：Boss 頭頂紫色條。使用【話術】或【認慫】扣戰意。歸零 → 進入 <strong>崩潰</strong>（2 回合）。</li>
+<li><strong>崩潰連擊</strong>：崩潰期間【硬派】/【取巧】傷害暴擊；接上【話術】/【認慫】可再延長崩潰 1 回合。</li>
+<li><strong>狂暴（enrage）</strong>：多數史詩 Boss 在 <code>combatTurns ≥ 4</code>（約第 5 個戰鬥回合）起進入狂暴，意圖與傷害路徑加壓；畫面顯示「🔥 狂暴」時請優先削戰意或速戰。與遊戲內筆記本條目一致。</li>
+<li><strong>卡牌能量</strong>：後期每回合 3 能量（可被門派、天賦擴至 4）；每卡 1–5 費。門派卡會觸發 <code>sectCombatProfileMap</code> 被動。</li>
+</ul>
+</div>
+<h3>3. 態度小遊戲（可選）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>態度</th><th>玩法</th><th>成功效果</th><th>失敗代價</th></tr></thead>
+<tbody>
+<tr><td class="name">硬派</td><td>節奏連打（spacebar tempo）</td><td>本次判定 −30% 門檻、大成功追 +1 傷害</td><td>反傷、下回合 −1 能量</td></tr>
+<tr><td class="name">取巧</td><td>記憶配對（翻牌）</td><td>−20% 門檻、觸發<em>暗器掩護</em></td><td>被識破、洞察暫 −3</td></tr>
+<tr><td class="name">話術</td><td>辯駁選項（3 段 QTE 文字）</td><td>−25% 門檻、戰意額外 −4</td><td>被反嘴、希望 −2</td></tr>
+<tr><td class="name">認慫</td><td>時機鬆手（bar 對準安全格）</td><td>−30% 門檻、對面攻擊 −3</td><td>臉皮 +0 但聲望 −4</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">設定頁可選「永遠直接判定 / 永遠小遊戲 / 每次詢問」。<strong>手機玩家建議預設直接判定</strong>，只在 Boss 戰才切到小遊戲；連敗 3 次會自動降難。</p>
+<h3>4. 出手優先序快表</h3>
+<div class="panel emerald">
+<ol>
+<li><strong>對方是純武系（鐵拳／黑幫）</strong>：【取巧】×2 → 【話術】破戰意 → 崩潰時【硬派】補傷。</li>
+<li><strong>對方是話術系（Jessica／聖母）</strong>：【認慫】×2 讓對面話術失效 → 【取巧】翻盤。</li>
+<li><strong>對方是臉皮怪（詐騙／搶匪）</strong>：【硬派】直接壓掉 → 留意他們常用「市場瘋狂」變體增傷。</li>
+<li><strong>Boss 進入狂暴</strong>：先【認慫】1 回合吃減傷、不在狂暴第一拳硬扛；天賦「戰意線 Tier 5 · 狂暴免疫」立刻回本。</li>
+</ol>
+</div>
+<h3>5. 門派戰鬥被動（入門派後自動生效）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>門派</th><th>暱稱</th><th>戰鬥被動</th></tr></thead>
+<tbody>
+<tr><td class="name">外送員互助聯盟</td><td>丐幫</td><td>每打出 3 張門派牌抽 1 張</td></tr>
+<tr><td class="name">禪修·極致健身集團</td><td>少林</td><td>每獲得 10 護盾回 2 HP</td></tr>
+<tr><td class="name">太極雲端演算中心</td><td>武當</td><td>閃避成功後下張牌費用 −1</td></tr>
+<tr><td class="name">唐氏生物科技製藥</td><td>唐門</td><td>敵方每層中毒，傷害 +1</td></tr>
+<tr><td class="name">霓虹影視經紀公司</td><td>明教</td><td>本回合每獲得 1 聲望，攻擊牌傷害 +1</td></tr>
+<tr><td class="name">里長伯自治會</td><td>官府</td><td>回合開始若有護盾，敵方攻擊 −2</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section>
+<h2 id="g-c">C · 四大流派加點路線</h2>
+<p>遊戲四屬性為 <strong>武力 / 洞察 / 話術 / 臉皮</strong>；每條流派在 <strong>Day 30 / Chap5</strong> 前應達到下列門檻，才能吃到對應的派系與章節分支。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>流派</th><th>核心屬性（Day30 目標）</th><th>推薦門派</th><th>解鎖結局</th><th>弱點</th></tr></thead>
+<tbody>
+<tr><td class="name">武力硬扛流</td><td>武力 110+、臉皮 70+</td><td>禪修健身（少林）</td><td>王道英雄 / 武館宗師 / 墮落英雄</td><td>對 Jessica、聖母戰意型 Boss 拉胯</td></tr>
+<tr><td class="name">洞察算計流</td><td>洞察 110+、話術 80+</td><td>太極雲端（武當）/ 唐氏生技（唐門）</td><td>影子教父 / 命師隱士 / 算盡天機</td><td>前期現金薄、打工收益低</td></tr>
+<tr><td class="name">話術嘴炮流</td><td>話術 100+、聲望 120+</td><td>霓虹影視（明教）/ 里長伯自治會（官府）</td><td>里長伯 / 直銷天王 / 武林盟主</td><td>純武 Boss 狂暴時吃不消</td></tr>
+<tr><td class="name">臉皮敗犬流</td><td>臉皮 150+、洞察 70+</td><td>外送員聯盟（丐幫）</td><td>真·敗犬 / 白毛護法 / 賴皮王</td><td>正道結局大部分鎖死</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout secret"><div class="callout-title">🕶️ 臉皮敗犬流獨家</div>
+<ul>
+<li>臉皮 ≥ 100：Hub 解鎖【路邊乞討】，0 AP 換現金。</li>
+<li>臉皮 ≥ 120：【吃霸王餐】每次恢復 40 HP。</li>
+<li>臉皮 ≥ 150：每次房租結算有 15% 機率自動賴帳成功。</li>
+<li>臉皮 ≥ 300：自動解鎖結局【賴皮王】（<code>thick300</code>）。</li>
+</ul></div>
+<h3>命理天賦樹建議順序（<code>fateTalentTree</code>）</h3>
+<div class="panel violet">
+<ol>
+<li><strong>財富線 Tier 1「勤儉呼吸」</strong>：打工 AP −1，所有流派必點。</li>
+<li><strong>戰意線 Tier 1「穩住別慌」</strong>：抗話術/狂暴，Boss 關卡回本。</li>
+<li><strong>人脈線 Tier 3「派遣 SOP」</strong>：Day 15+ 解鎖派遣後立刻點。</li>
+<li><strong>戰意線 Tier 5「狂暴免疫」</strong>：面對司徒摘星、Jessica、白靈聖母前必點。</li>
+<li><strong>二層 <code>cosmos</code>：星軌儲能 ×3</strong>：Day 40+ 進入記憶迴廊前點滿，每日 +3 AP。</li>
+</ol>
+</div>
+<h2 id="g-d">D · 十二章完整通關路線</h2>
+<p class="lead">每一章列出：<strong>啟動條件</strong>、<strong>關鍵戰鬥</strong>、<strong>選擇影響</strong>與<strong>旗標</strong>（<code>chapX_cleared</code> 會影響住房、NPC 對話階段、導演剪輯結局）。全書假設玩家在標準模式，保守跑線。</p>
+</section>
+<section>
+<div class="chapter" id="ch1">
+<div class="chapter-head"><div class="title">第 1 章 · 七日序幕</div><div class="meta">Day 1–7｜chap1_cleared</div></div>
+<div class="chapter-body">
+<p><strong>啟動</strong>：開局即啟動。<strong>目標</strong>：Day7 打完小九、繳清房租、搬到頂樓加蓋。</p>
+<h5>關鍵節點</h5>
+<ul>
+<li><strong>房東林阿姨催租</strong>（Day 3、Day 6）：繳清 $2,000 → <code>ch1_rent_paid</code>；賴帳需臉皮 ≥ 80 + 話術 ≥ 40，失敗聲望 −12。</li>
+<li><strong>鐵叔回憶戰教學</strong>（Day 4+，準備值 ≥ 20）：在公園被鐵叔攔下，照著走即可。</li>
+<li><strong>Boss · 小九</strong>（Day 7+，準備值 ≥ 28）：HP 135／戰意 88<span class="muted">（基底）</span>。打法：【取巧】→【話術】破戰意 → 崩潰時【硬派】20 傷收尾。</li>
+</ul>
+<h5>結算</h5>
+<p>通關 → <code>chap1_cleared = true</code>；自動搬家地下室→頂樓加蓋（AP 4→5、HP 回復 0.2→0.5）。</p>
+</div>
+</div>
+<div class="chapter" id="ch1_5">
+<div class="chapter-head"><div class="title">第 1.5 章 · 隱藏 · 母親的錄音帶</div><div class="meta">條件：chap1_cleared 且 Day 8 前探索頂樓雜物間</div></div>
+<div class="chapter-body">
+<p>打完小九隔天若主動翻找頂樓加蓋角落的紙箱，可拾獲<strong>母親淑儀的錄音帶</strong>，啟動序曲敘事池。</p>
+<ul>
+<li><strong>拾獲旗標</strong>：<code>flags.mother_tape_found</code>，後續第 5 章「母親未接來電」與第 10 章「母親錄音」對話量會變多。</li>
+<li><strong>聽完</strong>：希望 +6、心魔 −4；若此時臉皮 ≥ 80 會觸發「不要活成我」特殊臺詞，解鎖雨晴線日記殘頁【寄不出去的信】提早出現的機率。</li>
+<li><strong>未觸發</strong>：不影響主線，但導演剪輯第 10 章母女場面會只剩一句。</li>
+</ul>
+<div class="callout secret"><div class="callout-title">🎁 稀有副本</div>此章沒有戰鬥、沒有敵人，是純敘事章，但影響後續雨晴共感起始分與「母親的擁抱」永久 +20 HP 取得條件。</div>
+</div>
+</div>
+<div class="chapter" id="ch2">
+<div class="chapter-head"><div class="title">第 2 章 · 霓虹夜總會</div><div class="meta">Day 12+、街坊信任 ≥ 35｜chap2_cleared</div></div>
+<div class="chapter-body">
+<p><strong>啟動</strong>：Day 12+、街坊信任 ≥ 35 + 繳清第一章房租。<strong>目標</strong>：替鐵叔偵查霓虹夜總會，對上光頭哥。</p>
+<h5>關鍵節點</h5>
+<ul>
+<li><strong>紫醉金迷</strong>（Day 14+、準備值 ≥ 25、踩點完成）：潛入夜總會 VIP 區，需要【VIP 憑證】。取得方式：向小夜換情報（夜班津貼觸發）、或臉皮 ≥ 100 吃霸王餐溜進去。</li>
+<li><strong>Boss · 光頭哥</strong>：HP ≈ 180<span class="muted">（基底）</span>。慣用硬派，先【取巧】兩回合累積洞察，再用話術破戰意。</li>
+<li><strong>章末抉擇</strong>：
+<ul>
+<li>交出光頭哥給警察 → <code>order +8</code></li>
+<li>私吞黑市情報 → <code>ambition +8</code>、+$1,500</li>
+<li>放他一馬換未來情報 → <code>chaos +5</code>、解鎖第 8 章隱藏支線</li>
+</ul></li>
+</ul>
+<h5>結算</h5>
+<p><code>chap2_cleared</code>；若聲望 ≥ 150 解鎖<strong>城中村套房</strong>（月租 $25,000、AP 7）。</p>
+</div>
+</div>
+</section>
+<section>
+<div class="chapter" id="ch3">
+<div class="chapter-head"><div class="title">第 3 章 · 司徒摘星</div><div class="meta">Day 18+｜chap3_cleared｜定出「王道 / 資本」分岔</div></div>
+<div class="chapter-body">
+<p><strong>啟動</strong>：第 2 章完成 + Day 18。<strong>Boss：司徒摘星</strong>（金錢幫實際掌權者），三段戰鬥。</p>
+<h5>戰鬥三段</h5>
+<ol>
+<li><strong>第一段：法律顧問</strong>（嘴炮 Phase）：他會上「律師函」DeBuff，使妳話術 −30%；解法：【認慫】讓他誤以為妳不懂法律，他會自己露底 → 洞察觸發<em>拆穿假帳報表</em>。</li>
+<li><strong>第二段：假帳報表</strong>：<code>combatTurns ≥ 4</code>（約第 5 回合起）進狂暴，傷害路徑加壓（例：對司徒用【防禦】時基礎傷害 40→約 60，約 ×1.5；第三段部分選項失敗時 100→150，亦約 1.5 倍）。<strong>關鍵</strong>：前 3 回合內盡快削戰意（話術高較穩），或攜帶天賦【狂暴免疫】。</li>
+<li><strong>第三段：本體壓制</strong>：HP 大約 280<span class="muted">（基底）</span>。能戰意勝（話術 100+ 判定兩次成功）或 HP 勝（武力 100+）。</li>
+</ol>
+<h5>結局分岔</h5>
+<div class="panel amber">
+<ul>
+<li><strong>HP 勝（硬派終結）</strong>→ <code>hero</code>「王道英雄」：擊敗司徒摘星，獲得古籍、聲望 +40。</li>
+<li><strong>戰意勝（話術壓服）</strong>→ <code>loser</code>「資本新星」：司徒主動下跪交出金錢幫席位，妳空降董事會。</li>
+<li><strong>臉皮 ≥ 200 + 認慫壓服</strong>→ 觸發特殊台詞「妳這臉皮……倒是我生平未見。」，但仍收束為 <code>loser</code>。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="chapter" id="ch4">
+<div class="chapter-head"><div class="title">第 4 章 · 三岔的江湖</div><div class="meta">Day 22+｜chap4_cleared｜導演剪輯關鍵分岔點</div></div>
+<div class="chapter-body">
+<p><strong>啟動</strong>：chap3_cleared。這一章直接決定導演剪輯結局的大方向（<code>hero_true / godfather / wanderer</code>）。</p>
+<h5>三岔路</h5>
+<div class="panel cyan">
+<ul>
+<li><strong>A · 鎮壓三方（hero_true 武林盟主）</strong>：選「把勢力版圖推平」。需要 <strong>聲望 ≥ 180 + 武力 ≥ 100</strong>。後續在第 5–10 章會背負「秩序守護者」壓力，但結局達成 <code>hero_true</code>。</li>
+<li><strong>B · 接管黑市（godfather 影子教父）</strong>：選「把金錢幫留存的地下網絡接下來」。需要 <strong>野心（ambition）≥ 60</strong>，通常由第 3 章選 loser + 第 2 章私吞情報堆上來。結局 <code>godfather</code>，並直接解鎖信義區豪宅（與現金門檻路徑分開）。</li>
+<li><strong>C · 放棄權力（wanderer 隱世高手）</strong>：選「把鑰匙交給里長伯」。需要 <strong>俠義（justice）≥ 70、野心 ≤ 30</strong>。鎖定 <code>wanderer</code>，後續章節大多以金錢豹同伴為敘事焦點。</li>
+</ul>
+</div>
+<div class="callout tip"><div class="callout-title">🧭 怎麼選？</div>
+若妳這輪已打算跑 15 結局全收，建議第一輪先選 C（wanderer）把<code>wanderer</code> 結局與「真·敗犬」兩面封頂，NG+ 再跑 A 和 B。<strong>一輪完成一條大岔</strong>。</div>
+</div>
+</div>
+</section>
+<section>
+<div class="chapter" id="ch5">
+<div class="chapter-head"><div class="title">第 5 章 · 母親未接來電（導演剪輯）</div><div class="meta">Day 26+｜chap5_cleared｜解鎖園區保險箱</div></div>
+<div class="chapter-body">
+<p>第五章起進入導演剪輯擴充長版。這章把母親淑儀的舊工作場景（科技園區）揭開。</p>
+<ul>
+<li><strong>園區保險箱</strong>：需洞察 ≥ 90 破解，內含 Jessica 的舊照片與<strong>母親的工作筆記</strong>。拿到後 <code>chap5SafeDone = true</code>，第 6 章心門解鎖。</li>
+<li><strong>母親未接來電</strong>：Hub 夜晚會響電話無人聲，持續到第 6 章。每次接聽希望 +1、心魔 +1（記憶碎片）。</li>
+<li>解鎖第三住房<strong>城中村套房</strong>（若未達成，下次聲望 ≥ 150 即可解鎖）。</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="ch6">
+<div class="chapter-head"><div class="title">第 6 章 · 武館保衛戰</div><div class="meta">Day 30+｜chap6_cleared｜記憶迴廊第六層解鎖</div></div>
+<div class="chapter-body">
+<p>白毛集團（見第 8 章聖母線）的前鋒來砸武館。這是<strong>夥伴集體登場戰</strong>。</p>
+<ul>
+<li>戰前招攬：鐵叔 + 小夜 + 阿傑同行 → 自動獲得「守望相助」羈絆短語。</li>
+<li>戰鬥形式：3 回合波浪式 5 個敵人，每回合 2 名上場。建議使用門派牌組（官府牌組最穩）。</li>
+<li>戰後：<code>chap6_cleared = true</code>，記憶迴廊第 6 層心門<strong>第六章心門</strong>解鎖（需累計 2 枚碎片）。</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="ch7">
+<div class="chapter-head"><div class="title">第 7 章 · 地下擂台</div><div class="meta">Day 35+｜chap7_cleared</div></div>
+<div class="chapter-body">
+<p>由阿傑帶妳進入城北地下擂台。本章主要為<strong>經濟與夥伴羈絆</strong>章節。</p>
+<ul>
+<li>3 場擂台賽（非 Boss），每場可下注，贏家可累積賭金（洞察 + 話術 ≥ 150 觸發內線預測）。</li>
+<li>阿傑羈絆 ≥ 50 時，此章會解鎖<em>助威吶喊</em>（對方氣勢 −15%）。</li>
+<li>此章後期可選擇收購整條擂台 → <code>ambition +10</code>，並觸發後續第 8 章的「白毛聖母主動接觸」。</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="ch8">
+<div class="chapter-head"><div class="title">第 8 章 · 白靈聖母</div><div class="meta">Day 40+｜chap8_cleared｜邪教 / 敗犬救贖主題</div></div>
+<div class="chapter-body">
+<p>主反派：<strong>白靈聖母（本名林淑華）</strong>。母親淑儀的遠親，主持一個把「敗犬自我救贖」商品化的邪教教派。</p>
+<ul>
+<li><strong>Boss 三段</strong>：聖母 HP 260／戰意 120<span class="muted">（基底）</span>。第一段用狂粉護體反彈話術；第二段釋放<em>白衣護法</em>助戰；第三段本體壓制。</li>
+<li><strong>關鍵選項</strong>：擊敗聖母後可選：
+<ol>
+<li><strong>公開揭穿教派</strong> → 聲望 +40、<code>order +10</code>，但母親淑儀的舊名「林淑華」會被牽連。</li>
+<li><strong>私下放逐聖母</strong> → <code>chaos +10</code>，聖母每週匯入 $800（封口費），解鎖白毛護法結局條件。</li>
+<li><strong>收編白衣護法為己用</strong> → 臉皮 ≥ 150 才觸發，直接進入 <code>white_guard</code> 路徑。</li>
+</ol></li>
+<li><code>chap8_cleared</code> 後記憶迴廊第 8 層解鎖，可挑戰隱藏王「聖母殘影」。</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<div class="chapter" id="ch9">
+<div class="chapter-head"><div class="title">第 9 章 · 停車場的鏡像</div><div class="meta">Day 45+｜chap9_cleared｜Jessica 與阿強同時登場</div></div>
+<div class="chapter-body">
+<p><strong>林佳宜（Jessica）</strong>是阿琳七歲時在火場中走散的「鏡像姊妹」。本章她把阿強抓到地下停車場做要脅。</p>
+<h5>三階段</h5>
+<ol>
+<li><strong>阿強抉擇</strong>：停車場段落之後，選 <em>救他，帶回武館</em> → <code>aqiang_saved = true</code>（<strong>無屬性門檻</strong>；與 Jessica 戰／原諒或手刃<strong>互相獨立</strong>）。救回後才可能以阿強羈絆參與「羈絆之光」等判斷。</li>
+<li><strong>Jessica Boss 戰</strong>：劇情節點<strong>基底</strong>為 HP 160／戰意 135；進戰鬥後會再經程式<strong>動態加成</strong>（天數、四維、難度等；Boss 合成係數上限約 ×1.5）。她主打話術+戰意，慣用 <em>speech</em>。建議用【認慫】+【取巧】循環，不要跟她拚嘴。<span class="muted">選項文案會標示「親手復仇」與處決線／導演結局／心魔的關聯；與阿強是否救回為兩段獨立選擇。</span></li>
+<li><strong>終局抉擇（整章最大岔）</strong>：
+<div class="panel crimson">
+<ul>
+<li><strong>原諒 Jessica</strong>（<code>jessica_forgiven = true</code>）：戰後可直接選擇並設旗標，<strong>不要求</strong>事先達到特定希望／心魔。第 10 章導演剪輯結算時：<strong>希望 ≥ 80</strong>才加算「母親的擁抱」永久 HP +20；<strong>心魔 ≤ 15</strong>才解鎖「帳務管理」每週 +$500——兩者為<strong>結算加碼條件</strong>，與能否選「原諒」分開。</li>
+<li><strong>手刃 Jessica</strong>（<code>jessica_executed = true</code>）：若此時俠義 ≥ 70 → 觸發 <strong>墮落英雄</strong> <code>fallen_hero</code>：下輪迴武力 +10、初始心魔 +15。若心魔 ≥ 80 → 附加「夜不能寐」負面（每週隨機掉 AP）。</li>
+</ul>
+</div></li>
+</ol>
+</div>
+</div>
+<div class="chapter" id="ch10">
+<div class="chapter-head"><div class="title">第 10 章 · 導演剪輯終局</div><div class="meta">Day 50+｜chap10_cleared｜<code>evaluateDirectorCutEnding</code> 結算</div></div>
+<div class="chapter-body">
+<p>走完三岔與 Jessica 抉擇後，此章自動根據 <code>morality</code> 四軸（俠義 / 野心 / 秩序 / 混亂）與旗標結算導演剪輯結局：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>結局 Key</th><th>名稱</th><th>觸發條件</th><th>獎勵</th></tr></thead>
+<tbody>
+<tr><td class="id">fallen_hero</td><td class="name">墮落英雄</td><td><code>jessica_executed</code> + 俠義 ≥ 70</td><td>下輪迴武力 +10、初始心魔 +15</td></tr>
+<tr><td class="id">fortune_monk</td><td class="name">命師隱士</td><td>命理點 ≥ 500、聲望 &lt; 60、未入門派、俠義 ≥ 60</td><td>下輪迴命理點 +150</td></tr>
+<tr><td class="id">community_master</td><td class="name">武館宗師</td><td>俠義 ≥ 80、秩序 ≥ 60</td><td>【宗師】稱號、聲望 +25</td></tr>
+<tr><td class="id">godfather</td><td class="name">地下教父</td><td>野心 ≥ 80、混亂 ≥ 50</td><td>新輪迴起始資金 +</td></tr>
+<tr><td class="id">wanderer</td><td class="name">隱世高手</td><td>俠義 ≥ 70、野心 ≤ 30</td><td>洞察傳承</td></tr>
+<tr><td class="id">neighborhood_chief</td><td class="name">里長伯</td><td>秩序 ≥ 70、話術 ≥ 80</td><td>初始聲望提升</td></tr>
+<tr><td class="id">mlm_king</td><td class="name">直銷天王</td><td>野心 ≥ 70、話術 ≥ 90</td><td>初始話術提升</td></tr>
+<tr><td class="id">white_guard</td><td class="name">白毛護法</td><td>混亂 ≥ 70、臉皮 ≥ 120</td><td>初始臉皮提升</td></tr>
+<tr><td class="id">true_loser</td><td class="name">真·敗犬</td><td>以上都不符合（兜底）</td><td>地獄模式解鎖</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout spoiler"><div class="callout-title">✨ 羈絆之光（隱藏加成）</div>
+若 3 個以上夥伴羈絆 ≥ 70（包含 aqiang_saved 時的阿強），自動觸發<strong>羈絆之光</strong>：頂樓集結送別場景、NG+ 起始羈絆 +10。獨立於上述 9 結局之外，會與任一結局疊加。</div>
+</div>
+</div>
+<div class="chapter" id="ch11">
+<div class="chapter-head"><div class="title">第 11 章 · 血脈殘響（擴充）</div><div class="meta">需累積 ≥ 10 枚記憶碎片</div></div>
+<div class="chapter-body">
+<p>記憶迴廊第 10 層心門開啟後進入。這一章的 Boss 是<strong>母親淑儀的殘影</strong>，實質上是玩家與母親未盡之事的具象化。</p>
+<ul>
+<li><strong>封卷</strong>：選擇封存母親身分真相 → 心魔 −8、雨晴共感 +6（保護姊妹）。</li>
+<li><strong>揭幕</strong>：選擇讓真相公開 → 聲望 +14、希望 +5，但<em>里長伯與鐵叔的信任 −10</em>。</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="ch12">
+<div class="chapter-head"><div class="title">第 12 章 · 棄神之地</div><div class="meta">需完成「裏城裂隙」世界變異 1 次</div></div>
+<div class="chapter-body">
+<p>這一章將敗犬江湖的城市「裏城」與現實台北重疊。Boss 是<strong>敗犬集合體</strong>（阿琳自己的鏡像）。</p>
+<ul>
+<li><strong>斬斷因果</strong>：心魔 −10、$−3,000、獲得「俐落人」被動（NG+ 起始俠義 +8）。</li>
+<li><strong>背負因果（吸收）</strong>：心魔 +12、+$2,500、獲得「裏城信物」（解鎖深淵專屬商店折扣）。</li>
+</ul>
+<p class="muted">第 11、12 章非每輪必跑，但<strong>想要解鎖長詩《關於雨晴》</strong>需搭配雨晴共感 ≥ 85 + 日記 5 張（見 F 節）。</p>
+</div>
+</div>
+</section>
+<section>
+<h2 id="g-e">E · 緣之書：15 格全結局達成表</h2>
+<p><code>getEndingArchiveMeta()</code> 共登錄 15 個命名結局。下表依取得難度分組，並附上最短達成路線。</p>
+<div class="ending-grid">
+<div class="ending-card hero">
+<div class="key">hero · 第 3 章結局</div>
+<div class="name">王道英雄</div>
+<div class="cond">第 3 章司徒摘星戰以 HP 勝（武力 ≥ 100，用硬派擊倒 HP 條）。</div>
+<div class="reward">剪報：《廢棄道場驚傳巨響！神秘女子擊敗金錢幫高層》</div>
+</div>
+<div class="ending-card loser">
+<div class="key">loser · 第 3 章結局</div>
+<div class="name">資本新星</div>
+<div class="cond">第 3 章司徒摘星戰以戰意勝（話術 ≥ 100 壓服他跪下）。</div>
+<div class="reward">剪報：《金錢幫新任執行董事空降董事會》</div>
+</div>
+<div class="ending-card hero">
+<div class="key">hero_true · 第 4 章三岔 A</div>
+<div class="name">武林盟主</div>
+<div class="cond">第 4 章選「鎮壓三方」；聲望 ≥ 180 + 武力 ≥ 100。</div>
+<div class="reward">導演剪輯 hero_true 文本</div>
+</div>
+<div class="ending-card dark">
+<div class="key">godfather · 第 4 章三岔 B</div>
+<div class="name">影子教父</div>
+<div class="cond">第 4 章選「接管黑市」；野心 ≥ 80 + 混亂 ≥ 50（第 3 章 loser 可加速）。</div>
+<div class="reward">信義區豪宅解鎖、NG+ 起始資金</div>
+</div>
+<div class="ending-card wander">
+<div class="key">wanderer · 第 4 章三岔 C</div>
+<div class="name">隱世高手</div>
+<div class="cond">第 4 章選「放棄權力」；俠義 ≥ 70 + 野心 ≤ 30。</div>
+<div class="reward">NG+ 洞察傳承、金錢豹跟隨</div>
+</div>
+<div class="ending-card hero">
+<div class="key">community_master · 第 10 章結算</div>
+<div class="name">武館宗師</div>
+<div class="cond">俠義 ≥ 80 + 秩序 ≥ 60；搭配鐵叔／阿傑羈絆 ≥ 50。</div>
+<div class="reward">【宗師】稱號、聲望 +25，自動升級頂加→套房</div>
+</div>
+<div class="ending-card dark">
+<div class="key">fallen_hero · 導演剪輯</div>
+<div class="name">墮落英雄</div>
+<div class="cond">第 9 章 <code>jessica_executed</code> + 俠義 ≥ 70。</div>
+<div class="reward">NG+ 武力 +10、初始心魔 +15</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">fortune_monk · 導演剪輯</div>
+<div class="name">命師隱士</div>
+<div class="cond">命理點 ≥ 500、聲望 &lt; 60、未加入任一門派、俠義 ≥ 60。</div>
+<div class="reward">NG+ 命理點 +150</div>
+</div>
+<div class="ending-card hero">
+<div class="key">neighborhood_chief · 導演剪輯</div>
+<div class="name">里長伯</div>
+<div class="cond">秩序 ≥ 70 + 話術 ≥ 80；建議加入<em>里長伯自治會</em>。</div>
+<div class="reward">NG+ 初始聲望提升、信用評分 +80</div>
+</div>
+<div class="ending-card dark">
+<div class="key">mlm_king · 導演剪輯</div>
+<div class="name">直銷天王</div>
+<div class="cond">野心 ≥ 70 + 話術 ≥ 90；建議跑<em>霓虹影視</em>門派。</div>
+<div class="reward">結局現金 +$20,000、NG+ 初始話術</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">white_guard · 導演剪輯</div>
+<div class="name">白毛護法</div>
+<div class="cond">混亂 ≥ 70 + 臉皮 ≥ 120；第 8 章需選「收編白衣護法」。</div>
+<div class="reward">NG+ 初始臉皮 +20</div>
+</div>
+<div class="ending-card loser">
+<div class="key">true_loser · 導演剪輯兜底</div>
+<div class="name">真·敗犬</div>
+<div class="cond">其餘結局都不符合時自動觸發。臉皮 80–120、俠義 40–60 最易命中。</div>
+<div class="reward">地獄模式解鎖、NG+ 起始心魔 −5</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">longbo_secret · 龍伯隱藏線</div>
+<div class="name">算盡天機</div>
+<div class="cond">每日至公園找龍伯下棋 × 14 局 + 股市資產 ≥ $50,000 + 替龍伯完成「最後殘局」事件。</div>
+<div class="reward">解鎖股市專屬牌「五連殺」、NG+ 洞察 +12</div>
+</div>
+<div class="ending-card loser">
+<div class="key">slack · 耍廢結局</div>
+<div class="name">被社會遺忘</div>
+<div class="cond">連續 7 天只睡覺、不打工、不戰鬥。信用評分會跌到負值，但可直接踢出到這個結局。</div>
+<div class="reward">剪報：《獨居女子倒臥租屋處》</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">thick300 · 臉皮結局</div>
+<div class="name">賴皮王</div>
+<div class="cond">臉皮屬性突破 300。靠吃霸王餐、乞討、賴帳、臉皮小遊戲累積。</div>
+<div class="reward">NG+ 起始臉皮 +30、解鎖「賴皮王」稱號</div>
+</div>
+</div>
+<div class="callout secret"><div class="callout-title">🎴 15 格全收建議動線</div>
+<ol>
+<li><strong>第 1 輪</strong>：wanderer（放棄權力）+ true_loser 兜底。</li>
+<li><strong>第 2 輪（NG+）</strong>：godfather（接管黑市）+ slack 另開槽位刷。</li>
+<li><strong>第 3 輪</strong>：hero + hero_true（武林盟主）+ community_master。</li>
+<li><strong>第 4 輪</strong>：neighborhood_chief + mlm_king + longbo_secret。</li>
+<li><strong>第 5 輪</strong>：fallen_hero（手刃 Jessica）+ white_guard（收編護法）。</li>
+<li><strong>第 6 輪</strong>：fortune_monk（不入門派純隱世）+ thick300（把臉皮堆到 300）。</li>
+</ol>
+想打 Rain Qing 詩結局則需搭配第 F 節，不佔結局欄位但會解鎖<strong>雨過天青</strong>永久被動。</div>
+</section>
+<section>
+<h2 id="g-f">F · 雨晴隱藏真結局（共感線）</h2>
+<p>雨晴並不是傳統的「攻略對象」。她是<strong>會下雨的人</strong>──阿琳的失散姊妹，也是母親淑儀遺願的寄託。<code>rainQing.soul.resonance</code> 取代好感度，以 5 階段隱喻呈現：</p>
+<div class="flow">
+<div class="flow-node">尚未相認 (0–19)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">開始靠近 (20–39)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">記得彼此 (40–64)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node cyan">共撐一傘 (65–84)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node cyan">雨過天青 (85–100)</div>
+</div>
+<h3>1. 共感值累積來源</h3>
+<ul>
+<li><strong>下雨天與雨晴共撐一傘</strong>（每次 +4，當日僅計 1 次）。</li>
+<li><strong>陪她看雲 / 沉默陪伴</strong>（+2–3），對話時優先選【不說話】。</li>
+<li><strong>記住她說過的細節</strong>：廢文牆裡她提到操場、筆記本等，下次見面主動提可 +5。</li>
+<li><strong>送空白筆記本</strong>（道具）：一次性 +10。</li>
+<li><strong>第 11 章選「封卷」</strong>：共感 +6（因為妳替她守住了家的故事）。</li>
+</ul>
+<h3>2. 日記五殘頁（<code>rainQingDiaryFragmentDB</code>）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>殘頁</th><th>標題</th><th>需求共感</th><th>取得時機</th></tr></thead>
+<tbody>
+<tr><td class="id">fragment_letter</td><td class="name">寄不出去的信</td><td class="num">0</td><td>第 1.5 章撿到母親錄音帶時自動給</td></tr>
+<tr><td class="id">fragment_playground</td><td class="name">操場那晚</td><td class="num">35</td><td>第 6 章武館保衛戰後，雨晴夜訪</td></tr>
+<tr><td class="id">fragment_sunshower</td><td class="name">第二場太陽雨</td><td class="num">60</td><td>晴天午後的廢棄操場隨機事件</td></tr>
+<tr><td class="id">fragment_grave</td><td class="name">墓前黑傘</td><td class="num">80</td><td>第 8 章結束後掃墓節點</td></tr>
+<tr><td class="id">fragment_afterglow</td><td class="name">雨過天青</td><td class="num">92</td><td>墓前讀完日記時自動給</td></tr>
+</tbody>
+</table>
+</div>
+<h3>3. 真結局觸發條件（<code>rainQing_endingUnlocked</code>）</h3>
+<div class="panel cyan">
+<ol>
+<li>拿到<strong>至少 4 張日記殘頁</strong>。</li>
+<li>共感值每次跨過殘頁門檻時，介面會以 toast 提示（對應 <code>rainQingDiaryFragmentDB</code> 門檻）。</li>
+<li>在墓前節點與雨晴一起讀完日記（此時會執行 <code>syncRainQingSoul(state, '墓前補完', 8)</code>，並強制把共感拉到 ≥ 92 才能取得最後一頁）。</li>
+<li>獲得道具 <strong>雨晴的舊傘</strong>，<code>rainQing_endingUnlocked = true</code>。</li>
+</ol>
+</div>
+<h3>4. 長詩《關於雨晴》解鎖（終極彩蛋）</h3>
+<div class="callout spoiler"><div class="callout-title">☔ 解鎖條件（<code>canUnlockRainQingPoem</code>）</div>
+<ul>
+<li><code>rainQing_endingUnlocked = true</code></li>
+<li>共感值 <code>resonance ≥ 85</code></li>
+<li>日記殘頁 <strong>5 張全收</strong></li>
+</ul>
+三條全滿 → 自動解鎖成就【那場只有我看見的雨】+ 永久被動【雨過天青】：<strong>心魔受損 −20%、雨天 AP 回復 +1</strong>。</div>
+<p>詩全文不會顯示在攻略裡（避免破壞語意），請於遊戲內至<strong>緣之書最後一頁</strong>閱讀。首讀會以一行一行緩速播放（4–5.2 秒/行），背景雨聲循環，不建議跳過。</p>
+<div class="callout warn"><div class="callout-title">⚠️ 不要忽略的小事</div>
+雨晴線有個反直覺設定：<strong>共感不能用刷的</strong>。遊戲內部設了<code>traces</code> 去重，一天只會認一次「共撐一傘」、一次「陪看雲」。所以要跑這條線，<em>請分天去做</em>，並搭配晴雨天氣切換（隨機事件觸發不同選項）。</div>
+</section>
+<section>
+<h2 id="g-g">G · 夥伴羈絆（<code>companionBondSkillDB</code>）</h2>
+<p>五位核心夥伴 + 雨晴（獨立四階系統）。羈絆值累積方式：日常對話、對戰協力、貼心小事件。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>夥伴</th><th>Tier 1 (30)</th><th>Tier 2 (50)</th><th>Tier 3 (80)</th><th>Tier 4 (100)</th></tr></thead>
+<tbody>
+<tr><td class="name">鐵叔</td><td>磨刀不誤砍柴工<br/>戰前 30% 攻勢加溫</td><td>沉默守護<br/>HP ≤ 30% 時硬擋一次</td><td>傳承一刀<br/>戰中可用鐵叔絕技一次</td><td>—</td></tr>
+<tr><td class="name">小夜</td><td>夜班津貼<br/>超商打工 +20%</td><td>暗器掩護<br/>取巧成功時追加飛針</td><td>唐門真傳<br/>解鎖【暴雨梨花】戰技</td><td>—</td></tr>
+<tr><td class="name">金錢豹（貓）</td><td>貓的報恩<br/>醒來帶回小消耗品</td><td>巷弄之王<br/>派遣時間 −15%</td><td>九命怪貓<br/>致命傷機率留 1 HP</td><td>—</td></tr>
+<tr><td class="name">阿傑</td><td>熱血徒弟<br/>武館訓練效果 +</td><td>助威吶喊<br/>戰鬥中喊掉對面氣勢</td><td>獨當一面<br/>阿傑可單獨出勤</td><td>—</td></tr>
+<tr><td class="name">雨晴</td><td>社工直覺<br/>派遣更易找到情報</td><td>中途之家網絡<br/>招募特殊背景弟子</td><td>姊妹同心<br/>戰鬥中動員社區降敵戰意</td><td>淑儀的遺願<br/>解鎖特殊結局條件；希望上限 +20</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 羈絆之光（3 位 ≥ 70）</div>
+第 10 章結算時若鐵叔 / 小夜 / 阿傑 / 金錢豹 / 阿強（需 <code>aqiang_saved</code>）有 <strong>3 位以上羈絆 ≥ 70</strong>，自動觸發<strong>羈絆之光</strong>加成：NG+ 起始羈絆 +10，並觸發頂樓集結場面（每位夥伴都會有一句送行台詞）。</div>
+<h2 id="g-h">H · 六大門派系統</h2>
+<p>門派入會需屬性達門檻（某些派有副門檻），每週繳會費換週薪與門派卡牌。下表包含 <code>sectFactions</code> 的實際數字。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>門派</th><th>主屬門檻</th><th>週費</th><th>週薪</th><th>專屬資源</th></tr></thead>
+<tbody>
+<tr><td class="name">外送員互助聯盟（丐幫）</td><td>臉皮 ≥ 80</td><td>$200</td><td>$800</td><td>里程點數</td></tr>
+<tr><td class="name">禪修·極致健身集團（少林）</td><td>武力 ≥ 100</td><td>$500</td><td>$1,000</td><td>禪意值</td></tr>
+<tr><td class="name">太極雲端演算中心（武當）</td><td>洞察 ≥ 100</td><td>$300</td><td>$900</td><td>算力</td></tr>
+<tr><td class="name">唐氏生物科技製藥（唐門）</td><td>洞察 ≥ 80 + 話術 ≥ 60</td><td>$400</td><td>$850</td><td>毒性／藥性</td></tr>
+<tr><td class="name">霓虹影視經紀公司（明教）</td><td>話術 ≥ 100</td><td>$600</td><td>$1,100</td><td>流量</td></tr>
+<tr><td class="name">里長伯自治會（官府）</td><td>話術 ≥ 85 + 臉皮 ≥ 70</td><td>$350</td><td>$950</td><td>人情</td></tr>
+</tbody>
+</table>
+</div>
+<h3>入門試煉（<code>sect.tutorial</code>）</h3>
+<ol>
+<li>完成 <strong>3 次門派委託</strong>（對應 taskLabel：跑腿送貨 / 推銷課程 / 數據標註…）。</li>
+<li>在地圖上跑滿 <strong>5 條路線</strong>。</li>
+<li>與掌門聊天一次。</li>
+<li>發薪日領一次週薪。</li>
+</ol>
+<p>完成後獲得門派制服（丐幫是外送箱）、開啟「貢獻度」系統、解鎖 6 張門派入門牌。</p>
+<h3>晉升路線</h3>
+<div class="panel amber">
+<ul>
+<li><strong>見習 → 正式（貢獻 80）</strong></li>
+<li><strong>正式 → 執事（貢獻 250 + 聲望 40）</strong></li>
+<li><strong>執事 → 堂主（貢獻 600 + 聲望 80 + 主屬 80 / 副屬 70）</strong></li>
+<li><strong>堂主 → 副掌門（貢獻 1500 + 聲望 150 + 主屬 110 / 副屬 100 + 試煉）</strong></li>
+<li><strong>副掌門 → 掌門（奪位試煉）</strong></li>
+</ul>
+</div>
+<div class="callout secret"><div class="callout-title">🏯 幹部官職加成（<code>getSectOfficerSynergy</code>）</div>
+<ul>
+<li>教頭 = 鐵叔 → 訓練效果 ×1.2</li>
+<li>情報 = 小夜 → 情報任務 ×1.25</li>
+<li>財務 = 金錢豹 → 週薪 ×1.05</li>
+<li>教頭 = 阿傑 → 招募弟子忠誠 +20</li>
+</ul>
+把夥伴塞到對的職位 = 免費加成。</div>
+<div class="callout tip"><div class="callout-title">📋 門派介面近期補強</div>
+<ul>
+<li><strong>弟子「本週近況」</strong>：<code>rollDiscipleWeeklyEvent</code>／<code>discipleEventPool</code>。</li>
+<li><strong>派系欄</strong>：<code>sectFactionWeeklyEvent</code> 顯示最近一筆與歷史。</li>
+<li><strong>分舵「近期狀況」</strong>：<code>tickBranchIncidents</code>／<code>branchIncidentPool</code>。</li>
+</ul>
+</div>
+</section>
+<section>
+<h2 id="g-i">I · 記憶迴廊（Roguelike 爬塔）</h2>
+<p>從 Day 10 後的頂樓加蓋入口進入。共 10 層心門，對應 1~10 章進度。每層有 <strong>戰鬥 / 事件 / 菁英 / 隱藏王 / 神龕</strong> 5 種房間。</p>
+<h3>心門解鎖條件（<code>memoryChapterDoorDB</code> 節錄）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>心門</th><th>條件</th></tr></thead>
+<tbody>
+<tr><td class="name">第 2 章心門</td><td>需 1 枚記憶碎片</td></tr>
+<tr><td class="name">第 4 章心門</td><td>需 1 枚 + chap3_cleared</td></tr>
+<tr><td class="name">第 6 章心門</td><td>需 2 枚 + chap5_cleared + 園區保險箱破解</td></tr>
+<tr><td class="name">第 8 章心門</td><td>需 3 枚 + chap7_cleared</td></tr>
+<tr><td class="name">第 10 章心門</td><td>需 3 枚 + chap9_cleared + 碎片累計 ≥ 10</td></tr>
+</tbody>
+</table>
+</div>
+<h3>關鍵隱藏王</h3>
+<ul>
+<li><strong>小九殘影</strong>（第 2 層）：HP 148／戰意 82<span class="muted">（基底）</span>。首次遭遇必觸發，打法與主線同，但掉落<em>記憶錨點 ×1</em>（關鍵稀有素材）。</li>
+<li><strong>聖母殘影</strong>（第 8 層）：chap8_cleared 後出現。三回合戰鬥，第三回合必進狂暴。建議滿堆護盾 + 官府牌組（少林也 OK）<span class="muted">（未表列數值，亦適用基底＋動態加成）</span>。</li>
+<li><strong>母親淑儀殘影</strong>（第 10 層）：此為第 11 章封卷 / 揭幕的具象化。HP 300／戰意 180<span class="muted">（基底）</span>。</li>
+</ul>
+<div class="callout tip"><div class="callout-title">🎴 記憶迴廊牌組（<code>memoryCorridorDeck</code>）</div>
+記憶迴廊使用<strong>獨立牌組</strong>，不與主線共享。每層會贈送 1–2 張選擇，建議優先選：<em>情報網</em>（抽牌）、<em>雲端閃避</em>（閃避 +2）、<em>無影針</em>（毒 2）。</div>
+<div class="callout tip"><div class="callout-title">🌀 開局祝福與可選詛咒</div>
+<p>每次開跑會<strong>祝福三選一</strong>（<code>corridorBlessingDefs</code>）。若 <code>flags.corridorCurseEnabled</code> 為真，會一併套用隨機詛咒（<code>corridorCurseDefs</code>）；預設舊存檔為關，可於除錯／劇情開關開啟硬模式。</p>
+</div>
+<div class="callout secret"><div class="callout-title">🪞 NG+ 鏡像遭遇</div>
+<p>需 <code>new_game_plus_cycle &gt;= 2</code> 且曾達成 <code>memory_corridor_floor3_cleared_once</code>：當日首次進入迴廊路線節點時有 <strong>2%</strong> 機率切入 <code>ngp_mirror_self_encounter</code>（每趟僅一次）。硬派／話術／認慫三線對應成就「打敗前世自己」「鏡前和解」「認慫也是路」。</p>
+</div>
+<h2 id="g-j">J · 深淵 / 裏城裂隙</h2>
+<p>完成第 12 章或觸發「裏城裂隙」世界變異後解鎖深淵無限層（<code>state.abyssDeep</code>）。核心貨幣：<strong>深淵結晶 💎</strong>。</p>
+<h3>結晶來源</h3>
+<ul>
+<li>裂隙首領掉落（每次 +1~3 💎）。</li>
+<li>天賦二層 <em>殘光祝福</em>（abyss_blessing）：深淵成功額外給予結晶。</li>
+<li>變異事件「帶他回家一天」（未生者事件）給 ×3 💎。</li>
+</ul>
+<h3>裂隙商店（跨輪迴永久加成）</h3>
+<p class="muted">敗犬深淵裂隙商店：三種結晶類永久加成<strong>每項單一存檔最多購買 8 次</strong>（達上限後介面會顯示已擁有／上限並隱藏購買）。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>結晶商品</th><th>效果</th><th>價格</th></tr></thead>
+<tbody>
+<tr><td class="name">深淵結晶 · 體魄</td><td>NG+ HP 上限 +20</td><td>50 💎</td></tr>
+<tr><td class="name">深淵結晶 · 橫財</td><td>NG+ 開局 +$500</td><td>40 💎</td></tr>
+<tr><td class="name">深淵結晶 · 臉皮</td><td>NG+ 臉皮 +15</td><td>60 💎</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">三件可重複購買，效果疊加到 <code>newGamePlusLegacy</code>。刷到深度 30+ 會進入本機排行榜。</p>
+<h2 id="g-k">K · 世界變異六型</h2>
+<p><code>activeMutationCatalog</code> 的六種世界變異改寫了大部分隨機事件。三種選擇 <em>抵抗 / 適應 / 利用</em> 影響不同屬性獎勵與副作用。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>優先序</th><th>變異</th><th>抵抗</th><th>適應</th><th>利用</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td class="name">裏城裂隙</td><td>延後 12 天、削弱 0.45</td><td>洞察 +8，心魔 +15</td><td>$+3,500、聲望 −10、信用 −20</td></tr>
+<tr><td class="num">2</td><td class="name">因果反噬</td><td>延後 5 天、削弱 0.7</td><td>臉皮 +8 / 武力 +3；希望 −5、心魔 +10</td><td>$+1,800、信用 −25</td></tr>
+<tr><td class="num">3</td><td class="name">都市傳說具現化</td><td>延後 8 天、削弱 0.6</td><td>話術 +4、洞察 +4；心魔 +8</td><td>聲望 +6、信用 −15</td></tr>
+<tr><td class="num">4</td><td class="name">靈氣復甦</td><td>延後 10 天、削弱 0.5</td><td>洞察 +5；心魔 +10</td><td>$+2,500、信用 −20</td></tr>
+<tr><td class="num">5</td><td class="name">記憶汙染</td><td>延後 6 天、削弱 0.65</td><td>洞察 +6；心魔 +12</td><td>$+1,200、聲望 −4</td></tr>
+<tr><td class="num">6</td><td class="name">市場瘋狂</td><td>延後 7 天、削弱 0.7</td><td>洞察 +3 / 臉皮 +4</td><td>$+3,000、聲望 −6、信用 −18</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn"><div class="callout-title">⚠️ 變異同時觸發時的優先序</div>
+<code>mutationPriority</code> 寫死：裏城裂隙 &gt; 因果反噬 &gt; 都市傳說 &gt; 靈氣復甦 &gt; 記憶汙染 &gt; 市場瘋狂。兩種以上同日觸發，會被替換為優先序最高的那種變體事件；觸發機率基礎 60%，單日變體 ≥3／≥5 次另有遞減；若上一場也是變體再乘 0.8（筆記本「同日變體疲勞」條目）。</div>
+</section>
+<section>
+<h2 id="g-l">L · 經濟循環與裝備</h2>
+<p>敗犬江湖的經濟是<strong>現金 + 信用評分 + 房租倒數</strong>三軸聯動。主線不接則靠經濟系統補糧。</p>
+<h3>四大收入源</h3>
+<div class="panel amber">
+<ol>
+<li><strong>打工</strong>（Hub 按鈕）：消耗 1–3 AP，回報 $200–$700。厚積薄發：離線回滿 AP 會存成<em>儲備精力</em>，50 點精力可開 5 次 200% 收益爆發。</li>
+<li><strong>派遣</strong>（人脈線 Tier 3 解鎖）：中長時間任務。欠租/欠債時有 40% 基礎機率被攔。
+<ul>
+<li>鐵叔 Lv.2 降 15% / 小夜 Lv.2 降 10% / 金錢豹 Lv.2 降 5%。</li>
+<li>特殊派遣【引開房東】可暫停 2 小時房租結算。</li>
+</ul></li>
+<li><strong>股市</strong>（龍伯解鎖）：7 檔虛擬代碼 DEL/ZEN/TAI/TAN/NEO/RES/GNG，單價 $102–$220。支援槓桿 3x、限價。解鎖老葉地下交易所後，每逢 <code>currentDay</code> 為 7 的倍數之日（程式中 <code>day % 7 === 0</code>）若<strong>里長伯羈絆 ≥60</strong>或<strong>老葉行情羈絆 ≥70</strong>，有機會在盤面顯示「近期內線（3 日內有效）」區塊（最多保留 3 條；來源為里長耳語或老葉模型提示）。舊攻略誤植「洞察 ≥100」與現行程式不符。</li>
+<li><strong>賴帳 / 乞討 / 霸王餐</strong>（臉皮線）：
+<ul>
+<li>臉皮 ≥ 100 → 路邊乞討（0 AP）</li>
+<li>臉皮 ≥ 120 → 吃霸王餐（+40 HP）</li>
+<li>臉皮 ≥ 150 → 房租結算 15% 機率賴帳成功</li>
+</ul></li>
+<li><strong>住處裝潢</strong>：傢俱介面「今日觀察」（<code>petDecorInteractionTexts</code>）。</li>
+<li><strong>NPC 同框遭遇</strong>：<code>npcSchedules.crossover</code> 在公園／市場／道場等時段觸發雙人短劇，各有 <code>crossover_*_seen</code> 一次性旗標。</li>
+</ol>
+</div>
+<h3>四階住房（<code>housingTierDB</code>）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>房型</th><th>AP</th><th>週租</th><th>HP 回復</th><th>解鎖</th></tr></thead>
+<tbody>
+<tr><td class="name">地下室</td><td class="num">4</td><td class="num">$2,000</td><td class="num">0.2</td><td>開局</td></tr>
+<tr><td class="name">頂樓加蓋</td><td class="num">5</td><td class="num">$8,000</td><td class="num">0.5</td><td>chap1_cleared</td></tr>
+<tr><td class="name">城中村套房</td><td class="num">7</td><td class="num">$25,000</td><td class="num">1.0</td><td>chap2_cleared + 聲望 ≥ 150</td></tr>
+<tr><td class="name">信義區豪宅</td><td class="num">10</td><td class="num">$80,000</td><td class="num">2.0</td><td>(chap5_cleared 或 chap10_cleared) +（現金 ≥ $100,000 <strong>或</strong>（聲望 ≥ 200 且現金 ≥ $85,000））；或 godfather 結局</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn"><div class="callout-title">🚨 信義區豪宅門檻</div>
+除 <code>godfather</code> 直接解鎖外，一般需第 5 或第 10 章已通關，並滿足<strong>現金 $100,000</strong>，或<strong>聲望 ≥ 200 且現金 ≥ $85,000</strong>。第一輪純英雄線仍偏緊，但已比舊版單一 $100K 門檻多一條聲望退路。</div>
+<h3>飲食 Buff（<code>getFoodLifestyleEffects</code>）</h3>
+<ul>
+<li><strong>四季春茶</strong>：洞察 +5、話術門檻 −5（一日）</li>
+<li><strong>珍珠奶茶</strong>：武力 +5、臉皮 +3（一日）</li>
+<li><strong>蘆薈蜂蜜</strong>：話術 +8、商店折扣 +5%</li>
+<li><strong>黑糖奶</strong>：四屬性 +3、抽卡幸運 +10%</li>
+<li><strong>冬瓜茶</strong>：臉皮 +10、乞討收益 +20%</li>
+<li><strong>母女飲</strong>：四屬性 +5</li>
+</ul>
+<p class="muted">打 Boss 前一小時記得去飲料店，通常最高 CP 值是「冬瓜茶 +吃霸王餐」組合。</p>
+<h2 id="g-m">M · 成就速刷</h2>
+<div class="panel emerald">
+<ul>
+<li><strong>第一次認慫</strong>：任一戰鬥使用【認慫】。Day 1 就能拿。</li>
+<li><strong>打敗小九</strong>：第 1 章必拿。</li>
+<li><strong>加入門派 / 自創門派</strong>：任一門派入會（加入），或累積貢獻 3000+ 開分舵（自創）。</li>
+<li><strong>擊敗司徒摘星</strong>：hero 或 hero_true 結局。</li>
+<li><strong>那場只有我看見的雨</strong>（雨晴隱藏）：見 F 節條件。</li>
+<li><strong>達成結局</strong>：任一緣之書結局。</li>
+<li><strong>賴皮王</strong>：臉皮 300，見 E 節 thick300。</li>
+<li><strong>被社會遺忘</strong>：連續 7 天不動作。</li>
+</ul>
+</div>
+<p>成就圖鑑（<code>achievementsDB</code>，約 L16253 起）共 <strong>60+ 條</strong>（含輪迴類「二世為人」「打敗前世自己」「鏡前和解」「認慫也是路」等），全收仍須多輪 NG+。</p>
+<h2 id="g-n">N · 存檔 / NG+ / 跨輪迴繼承</h2>
+<h3>存檔格式</h3>
+<p>存檔以 <code>BDOG1:</code> + LZ-String <code>compressToEncodedURIComponent</code> 壓縮。讀檔會自動校驗 <code>checksum</code>；校驗失敗與一般解析錯誤會分開提示。舊版存檔可經 <code>SAVE_MIGRATORS</code> 升級至當前 schema，成功時會提示「已自 vX 升級至 v4」。</p>
+<ul>
+<li>主槽位：<code>udg_save_v4</code>；備份：<code>udg_save_v4_backup</code>。</li>
+<li>槽位 #1 / #2 / #3 對應 <code>udg_save_v4_slot_1/2/3</code>。</li>
+<li>匯出字串可直接貼進雲端筆記、Discord，無外部依賴。</li>
+</ul>
+<h3>NG+ 繼承（<code>newGamePlusLegacy</code>）</h3>
+<div class="panel violet">
+<ul>
+<li><strong>結局獎勵</strong>：依 15 結局不同給予 HP / 現金 / 屬性加成。</li>
+<li><strong>緣之書回聲</strong>：共感 ≥ 40 的 NPC 會在下一輪給「既視感」台詞（<code>resonanceEcho</code>）。</li>
+<li><strong>前世摘要</strong>：輪迴結算寫入 <code>meta.previousLifeSummary</code>，Hub「前世遺物」可重看。</li>
+<li><strong>世界印記</strong>：通關 godfather / hero_true 或救下阿強，廢文池會加入舊輪迴傳聞。</li>
+<li><strong>武學記憶</strong>：<code>shenzuoInheritCard</code> 可指定 1 張卡加入下輪起手牌。</li>
+<li><strong>深淵結晶庫存</strong>：未花費的 💎 會跨輪保留（寫進 <code>abyssDeep.totalCrystals</code>）。</li>
+</ul>
+</div>
+<div class="callout tip"><div class="callout-title">💾 備份小技巧</div>
+在每個大決定（第 3、4、8、9 章）前，把 <code>BDOG1:</code> 字串複製到記事本或 Discord 私訊。檔案壓縮後通常 10–15 KB，丟到雲端就能跨裝置同步。</div>
+</section>
+<section class="part" id="part4">
+<h2>Part IV · 當前版本的缺點與風險</h2>
+<p class="muted">以下均為對照 <code>拜犬江湖.html</code>（v4 存檔 schema）逐行驗證出的真缺陷，避免空泛評價。</p>
+<h3 id="flaw-tech">1. 技術架構的三個硬傷</h3>
+<div class="panel rose">
+<h4>① storyNodes 被 12 層 Object.assign 覆寫，除錯地獄</h4>
+<p>主 <code>storyNodes</code> 定義在 L11xxx，之後至少出現 <strong>12 次</strong> <code>Object.assign(storyNodes, { ... })</code>（L28900+、L31100+、L42000+ 多處）。這種「熱補丁」混在主檔：</p>
+<ul>
+<li>同一 node ID 出現 2–3 次，後補丁覆蓋前者，讀程式碼時必須手動追蹤每個覆寫順序。</li>
+<li>例如第 4 章 <code>hero_true</code> 分支在主定義裡只有殘骸；真正的文本要等到 L42xxx 才被補上。</li>
+<li>重構風險：任何 refactor / 壓縮工具如果改變 key 順序，就會整條劇情錯亂。</li>
+</ul>
+<h4>② 所有資料與 UI 塞在單檔 &gt; 45000 行</h4>
+<p>整個遊戲（含 LZ-String、Tailwind CDN link、<code>SYSTEM_MAP</code>、28 個資料庫、事件、戰鬥 UI）共 <strong>45000+ 行</strong>、2.6 MB。單檔優點是免安裝、好分享，但：</p>
+<ul>
+<li>編輯器卡頓嚴重（VSCode 開啟需 3–5 秒，Cursor 需要 partial load）。</li>
+<li>沒有模組切分，重複 helper 被多次定義（例如 <code>getRandomInt</code> 類、<code>applyBossMutationFlavorOnEnter</code> 的前向宣告分散在 4 個位置）。</li>
+<li>熱重載失效：改一行要整頁刷新，存檔得反覆匯出匯入。</li>
+</ul>
+<h4>③ 存檔 schema 與遷移（已補）</h4>
+<p><code>SAVE_SCHEMA_VERSION = 4</code>；載入較舊版本時會走 <code>SAVE_MIGRATORS</code> 自動升級欄位，成功匯入時會提示已自 vX 升級至 v4。仍建議每章大決策前手動備份字串。</p>
+</div>
+<h3 id="flaw-system">2. 系統設計與數值的五處地雷</h3>
+<div class="panel amber">
+<h4>① 狂暴觸發（已與筆記本對齊）</h4>
+<p>目前版本已將小九／司徒／相關受擊路徑統一為 <code>combatTurns ≥ 4</code>（HUD「🔥 狂暴」）再進入加壓，與筆記本「戰意與狂暴」條目一致；舊攻略若仍寫「不同 Boss 不同門檻」請以本節為準。</p>
+<h4>② 信義區豪宅門檻（已加聲望退路）</h4>
+<p><code>housingTierDB.villa</code> 除 <code>godfather</code> 外，可在通關第 5 或第 10 章後，以<strong>現金 $100,000</strong>或<strong>聲望 ≥ 200 且現金 ≥ $85,000</strong>解鎖。非教父線仍偏肝，但已非單一現金硬門檻。</p>
+<h4>③ 緣之書 15 格 + 導演剪輯 9 格，關鍵 flag 互相衝突</h4>
+<p><code>evaluateDirectorCutEnding()</code>／<code>resolveDirectorCutEnding()</code> 會讀取 <code>jessica_executed</code>、<code>aqiang_saved</code>、<code>chap8_cleared_route</code> 等。程式上<strong>處決 Jessica</strong>與<strong>是否救阿強</strong>為兩段獨立旗標（阿強選項註明與上一題 Jessica 抉擇獨立），<strong>可同時成立</strong>；僅敘事上可能感到張力，並非存檔層級的互斥鎖。</p>
+<h4>④ 世界變異觸發機率堆疊後失效</h4>
+<p><code>mutationPriority</code> 規定同日多個變異會選最高序者。<strong>基礎觸發 60% + 單日 ≥3 變體衰減 50%</strong>，兩條規則寫在不同函式。實測若連續三天高變異，到第三天觸發率只剩 15%，變相懲罰「要看完六種變異」的玩家。</p>
+<h4>⑤ 深淵裂隙商店購買上限</h4>
+<p>每件永久加成商品<strong>單一存檔最多 8 次</strong>；舊版無上限疊加已封堵。</p>
+</div>
+<h3 id="flaw-narrative">3. 敘事與腳色的四個盲點</h3>
+<div class="panel violet">
+<h4>① 雨晴線文本密度高、觸發條件卻「隱式」</h4>
+<p><code>rainQingDiaryFragmentDB</code> 的 5 片日記全部由共感值 15/30/45/60/80 被動解鎖。遊戲內<strong>沒有任何 UI 指引</strong>，只有廢文池偶爾出現「好像有日記本」的提示；第一次玩家有 90% 以上會漏掉 60/80 那兩段，直接跑去打第 12 章。</p>
+<h4>② 司徒摘星支線後期劇情被第 5 章整併吞掉</h4>
+<p>第 3 章重點 Boss 司徒摘星被擊敗後，第 5 章讓 Jessica 成為實際終極反派；司徒摘星的動機（集團鬥爭）到第 11 章才在片尾郵件中交代，<em>中間 6 章完全沒他的戲份</em>，第一輪玩家通常已忘記他是誰。</p>
+<h4>③ 六大門派戲份失衡</h4>
+<p><code>sectFactions</code> 給了六派完整 story / 特殊資源，但劇情上只有<strong>外送員互助聯盟</strong>與<strong>禪修·極致健身集團</strong>有獨立章節支線。唐氏製藥、霓虹影視、里長伯、太極雲端幾乎只剩<em>商店 + 週薪 + 1 段開場白</em>，選它們像是在選背景皮膚。</p>
+<h4>④ 白靈聖母立場搖擺</h4>
+<p>第 7 章是盟友，第 8 章反派，第 10 章又有「她其實被汙染」線，第 12 章可救可殺。<code>storyNodes</code> 被 4 層覆寫導致她的動機前後矛盾；玩家若照順序走完 7→8→10→12 會出現<strong>「妳明明上週才幫過我」</strong>但系統毫無 flag 記憶的現象。</p>
+</div>
+<h3 id="flaw-ux">4. 介面 / UX 四處鈍角</h3>
+<div class="panel slate">
+<ul>
+<li><strong>戰鬥主介面資訊過載</strong>：同時顯示 HP / 戰意 / AP / Break Combo / Enrage Timer / 變異 debuff 條 / 四種態度按鈕 + 派卡區，在 1366×768 螢幕會擠成一坨，手機更直接錯位。</li>
+<li><strong>成就與結局面板缺少過濾</strong>：15 結局、28 成就、6 變異、10 層心門全堆在 Notebook 同一 tab，沒分頁、沒排序，找一個條件要滑 4 螢幕。</li>
+<li><strong>派卡牌庫沒有戰鬥外預覽</strong>：只能在戰鬥中看已觸發效果，入派前無法讀整張派卡描述，玩家常常「加入後才發現不合流派」。</li>
+<li><strong>房租倒數 UI</strong>：首頁 meta 區會顯示「下次繳租 Day X（還剩 Y 日）」（舊版僅週租金字樣、易忽略）。</li>
+</ul>
+</div>
+<h3 id="flaw-balance">5. 平衡的兩個極端</h3>
+<p>臉皮 ≥ 150 以後，<strong>賴帳 / 乞討 / 霸王餐</strong> 可以完全繞開經濟系統：路邊乞討 0 AP、霸王餐 +40 HP、房租賴帳 15% 成功，配合臉皮流派的派卡「死纏爛打」，可以把第 5–9 章跑成零壓力腳本。</p>
+<p>相對地，若錯過 Day 3 入門派、第四章已過仍<strong>未加入門派</strong>（散修），進第 5 章前 Hub 會<strong>一次性</strong>發放補償（武力 +2、洞察 +2，僅觸發一次）。此為「未入門派補償」，與挑戰裡的<strong>孤狼模式</strong>（禁用夥伴助戰／派遣）不同。難度仍高，但至少不是零補丁。</p>
+<h3 id="flaw-summary">6. 整體評分</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>面向</th><th>評分</th><th>短評</th></tr></thead>
+<tbody>
+<tr><td class="name">敘事</td><td class="num">A-</td><td>自嘲台味武俠濃度滿點，雨晴線壓軸精采；司徒摘星與聖母動機稍嫌飄</td></tr>
+<tr><td class="name">系統深度</td><td class="num">A</td><td>四態度 × 派卡 × 變異 × 緣之書交織，單人獨立作品級別</td></tr>
+<tr><td class="name">平衡</td><td class="num">B-</td><td>臉皮流仍強勢；未入門派線已有單次屬性補償；深淵永久商品每項上限 8 次後較可控</td></tr>
+<tr><td class="name">技術</td><td class="num">C+</td><td>45000 行單檔 + 12 層 Object.assign，除錯成本高</td></tr>
+<tr><td class="name">UX</td><td class="num">B-</td><td>密度壓倒新手、缺少分頁與進度指引</td></tr>
+<tr><td class="name">整體</td><td class="num">B+ / 四顆半星（滿五）</td><td>一款值得花 15 小時 + 兩輪 NG+ 深挖的單人作品</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">📝 給作者的三條修改建議</div>
+<ol>
+<li>狂暴觸發已統一為 <code>combatTurns ≥ 4</code>（見上文）。</li>
+<li>雨晴共感跨過日記殘頁門檻時會有 toast 提示（仍建議搭配 F 節分天攻略）。</li>
+<li>信義區豪宅已增加「聲望 ≥ 200 + 現金 ≥ $85,000」替代路徑（仍須 chap5 或 chap10）。</li>
+</ol>
+</div>
+</section>
+<footer>
+<p class="lzh">敗犬江湖 · 攻略與分析 · 本檔離線版<br/><span class="muted">依據 SAVE_SCHEMA_VERSION 4 遊戲檔（2.6 MB，45000+ 行）整理</span></p>
+<p class="len">Baidog Jianghu · Guide &amp; analysis · offline edition<br/><span class="muted">Based on save schema v4 game file (~2.6 MB, 45000+ lines)</span></p>
+</footer>
+</div>
+<div class="guide-stream-en len">
+<section id="en-p1">
+<h2>Part I · Observation of game size</h2>
+<p class="lead">"The Lost Dogs" is a movie based on<strong>Single HTML file</strong>A personal development work that carries all game logic - a file that can be run offline and saved in the cloud. It's more complex than your average Twine/Ren'Py text adventure, in fact close to<mark>"CRPG + sect management + Roguelike tower climbing + urban simulation community"</mark>of hybrid scale.</p>
+<h3 id="en-p1-scale">1. Archives and technical architecture</h3>
+<div class="stat-grid">
+<div class="stat-card"><div class="label">File size</div><div class="value">3.26 MB</div><div class="desc">Single .html file</div></div>
+<div class="stat-card"><div class="label">lines of code</div><div class="value">42,485</div><div class="desc">HTML + CSS + JS total</div></div>
+<div class="stat-card"><div class="label">Archive format</div><div class="value">v4</div><div class="desc"><code>BDOG1:</code>LZ-String compression</div></div>
+<div class="stat-card"><div class="label">external dependencies</div><div class="value">2</div><div class="desc">Tailwind CDN + lz-string</div></div>
+<div class="stat-card"><div class="label">host<code>storyNodes</code></div><div class="value">L16052+</div><div class="desc">plus 8 places<code>Object.assign</code>patch</div></div>
+<div class="stat-card"><div class="label">narrative patch</div><div class="value">L32460+</div><div class="desc">Director’s Cut Long Version Chapters 5–10</div></div>
+</div>
+<div class="panel amber">
+<div class="panel-title">🏗️ Architecture overview</div>
+<ul>
+<li><strong>front end</strong>: Pure HTML + Tailwind (CDN loading, including suppressTailwindCdnWarning) + embedded CSS animation (rain, neon, spotlight, etc. scenes).</li>
+<li><strong>data layer</strong>: about 30 constant dictionaries (<code>notebookData</code>、<code>feedSystemData</code>、<code>itemDB</code>、<code>equipmentDB</code>、<code>AFFIX_DATABASE</code>、<code>memoryFragmentsData</code>、<code>urbanLegendsData</code>、<code>classicsCatalog</code>、<code>homeDecorCatalog</code>、<code>strayAnimalCatalog</code>…）。</li>
+<li><strong>narrative layer</strong>: a master<code>storyNodes</code>Object + Lazy Load Node (L1194–L1750) + Post<code>Object.assign</code>Merge segments.</li>
+<li><strong>engine layer</strong>: main loop<code>masterTick</code>(1 second interval),<code>renderCurrentView</code>routing,<code>updateHUD</code>status bar,<code>finalizeCombatChoice</code>battle settlement,<code>encodeSaveData</code>Archive.</li>
+<li><strong>Developer Index</strong>：<code>SYSTEM_MAP</code>(L984–L1026) is the directory of the file itself, annotated line numbers are slightly out of date but the structure is still accurate.</li>
+</ul>
+</div>
+<h3 id="en-p1-systems">2. 14 major core systems</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>system</th><th>Program entrance</th><th>Function overview</th></tr></thead>
+<tbody>
+<tr><td class="name">Turn-based combat</td><td class="id">finalizeCombatChoice</td><td>Four Attitude Restraint + Collapse of Fighting Will + Violence + Mini Game Threshold Correction</td></tr>
+<tr><td class="name">plot point</td><td class="id">storyNodes</td><td>type: story / combat / choice; main plot + director's cut + middle chapter</td></tr>
+<tr><td class="name">martial arts system</td><td class="id">openSectFactionMechanic</td><td>5 faction doctrine, recruitment, training, shop, helm, faction war, night market</td></tr>
+<tr><td class="name">Partner bond</td><td class="id">companionBondSkillDB</td><td>6 partners × level 4 passive skills</td></tr>
+<tr><td class="name">memory corridor</td><td class="id">enterMemoryCorridorRouteNode</td><td>Roguelike tower climbing, including events/elite/hidden king</td></tr>
+<tr><td class="name">abyss / inner city</td><td class="id">state.abyss</td><td>Crystallization, Blessing, Curse, Infinite Replay</td></tr>
+<tr><td class="name">world mutation</td><td class="id">activeMutationCatalog</td><td>6 types of mutations (revival of spiritual energy...rift in inner city) dynamic rewriting of events</td></tr>
+<tr><td class="name">Scrap Wall Feed</td><td class="id">generateDailyFeed</td><td>10–15 immersive social posts per day + track interactions</td></tr>
+<tr><td class="name">Feeling the rain and the sun</td><td class="id">syncRainQingSoul</td><td>Weather metaphor favorability + diary fragments + long poem unlocked</td></tr>
+<tr><td class="name">director's cut</td><td class="id">evaluateDirectorCutEnding</td><td>Determine the outcome based on the moral axis (Xia/Ambition/Order/Chaos)</td></tr>
+<tr><td class="name">Dispatch / part-time job</td><td class="id">Dispatch arrears mechanism</td><td>Offline settlement, energy reserve, 200% burst</td></tr>
+<tr><td class="name">Archive v4</td><td class="id">encodeSaveData / migrateState</td><td>LZ-String compressed string, can be posted on cloud drive</td></tr>
+<tr><td class="name">Achievement Illustrated</td><td class="id">achievementsDB</td><td>Classified by group (combat / economy / bond / special / reincarnation)</td></tr>
+<tr><td class="name">Third Space / Penthouse Diary</td><td class="id">openThirdSpaceImmersive</td><td>Immerse yourself in working in a daze, stare at the timer, and read ancient books together;<code>thirdSpaceVisitLog</code>Records, status verses, diary readers with flashbacks</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="en-p1-numbers">3. Quantify content scale</h3>
+<div class="stat-grid">
+<div class="stat-card"><div class="label">Main chapter</div><div class="value">12 + 0.5</div><div class="desc">1→1.5→12, including the middle chapter</div></div>
+<div class="stat-card"><div class="label">The ending of Book of Fate</div><div class="value">15</div><div class="desc">+ Chapter 11/12 additional flags</div></div>
+<div class="stat-card"><div class="label">core partners</div><div class="value">6</div><div class="desc">Uncle Tie / Xiaoye / Ajie / Golden Leopard / Yuqing / Xiaoyu</div></div>
+<div class="stat-card"><div class="label">sect doctrine</div><div class="value">5</div><div class="desc">Delivery/Zenjian/Tai Chi/Tangmen/Neon</div></div>
+<div class="stat-card"><div class="label">housing class</div><div class="value">4</div><div class="desc">Basement → Penthouse → Suite → Luxury House</div></div>
+<div class="stat-card"><div class="label">world mutation</div><div class="value">6</div><div class="desc">Aura / legend / memory / cause and effect / market / inner city</div></div>
+<div class="stat-card"><div class="label">rarity level</div><div class="value">6</div><div class="desc">Common → Good → Rare → Epic → Legend → Myth</div></div>
+<div class="stat-card"><div class="label">Attitude game</div><div class="value">4</div><div class="desc">Rhythm / Memory / Argument / Patience</div></div>
+</div>
+<p class="muted">Pure narrative characters (including options and narration) are conservatively estimated to be approximately<strong>100,000 to 300,000 words level</strong>——Far beyond ordinary Jam works; if achievement descriptions, notes, Book of Fate entries and random community posts are added, the actual amount of Chinese that players can read is even greater. The content density achieved by this game at the "single level" scale is already at the upper level of individual games.</p>
+</section>
+<section id="en-p2">
+<h2>Part II·Plot depth and content analysis</h2>
+<h3 id="en-p2-theme">1. Theme and Aesthetics: The Poetics of "Destroyed Dog" in Urban Martial Arts</h3>
+<p>The word "lost dog" comes from Japanese<em>"Negative dog"</em>(maketainu), originally refers to women over thirty years old, unmarried and without children. "Bad Dog Jianghu" directly writes this label as the deputy protagonist of the game<strong>Arlene (Lin Arlene, 25 years old)</strong>The situation: building an attic, rent arrears, living on instant noodles, dreams have long been flattened by reality - but the game starts with<mark>The shell of martial arts arena</mark>To cope with this urban frustration, she was able to go back and forth between "paying rent" and "entering the martial arts world" at the same time.</p>
+<div class="panel rose">
+<div class="panel-title">🏮 Four thematic pillars</div>
+<ul>
+<li><strong>self-deprecating aesthetics</strong>: Every useless article, every surrender victory, the "debt" with a face of ≥150, the ending of a face of 300 - the game makes "losing without shame" a mechanism.</li>
+<li><strong>Taiwan's local arena</strong>: Star Cafe, Rooftop Building, Night Market, Convenience Store Night Shift, Dispatch, Li Changbo, Abandoned Martial Arts Hall - Putting martial arts into real scenes without deliberately turning them into spectacles.</li>
+<li><strong>mother daughter bond</strong>:Mother<strong>Lin Shuyi</strong>She is the anchor of everything - she teaches you horse steps, she left a recording of "Don't live like me", and her last wish runs through Rain and Clear Line to Chapter 10 of the Director's Cut.</li>
+<li><strong>single female survival</strong>: Renting pressure, physical fatigue, community anxiety, passive disappearance, and being treated as idle assets—these realistic pain points are incorporated into figures such as AP, credit, rent arrears, and the weight of the scrap wall.</li>
+</ul>
+</div>
+<h3 id="en-p2-cast">2. Character portraits</h3>
+<h4>🥋 Protagonist and mother</h4>
+<div class="panel amber">
+<strong style="color:var(--amber);">Arlene Lin Arlene</strong>
+<p>25 years old, a former martial arts girl, now renting in Tingjia. Self-introduction is "My account is lower than my body fat percentage." The player is her, and all scraps, diaries, and options are her voice.</p>
+<strong style="color:var(--amber);">Lin Shuyi (mother)</strong>
+<p>She is no longer present during the narration, but is everywhere: the horse step teaching in the prologue, the wooden mannequin, the missed call from the mother in Chapter 5, the final "Shu Yi's last wish" in Rain and Clear Line (Tier 4 + upper limit of hope), and the ending recording in Chapter 10 - she is the emotional anchor of the game and the biggest mystery.</p>
+</div>
+<h4>🤝 Six core partners</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Role</th><th>position</th><th>key image</th><th>Bond level</th></tr></thead>
+<tbody>
+<tr><td class="name">Uncle Tie</td><td>The Silent Father and Brother of the Martial Arts School</td><td>Peel an apple and inherit it with one knife</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">Xiaoye</td><td>Night shift hidden weapon street sense</td><td>Instant coffee, flying needle</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">Ajie</td><td>Passionate Apprentice Junior</td><td>Martial Arts School Facade and Station</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">Leopard</td><td>Alley street cat</td><td>Live hard and bring supplies</td><td>30 / 50 / 80</td></tr>
+<tr><td class="name">Rain or shine</td><td>Lost Sisters / Empathy Theme</td><td>Umbrella, sun rain, diary</td><td>20 → 100 (fourth level)</td></tr>
+<tr><td class="name">Su Xiaoyu</td><td>Scrap wall expansion author</td><td>Kite, seaside, silence</td><td>(social bond)</td></tr>
+</tbody>
+</table>
+</div>
+<h4>👥Villains and Support NPCs</h4>
+<div class="panel violet">
+<ul style="margin:0;">
+<li><strong style="color:var(--rose);">Situ Zhaixing</strong>(Money Gang/Capital Line Boss)——Calling Arlene "Shuyi's daughter". Three-turn combat mechanism: legal advisor, fake accounting report, berserk. Decide the ending of Chapter 3 (<code>hero</code>HP wins /<code>loser</code>Willingness to fight).</li>
+<li><strong style="color:var(--rose);">Lin Jiayi (Jessica)</strong>——Mirror Sisters, Chapter 9 Parking Lot Fight, Forgiveness/The Hand Blade Determines the Direction of the Director’s Cut (<code>fallen_hero</code>Derived from this).</li>
+<li><strong style="color:var(--rose);">Our Lady of Bai Ling (Lin Shuhua)</strong>——Cult leader, expanded main villain in Chapter 8, impact after the revelation of the Virgin’s truth<code>holy_mother_visit_unlocked</code>。</li>
+<li><strong>Ah Qiang (Chen Zhiqiang)</strong>——Chapter 9 Decision of whether to save or not<code>aqiang_saved</code>, affecting the ending partner scene.</li>
+<li><strong>Long Bo</strong>——Park chess friend and former money help actuary; unlock the stock market and hide the ending<code>longbo_secret</code>。</li>
+<li><strong>Aunt Lin (landlord)</strong>——Always pushing for rent, but the first named opponent in the prologue.</li>
+<li><strong>Li Changbo</strong>——Reputation ≥100 can be tracked, rice noodle soup diplomacy expert.</li>
+</ul>
+</div>
+<h3 id="en-p2-issues">3. Social Issues: Grayscale of Choice</h3>
+<p>There is no clear "right answer" in this game, and each key fork throws issues to the players:</p>
+<div class="panel cyan">
+<ul>
+<li><strong>Capital vs Chivalry</strong>: In Chapter 3, against Situ, does HP win (the kingly way) or fighting spirit wins (admit defeat and get capital)? "Capital Rising Star" is not a shame, it is a way of life.</li>
+<li><strong>Revealing the truth vs keeping the moment</strong>: Chapter 11 Bloodline Reverberation "Sealing" protects the living, "Unveiling" makes the truth bleed but has reputation +14.</li>
+<li><strong>Cut off vs carry</strong>: Chapter 12: Broken Chain in the Land of Abandoned Gods (Inner Demon -10) vs. Absorption (Inner Demon +12, Cash +2500) - The choice between punishment and responsibility.</li>
+<li><strong>Forgiveness vs Handle</strong>: Chapter 9 assumes<code>jessica_forgiven</code>or<code>jessica_executed</code>. "Account Management" +$500 per week is required when settling Chapter 10<strong>Inner Demon ≤ 15</strong>(and forgiven) and other conditions; "Mother's Embrace" HP +20 required<strong>forgiven</strong>and<strong>Hope ≥ 80</strong>. Sharp-handed and chivalrous ≥70 →<code>fallen_hero</code>。</li>
+<li><strong>Join the system vs remain a loser</strong>: Joining a sect, becoming a leader, and engaging in direct sales are all "adapting to society"; the true loser does not change society, but accepts himself.</li>
+</ul>
+</div>
+<h3 id="en-p2-narrative">4. Narrative techniques</h3>
+<ul>
+<li><strong>weather metaphor</strong>: The whole line of Yuqing is stacked with emotions of rain, umbrella, sun rain, and black umbrella in front of the tomb. Instead of writing the favorability directly, use "sympathy value".</li>
+<li><strong>Moral axis replaces favorability</strong>：<code>morality</code>The four axes (justice/ambition/order/chaos) affect the ending of the director's cut and are not judged by a single "good or bad score".</li>
+<li><strong>Memory Fragments Illustrated Book</strong>: Mother's diary, Uncle Tie/Money Gang allusions are used to compose history with collectible fragments.</li>
+<li><strong>Scrap wall simulation</strong>: 10-15 dynamic posts every day alluding to current events (mutation, rent arrears, sects), keeping the world active at a low cost.</li>
+<li><strong>"Dejarvi" system</strong>: NG+ A short sentence with a sense of déjà vu that cools down each location (<code>dejaVuEventPool</code>／<code>triggerDejaVu</code>). The old version starts with<code>pendingDejaVu</code>The writing method of push is for conceptual reference only.</li>
+<li><strong>noun localization</strong>: Star Coffee (a parody of Starbucks), neon nightclub (Purple Drunken Beauty), mansions in Xinyi District, abandoned martial arts gyms - the landscapes are the characters.</li>
+</ul>
+</section>
+<section class="part" id="en-part3">
+<h1>Part III·Player's Guide (Full Spoilers)</h1>
+<p class="lead">This guide is based on the rhythm of "survive first → stand up → talk about turning over later". Each section is attached<strong>Actual numbers from game DB</strong>(attribute threshold, AP, amount, chapter flag) and use searchable<code>程式名稱</code>Mark the source so that players can directly compare it with the in-game system.</p>
+<h2 id="en-g-a">A · 7-day SOP for newbies (Day 1–7)</h2>
+<p>The rhythm of the first chapter is<strong>Stabilize the rent and basic properties within seven days, and then prepare to fight Xiaojiu</strong>. Goal: On Day 7, you still have ≥ $3,000 on you, have neighbor trust ≥ 20, have 2 bottles of basic drinks, and get started with the AP mechanism.</p>
+<div class="panel amber">
+<div class="panel-title">📅Daily Action List</div>
+<ol>
+<li><strong>Day 1</strong>: After reading the opening dialogue → Go to Hub and select first<em>work to earn a living</em>(Consume AP, get basic cash). Goal $600+.<strong>Never</strong>On Day 1, go for Xiaojiu.</li>
+<li><strong>Day 2–3</strong>: Work during the day and run 1–2 random events at night (<code>encounter_*</code>). bump into<em>Gangster / Stray Dog / Drunk</em>Prioritize using [Hardcore] or [Tricky] to practice your skills; [Confess to be cowardly] can change your face.</li>
+<li><strong>Day 4</strong>: After the preparation value ≥ 20,<strong>Uncle Tie</strong>will be released in the park<em>Reminiscence and teaching</em>, if you follow the example, you can get it for free: fighting spirit bar, collapse pursuit rhythm.</li>
+<li><strong>Day 5</strong>: Unlocked by working in a supermarket<strong>Xiaoye</strong>(Night shift allowance +20%); HP &lt; 60 Please go home and sleep instead of trying to survive.</li>
+<li><strong>Day 6</strong>: Paid rent $2,000 (<code>chap1_rent_paid</code>). Use it if you don’t have money<em>send</em>, or face ≥ 100 go<em>Begging on the roadside</em>（0 AP）。</li>
+<li><strong>Day 7</strong>: Preparation value ≥ 28, HP full, AP full → go to martial arts hall to trigger<strong>Xiaojiu</strong>. Xiaojiu HP 135, fighting spirit 88<span class="muted">(plot basis)</span>；<strong><code>combatTurns ≥ 4</code></strong>("🔥 Fury" appears on HUD) and then enters violent pressure, consistent with Notebook/Situ Zhan.</li>
+</ol>
+</div>
+<div class="callout tip"><div class="callout-title">🪙 Day 1–7 Fatal Error Ranking</div>
+<ol>
+<li>On Day 1, he chose random battles to consume HP, and on Day 3, he lay flat → the rent was not paid.</li>
+<li>I took all the AP to practice → Forgot to pay the rent → Uncle Tie refused to let go to Chapter 2.</li>
+<li>Face is regarded as a useless attribute → There is no renegade available at the critical moment, Xiao Jiu is violently hammered directly.</li>
+<li>He failed to pay the rent and refused Xiao Ye’s night shift → There is a 40% chance of being intercepted and dispatched by the debt collection group in the later stage.</li>
+</ol>
+</div>
+</section>
+<section>
+<h2 id="en-g-b">B · Complete analysis of combat system</h2>
+<div class="callout tip"><div class="callout-title">📐 How to see the enemy’s numerical value</div>There are many HP/fighting intentions in the strategy for the plot<strong>base</strong>;When entering the battle, the program will follow the number of days, four-dimensional average, and difficulty rules (<code>scaleEnemyByPlayerProgress</code>／<code>prepareEnemyForCombat</code>)Again<strong>dynamic bonus</strong>, the total coefficient of Boss is about ≤1.5×, and it is normal for the actual combat panel to be higher than the base. The boss/image HP and fighting spirit marked in the following clearance routes and memory corridor entries are all the same as this "basic" concept unless otherwise stated.</div>
+<p>Fight with "<strong>four attitudes</strong>” as the backbone, and later added to the card system (<code>cardSystem.battle</code>）。<strong>High attributes → the attitude has a high success rate</strong>;Insufficient attributes and reliable<em>Attitude game</em>Correction threshold.</p>
+<h3>1. Four Attitude Restraint Cycles</h3>
+<div class="counter-ring">
+<div class="counter-cell hard"><div class="stance">Hardcore</div><div class="stat">Main attribute: force</div><div class="beats">gram trick</div></div>
+<div class="counter-cell smart"><div class="stance">Make a fool of yourself</div><div class="stat">Primary: Insight</div><div class="beats">Grammar</div></div>
+<div class="counter-cell speech"><div class="stance">Speech skills</div><div class="stat">Main attribute: speech skills</div><div class="beats">Give up</div></div>
+<div class="counter-cell surrender"><div class="stance">give in</div><div class="stat">Primary genus: cheeky</div><div class="beats">gram hardcore</div></div>
+</div>
+<p class="muted">Restraint attitude ×1.25 income, being restrained ×0.8. The usual attitudes of most mainline bosses will be<code>enemy.style</code>Field disclosure (<em>hard / smart / speech / surrender</em>), which can be viewed in the menu.</p>
+<h3>2. Fighting spirit bar, collapse combo and rage</h3>
+<div class="panel cyan">
+<ul>
+<li><strong>Willpower</strong>: The boss has a purple bar above its head. Use [Talk] or [Coward] to deduct fighting spirit. Return to zero → Enter<strong>collapse</strong>(2 rounds).</li>
+<li><strong>crash combo</strong>: During the collapse, [Hardcore]/[Tricky] will cause damage and critical hits; followed by [Talk]/[Coward] can extend the collapse for another 1 round.</li>
+<li><strong>rage</strong>: Most epic bosses are in<code>combatTurns ≥ 4</code>(Approximately the 5th combat round), the player enters berserk, and the intention and damage path are increased; when the screen displays "🔥Berserk", please prioritize reducing fighting intent or fighting quickly. Consistent with the in-game notebook entry.</li>
+<li><strong>card energy</strong>: 3 energy per round in the later period (can be expanded to 4 by sects and talents); 1–5 fees per card. The sect card will trigger<code>sectCombatProfileMap</code>passive.</li>
+</ul>
+</div>
+<h3>3. Attitude game (optional)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>manner</th><th>How to play</th><th>successful effect</th><th>cost of failure</th></tr></thead>
+<tbody>
+<tr><td class="name">Hardcore</td><td>Spacebar tempo</td><td>This judgment has a −30% threshold, and a great success will result in +1 damage.</td><td>Counter damage, −1 energy next round</td></tr>
+<tr><td class="name">Make a fool of yourself</td><td>Memory pairing (flop)</td><td>−20% threshold, trigger<em>Hidden weapon cover</em></td><td>Being seen through, gaining insight temporarily −3</td></tr>
+<tr><td class="name">Speech skills</td><td>Argument options (3 paragraphs of QTE text)</td><td>−25% threshold, extra fighting spirit −4</td><td>Being retorted, hoping −2</td></tr>
+<tr><td class="name">give in</td><td>Let go at the right time (bar aligns with safety grid)</td><td>−30% threshold, opponent attack −3</td><td>Shame +0 but Reputation −4</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">On the settings page, you can choose "Always direct judgment/Always mini-game/Ask every time".<strong>Mobile players are advised to preset direct judgment.</strong>, only switch to mini-games during boss battles; if you lose three times in a row, the difficulty will automatically drop.</p>
+<h3>4. Quick shot priority list</h3>
+<div class="panel emerald">
+<ol>
+<li><strong>The opponent is a pure martial arts type (Tekken/Gangster)</strong>: [Tricky] × 2 → [Talk] Break the fighting spirit → [Hardcore] repair damage when collapsed.</li>
+<li><strong>The other party is from the speech department (Jessica/Madonna)</strong>: [Give it up] × 2 to make the opponent's words useless → [Tricky] Comeback.</li>
+<li><strong>The other party is a cheeky monster (scammer/robber)</strong>: [Hardcore] Crush them directly → Pay attention to their commonly used "Market Madness" variant to increase damage.</li>
+<li><strong>Boss goes berserk</strong>: First [give in] take damage reduction in 1 round and no longer take the first violent punch; the talent "Fighting Line Tier 5 · Fury Immunity" will pay back immediately.</li>
+</ol>
+</div>
+<h3>5. Passive in sect combat (automatically effective after entering the sect)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>sect</th><th>Nick name</th><th>Combat Passive</th></tr></thead>
+<tbody>
+<tr><td class="name">Delivery Workers Mutual Aid Alliance</td><td>beggar gang</td><td>For every 3 martial arts cards played, 1 is drawn</td></tr>
+<tr><td class="name">Zen·Extreme Fitness Group</td><td>Shaolin</td><td>2 HP per 10 shields gained</td></tr>
+<tr><td class="name">Tai Chi Cloud Computing Center</td><td>Wudang</td><td>After successful dodge, the cost of the next card is −1</td></tr>
+<tr><td class="name">Tang's Biotechnology Pharmaceuticals</td><td>Tangmen</td><td>Each layer of enemy poisoning increases damage by 1</td></tr>
+<tr><td class="name">Neon Film and Television Agency</td><td>Mingjiao</td><td>For every 1 reputation gained this round, attack card damage +1</td></tr>
+<tr><td class="name">Li Changbo Autonomous Association</td><td>government</td><td>If there is a shield at the beginning of the round, the enemy attacks −2</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section>
+<h2 id="en-g-c">C · Four major schools plus point routes</h2>
+<p>The four attributes of the game are<strong>Force / Insight / Words / Shame</strong>;Each genre is in<strong>Day 30 / Chap5</strong>The following thresholds must be met before you can obtain the corresponding factions and chapter branches.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>school</th><th>Core attributes (Day30 goals)</th><th>Recommended sect</th><th>Unlock ending</th><th>weakness</th></tr></thead>
+<tbody>
+<tr><td class="name">Use force to resist the flow</td><td>Strength 110+, Shame 70+</td><td>Meditation and Fitness (Shaolin)</td><td>Royal Hero / Martial Arts Master / Fallen Hero</td><td>Pulling the hips against Jessica and the Holy Mother’s Fighting Boss</td></tr>
+<tr><td class="name">Insight into computing flow</td><td>Insight 110+, Speaking Skill 80+</td><td>Tai Chi Cloud (Wudang)/Tang's Biotechnology (Tangmen)</td><td>Shadow Godfather / Fortune Teller Hermit / Calculate all the secrets</td><td>Little cash in the early stage and low income from working</td></tr>
+<tr><td class="name">eloquent talk</td><td>Speaking skills 100+, reputation 120+</td><td>Neon Film and Television (Mingjiao)/Li Changbo Autonomous Association (Government)</td><td>Li Changbo / Direct Selling King / Martial Arts Leader</td><td>Pure martial arts boss can't bear it when it's violent</td></tr>
+<tr><td class="name">shameless loser</td><td>Shame 150+, Insight 70+</td><td>Delivery Workers Alliance (Beggars Gang)</td><td>True·Destroyed Dog/White-haired Protector/Deceitful King</td><td>The ending of the right path is mostly locked</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout secret"><div class="callout-title">🕶️ Exclusive to Shameless Loser Dog Stream</div>
+<ul>
+<li>Shame ≥ 100: Hub unlocks [Roadside Begging], 0 AP can be exchanged for cash.</li>
+<li>Shame ≥ 120: [Eating Overlord Meal] Restores 40 HP each time.</li>
+<li>Shame ≥ 150: There is a 15% chance of automatic default for each rent settlement.</li>
+<li>Shame ≥ 300: Automatically unlock the ending [Scalp King] (<code>thick300</code>）。</li>
+</ul></div>
+<h3>Numerology talent tree suggested order (<code>fateTalentTree</code>）</h3>
+<div class="panel violet">
+<ol>
+<li><strong>Wealth Line Tier 1 "Breath of Diligence and Thrift"</strong>: Part-time job AP −1, a must for all schools.</li>
+<li><strong>Battle Line Tier 1 "Stay steady and don't panic"</strong>: Resist word magic/violence, return to the boss level.</li>
+<li><strong>Network Tier 3 "Dispatch SOP"</strong>: Day 15+ Click immediately after unlocking dispatch.</li>
+<li><strong>Battle Line Tier 5 "Rage Immunity"</strong>: A must-order before facing Situ Zhaixing, Jessica, and Holy Mother Bai Ling.</li>
+<li><strong>Second floor<code>cosmos</code>: Star orbit energy storage ×3</strong>: Day 40+: Full before entering the Memory Corridor, +3 AP per day.</li>
+</ol>
+</div>
+<h2 id="en-g-d">D·Chapter 12 complete clearance route</h2>
+<p class="lead">Each chapter lists:<strong>Start condition</strong>、<strong>key battle</strong>、<strong>Select influence</strong>and<strong>flag</strong>（<code>chapX_cleared</code>Affects housing, NPC dialogue stages, Director's Cut endings). The whole book assumes that players are in standard mode and run conservatively.</p>
+</section>
+<section>
+<div class="chapter" id="en-ch1">
+<div class="chapter-head"><div class="title">Chapter 1 · Prologue to the Seven Days</div><div class="meta">Day 1–7｜chap1_cleared</div></div>
+<div class="chapter-body">
+<p><strong>start up</strong>:Start at the beginning.<strong>Target</strong>: Day 7 After playing Xiaojiu, paying the rent, and moving to the top floor to build a new building.</p>
+<h5>key node</h5>
+<ul>
+<li><strong>Landlord Aunt Lin urges rent</strong>(Day 3, Day 6): Pay $2,000 →<code>ch1_rent_paid</code>; Repudiation requires Shame ≥ 80 + Speech Skill ≥ 40, and reputation for failure is −12.</li>
+<li><strong>Uncle Tie’s memory war teaching</strong>(Day 4+, preparation value ≥ 20): If you are stopped by Uncle Tie in the park, just follow him.</li>
+<li><strong>Boss · Xiaojiu</strong>(Day 7+, preparation value ≥ 28): HP 135/Fighting Will 88<span class="muted">(base)</span>. Playing style: [Tricky] → [Talk] to break the fighting spirit → When collapsed, [Hardcore] 20 wounds to finish.</li>
+</ul>
+<h5>Settlement</h5>
+<p>Clearance →<code>chap1_cleared = true</code>; Automatically move the basement → add a roof to the roof (AP 4 → 5, HP recovery 0.2 → 0.5).</p>
+</div>
+</div>
+<div class="chapter" id="en-ch1_5">
+<div class="chapter-head"><div class="title">Chapter 1.5 · Hidden · Mother’s Tapes</div><div class="meta">Conditions: chap1_cleared and explore the rooftop utility room before Day 8</div></div>
+<div class="chapter-body">
+<p>If you take the initiative to search for the cardboard box in the corner of the top floor the day after beating Xiaojiu, you can find it.<strong>Mother Shuyi's audio tape</strong>, start the overture narrative pool.</p>
+<ul>
+<li><strong>Found flag</strong>：<code>flags.mother_tape_found</code>, there will be more conversations in Chapter 5 "Mother's Missed Call" and Chapter 10 "Mother's Recording".</li>
+<li><strong>After listening</strong>: Hope +6, inner demon −4; if the face value is ≥ 80 at this time, the special line "Don't live like me" will be triggered, unlocking the chance of the remaining pages of the Yuqingxian diary [Unsent Letter] appearing early.</li>
+<li><strong>Not triggered</strong>: Does not affect the main plot, but the director's cut of the mother-daughter scene in Chapter 10 will only have one sentence left.</li>
+</ul>
+<div class="callout secret"><div class="callout-title">🎁 Rare copy</div>This chapter has no battles and no enemies. It is a purely narrative chapter, but it will affect the subsequent starting points for Rain and Sunlight Empathy and the permanent +20 HP acquisition conditions for "Mother's Embrace".</div>
+</div>
+</div>
+<div class="chapter" id="en-ch2">
+<div class="chapter-head"><div class="title">Chapter 2 · Neon Nightclub</div><div class="meta">Day 12+, neighborhood trust ≥ 35｜chap2_cleared</div></div>
+<div class="chapter-body">
+<p><strong>start up</strong>: Day 12+, Neighbor Trust ≥ 35 + Pay the rent in Chapter 1.<strong>Target</strong>: Investigate the neon nightclub for Uncle Tie and confront the bald brother.</p>
+<h5>key node</h5>
+<ul>
+<li><strong>Purple drunken golden fans</strong>(Day 14+, preparation value ≥ 25, checkpoint completed): To sneak into the VIP area of ​​the nightclub, you need [VIP Voucher]. How to get it: Exchange information with Xiao Ye (triggered by night shift allowance), or sneak in by eating the Overlord Meal with ≥100 Shame.</li>
+<li><strong>Boss · Bald Brother</strong>：HP ≈ 180<span class="muted">(base)</span>. I am accustomed to being a hard-core player, first [playing tricks] to accumulate insights in two rounds, and then using words to break the fighting spirit.</li>
+<li><strong>End of chapter decision</strong>：
+<ul>
+<li>Hand over the bald guy to the police →<code>order +8</code></li>
+<li>Stealing black market intelligence →<code>ambition +8</code>、+$1,500</li>
+<li>Let him go in exchange for future information →<code>chaos +5</code>, unlock the hidden branch in Chapter 8</li>
+</ul></li>
+</ul>
+<h5>Settlement</h5>
+<p><code>chap2_cleared</code>;Unlocked if reputation ≥ 150<strong>Urban Village Suite</strong>(rent $25,000 per month, AP 7).</p>
+</div>
+</div>
+</section>
+<section>
+<div class="chapter" id="en-ch3">
+<div class="chapter-head"><div class="title">Chapter 3 · Situ Zhaixing</div><div class="meta">Day 18+｜chap3_cleared｜Determined the bifurcation of "Kingdom/Capital"</div></div>
+<div class="chapter-body">
+<p><strong>start up</strong>: Chapter 2 completed + Day 18.<strong>Boss: Situ Zhaixing</strong>(The actual person in power of the Money Gang), three stages of battle.</p>
+<h5>Three stages of battle</h5>
+<ol>
+<li><strong>Paragraph 1: Legal Counsel</strong>(Talk Phase): He will get the "Lawyer's Letter" DeBuff, which will make your speech skills -30%; Solution: [Concede] Let him mistakenly think that you do not understand the law, and he will reveal the truth himself → Insight trigger<em>Debunking fake accounting reports</em>。</li>
+<li><strong>Paragraph 2: Fake accounting statements</strong>：<code>combatTurns ≥ 4</code>(Starting from about the 5th round) Entering berserk, the damage path is pressurized (for example: when using [Defense] on Situ, the basic damage is 40 → about 60, about ×1.5; when some options in the third stage fail, 100 → 150, also about 1.5 times).<strong>key</strong>: Decrease fighting spirit as quickly as possible in the first 3 rounds (high speech skills are more stable), or bring the talent [Rage Immunity].</li>
+<li><strong>The third paragraph: ontology suppression</strong>:HP about 280<span class="muted">(base)</span>. Ability to win with will (word skills 100+, two successful judgments) or HP (force 100+).</li>
+</ol>
+<h5>bifurcated ending</h5>
+<div class="panel amber">
+<ul>
+<li><strong>HP wins (hardcore finish)</strong>→ <code>hero</code>"Hero of the King": Defeat Situ Zhaixing and obtain ancient books and reputation +40.</li>
+<li><strong>Willing to fight (convincing with words)</strong>→ <code>loser</code>"Capital Rising Star": Situ took the initiative to kneel down and hand over his seat in the Money Gang, and you landed on the board of directors.</li>
+<li><strong>Face ≥ 200 + give in and be convinced</strong>→ Triggers the special line "You are so shameless...I have never seen you in my life.", but it still ends with<code>loser</code>。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="chapter" id="en-ch4">
+<div class="chapter-head"><div class="title">Chapter 4 · The world of Sancha</div><div class="meta">Day 22+｜chap4_cleared｜Key bifurcation points in director’s cut</div></div>
+<div class="chapter-body">
+<p><strong>start up</strong>:chap3_cleared. This chapter directly determines the general direction of the director’s cut ending (<code>hero_true / godfather / wanderer</code>）。</p>
+<h5>Sancha Road</h5>
+<div class="panel cyan">
+<ul>
+<li><strong>A · Suppress the three parties (hero_true martial arts leader)</strong>: Select "Tear down the territory of power". need<strong>Reputation ≥ 180 + Force ≥ 100</strong>. Later in Chapters 5-10, we will bear the pressure of the "Guardians of Order", but the ending is achieved.<code>hero_true</code>。</li>
+<li><strong>B · Take over the black market (godfather shadow godfather)</strong>: Select "Leave the money gang's remaining underground network next". need<strong>Ambition ≥ 60</strong>, usually the loser is selected in Chapter 3 + the intelligence heap is stolen in Chapter 2. ending<code>godfather</code>, and directly unlock luxury homes in Xinyi District (separate from the cash threshold path).</li>
+<li><strong>C · Give up power (wanderer, hidden master)</strong>: Select "Give the key to Uncle Li". need<strong>Chivalry (justice) ≥ 70, ambition ≤ 30</strong>. locking<code>wanderer</code>, most of the subsequent chapters take the leopard companions as the narrative focus.</li>
+</ul>
+</div>
+<div class="callout tip"><div class="callout-title">🧭How to choose?</div>If you plan to run 15 and get all the endings this round, it is recommended to choose C (wanderer) in the first round.<code>wanderer</code>The ending is capped by "True Lost Dog", and NG+ runs A and B again.<strong>Complete a big fork in one round</strong>。</div>
+</div>
+</div>
+</section>
+<section>
+<div class="chapter" id="en-ch5">
+<div class="chapter-head"><div class="title">Chapter 5 · Missed Call from Mother (Director's Cut)</div><div class="meta">Day 26+｜chap5_cleared｜Unlock the park safe</div></div>
+<div class="chapter-body">
+<p>Starting from Chapter 5, the director's cut is extended to the long version. This chapter reveals the old working scene of mother Shuyi (technology park).</p>
+<ul>
+<li><strong>Park safe</strong>: Insight ≥ 90 crack required, contains Jessica’s old photos and<strong>Mother's work notes</strong>. After getting it<code>chap5SafeDone = true</code>, Chapter 6 The Heart Door Unlocked.</li>
+<li><strong>Missed call from mother</strong>:Hub The phone will ring silently at night, continuing until Chapter 6. Hope +1, inner demon +1 (memory fragment) for each answer.</li>
+<li>Unlock third home<strong>Urban Village Suite</strong>(If it is not achieved, it will be unlocked the next time your reputation is ≥ 150).</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="en-ch6">
+<div class="chapter-head"><div class="title">Chapter 6 · Defense of the Martial Arts Hall</div><div class="meta">Day 30+｜chap6_cleared｜The sixth floor of the Memory Corridor is unlocked</div></div>
+<div class="chapter-body">
+<p>The vanguard of the Baimao Group (see Chapter 8, the Notre Dame Line) came to destroy the martial arts gym. This is<strong>Partner collective battle</strong>。</p>
+<ul>
+<li>Recruit before the war: Uncle Tie + Xiaoye + Ajie → Automatically obtain the "Watch and Help" bond phrase.</li>
+<li>Battle format: 3 rounds of waves with 5 enemies, 2 on each round. It is recommended to use the sect deck (the official deck is the most stable).</li>
+<li>After the war:<code>chap6_cleared = true</code>, the heart gate on the 6th floor of the Memory Corridor<strong>Chapter 6 Heart Gate</strong>Unlocked (needs to accumulate 2 fragments).</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="en-ch7">
+<div class="chapter-head"><div class="title">Chapter 7 · Underground Arena</div><div class="meta">Day 35+｜chap7_cleared</div></div>
+<div class="chapter-body">
+<p>Ajie will take you into the underground arena in the north of the city. This chapter is mainly about<strong>Economic and partnership ties</strong>chapter.</p>
+<ul>
+<li>3 arena games (non-Boss), each game can bet, and the winner can accumulate stakes (Insight + Words ≥ 150 triggers insider prediction).</li>
+<li>This chapter will be unlocked when Ajie's bond is ≥ 50<em>Cheering and shouting</em>(Opponent's momentum −15%).</li>
+<li>Later in this chapter, you can choose to acquire the entire arena →<code>ambition +10</code>, and triggers the subsequent "White-Haired Virgin's Active Contact" in Chapter 8.</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="en-ch8">
+<div class="chapter-head"><div class="title">Chapter 8 · Our Lady of White Spirit</div><div class="meta">Day 40+｜chap8_cleared｜Cult / Lost Dog Redemption Theme</div></div>
+<div class="chapter-body">
+<p>Main villain:<strong>Our Lady of Bai Ling (real name Lin Shuhua)</strong>. A distant relative of his mother, Shuyi, presides over a cult that commercializes "self-redemption of defeated dogs."</p>
+<ul>
+<li><strong>Boss three stages</strong>: Holy Mother HP 260/Fighting Will 120<span class="muted">(base)</span>. In the first part, use crazy powder body protection to rebound words; in the second part, release<em>Protector in white</em>Assist in the battle; the third stage is body suppression.</li>
+<li><strong>Key options</strong>: Optional after defeating Our Lady:<ol>
+<li><strong>Publicly expose the sect</strong>→ Reputation +40,<code>order +10</code>, but the mother Shuyi’s old name "Lin Shuhua" will be implicated.</li>
+<li><strong>Private Exile of the Virgin</strong> → <code>chaos +10</code>, Our Lady remits $800 (hush fee) every week to unlock the ending conditions of the White-haired Protector.</li>
+<li><strong>Collect the white-robed Dharma protector for your own use</strong>→ Triggered only when face value ≥ 150, enter directly<code>white_guard</code>path.</li>
+</ol></li>
+<li><code>chap8_cleared</code>The 8th floor of the Back Memory Corridor is unlocked, and you can challenge the hidden king "The Afterimage of the Virgin".</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<div class="chapter" id="en-ch9">
+<div class="chapter-head"><div class="title">Chapter 9 · Mirror Image of the Parking Lot</div><div class="meta">Day 45+｜chap9_cleared｜Jessica and Aqiang appear at the same time</div></div>
+<div class="chapter-body">
+<p><strong>Lin Jiayi (Jessica)</strong>They are the "mirror sisters" who were separated in a fire when Arlene was seven years old. In this chapter, she takes Aqiang to the underground parking lot and threatens him.</p>
+<h5>three stages</h5>
+<ol>
+<li><strong>Aqiang's choice</strong>: After the parking lot paragraph, select<em>Save him and take him back to the martial arts school</em> → <code>aqiang_saved = true</code>（<strong>No attribute threshold</strong>;Fight/forgive or kill Jessica<strong>independent of each other</strong>). After being rescued, it can be judged based on Aqiang's bond participation in "Light of Bond".</li>
+<li><strong>Jessica Boss Battle</strong>: Plot node<strong>base</strong>HP 160/Fighting Will 135; will go through the program again after entering the battle<strong>dynamic bonus</strong>(Number of days, four dimensions, difficulty, etc.; the upper limit of Boss synthesis coefficient is approximately ×1.5). She mainly focuses on speaking skills + fighting spirit, and is used to<em>speech</em>. It is recommended to use the cycle of [Admit Coward] + [Take Advantage], and don't argue with her.<span class="muted">The option text will indicate the relationship between "personal revenge" and the execution line/director's ending/inner demon; and whether A Qiang is rescued are two independent choices.</span></li>
+<li><strong>Final decision (the biggest disagreement in the whole chapter)</strong>：
+<div class="panel crimson">
+<ul>
+<li><strong>Forgive Jessica</strong>（<code>jessica_forgiven = true</code>): You can directly select and set a flag after the war.<strong>Not required</strong>Meet certain hopes/demon beforehand. When Chapter 10 Director’s Cut settles:<strong>Hope ≥ 80</strong>Then add "Mother's Embrace" permanent HP +20;<strong>Inner Demon ≤ 15</strong>Only unlock "Account Management" +$500 per week - both are<strong>Settlement plus conditions</strong>, separate from whether you can choose "forgive".</li>
+<li><strong>Hand Blade Jessica</strong>（<code>jessica_executed = true</code>): If chivalry ≥ 70 at this time → trigger<strong>fallen hero</strong> <code>fallen_hero</code>: Martial power in next reincarnation +10, initial inner demon +15. If the inner demon is ≥ 80 → Add the "Sleepless Night" negative (randomly lose AP every week).</li>
+</ul>
+</div></li>
+</ol>
+</div>
+</div>
+<div class="chapter" id="en-ch10">
+<div class="chapter-head"><div class="title">Chapter 10 · Director’s Cut Ending</div><div class="meta">Day 50+｜chap10_cleared｜<code>evaluateDirectorCutEnding</code>Settlement</div></div>
+<div class="chapter-body">
+<p>After completing the decision between Sancha and Jessica, this chapter will automatically follow<code>morality</code>Four axes (Chivalry/Ambition/Order/Chaos) and Flag Resolution Director’s Cut ending:</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Ending Key</th><th>name</th><th>Trigger condition</th><th>award</th></tr></thead>
+<tbody>
+<tr><td class="id">fallen_hero</td><td class="name">fallen hero</td><td><code>jessica_executed</code>+ Chivalry ≥ 70</td><td>Next reincarnation force +10, initial inner demon +15</td></tr>
+<tr><td class="id">fortune_monk</td><td class="name">fortune teller hermit</td><td>Numerology points ≥ 500, reputation &lt; 60, uninitiated, chivalrous ≥ 60</td><td>Next reincarnation numerology points +150</td></tr>
+<tr><td class="id">community_master</td><td class="name">martial arts master</td><td>Chivalry ≥ 80, Order ≥ 60</td><td>[Grandmaster] Title, Reputation +25</td></tr>
+<tr><td class="id">godfather</td><td class="name">underground godfather</td><td>Ambition ≥ 80, Chaos ≥ 50</td><td>New reincarnation starting capital +</td></tr>
+<tr><td class="id">wanderer</td><td class="name">Hidden master</td><td>Chivalry ≥ 70, Ambition ≤ 30</td><td>Insight into inheritance</td></tr>
+<tr><td class="id">neighborhood_chief</td><td class="name">Li Changbo</td><td>Order ≥ 70, Speaking Skill ≥ 80</td><td>Initial reputation increase</td></tr>
+<tr><td class="id">mlm_king</td><td class="name">Direct Selling King</td><td>Ambition ≥ 70, Speaking Skill ≥ 90</td><td>Initial speech skills improvement</td></tr>
+<tr><td class="id">white_guard</td><td class="name">White-haired protector</td><td>Chaos ≥ 70, Shame ≥ 120</td><td>Initial face lift</td></tr>
+<tr><td class="id">true_loser</td><td class="name">True defeated dog</td><td>None of the above is true (confidence)</td><td>Hell mode unlocked</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout spoiler"><div class="callout-title">✨Light of Bond (hidden bonus)</div>If the bond of more than 3 partners is ≥ 70 (including Aqiang when aqiang_saved), it will be automatically triggered.<strong>Light of Bond</strong>: The gathering and farewell scene on the top floor, NG+ starting bond +10. It is independent of the above 9 endings and will stack with any of them.</div>
+</div>
+</div>
+<div class="chapter" id="en-ch11">
+<div class="chapter-head"><div class="title">Chapter 11 · Bloodline Reverberation (Expanded)</div><div class="meta">Need to accumulate ≥ 10 memory fragments</div></div>
+<div class="chapter-body">
+<p>Enter after opening the heart door on the 10th floor of the Memory Corridor. The boss of this chapter is<strong>The afterimage of mother Shuyi</strong>, essentially the embodiment of the unfinished business between the player and his mother.</p>
+<ul>
+<li><strong>seal</strong>: Choose to seal up the truth about your mother’s identity → Inner Demon −8, Empathy +6 (protect sisters).</li>
+<li><strong>unveiling</strong>:Choose to make the truth public → Reputation +14, Hope +5, but<em>Trust between Uncle Li and Uncle Tie −10</em>。</li>
+</ul>
+</div>
+</div>
+<div class="chapter" id="en-ch12">
+<div class="chapter-head"><div class="title">Chapter 12 · The Land of Abandoned Gods</div><div class="meta">It is necessary to complete the "City Rift" world mutation once</div></div>
+<div class="chapter-body">
+<p>This chapter overlaps the city "Licheng" in the Lost Dog Jianghu with real-life Taipei. Boss is<strong>The collective of defeated dogs</strong>(A mirror image of Arlene’s own self).</p>
+<ul>
+<li><strong>Cut off cause and effect</strong>：Inner Demon −10, $−3,000, obtain the "Lee Luo Ren" passive (NG + starting chivalry +8).</li>
+<li><strong>Carrying cause and effect (absorption)</strong>: Inner Demon +12, +$2,500, obtain "City Token" (unlocks Abyss exclusive store discount).</li>
+</ul>
+<p class="muted">Chapters 11 and 12 do not require running in every round, but<strong>Want to unlock the long poem "About Rain and Sunny"</strong>It needs to be paired with Rain and Sunny Resonance ≥ 85 + 5 diaries (see Section F).</p>
+</div>
+</div>
+</section>
+<section>
+<h2 id="en-g-e">E · Book of Destiny: 15-frame completion table</h2>
+<p><code>getEndingArchiveMeta()</code>A total of 15 named endings have been logged. The table below is divided into groups according to difficulty, and the shortest route is attached.</p>
+<div class="ending-grid">
+<div class="ending-card hero">
+<div class="key">hero · Chapter 3 Ending</div>
+<div class="name">kingly hero</div>
+<div class="cond">Chapter 3: Situ's star-catching battle is won by HP (force ≥ 100, knock down the HP bar with hardcore).</div>
+<div class="reward">Newspaper clipping: "Shocking noise in abandoned dojo!" Mysterious Woman Defeats Money Gang Executives》</div>
+</div>
+<div class="ending-card loser">
+<div class="key">loser · Chapter 3 Ending</div>
+<div class="name">Capital Rising Star</div>
+<div class="cond">Chapter 3: Situ wins the battle with fighting spirit (Talk Skill ≥ 100 to convince him to kneel down).</div>
+<div class="reward">Newspaper clipping: "Money Gang's new executive director lands on the board of directors"</div>
+</div>
+<div class="ending-card hero">
+<div class="key">hero_true · Chapter 4 Sancha A</div>
+<div class="name">Martial arts leader</div>
+<div class="cond">In Chapter 4, choose "Suppress the Three Parties"; reputation ≥ 180 + force ≥ 100.</div>
+<div class="reward">Director's Cut hero_true text</div>
+</div>
+<div class="ending-card dark">
+<div class="key">godfather · Chapter 4 Sancha B</div>
+<div class="name">shadow godfather</div>
+<div class="cond">Choose "Take Over the Black Market" in Chapter 4; Ambition ≥ 80 + Chaos ≥ 50 (loser can speed up in Chapter 3).</div>
+<div class="reward">Unlock luxury houses in Xinyi District, NG+ starting capital</div>
+</div>
+<div class="ending-card wander">
+<div class="key">wanderer · Chapter 4 Sancha C</div>
+<div class="name">Hidden master</div>
+<div class="cond">Choose "Give Up Power" in Chapter 4; Chivalry ≥ 70 + Ambition ≤ 30.</div>
+<div class="reward">NG+ Insight inheritance, Golden Leopard follow</div>
+</div>
+<div class="ending-card hero">
+<div class="key">community_master · Chapter 10 Settlement</div>
+<div class="name">martial arts master</div>
+<div class="cond">Chivalry ≥ 80 + Order ≥ 60; paired with Uncle Tie/Ajie bond ≥ 50.</div>
+<div class="reward">[Grandmaster] Title and reputation +25, automatically upgraded to the top → Suite</div>
+</div>
+<div class="ending-card dark">
+<div class="key">fallen_hero · Director's Cut</div>
+<div class="name">fallen hero</div>
+<div class="cond">Chapter 9<code>jessica_executed</code>+ Chivalry ≥ 70.</div>
+<div class="reward">NG+ Force +10, Initial Demon +15</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">fortune_monk · Director's Cut</div>
+<div class="name">fortune teller hermit</div>
+<div class="cond">Numerology points ≥ 500, reputation &lt; 60, not joining any sect, chivalry ≥ 60.</div>
+<div class="reward">NG+ Numerology Points +150</div>
+</div>
+<div class="ending-card hero">
+<div class="key">neighborhood_chief · Director's Cut</div>
+<div class="name">Li Changbo</div>
+<div class="cond">Order ≥ 70 + Speech ≥ 80; recommended to join<em>Li Changbo Autonomous Association</em>。</div>
+<div class="reward">NG+ initial reputation improvement, credit score +80</div>
+</div>
+<div class="ending-card dark">
+<div class="key">mlm_king · Director's Cut</div>
+<div class="name">Direct Selling King</div>
+<div class="cond">Ambition ≥ 70 + Speech ≥ 90; it is recommended to run<em>Neon Film and Television</em>sect.</div>
+<div class="reward">Final cash +$20,000, NG+ initial speech skills</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">white_guard · Director's Cut</div>
+<div class="name">White-haired protector</div>
+<div class="cond">Chaos ≥ 70 + Shame ≥ 120; in Chapter 8, you need to choose "Recruiting the Protectors in White".</div>
+<div class="reward">NG+ initial face +20</div>
+</div>
+<div class="ending-card loser">
+<div class="key">true_loser · Director’s Cut tells the truth</div>
+<div class="name">True defeated dog</div>
+<div class="cond">It is automatically triggered when other endings are not consistent. Shameful 80–120, Chivalrous 40–60 Easiest to hit.</div>
+<div class="reward">Hell mode unlocked, NG+ starting inner demon −5</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">longbo_secret · Longbo hidden line</div>
+<div class="name">Calculate all the secrets</div>
+<div class="cond">Go to the park to play chess with Long Bo every day × 14 games + stock market assets ≥ $50,000 + complete the "Last Game" event for Long Bo.</div>
+<div class="reward">Unlock the stock market exclusive card "Five Kills", NG+ Insight +12</div>
+</div>
+<div class="ending-card loser">
+<div class="key">slack · crappy ending</div>
+<div class="name">Forgotten by society</div>
+<div class="cond">7 days in a row of nothing but sleep, no work, no fighting. The credit score will drop to a negative value, but you can be kicked directly to this ending.</div>
+<div class="reward">Newspaper clipping: "A woman living alone lies down in a rented apartment"</div>
+</div>
+<div class="ending-card hidden">
+<div class="key">thick300 · shameless ending</div>
+<div class="name">The deadbeat king</div>
+<div class="cond">The face attribute exceeded 300. Accumulated by eating king's meals, begging, defaulting on debts, and playing shameless games.</div>
+<div class="reward">NG+ starting cheek +30, unlocks the title of "Scumbag King"</div>
+</div>
+</div>
+<div class="callout secret"><div class="callout-title">🎴 15 grids all recommended moving lines</div>
+<ol>
+<li><strong>Round 1</strong>: wanderer (giving up power) + true_loser.</li>
+<li><strong>Round 2 (NG+)</strong>: godfather (take over the black market) + slack to open another slot for farming.</li>
+<li><strong>Round 3</strong>: hero + hero_true (martial arts leader) + community_master.</li>
+<li><strong>Round 4</strong>：neighborhood_chief + mlm_king + longbo_secret。</li>
+<li><strong>Round 5</strong>: fallen_hero (hand blade Jessica) + white_guard (collection of guardians).</li>
+<li><strong>Round 6</strong>: fortune_monk (pure seclusion without entry) + thick300 (pile up your face to 300).</li>
+</ol>If you want to play the Rain Qing poem ending, you need to match Section F. It does not occupy the ending slot but will be unlocked.<strong>The sky is blue after the rain</strong>Permanently passive.</div>
+</section>
+<section>
+<h2 id="en-g-f">F · Yuqing hides the true ending (line of resonance)</h2>
+<p>Yuqing is not a traditional "target". she is<strong>The one who makes it rain</strong>──Arlene's lost sister and the fulcrum of her mother Shuyi's last wish.<code>rainQing.soul.resonance</code>Instead of favorability, it is presented as a 5-stage metaphor:</p>
+<div class="flow">
+<div class="flow-node">Not recognized yet (0–19)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">Start getting closer (20–39)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">Remember each other (40–64)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node cyan">Hold one umbrella in total (65–84)</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node cyan">The sky is blue after the rain (85–100)</div>
+</div>
+<h3>1. Source of accumulation of resonance value</h3>
+<ul>
+<li><strong>On rainy days, hold an umbrella together with Yuqing</strong>(+4 each time, only counted once on the day).</li>
+<li><strong>Watch the clouds with her / accompany her in silence</strong>(+2–3), give priority to [Don’t speak] during dialogue.</li>
+<li><strong>Remember the details she said</strong>: She mentioned the playground, notebook, etc. in the scrap wall. If she takes the initiative to mention it next time we meet, she will get +5.</li>
+<li><strong>Send blank notebook</strong>(Item): One-time +10.</li>
+<li><strong>Chapter 11 Select "Seal"</strong>: Sympathy +6 (because you protected the home for her).</li>
+</ul>
+<h3>2. Five remaining pages of the diary (<code>rainQingDiaryFragmentDB</code>）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Broken pages</th><th>title</th><th>Shared needs</th><th>Get the opportunity</th></tr></thead>
+<tbody>
+<tr><td class="id">fragment_letter</td><td class="name">Unsendable letter</td><td class="num">0</td><td>Chapter 1.5 Automatically give mother’s tape when she picks it up</td></tr>
+<tr><td class="id">fragment_playground</td><td class="name">That night at the playground</td><td class="num">35</td><td>Chapter 6 After the defense of the martial arts school, a rainy and clear night visit</td></tr>
+<tr><td class="id">fragment_sunshower</td><td class="name">second solar rain</td><td class="num">60</td><td>Random events in the abandoned playground on a sunny afternoon</td></tr>
+<tr><td class="id">fragment_grave</td><td class="name">Black umbrella in front of grave</td><td class="num">80</td><td>Grave sweeping node after the end of Chapter 8</td></tr>
+<tr><td class="id">fragment_afterglow</td><td class="name">The sky is blue after the rain</td><td class="num">92</td><td>Automatically given when reading the diary in front of the grave</td></tr>
+</tbody>
+</table>
+</div>
+<h3>3. True ending trigger conditions (<code>rainQing_endingUnlocked</code>）</h3>
+<div class="panel cyan">
+<ol>
+<li>get<strong>At least 4 diary fragments</strong>。</li>
+<li>Each time the empathy value crosses the threshold of the remaining page, the interface will prompt you with a toast (corresponding to<code>rainQingDiaryFragmentDB</code>threshold).</li>
+<li>Read the diary with Yuqing at the node in front of the tomb (this will be executed at this time<code>syncRainQingSoul(state, '墓前補完', 8)</code>, and force the empathy to ≥ 92 to obtain the last page).</li>
+<li>Get props<strong>Rainy old umbrella</strong>，<code>rainQing_endingUnlocked = true</code>。</li>
+</ol>
+</div>
+<h3>4. Unlock the long poem "About Yuqing" (ultimate easter egg)</h3>
+<div class="callout spoiler"><div class="callout-title">☔ Unlock conditions (<code>canUnlockRainQingPoem</code>）</div>
+<ul>
+<li><code>rainQing_endingUnlocked = true</code></li>
+<li>Resonance value<code>resonance ≥ 85</code></li>
+<li>Fragments of diary<strong>Receive all 5 sheets</strong></li>
+</ul>All three are full → Automatically unlock the achievement [The Rain Only I Saw] + Permanent Passive [The Rain Passes the Sky]:<strong>Inner Demon Damage −20%, AP Recovery +1 in Rainy Days</strong>。</div>
+<p>The full text of the poem will not be displayed in the guide (to avoid damaging the semantic meaning), please go to<strong>The last page of the book of fate</strong>read. The first reading will be played slowly line by line (4–5.2 seconds/line), with the sound of rain in the background looping, and it is not recommended to skip.</p>
+<div class="callout warn"><div class="callout-title">⚠️ Little things not to ignore</div>There is a counter-intuitive setting for the Rain and Sunny Line:<strong>Sympathy cannot be brushed</strong>. The game has an internal<code>traces</code>To eliminate the duplication, you will only recognize "holding an umbrella together" and "watching the clouds together" once a day. So to run this line,<em>Please do it in separate days</em>, and paired with sunny or rainy weather switching (random events trigger different options).</div>
+</section>
+<section>
+<h2 id="en-g-g">G · Partner Bond (<code>companionBondSkillDB</code>）</h2>
+<p>Five core partners + Yuqing (independent fourth-level system). Ways to accumulate bond value: daily conversations, battle collaboration, and thoughtful events.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>partner</th><th>Tier 1 (30)</th><th>Tier 2 (50)</th><th>Tier 3 (80)</th><th>Tier 4 (100)</th></tr></thead>
+<tbody>
+<tr><td class="name">Uncle Tie</td><td>Sharpen your knife and keep it from chopping wood<br>Pre-war 30% Offensive Warming</br></td><td>silent guard<br>Hard block once when HP ≤ 30%</br></td><td>Inherited sword<br>You can use Uncle Tie's stunt once during the battle.</br></td><td>—</td></tr>
+<tr><td class="name">Xiaoye</td><td>night shift allowance<br>Working in a supermarket +20%</br></td><td>Hidden weapon cover<br>When the trick is successful, additional flying needles will be added.</br></td><td>True Biography of Tang Sect<br>Unlock the [Heavy Rain Pear Blossom] combat skill</br></td><td>—</td></tr>
+<tr><td class="name">Leopard (cat)</td><td>cat's repayment<br>Wake up and bring back small consumables</br></td><td>king of alley<br>Dispatch time −15%</br></td><td>Nine-lived monster cat<br>Chance of fatal injury, leaving 1 HP</br></td><td>—</td></tr>
+<tr><td class="name">Ajie</td><td>Passionate Apprentice<br>Martial arts training effect +</br></td><td>Cheering and shouting<br>Shout out the opponent's momentum during battle</br></td><td>stand alone<br>Ajie can work alone</br></td><td>—</td></tr>
+<tr><td class="name">Rain or shine</td><td>social work intuition<br>Dispatch makes it easier to find information</br></td><td>halfway house network<br>Recruiting disciples with special backgrounds</br></td><td>Sisters are of the same mind<br>Mobilize the community to lower the enemy’s fighting spirit during the battle</br></td><td>Shuyi's last wish<br>Unlock special ending conditions; wish limit +20</br></td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡Light of Bonding (3 people ≥ 70)</div>When Chapter 10 is settled, if Uncle Tie/Xiaoye/Ajie/Jinbao/Aqiang (required<code>aqiang_saved</code>)have<strong>3 or more bonds ≥ 70</strong>, automatically triggered<strong>Light of Bond</strong>Bonus: NG+ starting bond +10, and triggers a gathering scene on the top floor (each partner will have a farewell line).</div>
+<h2 id="en-g-h">H·Six sects system</h2>
+<p>To join a sect, you need to reach a certain attribute threshold (some sects have sub-thresholds), and you pay weekly membership fees in exchange for a weekly salary and sect cards. The table below contains<code>sectFactions</code>actual numbers.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>sect</th><th>master-subject threshold</th><th>Weekly fee</th><th>weekly salary</th><th>Exclusive resources</th></tr></thead>
+<tbody>
+<tr><td class="name">Delivery Workers Mutual Aid Alliance (Beggars Gang)</td><td>Shame ≥ 80</td><td>$200</td><td>$800</td><td>Mileage points</td></tr>
+<tr><td class="name">Zen Practice·Extreme Fitness Group (Shaolin)</td><td>Force ≥ 100</td><td>$500</td><td>$1,000</td><td>Zen value</td></tr>
+<tr><td class="name">Tai Chi Cloud Computing Center (Wudang)</td><td>Insight ≥ 100</td><td>$300</td><td>$900</td><td>Computing power</td></tr>
+<tr><td class="name">Tang's Biotechnology Pharmaceutical (Tangmen)</td><td>Insight ≥ 80 + Speaking Skill ≥ 60</td><td>$400</td><td>$850</td><td>Toxicity/drug properties</td></tr>
+<tr><td class="name">Neon Film and Television Agency (Mingjiao)</td><td>Speaking skills ≥ 100</td><td>$600</td><td>$1,100</td><td>flow</td></tr>
+<tr><td class="name">Li Changbo Autonomous Association (official government)</td><td>Speaking skills ≥ 85 + Shame ≥ 70</td><td>$350</td><td>$950</td><td>Favor</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Introductory Trial (<code>sect.tutorial</code>）</h3>
+<ol>
+<li>Finish<strong>3 sect commissions</strong>(Corresponding to taskLabel: errand delivery/sales course/data annotation...).</li>
+<li>Run all over the map<strong>5 routes</strong>。</li>
+<li>Chat with the boss once.</li>
+<li>Receive your weekly salary once on payday.</li>
+</ol>
+<p>After completion, you will get the sect uniform (the Beggars' Gang is a delivery box), activate the "contribution degree" system, and unlock 6 sect entrance cards.</p>
+<h3>Promotional route</h3>
+<div class="panel amber">
+<ul>
+<li><strong>Apprenticeship → Formal (contribution 80)</strong></li>
+<li><strong>Official → Deacon (contribution 250 + reputation 40)</strong></li>
+<li><strong>Deacon → Hall Master (contribution 600 + reputation 80 + primary attributes 80 / secondary attributes 70)</strong></li>
+<li><strong>Hall Leader → Deputy Leader (Contribution 1500 + Reputation 150 + Main Attribute 110 / Secondary Attribute 100 + Trial)</strong></li>
+<li><strong>Deputy Head → Head (Trial to seize the throne)</strong></li>
+</ul>
+</div>
+<div class="callout secret"><div class="callout-title">🏯 Cadre official position bonus (<code>getSectOfficerSynergy</code>）</div>
+<ul>
+<li>Coach = Uncle Tie → Training effect ×1.2</li>
+<li>Intelligence = Xiaoye → Intelligence mission ×1.25</li>
+<li>Finance = Leopard → Weekly Salary ×1.05</li>
+<li>Coach = Ajie → Recruit disciples with loyalty +20</li>
+</ul>Put a partner in the right position = free bonus.</div>
+<div class="callout tip"><div class="callout-title">📋 The sect interface has been recently enhanced</div>
+<ul>
+<li><strong>Disciple "What's going on this week"</strong>：<code>rollDiscipleWeeklyEvent</code>／<code>discipleEventPool</code>。</li>
+<li><strong>Faction column</strong>：<code>sectFactionWeeklyEvent</code>Shows recent transactions and history.</li>
+<li><strong>Branch "Recent Situation"</strong>：<code>tickBranchIncidents</code>／<code>branchIncidentPool</code>。</li>
+</ul>
+</div>
+</section>
+<section>
+<h2 id="en-g-i">I · Memory Corridor (Roguelike Climbing Tower)</h2>
+<p>Access from the top floor stamped entrance behind Day 10. There are 10 levels of heart gates in total, corresponding to the progress of chapters 1 to 10. Each floor has<strong>Battle / Event / Elite / Hidden King / Shrine</strong>5 types of rooms.</p>
+<h3>Heart door unlocking conditions (<code>memoryChapterDoorDB</code>excerpt)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>heart gate</th><th>condition</th></tr></thead>
+<tbody>
+<tr><td class="name">Chapter 2 Heart Gate</td><td>Requires 1 memory fragment</td></tr>
+<tr><td class="name">Chapter 4 Heart Gate</td><td>Requires 1 piece + chap3_cleared</td></tr>
+<tr><td class="name">Chapter 6 Heart Gate</td><td>Requires 2 pieces + chap5_cleared + campus safe cracking</td></tr>
+<tr><td class="name">Chapter 8 Heart Gate</td><td>Requires 3 pieces + chap7_cleared</td></tr>
+<tr><td class="name">Chapter 10 Heart Gate</td><td>Requires 3 pieces + chap9_cleared + cumulative fragments ≥ 10</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Key Hidden King</h3>
+<ul>
+<li><strong>Xiaojiu afterimage</strong>(Tier 2): HP 148/Fighting Will 82<span class="muted">(base)</span>. It must be triggered when you encounter it for the first time. The play style is the same as the main line, but it will drop.<em>Memory anchor ×1</em>(Key rare material).</li>
+<li><strong>Afterimage of the Virgin</strong>(Layer 8): Appears after chap8_cleared. Three rounds of fighting, the third round will be violent. It is recommended to have a lot of shields + government decks (Shaolin is also OK)<span class="muted">(Values ​​not listed are also applicable to base + dynamic bonus)</span>。</li>
+<li><strong>Afterimage of mother Shuyi</strong>(Level 10): This is the embodiment of the sealing/unveiling of Chapter 11. HP 300/fighting spirit 180<span class="muted">(base)</span>。</li>
+</ul>
+<div class="callout tip"><div class="callout-title">🎴 Memory Corridor Deck (<code>memoryCorridorDeck</code>）</div>Memory corridor use<strong>independent deck</strong>, not shared with the mainline. Each level will give away 1–2 choices. It is recommended to give priority to:<em>intelligence network</em>(draw cards),<em>Cloud dodge</em>(Dodge +2),<em>Shadowless needle</em>(Poison 2).</div>
+<div class="callout tip"><div class="callout-title">🌀 Starting blessing and optional curse</div>
+<p>Every running meeting<strong>Choose one of three blessings</strong>（<code>corridorBlessingDefs</code>). like<code>flags.corridorCurseEnabled</code>If true, a random curse will also be applied (<code>corridorCurseDefs</code>); the default for old saves is off, and the hard mode can be turned on using the debug/story switch.</p>
+</div>
+<div class="callout secret"><div class="callout-title">🪞 NG+ Mirror Encounter</div>
+<p>need<code>new_game_plus_cycle &gt;= 2</code>and have achieved<code>memory_corridor_floor3_cleared_once</code>: Available when entering the corridor route node for the first time that day<strong>2%</strong>Probability cut-in<code>ngp_mirror_self_encounter</code>(Only once per trip). The three lines of hard-core/speaking skills/resignation correspond to the achievements of "defeat yourself in the past life", "reconciliation in front of the mirror" and "resignation is also the way to go".</p>
+</div>
+<h2 id="en-g-j">J · Abyss / Rift in the City</h2>
+<p>Unlock the infinite layer of the abyss (<code>state.abyssDeep</code>). Core currency:<strong>Abyss Crystal 💎</strong>。</p>
+<h3>Crystal source</h3>
+<ul>
+<li>Rift boss drops (+1~3 💎 each time).</li>
+<li>Level 2 talent<em>residual light blessing</em>(abyss_blessing): The abyss successfully gives additional crystals.</li>
+<li>The mutation event "Take him home for a day" (Unborn event) gives ×3 💎.</li>
+</ul>
+<h3>Rift Shop (permanent bonus across reincarnations)</h3>
+<p class="muted">The Lost Dog Abyss Rift Shop: Permanent bonuses for three types of crystals<strong>Maximum of 8 purchases per single archive</strong>(After reaching the limit, the interface will display owned/upper limit and hide the purchase).</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>crystallized goods</th><th>Effect</th><th>price</th></tr></thead>
+<tbody>
+<tr><td class="name">Abyss Crystal·Physique</td><td>NG+ Max HP +20</td><td>50 💎</td></tr>
+<tr><td class="name">Abyss Crystal · Windfall</td><td>NG+ Start +$500</td><td>40 💎</td></tr>
+<tr><td class="name">Abyss Crystal · Face</td><td>NG+ Shame +15</td><td>60 💎</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">Three pieces can be purchased repeatedly, and the effect stacks up to<code>newGamePlusLegacy</code>. Reaching a depth of 30+ will enter the local rankings.</p>
+<h2 id="en-g-k">K·Six types of world mutations</h2>
+<p><code>activeMutationCatalog</code>The six world mutations rewrite most of the random events. Three options<em>Resist / Adapt / Exploit</em>Affects different attribute rewards and side effects.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>priority</th><th>Mutations</th><th>resistance</th><th>adapt</th><th>use</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td class="name">Rift in the inner city</td><td>Delayed by 12 days, weakened by 0.45</td><td>Insight +8, Inner Demon +15</td><td>$+3,500, Reputation −10, Credit −20</td></tr>
+<tr><td class="num">2</td><td class="name">Cause and effect come back</td><td>Delayed by 5 days, weakened by 0.7</td><td>Shame +8 / Force +3; Hope −5, Inner Demon +10</td><td>$+1,800, credit −25</td></tr>
+<tr><td class="num">3</td><td class="name">Urban legend materialized</td><td>Delayed by 8 days, weakened by 0.6</td><td>Speech +4, Insight +4; Inner Demon +8</td><td>Reputation +6, Credit −15</td></tr>
+<tr><td class="num">4</td><td class="name">Resurrection</td><td>Delayed by 10 days, weakened by 0.5</td><td>Insight +5; Inner Demon +10</td><td>$+2,500, credit −20</td></tr>
+<tr><td class="num">5</td><td class="name">memory pollution</td><td>Delayed by 6 days, weakened by 0.65</td><td>Insight +6; Inner Demon +12</td><td>$+1,200, Reputation −4</td></tr>
+<tr><td class="num">6</td><td class="name">Market is crazy</td><td>Delayed by 7 days, weakened by 0.7</td><td>Insight +3 / Shame +4</td><td>$+3,000, Reputation −6, Credit −18</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn"><div class="callout-title">⚠️ Priority when mutations are triggered at the same time</div>
+<code>mutationPriority</code>Write to Death: Fissures in the inner city &gt; Cause and Effect Backlash &gt; Urban Legends &gt; Resurrection of Spiritual Energy &gt; Memory Pollution &gt; Market Crazy. If two or more events are triggered on the same day, they will be replaced by the variant event with the highest priority; the triggering probability is basically 60%, and will decrease if there are ≥3/≥5 variations in a single day; if the previous event was also a variant, multiply it by 0.8 (Notebook "Same Day Variant Fatigue" entry).</div>
+</section>
+<section>
+<h2 id="en-g-l">L · Economic circulation and equipment</h2>
+<p>The economy of Lost Dog Jianghu is<strong>Cash + credit score + rent countdown</strong>Three-axis linkage. If the main line is not connected, we will rely on the economic system to replenish food.</p>
+<h3>Four major sources of income</h3>
+<div class="panel amber">
+<ol>
+<li><strong>work to earn a living</strong>(Hub Button): Costs 1–3 AP, returns $200–$700. Accumulate and make progress: AP will be saved when you recharge it offline.<em>reserve energy</em>, 50 energy points can be used to open 5 bursts of 200% income.</li>
+<li><strong>send</strong>(Unlocked at Tier 3 of the Connection Line): Medium and long-term missions. There is a 40% base chance of being stopped for rent/debt arrears.<ul>
+<li>Uncle Tie's Lv.2 is reduced by 15% / Xiao Ye's Lv.2 is reduced by 10% / Leopard's Lv.2 is reduced by 5%.</li>
+<li>Special dispatch [to distract the landlord] can suspend rent settlement for 2 hours.</li>
+</ul></li>
+<li><strong>stock market</strong>(Unlocked by Long Bo): 7 virtual codes DEL/ZEN/TAI/TAN/NEO/RES/GNG, unit price $102–$220. Supports leverage 3x and price limit. After unlocking Laoye’s underground exchange, every time<code>currentDay</code>is a multiple of 7 (in the program<code>day % 7 === 0</code>)like<strong>Li Changbo's bond ≥60</strong>or<strong>Lao Ye Quotes Bond ≥70</strong>, there is a chance to display the "Recent Insider Lines (valid within 3 days)" block on the disk (a maximum of 3 lines can be reserved; the source is the whisper of the ear or the old leaf model prompt). The old strategy mistakenly planted "insight ≥100" and is inconsistent with the current program.</li>
+<li><strong>Deadbeat / begging / overlord meal</strong>(face line):<ul>
+<li>Shame ≥ 100 → Begging on the roadside (0 AP)</li>
+<li>Shame ≥ 120 → Eat Overlord Meal (+40 HP)</li>
+<li>Shame ≥ 150 → 15% chance of successful rent settlement</li>
+</ul></li>
+<li><strong>Accommodation decoration</strong>: Furniture interface "Today's Observation" (<code>petDecorInteractionTexts</code>）。</li>
+<li><strong>NPC encounters in the same frame</strong>：<code>npcSchedules.crossover</code>Trigger two-person skits in parks/markets/dojos, etc., each with their own<code>crossover_*_seen</code>Disposable flag.</li>
+</ol>
+</div>
+<h3>Fourth level housing (<code>housingTierDB</code>）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Room type</th><th>AP</th><th>Weekly rent</th><th>HP Reply</th><th>Unlock</th></tr></thead>
+<tbody>
+<tr><td class="name">basement</td><td class="num">4</td><td class="num">$2,000</td><td class="num">0.2</td><td>opening</td></tr>
+<tr><td class="name">Attic addition</td><td class="num">5</td><td class="num">$8,000</td><td class="num">0.5</td><td>chap1_cleared</td></tr>
+<tr><td class="name">Urban Village Suite</td><td class="num">7</td><td class="num">$25,000</td><td class="num">1.0</td><td>chap2_cleared + reputation ≥ 150</td></tr>
+<tr><td class="name">Luxury homes in Xinyi District</td><td class="num">10</td><td class="num">$80,000</td><td class="num">2.0</td><td>(chap5_cleared or chap10_cleared) + (Cash ≥ $100,000<strong>or</strong>(reputation ≥ 200 and cash ≥ $85,000)); or godfather ending</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn"><div class="callout-title">🚨 The threshold of luxury houses in Xinyi District</div>remove<code>godfather</code>In addition to directly unlocking, generally you need to have cleared Chapter 5 or 10 and meet the requirements<strong>Cash $100,000</strong>,or<strong>Reputation ≥ 200 and Cash ≥ $85,000</strong>. The pure hero line in the first round is still tight, but it has one more reputation retreat than the single $100K threshold in the old version.</div>
+<h3>Diet Buff (<code>getFoodLifestyleEffects</code>）</h3>
+<ul>
+<li><strong>Four Seasons Spring Tea</strong>: Insight +5, speaking skills threshold −5 (one day)</li>
+<li><strong>Bubble Tea</strong>: Force +5, Shame +3 (one day)</li>
+<li><strong>aloe vera honey</strong>: Speech skills +8, store discount +5%</li>
+<li><strong>brown sugar milk</strong>: Four attributes +3, card drawing luck +10%</li>
+<li><strong>Winter melon tea</strong>: Shame +10, begging income +20%</li>
+<li><strong>Mother and daughter drink</strong>: Four attributes +5</li>
+</ul>
+<p class="muted">Remember to go to the beverage shop one hour before fighting the boss. Usually the highest CP value is the combination of "Winter Melon Tea + Eat Overlord Meal".</p>
+<h2 id="en-g-m">M · Achievements Quick Brush</h2>
+<div class="panel emerald">
+<ul>
+<li><strong>Giving in for the first time</strong>: Use [Concede] in any battle. You can get it on Day 1.</li>
+<li><strong>Defeat Xiaojiu</strong>: Chapter 1 is a must-get.</li>
+<li><strong>Join a sect/create your own sect</strong>: Join any sect (join), or make a cumulative contribution of 3000+ to open a branch (create your own).</li>
+<li><strong>Defeat Situ Zhaixing</strong>:hero or hero_true ending.</li>
+<li><strong>The rain that only I saw</strong>(Hidden by Rain and Clear): See Section F for conditions.</li>
+<li><strong>reach ending</strong>: The ending of Book of Any Fate.</li>
+<li><strong>The deadbeat king</strong>: Thick300, see section E thick300.</li>
+<li><strong>Forgotten by society</strong>: Inactive for 7 consecutive days.</li>
+</ul>
+</div>
+<p>Achievement Illustrated (<code>achievementsDB</code>, starting from about L16253) in total<strong>60+ items</strong>(Including the reincarnation categories of "Becoming a Human in Two Times", "Defeating Yourself in the Past Life", "Reconciling in front of the Mirror", "Allowing to Give in", etc.), you still need multiple rounds of NG+ to receive them all.</p>
+<h2 id="en-g-n">N · Archive / NG+ / Cross-reincarnation inheritance</h2>
+<h3>Archive format</h3>
+<p>Archive with<code>BDOG1:</code> + LZ-String <code>compressToEncodedURIComponent</code>compression. Reading files will automatically verify<code>checksum</code>; Verification failures and general parsing errors will be prompted separately. Old version archives are available<code>SAVE_MIGRATORS</code>Upgrade to the current schema. When successful, it will prompt "Upgraded from vX to v4".</p>
+<ul>
+<li>Main slot:<code>udg_save_v4</code>;Backup:<code>udg_save_v4_backup</code>。</li>
+<li>Slot #1 / #2 / #3 corresponds<code>udg_save_v4_slot_1/2/3</code>。</li>
+<li>Exported strings can be directly pasted into cloud notes and Discord without external dependencies.</li>
+</ul>
+<h3>NG+ inheritance (<code>newGamePlusLegacy</code>）</h3>
+<div class="panel violet">
+<ul>
+<li><strong>Ending reward</strong>: HP/cash/attribute bonuses will be given based on 15 different endings.</li>
+<li><strong>Echoes of the Book of Destiny</strong>: NPCs with empathy ≥ 40 will give the "Déjà vu" line in the next round (<code>resonanceEcho</code>）。</li>
+<li><strong>past life summary</strong>: Reincarnation settlement writing<code>meta.previousLifeSummary</code>, Hub "Relics from Past Lives" can be rewatched.</li>
+<li><strong>world imprint</strong>: After clearing godfather / hero_true or saving Aqiang, old reincarnation rumors will be added to the scrap pool.</li>
+<li><strong>martial arts memory</strong>：<code>shenzuoInheritCard</code>You can designate 1 card to be added to the starting hand of the next round.</li>
+<li><strong>Abyss Crystal Inventory</strong>: Unspent 💎 will be retained across rounds (written into<code>abyssDeep.totalCrystals</code>）。</li>
+</ul>
+</div>
+<div class="callout tip"><div class="callout-title">💾 Backup Tips</div>Before every big decision (Chapter 3, 4, 8, 9), put<code>BDOG1:</code>Copy the string to Notepad or Discord private message. The files are compressed, usually 10–15 KB, and can be synchronized across devices after being thrown to the cloud.</div>
+</section>
+<section class="part" id="en-part4">
+<h2>Part IV · Disadvantages and risks of the current version</h2>
+<p class="muted">The following are comparisons<code>拜犬江湖.html</code>(v4 archive schema) Verify the real defects line by line to avoid empty evaluations.</p>
+<h3 id="en-flaw-tech">1. Three flaws in technical architecture</h3>
+<div class="panel rose">
+<h4>① storyNodes is overwritten by 12 layers of Object.assign, debugging hell</h4>
+<p>host<code>storyNodes</code>Defined in L11xxx, after which at least<strong>12 times</strong> <code>Object.assign(storyNodes, { ... })</code>(L28900+, L31100+, L42000+ multiple locations). This "hot patch" is mixed in the main file:</p>
+<ul>
+<li>The same node ID appears 2–3 times, and the later patch overwrites the former. When reading the code, you must manually track the order of each overwrite.</li>
+<li>For example Chapter 4<code>hero_true</code>The branches are just remains in the main definition; the real text won't be filled in until L42xxx.</li>
+<li>Refactoring risk: If any refactor/compression tool changes the key order, the entire plot will be messed up.</li>
+</ul>
+<h4>② All data and UI are packed into a single file &gt; 45,000 rows</h4>
+<p>The entire game (including LZ-String, Tailwind CDN link,<code>SYSTEM_MAP</code>, 28 databases, events, combat UI) in total<strong>45000+ lines</strong>, 2.6 MB. The advantage of single file is that it requires no installation and is easy to share, but:</p>
+<ul>
+<li>The editor is severely stuck (VSCode takes 3–5 seconds to open, Cursor requires partial load).</li>
+<li>Without module sharding, duplicate helpers are defined multiple times (e.g.<code>getRandomInt</code>kind,<code>applyBossMutationFlavorOnEnter</code>The forward declaration is scattered in 4 positions).</li>
+<li>Hot reloading fails: changing a line requires refreshing the entire page, and archiving requires repeated export and import.</li>
+</ul>
+<h4>③ Archiving schema and migration (completed)</h4>
+<p><code>SAVE_SCHEMA_VERSION = 4</code>; will go when loading an older version<code>SAVE_MIGRATORS</code>Automatic upgrade field, when successfully imported, it will prompt that it has been upgraded from vX to v4. It is still recommended to manually back up the strings before making major decisions in each chapter.</p>
+</div>
+<h3 id="en-flaw-system">2. Five minefields in system design and numerical values</h3>
+<div class="panel amber">
+<h4>① Violent trigger (already aligned with notebook)</h4>
+<p>The current version has unified Xiaojiu/Situ/related attack paths into<code>combatTurns ≥ 4</code>(HUD "🔥 Fury") Then enter the pressure, which is consistent with the entry of "Fighting Will and Fury" in the notebook; if the old strategy still says "different bosses have different thresholds", please refer to this section.</p>
+<h4>② The threshold for luxury houses in Xinyi District (prestige retreat has been added)</h4>
+<p><code>housingTierDB.villa</code>remove<code>godfather</code>In addition, after clearing Chapter 5 or 10, you can<strong>Cash $100,000</strong>or<strong>Reputation ≥ 200 and Cash ≥ $85,000</strong>Unlocked. The non-godfather line is still biased toward liver, but it is no longer a hard cash threshold.</p>
+<h4>③ Book of Fate 15 frames + Director’s Cut 9 frames, the key flags conflict with each other</h4>
+<p><code>evaluateDirectorCutEnding()</code>／<code>resolveDirectorCutEnding()</code>Will read<code>jessica_executed</code>、<code>aqiang_saved</code>、<code>chap8_cleared_route</code>wait. Programmatically<strong>Execution of Jessica</strong>and<strong>Should we save Aqiang?</strong>It is two independent flags (Aqiang’s choice indicates that it is independent from Jessica’s choice in the previous question),<strong>Can be established at the same time</strong>; Only narrative tension may be felt, not a mutex at the archive level.</p>
+<h4>④ The probability of world mutation triggering becomes invalid after stacking.</h4>
+<p><code>mutationPriority</code>It is stipulated that if there are multiple mutations on the same day, the one with the highest order will be selected.<strong>Basic trigger 60% + single day ≥3 variant attenuation 50%</strong>, the two rules are written in different functions. According to the actual test, if there are three consecutive days of high mutation, the trigger rate will only be 15% on the third day, which is a disguised punishment for players who "have to see six kinds of mutations".</p>
+<h4>⑤ Purchase limit in Abyss Rift Store</h4>
+<p>Each permanent bonus item<strong>Up to 8 times in a single save</strong>;The old version’s unlimited superposition has been blocked.</p>
+</div>
+<h3 id="en-flaw-narrative">3. Four blind spots in narrative and characters</h3>
+<div class="panel violet">
+<h4>① The text density of Yuqingxian is high, but the triggering conditions are "implicit"</h4>
+<p><code>rainQingDiaryFragmentDB</code>The 5 pieces of diary are all passively unlocked by the empathy value 15/30/45/60/80. In game<strong>No UI guidance</strong>, only the "There seems to be a diary" prompt appears occasionally in the scrap pool; more than 90% of first-time players will miss the 60/80 paragraphs and go directly to Chapter 12.</p>
+<h4>② The later plot of Situ Zhaixing branch was completely swallowed up by Chapter 5</h4>
+<p>After the key boss of Chapter 3, Situ Zhaixing, was defeated, Chapter 5 made Jessica the actual ultimate villain; Situ Zhaixing’s motivation (group struggle) was not explained in the end-of-credits email until Chapter 11.<em>There is no role for him in the middle 6 chapters.</em>, the first round player has usually forgotten who he is.</p>
+<h4>③ The roles of the six major sects are unbalanced</h4>
+<p><code>sectFactions</code>The six factions were given a complete story/special resources, but the plot only<strong>Delivery Workers Mutual Aid Alliance</strong>and<strong>Zen·Extreme Fitness Group</strong>There are independent chapter branches. Tang’s Pharmaceuticals, Neon Films, Li Changbo, and Tai Chi Cloud are almost the only ones left<em>Shop + weekly salary + 1 opening line</em>, selecting them is like selecting a background skin.</p>
+<h4>④ The position of Our Lady of Bai Ling fluctuates</h4>
+<p>Chapter 7 is an ally, Chapter 8 is a villain, Chapter 10 has the "she is actually contaminated" line, and Chapter 12 can be saved or killed.<code>storyNodes</code>Being overwritten by 4 layers caused her motives to be inconsistent; if the player completes 7→8→10→12 in order, she will appear<strong>"You obviously just helped me last week."</strong>But the system has no flag memory.</p>
+</div>
+<h3 id="en-flaw-ux">4. Interface / UX Obtuse angles everywhere</h3>
+<div class="panel slate">
+<ul>
+<li><strong>Information overload in the main battle interface</strong>: Simultaneously displaying HP / Fighting Spirit / AP / Break Combo / Enrage Timer / Mutation debuff bar / Four Attitude Buttons + Card Zone, it will be crowded into a pile on a 1366×768 screen, and the mobile phone will be directly misaligned.</li>
+<li><strong>Achievement and ending panels lack filtering</strong>: 15 endings, 28 achievements, 6 mutations, and 10 levels of heart gates are all piled up in the same tab of Notebook. There is no pagination or sorting. To find a condition, you have to swipe 4 screens.</li>
+<li><strong>There is no out-of-combat preview for the Paika deck.</strong>: You can only see the triggered effects during battle. You cannot read the entire faction card description before joining the faction. Players often "find out that they don't fit the faction after joining."</li>
+<li><strong>Rent countdown UI</strong>: The meta area on the homepage will display "Next rent payment Day</li>
+</ul>
+</div>
+<h3 id="en-flaw-balance">5. Two extremes of balance</h3>
+<p>After face value ≥ 150,<strong>Deadbeat / begging / overlord meal</strong>The economic system can be completely bypassed: 0 AP for roadside begging, +40 HP for overlord meals, 15% success for rent defaulters, and with the shameless Paika "Stalker", you can run Chapters 5-9 into a zero-stress script.</p>
+<p>On the other hand, if you missed Day 3, Chapter 4 has already passed<strong>Not joining the sect</strong>(casual cultivator), Hub meeting before entering Chapter 5<strong>Disposable</strong>Issue compensation (force +2, insight +2, only triggered once). This is the "Uninitiated Compensation", which is the same as the challenge.<strong>lone wolf mode</strong>(Disable partner assistance/dispatch) is different. The difficulty is still high, but at least it's not zero patches.</p>
+<h3 id="en-flaw-summary">6. Overall Rating</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>For</th><th>score</th><th>Short comments</th></tr></thead>
+<tbody>
+<tr><td class="name">narrative</td><td class="num">A-</td><td>The self-deprecating Taiwanese martial arts is full of concentration, and the finale of "Rain and Clear Line" is brilliant; the motivations of Situ Zhaixing and Our Lady are a little too flamboyant</td></tr>
+<tr><td class="name">System depth</td><td class="num">A</td><td>Four Attitudes × Pika × Mutation × Book of Fate Intertwined, a single-player independent work level</td></tr>
+<tr><td class="name">balance</td><td class="num">B-</td><td>The cheeky flow is still strong; the uninitiated line has a single attribute compensation; the abyss permanent product is more controllable after the upper limit of 8 times per item</td></tr>
+<tr><td class="name">technology</td><td class="num">C+</td><td>45,000 rows per file + 12 layers of Object.assign, high debugging cost</td></tr>
+<tr><td class="name">UX</td><td class="num">B-</td><td>Density overwhelms novices, lack of paging and progress guidance</td></tr>
+<tr><td class="name">overall</td><td class="num">B+ / four and a half stars (out of five)</td><td>A solo title worth spending 15 hours + two rounds of NG+ digging into</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">📝 Three revision suggestions for the author</div>
+<ol>
+<li>Rage triggers have been unified to<code>combatTurns ≥ 4</code>(see above).</li>
+<li>There will be a toast prompt when the Sympathy for Rain and Clearness crosses the threshold of the remaining pages of the diary (it is still recommended to use the day-dividing guide in Section F).</li>
+<li>The Xinyi District luxury house has added an alternative path of "Reputation ≥ 200 + Cash ≥ $85,000" (still requires chap5 or chap10).</li>
+</ol>
+</div>
+</section>
+<footer>
+<p>Lost Dog Jianghu · Strategy and Analysis · Offline version of this file<br><span class="muted">Organized based on SAVE_SCHEMA_VERSION 4 game files (2.6 MB, 45000+ lines)</span></br></p>
+<p>Baidog Jianghu · Guide &amp; analysis · offline edition<br><span class="muted">Based on save schema v4 game file (~2.6 MB, 45000+ lines)</span></br></p>
+</footer>
+</div>
+</main>
+</div>
+<script>
+(function () {
+    var KEY = 'bdog_index_locale';
+    var titles = {
+        zh: '敗犬江湖 Ultimate Director\'s Cut — 攻略書與深度分析',
+        en: 'Baidog Jianghu Ultimate Director\'s Cut — Guide & Analysis'
+    };
+    function apply(loc) {
+        var root = document.getElementById('html-root');
+        if (!root) return;
+        root.setAttribute('data-locale', loc);
+        root.setAttribute('lang', loc === 'en' ? 'en' : 'zh-TW');
+        document.title = titles[loc === 'en' ? 'en' : 'zh'];
+        try { localStorage.setItem(KEY, loc); } catch (e) {}
+        document.querySelectorAll('.locale-switch button').forEach(function (b) {
+            b.classList.toggle('active', b.getAttribute('data-set-locale') === loc);
+        });
+    }
+    var params = new URLSearchParams(window.location.search);
+    var q = params.get('lang');
+    var initial = (q === 'en' || q === 'zh') ? q : null;
+    if (!initial) {
+        try { initial = localStorage.getItem(KEY); } catch (e) {}
+    }
+    apply(initial === 'en' ? 'en' : 'zh');
+    document.querySelectorAll('.locale-switch button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            apply(btn.getAttribute('data-set-locale') || 'zh');
+        });
+    });
+})();
+</script>
+</body>
+</html>

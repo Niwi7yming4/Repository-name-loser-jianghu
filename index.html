@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="scroll-smooth">
+<html lang="zh-TW" class="scroll-smooth" id="html-root" data-locale="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,6 +58,23 @@
         }
         .glass-card:hover { transform: translateY(-5px); border-color: rgba(245, 158, 11, 0.3); }
 
+        .letter-card {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+        .letter-date {
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+        .letter-card .prose p {
+            margin: 0;
+        }
+
         .post-it {
             background: #fef08a;
             color: #3f3f46;
@@ -80,9 +97,95 @@
         /* 開發者信件手風琴動畫 */
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
+
+        html[data-locale="en"] .lzh { display: none !important; }
+        html[data-locale="zh"] .len { display: none !important; }
+
+        .top-fixed-ui {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.45rem;
+        }
+        .locale-switch {
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+        }
+        .locale-switch button {
+            padding: 0.4rem 0.75rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            background: rgba(15, 23, 42, 0.92);
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .locale-switch button:hover {
+            border-color: #f472b6;
+            color: #f9a8d4;
+        }
+        .locale-switch button.active {
+            border-color: #f59e0b;
+            color: #fbbf24;
+            background: rgba(120, 53, 15, 0.35);
+        }
+        #ambient-toggle {
+            padding: 0.38rem 0.65rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            background: rgba(15, 23, 42, 0.92);
+            color: #a7f3d0;
+            font-size: 0.68rem;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+            max-width: 11rem;
+            text-align: right;
+        }
+        #ambient-toggle:hover {
+            border-color: #f472b6;
+            color: #f9a8d4;
+        }
+        #ambient-toggle.on {
+            border-color: rgba(245, 158, 11, 0.55);
+            color: #fbbf24;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+        }
+
+        @keyframes deco-drift {
+            0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+            50% { transform: translate(12px, -10px) rotate(3deg); }
+        }
+        .deco-drift { animation: deco-drift 16s ease-in-out infinite; }
+        .deco-drift-slow { animation: deco-drift 22s ease-in-out infinite reverse; }
+        .deco-float-y {
+            animation: deco-float-y 8s ease-in-out infinite;
+        }
+        @keyframes deco-float-y {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
     </style>
 </head>
 <body class="bg-iron-roof min-h-screen flex flex-col relative antialiased">
+
+    <div class="top-fixed-ui">
+        <button type="button" id="ambient-toggle" aria-pressed="false" title="氛圍音（需點擊啟動；瀏覽器限制自動播放）">
+            <span class="lzh">♪ 氛圍音：關</span>
+            <span class="len">♪ Ambient: off</span>
+        </button>
+        <div class="locale-switch" role="navigation" aria-label="Language">
+            <button type="button" data-set-locale="zh" class="active" title="中文">中文</button>
+            <button type="button" data-set-locale="en" title="English">EN</button>
+        </div>
+    </div>
 
     <!-- 飄動的催繳單 -->
     <svg class="absolute top-20 right-[10%] w-24 h-32 opacity-20 rotate-12 pointer-events-none" viewBox="0 0 100 140">
@@ -93,6 +196,21 @@
         <rect x="15" y="80" width="60" height="8" fill="#831843" />
         <circle cx="70" cy="100" r="15" stroke="#9f1239" stroke-width="3" fill="none" transform="rotate(-15 70 100)"/>
         <text x="70" y="105" font-family="sans-serif" font-weight="900" font-size="14" fill="#9f1239" text-anchor="middle" transform="rotate(-15 70 100)">拆</text>
+    </svg>
+
+    <!-- 裝飾：夜市燈籠 -->
+    <svg class="deco-drift-slow pointer-events-none absolute left-[2%] md:left-[6%] top-[26%] hidden sm:block w-16 md:w-24 h-32 md:h-40 opacity-[0.22] text-amber-400" viewBox="0 0 96 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="48" y1="0" x2="48" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="48" cy="92" rx="34" ry="52" fill="#0f172a" stroke="currentColor" stroke-width="2"/>
+        <path d="M14 88 Q48 108 82 88" stroke="#fbbf24" stroke-width="1.5" opacity="0.85"/>
+        <path d="M18 96 Q48 118 78 96" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+        <rect x="30" y="142" width="36" height="10" rx="2" fill="currentColor" opacity="0.45"/>
+        <path d="M48 144v12" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+    </svg>
+    <!-- 裝飾：霓虹框線 -->
+    <svg class="deco-drift pointer-events-none absolute right-[4%] top-[18%] w-32 md:w-44 h-32 md:h-44 opacity-[0.14] text-pink-400" viewBox="0 0 120 120" aria-hidden="true">
+        <rect x="8" y="8" width="104" height="104" rx="8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="6 10"/>
+        <rect x="18" y="18" width="84" height="84" rx="4" stroke="currentColor" stroke-width="0.75" fill="none" opacity="0.6"/>
     </svg>
 
     <!-- 區塊一：主視覺 -->
@@ -127,22 +245,34 @@
             </svg>
         </div>
 
-        <p class="text-xl md:text-2xl text-gray-300 mb-12 font-bold tracking-[0.2em] relative z-10">
-            房租比武學更難練，臉皮比拳頭更管用。<span class="typewriter-cursor">_</span>
+        <p class="text-xl md:text-2xl text-gray-300 mb-10 font-bold tracking-[0.2em] relative z-10">
+            <span class="lzh">房租比武學更難練，臉皮比拳頭更管用。<span class="typewriter-cursor">_</span></span>
+            <span class="len">Rent is harder to master than kung fu; thick skin beats fists.<span class="typewriter-cursor">_</span></span>
         </p>
 
-        <a href="./game.html" class="btn-neon inline-block px-12 py-5 text-2xl md:text-3xl font-black tracking-widest rounded-sm relative z-20">
-            進入江湖 [ENTER]
-        </a>
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 relative z-20 max-w-3xl mx-auto px-2">
+            <a href="./game.html" class="btn-neon inline-block px-10 py-4 text-xl md:text-2xl font-black tracking-widest rounded-sm">
+                <span class="lzh">進入江湖 [ENTER]</span>
+                <span class="len">Enter the Jianghu [ENTER]</span>
+            </a>
+            <a href="./guide.html" class="btn-neon inline-block px-10 py-4 text-xl md:text-2xl font-black tracking-widest rounded-sm">
+                <span class="lzh">攻略與分析 [GUIDE]</span>
+                <span class="len">Guide &amp; Analysis [GUIDE]</span>
+            </a>
+        </div>
 
         <div class="absolute bottom-10 animate-bounce flex flex-col items-center text-gray-500 opacity-60">
-            <span class="text-xs tracking-widest mb-2 uppercase">向下滾動，認識你的爛命</span>
+            <span class="text-xs tracking-widest mb-2 uppercase"><span class="lzh">向下滾動，認識你的爛命</span><span class="len">Scroll — meet your sorry fate</span></span>
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
     </header>
 
     <!-- 區塊二：一句話核心 -->
-    <section class="py-24 relative z-10 bg-slate-900/80 border-y border-slate-800 backdrop-blur-sm">
+    <section class="py-24 relative z-10 bg-slate-900/80 border-y border-slate-800 backdrop-blur-sm overflow-hidden">
+        <svg class="pointer-events-none absolute left-1/2 top-6 -translate-x-1/2 w-[min(90%,28rem)] h-10 opacity-25 text-amber-600" viewBox="0 0 320 40" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <path d="M0 20 Q80 8 160 20 T320 20" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="160" cy="20" r="3" fill="currentColor" opacity="0.6"/>
+        </svg>
         <div class="max-w-4xl mx-auto px-6 text-center relative">
             <svg class="absolute top-0 left-0 md:-left-12 w-16 h-16 opacity-30 -rotate-12" viewBox="0 0 60 60">
                 <rect x="5" y="5" width="50" height="50" rx="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
@@ -156,52 +286,69 @@
             </svg>
             <span class="text-6xl text-amber-600/40 font-serif-tc absolute -top-8 left-1/2 -translate-x-1/2">"</span>
             <h3 class="text-2xl md:text-4xl font-serif-tc text-gray-200 leading-relaxed tracking-wide">
-                這不是成為大俠的故事。<br>
-                這是關於如何在月底付不出房租時，<br>
-                還能笑著跟房東說『下個月一定』的生存實錄。
+                <span class="lzh">這不是成為大俠的故事。<br>這是關於如何在月底付不出房租時，<br>還能笑著跟房東說『下個月一定』的生存實錄。</span>
+                <span class="len">This is not a tale of becoming a hero.<br>It is a survival log about making rent,<br>then smiling at the landlord: &ldquo;next month, I promise.&rdquo;</span>
             </h3>
         </div>
     </section>
 
     <!-- 區塊三：玩法迴圈 -->
-    <section class="py-20 max-w-6xl mx-auto px-4 relative z-10">
-        <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-amber-500 font-serif-tc tracking-widest">每天都是一場硬仗</h2>
+    <section class="py-20 max-w-6xl mx-auto px-4 relative z-10 overflow-hidden">
+        <svg class="pointer-events-none absolute -right-8 md:right-4 top-24 w-40 md:w-56 h-40 md:h-56 text-fuchsia-500/15 deco-drift" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+            <circle cx="100" cy="100" r="88" stroke="currentColor" stroke-width="0.75" stroke-dasharray="5 12"/>
+            <circle cx="100" cy="100" r="58" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
+            <path d="M100 28 L108 100 L100 172 L92 100 Z" fill="currentColor" opacity="0.2"/>
+        </svg>
+        <svg class="pointer-events-none absolute -left-10 bottom-16 w-36 h-36 text-cyan-500/10 deco-drift-slow hidden md:block" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M10 50 Q30 20 50 50 T90 50" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M10 65 Q35 40 55 65 T95 65" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.7"/>
+        </svg>
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-amber-500 font-serif-tc tracking-widest relative"><span class="lzh">每天都是一場硬仗</span><span class="len">Every day is a hard fight</span></h2>
         <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 relative">
             <div class="glass-card flex-1 p-8 rounded-xl text-center w-full max-w-sm z-10">
                 <div class="text-5xl mb-4">🏠</div>
-                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2">從頂樓醒來</h3>
-                <p class="text-sm text-gray-400 leading-relaxed text-left">確認錢包餘額、躲避房東訊息、分配僅存的行動點數（AP）。</p>
+                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2"><span class="lzh">從頂樓醒來</span><span class="len">Wake up on the rooftop</span></h3>
+                <p class="text-sm text-gray-400 leading-relaxed text-left"><span class="lzh">確認錢包餘額、躲避房東訊息、分配僅存的行動點數（AP）。</span><span class="len">Check your wallet, dodge the landlord, spend what AP you still have.</span></p>
             </div>
             <svg class="w-8 h-8 text-slate-600 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7-7m7-7H3"></path></svg>
             <svg class="w-8 h-8 text-slate-600 md:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             <div class="glass-card flex-1 p-8 rounded-xl text-center w-full max-w-sm z-10">
                 <div class="text-5xl mb-4">🛵</div>
-                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2">打工跑腿掙扎</h3>
-                <p class="text-sm text-gray-400 leading-relaxed text-left">超商大夜、外送跑單、工地搬磚……每一份工都消耗 AP，也磨練你的武力與臉皮。</p>
+                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2"><span class="lzh">打工跑腿掙扎</span><span class="len">Hustle and grind</span></h3>
+                <p class="text-sm text-gray-400 leading-relaxed text-left"><span class="lzh">超商大夜、外送跑單、工地搬磚……每一份工都消耗 AP，也磨練你的武力與臉皮。</span><span class="len">Night shift, delivery runs, construction gigs—every job costs AP and trains force &amp; face.</span></p>
             </div>
             <svg class="w-8 h-8 text-slate-600 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7-7m7-7H3"></path></svg>
             <svg class="w-8 h-8 text-slate-600 md:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             <div class="glass-card flex-1 p-8 rounded-xl text-center w-full max-w-sm z-10">
                 <div class="text-5xl mb-4">⚔️</div>
-                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2">用卡牌討生活</h3>
-                <p class="text-sm text-gray-400 leading-relaxed text-left">遭遇混混或金錢幫，以「融合卡牌」系統出招。記住，認慫也是一種策略。</p>
+                <h3 class="text-xl font-bold text-gray-100 mb-3 border-b border-slate-700 pb-2"><span class="lzh">用卡牌討生活</span><span class="len">Fight with cards</span></h3>
+                <p class="text-sm text-gray-400 leading-relaxed text-left"><span class="lzh">遭遇混混或金錢幫，以「融合卡牌」系統出招。記住，認慫也是一種策略。</span><span class="len">Meet thugs and loan sharks; play the hybrid deck. Surrendering is still a strategy.</span></p>
             </div>
             <div class="hidden md:block absolute -bottom-10 left-[10%] w-[80%] h-12 border-b-2 border-l-2 border-r-2 border-dashed border-slate-700 rounded-b-3xl">
-                <div class="absolute bottom-[-14px] left-1/2 -translate-x-1/2 bg-slate-900 px-4 text-xs text-amber-600">領錢、繳租、再撐一天</div>
+                <div class="absolute bottom-[-14px] left-1/2 -translate-x-1/2 bg-slate-900 px-4 text-xs text-amber-600"><span class="lzh">領錢、繳租、再撐一天</span><span class="len">Get paid, pay rent, survive</span></div>
             </div>
         </div>
     </section>
 
     <!-- 區塊四：核心系統 -->
-    <section class="py-20 bg-slate-900/50">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-gray-100 font-serif-tc tracking-widest">敗犬的生存工具箱</h2>
+    <section class="py-20 bg-slate-900/50 relative overflow-hidden">
+        <svg class="pointer-events-none absolute inset-x-0 top-0 h-16 w-full opacity-[0.18] text-slate-500" viewBox="0 0 400 32" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 16 L50 8 L100 16 L150 6 L200 16 L250 10 L300 16 L350 12 L400 16" fill="none" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="max-w-5xl mx-auto px-4 relative">
+            <svg class="w-full max-w-md mx-auto h-8 mb-6 opacity-45" viewBox="0 0 280 20" aria-hidden="true">
+                <line x1="0" y1="10" x2="100" y2="10" stroke="#64748b" stroke-width="1"/>
+                <line x1="180" y1="10" x2="280" y2="10" stroke="#64748b" stroke-width="1"/>
+                <circle cx="140" cy="10" r="5" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+                <path d="M135 10h10M140 5v10" stroke="#fbbf24" stroke-width="0.8"/>
+            </svg>
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-gray-100 font-serif-tc tracking-widest"><span class="lzh">敗犬的生存工具箱</span><span class="len">A loser&rsquo;s survival kit</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-amber-500">
                     <div class="text-4xl">🃏</div>
                     <div>
-                        <h3 class="text-xl font-bold text-amber-400 mb-2">打架靠牌技</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">收集超過 120 張招式卡，涵蓋硬派、取巧、話術、認慫四大流派。戰鬥前編輯牌組，戰鬥中看穿敵方架勢，用 QTE 抓住破綻。</p>
+                        <h3 class="text-xl font-bold text-amber-400 mb-2"><span class="lzh">打架靠牌技</span><span class="len">Combat is deckbuilding</span></h3>
+                        <p class="text-gray-400 text-sm leading-relaxed"><span class="lzh">收集超過 120 張招式卡，涵蓋硬派、取巧、話術、認慫四大流派。戰鬥前編輯牌組，戰鬥中看穿敵方架勢，用 QTE 抓住破綻。</span><span class="len">120+ cards across hard / smart / speech / surrender. Edit your deck, read the enemy, hit weak spots in boss QTEs.</span></p>
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-blue-400 relative overflow-hidden">
@@ -211,22 +358,22 @@
                     </svg>
                     <div class="text-4xl relative z-10">👥</div>
                     <div class="relative z-10">
-                        <h3 class="text-xl font-bold text-blue-400 mb-2">兄弟幫你跑腿</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">鐵叔、小夜、金錢豹、阿傑……提升羈絆後可派他們外出打工、蒐集情報，甚至觸發專屬劇情。小心高風險任務。</p>
+                        <h3 class="text-xl font-bold text-blue-400 mb-2"><span class="lzh">兄弟幫你跑腿</span><span class="len">Friends run errands</span></h3>
+                        <p class="text-gray-400 text-sm leading-relaxed"><span class="lzh">鐵叔、小夜、金錢豹、阿傑……提升羈絆後可派他們外出打工、蒐集情報，甚至觸發專屬劇情。小心高風險任務。</span><span class="len">Uncle Tie, Xiaoye, the cat, Ajie—raise bonds, send them on jobs, unlock stories. High risk, high drama.</span></p>
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-pink-500">
                     <div class="text-4xl">📱</div>
                     <div>
-                        <h3 class="text-xl font-bold text-pink-400 mb-2">發廢文抒壓</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">在遊戲內的社群平台上按讚、留言、轉發。你的每一篇廢文都可能影響聲望，甚至釣出隱藏的江湖祕聞。</p>
+                        <h3 class="text-xl font-bold text-pink-400 mb-2"><span class="lzh">發廢文抒壓</span><span class="len">Shitpost to cope</span></h3>
+                        <p class="text-gray-400 text-sm leading-relaxed"><span class="lzh">在遊戲內的社群平台上按讚、留言、轉發。你的每一篇廢文都可能影響聲望，甚至釣出隱藏的江湖祕聞。</span><span class="len">Like, comment, repost on the in-game feed. Clout shifts; rumors and secrets surface.</span></p>
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-lg flex items-start gap-4 border-l-4 border-l-emerald-500">
                     <div class="text-4xl">🏛️</div>
                     <div>
-                        <h3 class="text-xl font-bold text-emerald-400 mb-2">從敗犬到掌門</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">加入外送聯盟、健身集團，或自創門派。招募弟子、擴建道場、搶佔分舵地盤，在城中村建立你的勢力。</p>
+                        <h3 class="text-xl font-bold text-emerald-400 mb-2"><span class="lzh">從敗犬到掌門</span><span class="len">From loser to sect lead</span></h3>
+                        <p class="text-gray-400 text-sm leading-relaxed"><span class="lzh">加入外送聯盟、健身集團，或自創門派。招募弟子、擴建道場、搶佔分舵地盤，在城中村建立你的勢力。</span><span class="len">Join delivery, gym corp, or roll your own sect. Recruit, build halls, fight for branches.</span></p>
                     </div>
                 </div>
             </div>
@@ -235,7 +382,7 @@
 
     <!-- 區塊五：角色與數值 (全新塗鴉火柴人阿琳 SVG) -->
     <section class="py-24 max-w-5xl mx-auto px-4 border-t border-slate-800">
-        <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-gray-100 font-serif-tc tracking-widest">你的命，由數字決定</h2>
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-gray-100 font-serif-tc tracking-widest"><span class="lzh">你的命，由數字決定</span><span class="len">Your fate, in numbers</span></h2>
         
         <div class="flex flex-col md:flex-row gap-12 items-center">
             
@@ -297,7 +444,7 @@
 
             <!-- 右側：屬性面板 -->
             <div class="w-full md:w-7/12 bg-[#020617] border border-slate-700 p-6 md:p-8 rounded-xl font-mono text-sm relative shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
-                <div class="text-xs text-slate-500 mb-4 border-b border-slate-800 pb-2">SYS.CHAR.STATUS // ALIN</div>
+                <div class="text-xs text-slate-500 mb-4 border-b border-slate-800 pb-2"><span class="lzh">SYS.CHAR.STATUS // ALIN</span><span class="len">SYS.CHAR.STATUS // ALIN</span></div>
                 
                 <div class="space-y-4">
                     <div class="flex items-center">
@@ -323,21 +470,21 @@
 
                     <div class="grid grid-cols-2 gap-x-8 gap-y-4 pt-4 border-t border-slate-800">
                         <div>
-                            <span class="text-gray-400 block mb-1">💪 武力</span>
+                            <span class="text-gray-400 block mb-1"><span class="lzh">💪 武力</span><span class="len">💪 Force</span></span>
                             <div class="text-xl text-gray-200">85</div>
                         </div>
                         <div>
-                            <span class="text-gray-400 block mb-1">👁️ 洞察</span>
+                            <span class="text-gray-400 block mb-1"><span class="lzh">👁️ 洞察</span><span class="len">👁️ Insight</span></span>
                             <div class="text-xl text-gray-200">72</div>
                         </div>
                         <div>
-                            <span class="text-gray-400 block mb-1">🗣️ 話術</span>
+                            <span class="text-gray-400 block mb-1"><span class="lzh">🗣️ 話術</span><span class="len">🗣️ Speech</span></span>
                             <div class="text-xl text-gray-200">68</div>
                         </div>
                         
                         <div class="col-span-2 mt-2 p-3 bg-pink-900/20 border border-pink-900/50 rounded">
                             <div class="flex justify-between items-end mb-1">
-                                <span class="text-pink-400 font-bold">🛡️ 臉皮</span>
+                                <span class="text-pink-400 font-bold"><span class="lzh">🛡️ 臉皮</span><span class="len">🛡️ Thick skin</span></span>
                                 <span class="text-pink-400 text-lg">142 (Maxed out!)</span>
                             </div>
                             <div class="w-full bg-slate-800 h-4 rounded-full relative">
@@ -345,14 +492,15 @@
                                 <div class="absolute top-0 -right-4 h-full w-6 bg-pink-300 animate-pulse rounded-r-full shadow-[0_0_15px_rgba(244,114,182,1)] text-[8px] flex items-center justify-center text-pink-900 font-black overflow-hidden">++</div>
                             </div>
                             <p class="text-xs text-gray-400 mt-3 font-sans leading-relaxed">
-                                「臉皮」是你最重要的資產。臉皮夠厚，能乞討、吃霸王餐、甚至賴掉房租。但小心，自尊心也會因此受損。
+                                <span class="lzh">「臉皮」是你最重要的資產。臉皮夠厚，能乞討、吃霸王餐、甚至賴掉房租。但小心，自尊心也會因此受損。</span>
+                                <span class="len">Thick skin is your top stat—beg, dine-and-dash, stall on rent. Pride takes a hit anyway.</span>
                             </p>
                         </div>
                     </div>
 
                     <div class="flex justify-between pt-4 border-t border-slate-800 text-sm">
-                        <span class="text-emerald-400">💰 現金: $12,450</span>
-                        <span class="text-red-400">📉 信用評等: 380 (高風險)</span>
+                        <span class="text-emerald-400"><span class="lzh">💰 現金: $12,450</span><span class="len">💰 Cash: $12,450</span></span>
+                        <span class="text-red-400"><span class="lzh">📉 信用評等: 380 (高風險)</span><span class="len">📉 Credit: 380 (high risk)</span></span>
                     </div>
                 </div>
             </div>
@@ -360,43 +508,59 @@
     </section>
 
     <!-- 區塊六：世界觀與選擇 -->
-    <section class="py-20 bg-slate-950">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-gray-100 font-serif-tc tracking-widest">每個選擇，都寫下不同的爛尾</h2>
+    <section class="py-20 bg-slate-950 relative overflow-hidden">
+        <svg class="pointer-events-none absolute -left-4 top-1/4 w-24 h-48 opacity-[0.12] text-violet-400 hidden lg:block" viewBox="0 0 60 120" aria-hidden="true">
+            <path d="M30 0v24M18 24h24M30 24v96" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="30" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <svg class="pointer-events-none absolute right-0 bottom-20 w-40 h-32 opacity-[0.1] text-rose-500" viewBox="0 0 160 120" aria-hidden="true">
+            <path d="M20 100 Q80 20 140 100" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="80" cy="48" r="6" fill="currentColor" opacity="0.35"/>
+        </svg>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-gray-100 font-serif-tc tracking-widest"><span class="lzh">每個選擇，都寫下不同的爛尾</span><span class="len">Every choice writes another messy ending</span></h2>
             <div class="space-y-6">
                 <div class="glass-card p-6 flex flex-col md:flex-row items-center gap-6 rounded-r-3xl border-l-4 border-l-purple-500">
                     <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center text-3xl flex-shrink-0">🕶️</div>
-                    <p class="text-lg text-gray-300">「要原諒那個曾經背叛你的人，還是讓她付出代價？」</p>
+                    <p class="text-lg text-gray-300"><span class="lzh">「要原諒那個曾經背叛你的人，還是讓她付出代價？」</span><span class="len">&ldquo;Forgive the one who betrayed you—or make her pay?&rdquo;</span></p>
                 </div>
                 <div class="glass-card p-6 flex flex-col md:flex-row items-center gap-6 rounded-r-3xl border-l-4 border-l-orange-500 ml-0 md:ml-8">
                     <div class="w-16 h-16 rounded-full bg-orange-900/50 flex items-center justify-center text-3xl flex-shrink-0">🐈</div>
-                    <p class="text-lg text-gray-300">「跟流浪貓搶地盤，還是收編牠成為你最忠實的線民？」</p>
+                    <p class="text-lg text-gray-300"><span class="lzh">「跟流浪貓搶地盤，還是收編牠成為你最忠實的線民？」</span><span class="len">&ldquo;Fight a stray for turf—or recruit it as your snitch?&rdquo;</span></p>
                 </div>
                 <div class="glass-card p-6 flex flex-col md:flex-row items-center gap-6 rounded-r-3xl border-l-4 border-l-red-800 ml-0 md:ml-16">
                     <div class="w-16 h-16 rounded-full bg-red-900/30 flex items-center justify-center text-3xl flex-shrink-0">🏯</div>
-                    <p class="text-lg text-gray-300">「守住母親留下的破道場，還是把它賣給建商，從此躺平？」</p>
+                    <p class="text-lg text-gray-300"><span class="lzh">「守住母親留下的破道場，還是把它賣給建商，從此躺平？」</span><span class="len">&ldquo;Keep mom&rsquo;s ruined dojo—or sell out to developers and coast?&rdquo;</span></p>
                 </div>
             </div>
             <div class="text-center mt-16 pt-8 border-t border-slate-800">
-                <p class="text-amber-500/80 font-bold tracking-widest">超過 15 種結局。從武林盟主、地下教父，到被社會徹底遺忘的廢人。<br>你的江湖，你自己收尾。</p>
+                <p class="text-amber-500/80 font-bold tracking-widest"><span class="lzh">超過 15 種結局。從武林盟主、地下教父，到被社會徹底遺忘的廢人。<br>你的江湖，你自己收尾。</span><span class="len">15+ endings—from kingpin to forgotten wreck.<br>Your Jianghu, your closing credits.</span></p>
             </div>
         </div>
     </section>
 
     <!-- 區塊七：玩家證言 -->
     <section class="py-24 overflow-hidden relative border-y border-slate-800 bg-iron-roof">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-8 justify-center items-center">
+        <svg class="pointer-events-none absolute top-8 left-[8%] w-10 h-14 text-slate-600/40 deco-float-y" viewBox="0 0 40 56" aria-hidden="true">
+            <ellipse cx="20" cy="14" rx="14" ry="10" fill="currentColor" opacity="0.5"/>
+            <path d="M20 22v28M12 50h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="pointer-events-none absolute top-16 right-[12%] w-10 h-14 text-slate-600/35 deco-float-y" style="animation-delay: -2s" viewBox="0 0 40 56" aria-hidden="true">
+            <ellipse cx="20" cy="14" rx="14" ry="10" fill="currentColor" opacity="0.45"/>
+            <path d="M20 22v28M12 50h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-8 justify-center items-center relative z-10">
             <div class="post-it w-72 p-6 rotate-[-3deg] transform hover:rotate-0 transition-transform">
-                <p class="font-bold text-lg mb-4 leading-relaxed">「我本來只是想找個武俠遊戲，結果一直在算房租跟躲債主。莫名寫實。」</p>
-                <p class="text-sm text-gray-600 text-right">— 某位不想上班的玩家</p>
+                <p class="font-bold text-lg mb-4 leading-relaxed"><span class="lzh">「我本來只是想找個武俠遊戲，結果一直在算房租跟躲債主。莫名寫實。」</span><span class="len">&ldquo;I wanted wuxia; I got rent math and dodging collectors. Too real.&rdquo;</span></p>
+                <p class="text-sm text-gray-600 text-right"><span class="lzh">— 某位不想上班的玩家</span><span class="len">— a player who skipped work</span></p>
             </div>
             <div class="post-it w-72 p-6 rotate-[4deg] transform hover:rotate-0 transition-transform mt-8 md:mt-0" style="background-color: #bbf7d0;">
-                <p class="font-bold text-lg mb-4 leading-relaxed">「第一次發現，原來在遊戲裡耍廢一整天，也會有滿滿的罪惡感。」</p>
-                <p class="text-sm text-gray-600 text-right">— 躺平大師</p>
+                <p class="font-bold text-lg mb-4 leading-relaxed"><span class="lzh">「第一次發現，原來在遊戲裡耍廢一整天，也會有滿滿的罪惡感。」</span><span class="len">&ldquo;Even slacking in a game all day felt… guilty.&rdquo;</span></p>
+                <p class="text-sm text-gray-600 text-right"><span class="lzh">— 躺平大師</span><span class="len">— master of lying flat</span></p>
             </div>
             <div class="post-it w-72 p-6 rotate-[-2deg] transform hover:rotate-0 transition-transform mt-8 md:mt-0" style="background-color: #fbcfe8;">
-                <p class="font-bold text-lg mb-4 leading-relaxed">「金錢豹比我家貓還跩，但我還是每天餵牠。」</p>
-                <p class="text-sm text-gray-600 text-right">— 貓奴認證</p>
+                <p class="font-bold text-lg mb-4 leading-relaxed"><span class="lzh">「金錢豹比我家貓還跩，但我還是每天餵牠。」</span><span class="len">&ldquo;The tabby&rsquo;s sassier than my cat—I still feed him daily.&rdquo;</span></p>
+                <p class="text-sm text-gray-600 text-right"><span class="lzh">— 貓奴認證</span><span class="len">— certified cat servant</span></p>
             </div>
         </div>
     </section>
@@ -406,125 +570,387 @@
     <!-- ============================================== -->
     <section class="py-16 bg-[#050505] border-t border-slate-900">
         <details class="group max-w-4xl mx-auto px-4 cursor-pointer">
-            <summary class="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all">
-                <div class="flex items-center gap-3">
-                    <span class="text-amber-500 animate-pulse">▶</span>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-300 tracking-widest">系統解密：開發者的信 & V1.0 內容日誌</h3>
+            <summary class="flex items-center justify-between gap-3 p-4 bg-slate-900/50 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all">
+                <div class="flex items-center gap-3 min-w-0">
+                    <span class="text-amber-500 animate-pulse shrink-0">▶</span>
+                    <h3 class="text-base md:text-xl font-bold text-gray-300 tracking-widest text-left">
+                        <span class="lzh">系統解密：開發者的信 &amp; 導演版更新日誌</span>
+                        <span class="len">Behind the scenes: dev note &amp; Director&rsquo;s Cut changelog</span>
+                    </h3>
                 </div>
-                <span class="text-xs text-gray-600 uppercase tracking-widest group-open:hidden">點擊展開 [Expand]</span>
-                <span class="text-xs text-gray-600 uppercase tracking-widest hidden group-open:block">點擊收合 [Collapse]</span>
+                <span class="text-xs text-gray-600 uppercase tracking-widest shrink-0 group-open:hidden"><span class="lzh">點擊展開</span><span class="len">Expand</span></span>
+                <span class="text-xs text-gray-600 uppercase tracking-widest shrink-0 hidden group-open:block"><span class="lzh">點擊收合</span><span class="len">Collapse</span></span>
             </summary>
             
             <div class="mt-4 p-6 md:p-10 bg-slate-900 border border-slate-800 rounded-lg text-gray-400 text-sm md:text-base leading-relaxed font-sans shadow-inner">
-                
-                <!-- 開發者的信 -->
-                <div class="mb-12">
-                    <h4 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">開發者的信</h4>
-                    <p class="mb-4">各位遊玩者：</p>
-                    <p class="mb-4">我是《敗犬江湖》的開發者，一名還在唸書的學生。</p>
-                    <p class="mb-4">這款遊戲的起點，是這個禮拜四，也就是 2026 年 4 月 9 日。那天深夜，我腦中突然冒出兩個字：「敗犬」。</p>
-                    <p class="mb-4">敗犬。江湖。</p>
-                    <p class="mb-4">如果把它們放在一起，會長出什麼東西？不是什麼大俠成名錄，而是一群在社會夾縫裡掙扎求生的人，用拳頭、嘴砲、還有厚到子彈打不穿的臉皮，在城市的暗面寫自己的爛命故事。</p>
-                    <p class="mb-4">那個晚上，我打開編輯器，同時也打開了 AI 對話框。在接下來不到三天的時間裡，我把我心中那套有點窩囊、有點倔強、又充滿臺式底層幽默的「敗犬哲學」，一句一句地、一場一場地，協同 AI 輕輕放進了這座用鐵皮、霓虹、催繳單和夜市油煙搭建起來的江湖裡。</p>
-                    <p class="mb-4">然後就到了今天，禮拜天，4 月 12 日。</p>
-                    <p class="mb-4">你現在看到的，是第一個可以試玩的雛形。它還很粗糙，很多地方像還沒拆模的工地，但阿琳已經可以在城中村裡走跳、挨揍、認慫、再硬著頭皮活過今天。</p>
-                    <p class="mb-4">我想謝謝每一個點進來的人。</p>
-                    <p class="mb-4">無論你是滑到、被朋友推坑、還是對「敗犬江湖」這四個字感到荒謬又好奇，我都非常感激。如果你願意玩下去，甚至告訴我哪裡卡關、哪裡出 bug、哪裡讓你笑出來或嘆了一口氣——那對我來說，就是最紮實的鼓勵。</p>
-                    <p class="mb-4">這遊戲還會繼續長大。我會把 UI 修得更順手，把故事寫得更深，把那些你還沒看到的結局、夥伴、門派鬥爭，一個一個實裝進去。</p>
-                    <p class="mb-8">謝謝你來。希望阿琳的爛命，能陪你度過幾個有點狼狽、又有點好笑的夜晚。</p>
-                    <p class="text-right text-gray-500 italic">— 一名邊寫 code 邊吃泡麵的學生開發者 敬上<br>2026 年 4 月 12 日，禮拜天深夜</p>
+
+                <!-- ===== 第一封信：1.0 初代信 ===== -->
+                <div class="letter-card mb-8">
+                    <div class="letter-date">📅 初代導演版 · 第一封信</div>
+                    <div class="lzh space-y-3">
+                        <p>各位遊玩者：</p>
+                        <p>我是《敗犬江湖》的開發者，一名還在唸書的學生。</p>
+                        <p>這款遊戲的起點，是這個禮拜四，也就是 2026 年 4 月 9 日。那天深夜，我腦中突然冒出兩個字：「敗犬」。</p>
+                        <p>敗犬。江湖。</p>
+                        <p>如果把它們放在一起，會長出什麼東西？不是什麼大俠成名錄，而是一群在社會夾縫裡掙扎求生的人，用拳頭、嘴砲、還有厚到子彈打不穿的臉皮，在城市的暗面寫自己的爛命故事。</p>
+                        <p>那個晚上，我打開編輯器，同時也打開了 AI 對話框。在接下來不到三天的時間裡，我把我心中那套有點窩囊、有點倔強、又充滿臺式底層幽默的「敗犬哲學」，一句一句地、一場一場地，協同 AI 輕輕放進了這座用鐵皮、霓虹、催繳單和夜市油煙搭建起來的江湖裡。</p>
+                        <p>然後就到了今天，禮拜天，4 月 12 日。</p>
+                        <p>你現在看到的，是第一個可以試玩的雛形。它還很粗糙，很多地方像還沒拆模的工地，但阿琳已經可以在城中村裡走跳、挨揍、認慫、再硬著頭皮活過今天。</p>
+                        <p>我想謝謝每一個點進來的人。</p>
+                        <p>無論你是滑到、被朋友推坑、還是對「敗犬江湖」這四個字感到荒謬又好奇，我都非常感激。如果你願意玩下去，甚至告訴我哪裡卡關、哪裡出 bug、哪裡讓你笑出來或嘆了一口氣——那對我來說，就是最紮實的鼓勵。</p>
+                        <p>這遊戲還會繼續長大。我會把 UI 修得更順手，把故事寫得更深，把那些你還沒看到的結局、夥伴、門派鬥爭，一個一個實裝進去。</p>
+                        <p>謝謝你來。希望阿琳的爛命，能陪你度過幾個有點狼狽、又有點好笑的夜晚。</p>
+                        <p class="text-right text-gray-500 italic">— 一名邊寫 code 邊吃泡麵的學生開發者 敬上<br>2026 年 4 月 12 日，禮拜天深夜</p>
+                    </div>
+                    <div class="len space-y-3">
+                        <p>Hi—I'm the student dev behind <em>Baidog Jianghu</em>.</p>
+                        <p>It started late Thursday night, April 9th, 2026, with two words: "loser dog". Loser dog. Jianghu. Not a hero's tale, but people scraping by with fists, talk, and thick skin in the city's margins.</p>
+                        <p>That night I opened the editor and an AI chat. Over the next three days I poured that slightly pathetic, stubborn, Taiwanese bottom‑rung humor into a world of sheet metal, neon, overdue notices, and night‑market fumes.</p>
+                        <p>Now it's Sunday, April 12th. What you see is the first playable prototype. It's rough, like a construction site, but Alin can already roam, get hit, surrender, and stubbornly survive another day.</p>
+                        <p>Thank you for clicking in. If you play, report a bug, or just laugh or sigh once—that's real fuel. The game will keep growing. UI, story, endings, companions, sect wars—I'll keep adding them.</p>
+                        <p class="text-right text-gray-500 italic">— a student dev coding between instant noodles<br>late Sunday night, April 12th, 2026</p>
+                    </div>
                 </div>
 
-                <!-- 內容日誌 -->
-                <div class="border-t border-slate-700 pt-8">
-                    <h4 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">《敗犬江湖》V1.0 內容日誌（專業開發者版）</h4>
-                    
-                    <div class="mb-8 p-4 bg-slate-950 rounded text-cyan-500 font-mono text-xs md:text-sm">
-                        <p>· 版本代號：Ultimate Director's Cut V1.0</p>
-                        <p>· 發布型態：單一 HTML 離線可執行檔（約 3.8 MB）</p>
-                        <p>· 核心技術：Vanilla JavaScript + Tailwind CSS + SVG 向量圖形</p>
-                        <p>· 開發週期：72 小時原型衝刺（2026.04.09 – 2026.04.12）</p>
+                <!-- ===== 第二封信：2.0 雨晴信 ===== -->
+                <div class="letter-card border-pink-500/30 mb-8">
+                    <div class="letter-date">🌧️ 2026.04.18 · 關於雨晴與2.0</div>
+                    <div class="lzh space-y-3">
+                        <p class="text-xl font-serif-tc text-amber-300">「如果有一天下雨也是晴的，那該有多漂亮。」</p>
+                        <p>各位玩家，距離第一封信才過了短短六天。這段時間裡，我常常在凌晨三點看著窗外（台灣的溼悶黏在皮膚上），一邊改著 bug，一邊想著你們的回饋。有人說臉皮流太強，有人說雨晴的日記找不到，也有人告訴我：「躺在操場上那個段落，我想起國中了。」</p>
+                        <p>我一直想把這種感覺做進遊戲裡：雨天或許是避難所，我們把失望的藏頭籤、斷筆的日記、唐突的過去都藏在傘下。但偶爾，當陽光穿透雨絲，那種「朗朗的雨晴」就是阿琳在這個殘酷都市裡，所能遇見最溫柔的片刻。</p>
+                        <p>最後，關於那場雨。如果你在現實生活裡覺得悶、覺得急，歡迎隨時回來《敗犬江湖》。不用打怪，去「一杯春秋」買杯冬瓜茶，去公園找龍伯下盤棋，或者只是在天臺發呆，聽聽雨聲。</p>
+                        <p>生命也許不怎麼長久，但我們可以體會許多次許多次的雨天。謝謝你願意陪阿琳走這一段路。我們 2.0 見。</p>
+                        <p class="text-right text-gray-400 italic">— 還在努力 debug 的開發者，寫於一個溼悶的四月天</p>
+                    </div>
+                    <div class="len space-y-3">
+                        <p class="text-xl text-pink-300">“What if a rainy day could also be sunny? That would be beautiful.”</p>
+                        <p>It's been just six days since my first letter. While fixing bugs at 3 AM, I thought about your feedback: thick-skin OP, RainQing's diary hidden, and “that playground scene reminded me of junior high.”</p>
+                        <p>Rain can be a shelter where we hide broken diaries. But sometimes sunshine through rain—that's the gentleness Alin finds. Come back anytime, buy winter melon tea, play chess with Uncle Long, or just listen to the rain on the rooftop.</p>
+                        <p>Life may not last long, but we can experience countless rainy days. See you in 2.0.</p>
+                        <p class="text-right text-gray-400 italic">— debugging in humid April</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-700 pt-8 lzh">
+                    <h4 class="text-2xl font-bold text-white mb-4 border-b border-slate-700 pb-2">📓《敗犬江湖》導演版｜開發更新日誌（完整）</h4>
+                    <div class="mb-6 p-4 bg-slate-950 rounded text-cyan-400/90 font-mono text-xs md:text-sm space-y-1">
+                        <p>· 發布型態：單一 HTML（<code class="text-pink-300">game.html</code>）離線可玩 · Tailwind CDN</p>
+                        <p>· 存檔：BDOG1 + LZString 壓縮 · 多槽與備份 · SAVE_SCHEMA 自動遷移</p>
                     </div>
 
-                    <h5 class="text-lg font-bold text-amber-500 mb-3">一、設計哲學：敗犬精神與臺式江湖</h5>
-                    <p class="mb-4">本作的核心設計命題為：「如果武俠發生在當代臺灣的底層社會，會是什麼模樣？」</p>
-                    <p class="mb-4">傳統武俠的「內力」被替換為「臉皮」；「門派」被替換為「外送聯盟、健身集團、超商大夜班」；「絕世武功」被替換為「從工地搬磚、夜市賭攤、廢文牆流量中提煉出來的生存技」。遊戲透過以下三大支柱貫徹此哲學：</p>
-                    <ul class="list-disc pl-6 mb-8 space-y-2 text-gray-400">
-                        <li><strong class="text-gray-300">資源焦慮驅動：</strong>房租、利息、信用評等、AP（行動點數）上限構成緊迫的生存壓力，所有系統均圍繞「如何活過下一個繳租日」運轉。</li>
-                        <li><strong class="text-gray-300">道德彈性與後果：</strong>戰鬥中的「認慫」選項、日常中的乞討與霸王餐，均以「臉皮」屬性作為代價與資源，並累積隱性的「自尊／心魔」數值，影響後期結局走向。</li>
-                        <li><strong class="text-gray-300">系統性敘事：</strong>夥伴派遣、廢文牆、街頭傳聞、門派經營等子系統，均會動態生成符合世界觀的小故事，形成「玩家行為 → 世界回應 → 新敘事觸發」的閉環。</li>
-                    </ul>
-
-                    <h5 class="text-lg font-bold text-amber-500 mb-3">二、核心系統架構</h5>
-                    
-                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.1 時間與資源循環</h6>
-                    <ul class="list-disc pl-6 mb-6 space-y-1">
-                        <li><strong>日循環（Day Cycle）：</strong>以 AP（行動點數）為主要限制。AP 耗盡後可選擇「睡覺」推進一日，或「耍廢」跳過一日並承受負面效果。</li>
-                        <li><strong>週期性壓力：</strong>房租（每 7 日）、利息（每 3 日）結算。欠費會觸發 HP 扣除、聲望下降、討債事件等連鎖反應。</li>
-                        <li><strong>離線進程：</strong>支援真實時間流逝結算。離線期間 AP 溢出會轉為「儲備精力」，可手動啟動短期打工收益爆發，平衡掛機與主動遊玩的回報曲線。</li>
-                    </ul>
-
-                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.2 角色成長：四維與雙重道德</h6>
-                    <div class="overflow-x-auto mb-4">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-800 border-b border-slate-700">
-                                    <th class="p-2 w-24">屬性</th>
-                                    <th class="p-2">設計意圖</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm">
-                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">武力</td><td class="p-2">傳統 RPG 力量，影響硬派戰鬥、工地／保鑣打工收益。</td></tr>
-                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">洞察</td><td class="p-2">感知與智取，影響取巧戰鬥、情報類打工、破解小遊戲。</td></tr>
-                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">話術</td><td class="p-2">社交與操縱，影響嘴砲戰鬥、超商／推銷類打工、廢文牆互動。</td></tr>
-                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-pink-400">臉皮</td><td class="p-2">本作核心屬性。影響認慫成功率、乞討／霸王餐解鎖、房租賴帳機率。但過高會引發 NPC 反感與自尊懲罰。</td></tr>
-                                <tr class="border-b border-slate-800"><td class="p-2 font-bold text-white">聲望</td><td class="p-2">社會評價，影響打工薪水加成、部分劇情解鎖。</td></tr>
-                                <tr><td class="p-2 font-bold text-white">信用評等</td><td class="p-2">動態金融標籤，影響貸款利率、商店折扣、部分任務觸發。歸零觸發破產清算事件。</td></tr>
-                            </tbody>
-                        </table>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 0.1 – 0.5（原型階段：底層骨架與生存框架）</p>
+                    <p class="text-gray-500 text-xs mb-2">內部測試版，建立核心循環</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：先把人設站穩，把命撐住</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Core] 確立四維屬性體系</p>
+                    <p class="text-gray-400 mb-2">武力 (force)、洞察 (insight)、話術 (speech)、臉皮 (thickSkin)。UI 透過 <code class="text-pink-300">hybridCombatStatLabels</code> 做映射（L5252），讓每個數字背後都有一個「人設」。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Combat] 第一版戰鬥態度</p>
+                    <p class="text-gray-400 mb-2">硬派／取巧／話術／認慫；<code class="text-pink-300">combatStanceCounterMap</code>（L15342）循環克制，後續與流派相剋疊加。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Survival] 生存循環</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">calculateOfflineEarnings</code> 推進房租／利息／AP；離線溢出 AP 轉「儲備精力」（上限 200，L43295）、「厚積薄發」打工翻倍。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Save] 壓縮存檔協定</p>
+                    <p class="text-gray-400 mb-2">BDOG1: + LZString（<code class="text-pink-300">encodeSaveData</code>，L28778）；多槽 #1–#3（<code class="text-pink-300">openSaveSlotManager</code>，L28066）；<code class="text-pink-300">udg_save_v4_backup</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Narrative] 主線前四章節點</p>
+                    <p class="text-gray-400 mb-2">阿琳／阿傑／武館線雛形；<code class="text-pink-300">deferredStoryNodesV15</code> 熱插拔擴充。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[UI] 啟動畫面與導航</p>
+                    <p class="text-gray-400 mb-0">啟動畫面、頂部 HUD；底部四分頁：走跳／我的爛命／廢柴日記／不堪回首。</p>
                     </div>
-                    <p class="mb-6 text-sm"><strong class="text-gray-300">隱性數值：</strong>心魔值（累積自戰鬥失利、道德敗壞）、希望值（影響戰鬥士氣）、自尊值（影響 NPC 態度）。</p>
 
-                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.3 戰鬥系統：融合卡牌與姿態克制</h6>
-                    <ul class="list-disc pl-6 mb-6 space-y-1">
-                        <li><strong>底層邏輯：</strong>每次戰鬥均為回合制。玩家手牌來自預組牌庫（上限 15 張），每回合抽滿 5 張，消耗 AP（能量）出牌。</li>
-                        <li><strong>四種流派：</strong>硬派（武力）、取巧（洞察）、話術（話術）、認慫（臉皮）。每張卡牌歸屬一流派，並對應判定門檻。</li>
-                        <li><strong>姿態克制鏈：</strong>硬派→取巧→話術→認慫→硬派。敵我雙方均有當前姿態，克制時判定門檻大幅下降，被克制時上升。</li>
-                        <li><strong>戰意與崩潰：</strong>BOSS 級敵人擁有「戰意」條。使用話術與認慫可削減戰意。歸零時進入「崩潰」狀態。</li>
-                        <li><strong>QTE 破綻系統：</strong>出牌時觸發快速反應事件，成功可降低本次判定門檻。</li>
-                    </ul>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.0（Director's Cut 基底：系統深度開挖）</p>
+                    <p class="text-gray-500 text-xs mb-2">遊戲正式轉向「導演版」規模，底層重構</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：從文字冒險到 Deckbuilding RPG 的質變</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Card System] 戰鬥徹底重寫為牌組構築</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">hybridCardTargetCounts = { total: 124, deck: 15, custom: 12 }</code>（L5266）；<code class="text-pink-300">makeHybridCombatCard</code>；<code class="text-pink-300">openWarRoom('deck')</code> 戰備室含流派／稀有度／費用／搜尋濾鏡（<code class="text-pink-300">warRoomUi</code>，L7829）、費用曲線與流派雷達、BWG1 牌組碼；<code class="text-pink-300">schoolCounterMap</code> 勝方傷害 ×1.25、敗方 ×0.8、門檻 −8（L15343）與態度克制疊加。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Sect] 門派系統重構</p>
+                    <div class="overflow-x-auto my-2 text-xs text-gray-400">
+                    <table class="min-w-[640px] w-full border border-slate-700 text-left">
+                    <thead class="bg-slate-950 text-amber-400"><tr><th class="p-2">勢力 ID</th><th class="p-2">對應</th><th class="p-2">風格</th><th class="p-2">專屬技能</th></tr></thead>
+                    <tbody>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">delivery_union</td><td class="p-2">丐幫／外送聯盟</td><td class="p-2">跑單、情報</td><td class="p-2">銅板暗器、巷弄捷徑</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">zen_fitness</td><td class="p-2">少林／健身集團</td><td class="p-2">硬氣功</td><td class="p-2">金鐘罩、肌肉記憶</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">taichi_cloud</td><td class="p-2">武當／演算中心</td><td class="p-2">太極、數據</td><td class="p-2">四兩撥千斤、大數據預測</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">tang_biotech</td><td class="p-2">唐門／生技製藥</td><td class="p-2">毒藥、暗器</td><td class="p-2">無影針、微型無人機</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">neon_media</td><td class="p-2">明教／影視經紀</td><td class="p-2">流量、話術</td><td class="p-2">清心普善咒·流量感、病毒行銷</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">residents_council</td><td class="p-2">里民自治會</td><td class="p-2">人情、關說</td><td class="p-2">里民服務、守望相助</td></tr>
+                    </tbody></table></div>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">buildings: { hall, training, library, shop }</code> + 分舵 <code class="text-pink-300">branches</code>（L21812）；<code class="text-pink-300">generateFullDisciple</code>（L22548）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Item] 裝備詞綴化</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">equipmentDB</code>／<code class="text-pink-300">setDefinitions</code>；套裝：泡麵、超商大夜、欠債不還、頂樓加蓋、敗犬的驕傲（L14977）；<code class="text-pink-300">martialArtsDB</code> 導演版八式（L15759）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[UI/UX] 診斷報告書與生存備忘錄</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">generateHealthCheckReport</code>（L41524）、<code class="text-pink-300">buildSurvivalMemoHtml</code>（L38023）、<code class="text-pink-300">dailyGuideHtml</code>（L38106）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Save Schema] 版本升級機制</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">SAVE_SCHEMA_VERSION = 4</code>（L23742）；<code class="text-pink-300">SAVE_MIGRATORS</code>（L27870）。</p>
+                    </div>
 
-                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.4 夥伴系統：派遣、羈絆與協同作戰</h6>
-                    <p class="mb-2">四位核心夥伴：鐵叔（刀客）、小夜（唐門後人／超商店員）、金錢豹（橘貓）、阿傑（被霸凌高中生）。</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-1">
-                        <li><strong>羈絆層級：</strong>每名夥伴擁有 0-3 級羈絆，透過專屬劇情、派遣成功、特定對話累積。</li>
-                        <li><strong>派遣系統：</strong>夥伴可被派往執行任務（跑單、蒐集情報、討債等），真實時間冷卻。任務有失敗風險。</li>
-                        <li><strong>連續劇情鏈：</strong>重複派遣同一夥伴執行同類任務，會觸發多階段故事線，最終解鎖強力專屬卡牌或裝備。</li>
-                    </ul>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.1（世界擴充：江湖開始走鐘）</p>
+                    <p class="text-gray-500 text-xs mb-2">世界變異與動態事件上線</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：這座城市不只是背景，它會生病、會變異、會記仇</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[World Mutation] 六種世界變異</p>
+                    <div class="overflow-x-auto my-2 text-xs text-gray-400">
+                    <table class="min-w-[560px] w-full border border-slate-700 text-left">
+                    <thead class="bg-slate-950 text-amber-400"><tr><th class="p-2">變異 ID</th><th class="p-2">名稱</th><th class="p-2">效果</th></tr></thead>
+                    <tbody>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">aura_revival</td><td class="p-2">靈氣復甦</td><td class="p-2">戰鬥門檻 +2，敵我皆受影響</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">urban_legend_alive</td><td class="p-2">都市傳說甦生</td><td class="p-2">夜間事件機率上升，話術門檻下降</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">memory_leak</td><td class="p-2">記憶汙染</td><td class="p-2">取巧門檻升、認慫門檻降</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">karma_backlash</td><td class="p-2">因果逆流</td><td class="p-2">承傷增加，舊帳追上來</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">market_madness</td><td class="p-2">市場瘋狂</td><td class="p-2">物價波動，取巧／話術傷害微升</td></tr>
+                    <tr class="border-t border-slate-800"><td class="p-2 font-mono">inner_city_rift</td><td class="p-2">裏城裂隙</td><td class="p-2">難度上升，解鎖隱藏區域</td></tr>
+                    </tbody></table></div>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">activeMutationCatalog</code>（L26316）；<code class="text-pink-300">encounterVariantMap</code> + <code class="text-pink-300">resolveEncounterVariant</code>（L26302／L26399）；靈氣復甦時新弟子 40% <code class="text-pink-300">xianxia</code> 命名（L22551）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Event] 門派日常事件池</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">sectDailyLifeEventPool</code> 16 筆（L22691）、<code class="text-pink-300">triggerRandomSectEvent</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Rumor] 街頭傳聞板</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">showStreetRumorBoard</code>、<code class="text-pink-300">rumorNpcProgress</code>（L9643–L9932）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Boss] 第 11 章血脈迴響埋線</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">chap11_bloodline_echo_start</code> → <code class="text-pink-300">chap11_mid_guardian</code> → <code class="text-pink-300">chap11_boss_blood_echo</code>（L1577）。</p>
+                    </div>
 
-                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.5 門派經營：自創勢力與動態競爭</h6>
-                    <ul class="list-disc pl-6 mb-6 space-y-1">
-                        <li><strong>雙軌制：</strong>玩家可選擇加入六大預設勢力（如外送聯盟、健身集團），或達成條件後自創門派。</li>
-                        <li><strong>建設與研究：</strong>升級大廳、練功房、藏經閣等設施，解鎖技能樹（如速遞專精、金鐘罩）。</li>
-                        <li><strong>分舵佔領：</strong>地圖上存在可爭奪的據點（舊工廠、夜市情報站），提供每週被動收入與戰略 buff。</li>
-                    </ul>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.2（人情世故：NPC 與羈絆覺醒）</p>
+                    <p class="text-gray-500 text-xs mb-2">NPC 不再只是任務看板</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：每個人都有自己的作息、心情，與未說出口的故事</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[NPC Life] 作息與心情</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">npcSchedules</code>（L2122）、<code class="text-pink-300">moodModifiers</code>（L2216）、<code class="text-pink-300">offScheduleDialog</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Interaction] 動態互動成功率</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">getNpcCurrentActivity</code>／<code class="text-pink-300">getNpcMoodModifier</code>／<code class="text-pink-300">getNpcInteractionBonus</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Bond] 羈絆技能樹</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">companionBondSkillDB</code> 五位夥伴 16 節點（L4065）；戰鬥牌 <code class="text-pink-300">grindstone</code>、<code class="text-pink-300">night_perfume</code>、<code class="text-pink-300">leopard_scorn</code> 等。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Relationship] 情感關係網</p>
+                    <p class="text-gray-400 mb-2">鐵叔×淑儀 <code class="text-pink-300">tieShu_mother_photo_seen</code>；小夜×阿傑 <code class="text-pink-300">xiaoye_ajie_matched</code> + <code class="text-pink-300">comboPartner</code>／<code class="text-pink-300">comboSkill</code>；阿琳×Jessica 鏡像張力。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Rival] 三大死對頭模態（L14657）</p>
+                    <p class="text-gray-400 mb-0">Jessica：<code class="text-pink-300">jessica_forgiven</code>／<code class="text-pink-300">jessica_executed</code>；阿強：<code class="text-pink-300">aqiang_saved</code>／<code class="text-pink-300">aqiang_dead</code>；白靈聖母：<code class="text-pink-300">chap8_holy_mother</code>、<code class="text-pink-300">visitHolyMother</code>。</p>
+                    </div>
 
-                    <h6 class="font-bold text-gray-300 mt-6 mb-2">2.6 敘事生成系統</h6>
-                    <ul class="list-disc pl-6 mb-6 space-y-1">
-                        <li><strong>動態廢文牆：</strong>基於模板與變數池，每日生成 NPC 貼文。互動可累積聲望、觸發隱藏事件。</li>
-                        <li><strong>街頭傳聞：</strong>根據玩家近期行為生成流言，影響地區勢力好感。</li>
-                        <li><strong>廢柴日記：</strong>每日結束時自動生成日記，總結當日收支與關鍵選擇，並附上敗犬式自嘲金句。</li>
-                    </ul>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.3（雨晴線與記憶迴廊）</p>
+                    <p class="text-gray-500 text-xs mb-2">DLC 級角色劇情與 Roguelite 模式</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：有些故事，要走到很裡面才會看見</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[RainQing] 林雨晴完整劇情線</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">ensureRainQingState</code>／<code class="text-pink-300">syncRainQingSoul</code>（L4406／L4424）、<code class="text-pink-300">rainQing.soul.resonance</code> 與舊檔 <code class="text-pink-300">bondValues.rainQing</code> 取 max；<code class="text-pink-300">getRainQingSoulStageLabel</code>；<code class="text-pink-300">rainQingDiaryFragmentDB</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Memory Corridor] Roguelite</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">state.memoryCorridor.run</code>／meta；<code class="text-pink-300">memoryCorridorExclusiveCards</code>（L10733）；<code class="text-pink-300">memoryCorridorRelicDefs</code>；<code class="text-pink-300">memoryCorridorHiddenBossCards</code>；結算 L11495。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Sect Story] 六派入門打樁</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">sectStoryArcs</code>（L23097）：丐幫「十五張單」、少林「七天沉默」、武當「Hello Tai-Chi」、唐門「第一劑毒藥」、明教「第一次直播」、里民（里長伯線）。</p>
+                    </div>
 
-                    <h5 class="text-lg font-bold text-amber-500 mt-10 mb-3">技術實現亮點</h5>
-                    <ul class="list-disc pl-6 mb-8 space-y-2">
-                        <li><strong>單檔案架構：</strong>所有遊戲邏輯、UI 渲染、資料庫、樣式均封裝於單一 HTML，無外部依賴（除 Tailwind CDN 與 LZ-String），便於分發與離線遊玩。</li>
-                        <li><strong>狀態管理：</strong>全域 state 物件統一管理遊戲數據，透過 migrateState 等函數處理版本相容。</li>
-                        <li><strong>存檔系統：</strong>支援 LZ-String 壓縮、Base64 編碼、多槽位管理、匯出／匯入。</li>
-                    </ul>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.4（經濟與底層生活）</p>
+                    <p class="text-gray-500 text-xs mb-2">地下經濟與敗犬美學補完</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：窮不是缺點，是另一種專業</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Market] 老葉的地下交易所</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">openLaoYePosition</code> 槓桿 1–20 倍（L11911／L12029）；指數 DEL／ZEN／TAI／TAN／NEO／RES／GNG。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Life] 台灣生活場景</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">openTaiwanFoodStreet</code>、<code class="text-pink-300">openOneCupSpringAutumn</code>、<code class="text-pink-300">openBreakfastShop</code>、<code class="text-pink-300">showStrayAnimalShelter</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[MiniGame] 夜市小遊戲區</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">minigame-zone</code>；<code class="text-pink-300">startBikeTuneGame</code>／<code class="text-pink-300">pumpBikeTuneGame</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Third Space] 第三空間沉浸</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">openThirdSpaceImmersive</code>（L35021）；<code class="text-pink-300">third-space-frag-line</code>；不耗 AP。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Abyss] 裏城深淵與敗犬深淵</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">openAbyssExpedition</code>、<code class="text-pink-300">state.abyss</code>；<code class="text-pink-300">shenzuoStartAbyssRun</code>；<code class="text-pink-300">shenzuoAbyssShopItems</code>。</p>
+                    </div>
 
-                    <h5 class="text-lg font-bold text-amber-500 mt-8 mb-3">結語</h5>
-                    <p class="mb-4">《敗犬江湖》V1.0 是一次將「底層生存焦慮」與「武俠 RPG 框架」嫁接的實驗。它用極短的開發週期證明了，即使在技術限制下，透過密集的系統交織與一致的敘事語調，仍能創造出具有辨識度與沉浸感的作品。後續版本將聚焦於打磨互動體驗與深化世界回應，讓這座鐵皮屋頂下的江湖，繼續長出更多令人苦笑的故事。</p>
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.5（門派生華：弟子即人）</p>
+                    <p class="text-gray-500 text-xs mb-2">門派命名與詞條計畫</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：每個弟子，都是一本沒人讀過的小說</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Disciple Names] 智慧命名</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">nameDatabase</code>（L21855）；<code class="text-pink-300">taiwanese</code>／<code class="text-pink-300">chunibyo</code>／<code class="text-pink-300">xianxia</code>；<code class="text-pink-300">sectNamePrefixes</code>；<code class="text-pink-300">generateJianghuName</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Affix] 雙層詞綴</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">AffixLibrary</code>（L21933）：surface／hidden／deep（L21997）與 <code class="text-pink-300">excludes</code> 互斥。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Sect Depth] 弟子即人</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">classifyDiscipleLifeFaction</code>（L22540）；<code class="text-pink-300">personalGoal</code> + <code class="text-pink-300">dreamPool</code>（L21721／L22506）；<code class="text-pink-300">showRelationshipNetworkUI</code>（L13864）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Sect Tech] 六派科技樹</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">sectResearchTree</code> tier 1–5（L23486）：丐幫／少林／武當／唐門／明教／里民完整五階路線。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Sect Path] 門派轉型</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">openSectTransformation</code>／<code class="text-pink-300">chooseSectTransformPath</code>：正宗經營／加盟擴張／地下保全（L13816）。</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.6（最新穩定版：質感打磨）</p>
+                    <p class="text-gray-500 text-xs mb-2">當前版本，修復與體驗優化</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">主題：把每一個細節，都磨到有光</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[UI] 手機版牌組編輯器</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">warRoomUi</code>：<code class="text-pink-300">isMobileDeck</code>、<code class="text-pink-300">toggleWarRoomMobileLibrary</code>（L8256／L8327）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Balance] 認慫流派收益修復</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">finalizeCombatChoice</code>（L31549）依臉皮疊護盾。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[QTE] 一般 QTE 退役，BOSS 弱點專場</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">triggerQTE</code> 空殼（L31098）；<code class="text-pink-300">setupBossWeakspotQte</code>（L29757）；<code class="text-pink-300">combatLearning</code>（L30612）；長按預覽；<code class="text-pink-300">combatCardTouchStart</code>／Move／End（L7631）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Shenzuo] 戰鬥節奏設定</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">ensureShenzuoCombatSettings</code>（L12829）：<code class="text-pink-300">fastCombat</code>、<code class="text-pink-300">collapseLog</code>、<code class="text-pink-300">showSuccessBar</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Legacy] 新輪迴繼承</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">openNewGamePlusCarryMenu</code>（L28913）；<code class="text-pink-300">ngpMutationChoices</code>；<code class="text-pink-300">newGamePlusLegacy</code>、<code class="text-pink-300">captureShenzuoNGPLegacy</code>（L13183／L13236）。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Achievements] 成就係統</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">achievementsDB</code> 27 筆（L15716）：<code class="text-pink-300">first_surrender</code> 至 <code class="text-pink-300">foreshadow_wangshu</code>。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Accessibility] 系統設定 5 分頁</p>
+                    <p class="text-gray-400 mb-2">遊戲／畫面／音效／操作／資料（L28707）；<code class="text-pink-300">pixelFilter</code>／<code class="text-pink-300">largeFont</code>／<code class="text-pink-300">leftHanded</code>／<code class="text-pink-300">combatDensity</code>；BGM slider、程序化 BGM。</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Performance] 存檔與離線</p>
+                    <p class="text-gray-400 mb-0">BDOG1: + LZString；<code class="text-pink-300">udg_save_v4_backup</code>；<code class="text-pink-300">calculateOfflineEarnings</code>；儲備精力上限 200。</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 1.7（Planned：世界變異補完 — 江湖走鐘 2.0）</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">目標：把六種世界變異灌滿主線、讓「江湖在走鐘」變成可感知的日常。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[World Mutation]</strong> 補齊 <code class="text-pink-300">encounterVariantMap</code>（L26302）未對映主線；強化 <code class="text-pink-300">karma_backlash</code>／<code class="text-pink-300">market_madness</code>／<code class="text-pink-300">inner_city_rift</code> 變體覆蓋率。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Mutation Combo]</strong> <code class="text-pink-300">activeMutationCatalog</code>（L26316）雙變異疊加；擴充 <code class="text-pink-300">getMutationCombatModifiers</code>（L26428）。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Variant Boss]</strong> 每變異一 Raid 首領，掉落專屬傳說牌進 <code class="text-pink-300">makeHybridCombatCard</code> 池。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[NPC Mood]</strong> <code class="text-pink-300">moodModifiers</code>（L2216）對變異反應（鐵叔／阿傑／小夜）。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Event]</strong> <code class="text-pink-300">sectDailyLifeEventPool</code>（L22691）擴至 40+，變異專屬事件。</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Tutorial]</strong> 互動沙盒教學：變異優先級／疲勞／替換規則。</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 1.8（Planned：門派終章 — 六派劇情收束）</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">目標：六派從入門試煉走到繼任／轉型／殞落完整弧線。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Sect Story]</strong> <code class="text-pink-300">sectStoryArcs</code>（L23097）武當／唐門／明教／里民中段與終章。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Sect PvP]</strong> <code class="text-pink-300">sect_war</code>（L36008）、<code class="text-pink-300">getSectWarPower</code>（L37831）聯盟戰／奪舵／停戰。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Sect Artifact]</strong> 鎮派神兵六件 + 任務鏈串 <code class="text-pink-300">equipmentDB</code>／<code class="text-pink-300">setDefinitions</code>。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Sect Trial]</strong> 祖師爺試煉深淵掛 <code class="text-pink-300">shenzuoStartAbyssRun</code>（L13136）+ 派系限定遺物。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Sect Tech]</strong> <code class="text-pink-300">sectResearchTree</code>（L23486）tier 6–7。</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Disciple]</strong> 師徒制：<code class="text-pink-300">generateFullDisciple</code>（L22548）詞綴傳承。</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 1.9（Planned：個人化江湖 — 自訂與分享）</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">目標：把這條爛命變成「你自己的」爛命。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Flag]</strong> 自訂門派旗幟／幫規寫入 <code class="text-pink-300">defaultSectState</code>（L21812）；戰鬥 UI 與 <code class="text-pink-300">branches</code>（L21841）。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Character]</strong> 阿琳外觀自訂反映 <code class="text-pink-300">start-alin-svg</code>（L912–L967）。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Share]</strong> <code class="text-pink-300">generateDiaryShareImage</code>（L42605）升級；成就徽章／深淵戰報／牌組短碼分享。</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Mod]</strong> 自創武學／卡組 JSON 匯出入（<code class="text-pink-300">hybridCardTargetCounts.custom = 12</code>）。</p>
+                    </div>
+
+                    <div class="mb-0 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 2.0（Planned：正式版 — 敗犬出江湖）</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">目標：收尾、多結局、穩定度全開，從 Director's Cut 進到 Final Cut。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Ending]</strong> <code class="text-pink-300">evaluateDirectorCutEnding</code>（L13333）整合 Jessica／阿強／白靈／雨晴四線 True Ending。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Story Tail]</strong> 清空 <code class="text-pink-300">storyPatches</code>（L988）尾段支線。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Roguelite Integration]</strong> 記憶迴廊 + 裏城深淵 + 敗犬深淵三軌；共享 <code class="text-pink-300">shenzuoAbyssShopItems</code> 與 <code class="text-pink-300">memoryCorridorRelicDefs</code>；深淵結晶統一貨幣。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Performance]</strong> <code class="text-pink-300">saveGame</code>（L28015）改 diff 增量存檔（對照 L1152 筆記）。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Achievement]</strong> <code class="text-pink-300">achievementsDB</code>（L15716）擴至 60+；成就殿堂分頁／過濾。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Music]</strong> 原聲帶 + 動態 BGM 混軌（L10506 Procedural BGM）。</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Legacy]</strong> NG++：變異永久化、弟子跨輪迴記憶、深淵結晶繼承加大（<code class="text-pink-300">newGamePlusLegacy</code> L13183、<code class="text-pink-300">captureShenzuoNGPLegacy</code> L13236）。</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Polish]</strong> 首次載入 &lt; 2s、記憶迴廊單局 &lt; 10min、戰鬥平均回合 &lt; 90s 驗收。</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-700 pt-8 len">
+                    <h4 class="text-2xl font-bold text-white mb-4 border-b border-slate-700 pb-2">📓 Director&rsquo;s Cut changelog (full)</h4>
+                    <div class="mb-6 p-4 bg-slate-950 rounded text-cyan-400/90 font-mono text-xs md:text-sm space-y-1">
+                        <p>· Ship shape: single <code class="text-pink-300">game.html</code>, offline play · Tailwind CDN</p>
+                        <p>· Saves: BDOG1 + LZString · multi-slot + backup · schema migration</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 0.1 – 0.5 (Prototype: survival spine)</p>
+                    <p class="text-gray-500 text-xs mb-2">Internal test build, core loop online</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: establish the fantasy of who you are, then keep the run alive.</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Core]</p>
+                    <p class="text-gray-400 mb-2">force / insight / speech / thickSkin; <code class="text-pink-300">hybridCombatStatLabels</code> (L5252).</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Combat]</p>
+                    <p class="text-gray-400 mb-2">hard / smart / speech / surrender; <code class="text-pink-300">combatStanceCounterMap</code> (L15342).</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Survival]</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">calculateOfflineEarnings</code>; reserve energy cap 200 (L43295); burst payouts.</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Save]</p>
+                    <p class="text-gray-400 mb-2">BDOG1 + LZString (<code class="text-pink-300">encodeSaveData</code>, L28778); slots (<code class="text-pink-300">openSaveSlotManager</code>, L28066); <code class="text-pink-300">udg_save_v4_backup</code>.</p>
+                    <p class="text-pink-300 font-bold text-sm mt-3 mb-1">[Narrative / UI]</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">deferredStoryNodesV15</code>; boot HUD; four-tab hub (roam / life / diary / regrets).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.0 (Director foundation)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: from text adventure to hybrid deck RPG.</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Cards]</strong> <code class="text-pink-300">hybridCardTargetCounts</code> (L5266), <code class="text-pink-300">makeHybridCombatCard</code>, <code class="text-pink-300">openWarRoom('deck')</code>, <code class="text-pink-300">warRoomUi</code> (L7829), <code class="text-pink-300">schoolCounterMap</code> (L15343).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Sects]</strong> Six factions table (delivery / zen / taichi / tang / neon / residents); <code class="text-pink-300">buildings</code> + <code class="text-pink-300">branches</code> (L21812); <code class="text-pink-300">generateFullDisciple</code> (L22548).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Items]</strong> <code class="text-pink-300">equipmentDB</code> / <code class="text-pink-300">setDefinitions</code> (L14977); <code class="text-pink-300">martialArtsDB</code> eight director moves (L15759).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[UX]</strong> <code class="text-pink-300">generateHealthCheckReport</code> (L41524), <code class="text-pink-300">buildSurvivalMemoHtml</code> (L38023), <code class="text-pink-300">dailyGuideHtml</code> (L38106).</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Schema]</strong> <code class="text-pink-300">SAVE_SCHEMA_VERSION = 4</code> (L23742); <code class="text-pink-300">SAVE_MIGRATORS</code> (L27870).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.1 (World expansion)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: the city mutates and remembers.</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Mutations]</strong> <code class="text-pink-300">activeMutationCatalog</code> ×6 (L26316); <code class="text-pink-300">encounterVariantMap</code> / <code class="text-pink-300">resolveEncounterVariant</code> (L26302, L26399); xianxia naming under aura (L22551).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Events]</strong> <code class="text-pink-300">sectDailyLifeEventPool</code> (L22691).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Rumor]</strong> <code class="text-pink-300">showStreetRumorBoard</code>; <code class="text-pink-300">rumorNpcProgress</code> (L9643–L9932).</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Boss]</strong> chap11 bloodline echo chain (L1577).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.2 (NPC life &amp; bonds)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: schedules, moods, rival arcs.</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">npcSchedules</code> (L2122), <code class="text-pink-300">moodModifiers</code> (L2216), interaction bonuses.</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">companionBondSkillDB</code> 16 nodes (L4065); bond combat cards.</p>
+                    <p class="text-gray-400 mb-0">Relationship web + rival branches Jessica / Aqiang / Holy Mother (L14657).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.3 (RainQing &amp; Memory Corridor)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: stories you only see deep inside.</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">ensureRainQingState</code> / <code class="text-pink-300">syncRainQingSoul</code> (L4406, L4424); diary DB; soul labels.</p>
+                    <p class="text-gray-400 mb-2">Corridor run/meta, <code class="text-pink-300">memoryCorridorExclusiveCards</code> (L10733), relics, hidden boss drops (L11495).</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">sectStoryArcs</code> six-school intros (L23097).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.4 (Economy &amp; bottom-rung life)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: broke is a profession.</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">openLaoYePosition</code> leverage &amp; six indices DEL/ZEN/TAI/TAN/NEO/RES/GNG (L11911, L12029).</p>
+                    <p class="text-gray-400 mb-2">Taiwan food street, bubble tea, breakfast line, stray shelter; night market minigames; bike tune.</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">openThirdSpaceImmersive</code> (L35021), zero-AP idle poetry.</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">openAbyssExpedition</code>, <code class="text-pink-300">state.abyss</code>, <code class="text-pink-300">shenzuoStartAbyssRun</code>, <code class="text-pink-300">shenzuoAbyssShopItems</code>.</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.5 (Disciples as people)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: every recruit is an unread novella.</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">nameDatabase</code> (L21855); <code class="text-pink-300">AffixLibrary</code> + excludes (L21933, L21997).</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">classifyDiscipleLifeFaction</code> (L22540); goals; <code class="text-pink-300">showRelationshipNetworkUI</code> (L13864).</p>
+                    <p class="text-gray-400 mb-2"><code class="text-pink-300">sectResearchTree</code> tiers 1–5 (L23486).</p>
+                    <p class="text-gray-400 mb-0"><code class="text-pink-300">openSectTransformation</code> / <code class="text-pink-300">chooseSectTransformPath</code> (L13816).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-amber-500/30 pl-3">
+                    <p class="font-bold text-amber-500 mb-1">Version 1.6 (Current stable polish)</p>
+                    <p class="text-cyan-400/90 text-sm mb-3">Theme: polish until it gleams.</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[UI]</strong> Mobile war room drawer (L8256, L8327).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Balance]</strong> Surrender shields vs thickSkin — <code class="text-pink-300">finalizeCombatChoice</code> (L31549).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[QTE]</strong> Generic QTE retired (L31098); boss weak-spot QTE (L29757); <code class="text-pink-300">combatLearning</code> (L30612); swipe cards (L7631).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Shenzuo]</strong> <code class="text-pink-300">ensureShenzuoCombatSettings</code> (L12829).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Legacy]</strong> NG+ carry (L28913), abyss legacy hooks (L13183, L13236).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Achievements]</strong> <code class="text-pink-300">achievementsDB</code> 27 entries (L15716).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[A11y]</strong> Five-tab settings (L28707).</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Perf]</strong> LZ saves, offline tick, reserve cap 200.</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 1.7 (Planned) · Mutation completion — Jianghu 2.0</p>
+                    <p class="text-gray-400 mb-2">Fill encounter gaps for karma_backlash / market_madness / inner_city_rift; dual-mutation combos + <code class="text-pink-300">getMutationCombatModifiers</code>; per-mutation raid bosses; mood reacts to mutations; expand <code class="text-pink-300">sectDailyLifeEventPool</code> to 40+; sandbox mutation tutorial.</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 1.8 (Planned) · Sect finales</p>
+                    <p class="text-gray-400 mb-2">Mid/late arcs for Wudang/Tang/Neon/Residents; formal <code class="text-pink-300">sect_war</code> (L36008) seasons; six relic-weapon chains; patriarch trial abyss on <code class="text-pink-300">shenzuoStartAbyssRun</code> (L13136); research tiers 6–7; master/apprentice affix inheritance (<code class="text-pink-300">generateFullDisciple</code>, L22548).</p>
+                    </div>
+
+                    <div class="mb-8 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 1.9 (Planned) · Personal jianghu</p>
+                    <p class="text-gray-400 mb-2">Custom flags in <code class="text-pink-300">defaultSectState</code> (L21812); Alin SVG customization (L912–L967); upgraded <code class="text-pink-300">generateDiaryShareImage</code> (L42605); badge/abyss/deck share; JSON mod import/export (<code class="text-pink-300">hybridCardTargetCounts.custom</code> = 12).</p>
+                    </div>
+
+                    <div class="mb-0 border-l-2 border-violet-500/40 pl-3">
+                    <p class="font-bold text-violet-300 mb-1">Version 2.0 (Planned) · Final Cut</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Ending]</strong> <code class="text-pink-300">evaluateDirectorCutEnding</code> (L13333) weaving Jessica / Aqiang / Holy Mother / RainQing true ends.</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Story]</strong> Close <code class="text-pink-300">storyPatches</code> tails (L988).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Roguelite]</strong> Unify corridor + abyss currencies via shared relic pools.</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Performance]</strong> Diff/incremental <code class="text-pink-300">saveGame</code> vs full encode (L28015, L1152 notes).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Achievements]</strong> 60+ entries, chapter filters.</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Music]</strong> OST + dynamic procedural BGM (L10506).</p>
+                    <p class="text-gray-400 mb-2"><strong class="text-gray-300">[Legacy]</strong> NG++ meta; larger crystal carry (<code class="text-pink-300">newGamePlusLegacy</code> L13183, <code class="text-pink-300">captureShenzuoNGPLegacy</code> L13236).</p>
+                    <p class="text-gray-400 mb-0"><strong class="text-gray-300">[Polish]</strong> Targets: first load &lt; 2s, corridor run &lt; 10m, combat &lt; 90s avg.</p>
+                    </div>
                 </div>
             </div>
         </details>
@@ -532,23 +958,191 @@
 
     <!-- 區塊八：Footer CTA -->
     <footer class="py-24 flex flex-col items-center justify-center relative text-center bg-black overflow-hidden mt-auto">
+        <svg class="absolute top-0 left-0 w-full h-12 text-slate-800 pointer-events-none" viewBox="0 0 1200 48" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 24 Q300 0 600 24 T1200 24 L1200 48 L0 48 Z" fill="currentColor" opacity="0.85"/>
+        </svg>
+        <svg class="absolute bottom-1/4 left-4 w-28 h-28 opacity-[0.08] text-emerald-600 pointer-events-none hidden md:block" viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="10" y="20" width="80" height="55" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="35" cy="48" r="8" fill="currentColor" opacity="0.4"/>
+            <path d="M55 40h25M55 48h20M55 56h28" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
         <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none overflow-hidden">
-            <span class="text-[15vw] font-black text-red-600 whitespace-nowrap transform -rotate-12 select-none">欠債還錢</span>
+            <span class="lzh text-[15vw] font-black text-red-600 whitespace-nowrap transform -rotate-12 select-none">欠債還錢</span>
+            <span class="len text-[12vw] md:text-[15vw] font-black text-red-600 whitespace-nowrap transform -rotate-12 select-none">PAY UP</span>
         </div>
         <h2 class="text-3xl md:text-5xl font-black text-white mb-10 tracking-widest relative z-10 drop-shadow-lg" style="text-shadow: 2px 2px 0 #831843, -2px -2px 0 #831843;">
-            房租要繳，日子要過，拳頭要握緊。
+            <span class="lzh">房租要繳，日子要過，拳頭要握緊。</span>
+            <span class="len">Pay rent, live the day, keep your fists ready.</span>
         </h2>
-        <a href="./game.html" class="btn-neon inline-block px-14 py-6 text-2xl md:text-3xl font-black tracking-widest rounded-sm relative z-10 mb-4">
-            進入江湖 [ENTER]
-        </a>
-        <p class="text-gray-500 text-sm tracking-widest mb-16 relative z-10">無需下載，點擊即玩。支援手機與電腦瀏覽器。</p>
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 relative z-10 mb-4 px-4">
+            <a href="./game.html" class="btn-neon inline-block px-12 py-5 text-xl md:text-2xl font-black tracking-widest rounded-sm">
+                <span class="lzh">進入江湖 [ENTER]</span>
+                <span class="len">Enter the Jianghu [ENTER]</span>
+            </a>
+            <a href="./guide.html" class="btn-neon inline-block px-12 py-5 text-xl md:text-2xl font-black tracking-widest rounded-sm">
+                <span class="lzh">攻略與分析 [GUIDE]</span>
+                <span class="len">Guide &amp; Analysis [GUIDE]</span>
+            </a>
+        </div>
+        <p class="text-gray-500 text-sm tracking-widest mb-16 relative z-10 px-4"><span class="lzh">無需下載，點擊即玩。支援手機與電腦瀏覽器。</span><span class="len">No install—open and play. Desktop &amp; mobile browsers.</span></p>
         <div class="w-full max-w-lg border-t border-slate-800 pt-6 relative z-10">
             <p class="text-gray-600 text-xs tracking-wider">
-                &copy; 2026 敗犬江湖 Ultimate Director's Cut.<br>
-                <span class="text-gray-500">把你的爛命，活成傳說。</span>
+                <span class="lzh">&copy; 2026 敗犬江湖 Ultimate Director's Cut.<br><span class="text-gray-500">把你的爛命，活成傳說。</span></span>
+                <span class="len">&copy; 2026 Baidog Jianghu Ultimate Director's Cut.<br><span class="text-gray-500">Turn your sorry fate into lore.</span></span>
             </p>
         </div>
     </footer>
 
+    <script>
+    (function () {
+        var KEY = 'bdog_index_locale';
+        var AMB_KEY = 'bdog_ambient_on';
+        var titles = {
+            zh: '敗犬江湖 Ultimate Director\'s Cut - 官方介紹頁',
+            en: 'Baidog Jianghu Ultimate Director\'s Cut - Landing'
+        };
+        function apply(loc) {
+            var root = document.getElementById('html-root');
+            if (!root) return;
+            root.setAttribute('data-locale', loc);
+            root.setAttribute('lang', loc === 'en' ? 'en' : 'zh-TW');
+            document.title = titles[loc === 'en' ? 'en' : 'zh'];
+            try { localStorage.setItem(KEY, loc); } catch (e) {}
+            document.querySelectorAll('.locale-switch button').forEach(function (b) {
+                b.classList.toggle('active', b.getAttribute('data-set-locale') === loc);
+            });
+            syncAmbientLabel();
+        }
+        var params = new URLSearchParams(window.location.search);
+        var q = params.get('lang');
+        var initial = (q === 'en' || q === 'zh') ? q : null;
+        if (!initial) {
+            try { initial = localStorage.getItem(KEY); } catch (e) {}
+        }
+        apply(initial === 'en' ? 'en' : 'zh');
+        document.querySelectorAll('.locale-switch button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                apply(btn.getAttribute('data-set-locale') || 'zh');
+            });
+        });
+
+        var ambientBtn = document.getElementById('ambient-toggle');
+        var audioCtx = null;
+        var ambientPlaying = false;
+        var oscNodes = [];
+        var masterGain = null;
+        var filterNode = null;
+        var ambientGen = 0;
+
+        function syncAmbientLabel() {
+            if (!ambientBtn) return;
+            var zh = document.documentElement.getAttribute('data-locale') !== 'en';
+            ambientBtn.classList.toggle('on', ambientPlaying);
+            ambientBtn.setAttribute('aria-pressed', ambientPlaying ? 'true' : 'false');
+            ambientBtn.querySelectorAll('.lzh').forEach(function (s) {
+                s.textContent = ambientPlaying ? '♪ 氛圍音：開' : '♪ 氛圍音：關';
+            });
+            ambientBtn.querySelectorAll('.len').forEach(function (s) {
+                s.textContent = ambientPlaying ? '♪ Ambient: on' : '♪ Ambient: off';
+            });
+            ambientBtn.setAttribute('title', zh
+                ? (ambientPlaying ? '點擊關閉氛圍音' : '點擊開啟氛圍音（低音量合成器，武俠夜色感）')
+                : (ambientPlaying ? 'Turn ambient off' : 'Turn on low-volume synth pad (urban wuxia night vibe)'));
+        }
+
+        function tearDownAmbientSync() {
+            oscNodes.forEach(function (n) {
+                try {
+                    if (n.stop) n.stop();
+                    n.disconnect();
+                } catch (e) {}
+            });
+            oscNodes = [];
+            if (audioCtx && audioCtx.state !== 'closed') {
+                try { audioCtx.close(); } catch (e) {}
+            }
+            audioCtx = null;
+            masterGain = null;
+            filterNode = null;
+        }
+
+        function buildAmbientGraph() {
+            if (audioCtx && audioCtx.state !== 'closed') return;
+            if (audioCtx && audioCtx.state === 'closed') {
+                audioCtx = null;
+                masterGain = null;
+                filterNode = null;
+                oscNodes = [];
+            }
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            audioCtx = new AC();
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0;
+            filterNode = audioCtx.createBiquadFilter();
+            filterNode.type = 'lowpass';
+            filterNode.frequency.value = 520;
+            filterNode.Q.value = 0.7;
+            var freqs = [82.41, 123.47, 164.81];
+            freqs.forEach(function (f, i) {
+                var o = audioCtx.createOscillator();
+                o.type = i === 1 ? 'triangle' : 'sine';
+                o.frequency.value = f * (1 + i * 0.002);
+                var g = audioCtx.createGain();
+                g.gain.value = i === 1 ? 0.12 : 0.08;
+                o.connect(g);
+                g.connect(filterNode);
+                o.start();
+                oscNodes.push(o, g);
+            });
+            filterNode.connect(masterGain);
+            masterGain.connect(audioCtx.destination);
+        }
+
+        function setAmbientVolume(target) {
+            if (!masterGain || !audioCtx) return;
+            var now = audioCtx.currentTime;
+            masterGain.gain.cancelScheduledValues(now);
+            masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+            masterGain.gain.linearRampToValueAtTime(target, now + 0.35);
+        }
+
+        function startAmbient() {
+            ambientGen += 1;
+            tearDownAmbientSync();
+            buildAmbientGraph();
+            if (!audioCtx) return;
+            audioCtx.resume().then(function () {
+                ambientPlaying = true;
+                setAmbientVolume(0.055);
+                try { localStorage.setItem(AMB_KEY, '1'); } catch (e) {}
+                syncAmbientLabel();
+            }).catch(function () {});
+        }
+
+        function stopAmbient() {
+            ambientPlaying = false;
+            setAmbientVolume(0);
+            try { localStorage.setItem(AMB_KEY, '0'); } catch (e) {}
+            syncAmbientLabel();
+            var gen = ++ambientGen;
+            window.setTimeout(function () {
+                if (gen !== ambientGen) return;
+                tearDownAmbientSync();
+            }, 400);
+        }
+
+        if (ambientBtn) {
+            ambientBtn.addEventListener('click', function () {
+                if (ambientPlaying) {
+                    stopAmbient();
+                } else {
+                    startAmbient();
+                }
+            });
+            syncAmbientLabel();
+        }
+    })();
+    </script>
 </body>
 </html>
