@@ -627,7 +627,7 @@
         .classics-library-modal .text-\[12px\] { font-size: 14px; line-height: 1.6; }
         .classics-library-modal .text-\[13px\] { font-size: 15px; line-height: 1.6; }
         .classics-library-modal .text-\[15px\] { font-size: 16.5px; line-height: 1.5; }
-        .classics-library-modal .line-clamp-2 { -webkit-line-clamp: 3; }
+        .classics-library-modal .line-clamp-2 { -webkit-line-clamp: 3; line-clamp: 3; }
         .ye-symbol-btn { border: 1px solid rgba(251, 191, 36, 0.2); background: rgba(15, 23, 42, 0.78); border-radius: 0.65rem; padding: 0.45rem 0.55rem; text-align: left; transition: all 0.18s ease; }
         .ye-symbol-btn.active { border-color: rgba(34, 211, 238, 0.55); background: linear-gradient(135deg, rgba(8, 145, 178, 0.2), rgba(15, 23, 42, 0.85)); box-shadow: 0 8px 18px rgba(8, 145, 178, 0.18); }
         .ye-symbol-btn:hover { border-color: rgba(251, 191, 36, 0.45); transform: translateY(-1px); }
@@ -40517,13 +40517,11 @@ window.doWorkBatchPrompt = function() {
 
 window.doWorkBatch = function(jobId, cost, stat, baseEarn, isCh1) {
     closeModal();
-    const maxRuns = 5;
-    const possibleRuns = Math.max(0, Math.floor(Number(state.ap || 0) / Math.max(1, Number(cost || 1))));
-    const runs = Math.min(maxRuns, possibleRuns);
-    if (runs <= 0) {
-        showToast('AP 不足，無法連續打工。');
+    if (typeof isInCombatLock === 'function' && isInCombatLock(state)) {
+        if (typeof showCombatLeaveBlockedToast === 'function') showCombatLeaveBlockedToast('去打工');
         return;
     }
+    const maxRuns = 5;
     const moneyBefore = Number(state.money || 0);
     const statBefore = Number(state.stats?.[stat] || 0);
     const eqBonus = getEquipmentBonuses(state);
@@ -40541,34 +40539,113 @@ window.doWorkBatch = function(jobId, cost, stat, baseEarn, isCh1) {
     const bikeWorkMult = jobId === 'delivery' && bikeTuneLevel > 0 ? (1 + bikeTuneLevel * 0.08) : 1;
     const xiaoYeStoreMult = jobId === 'store' ? (getCompanionPassiveEffects('xiaoYe', state).storeIncomeMult || 1) : 1;
     const courierMult = jobId === 'delivery' ? (factionFx.deliveryMult || 1) : 1;
-    let earnPerRun = baseEarn * state.buffs.work * (state.buffs[jobId] || 1) * state.buffs.cat_bonus * (state.buffs.workBoost || 1) * getSectWorkMultiplier() * talent.workMult * emotion.workMult * seasonFx.work * (homeBonus.workMult || 1) * pathWorkMult * bikeWorkMult * courierMult * xiaoYeStoreMult * (1 + (eqBonus.workBonus || 0) + (jobId === 'store' ? (eqBonus.storeBonus || 0) : 0));
-    if (state.stats.rep > 120) earnPerRun *= 1.1; else if (state.stats.rep < 50) earnPerRun *= 0.9;
-    if ((state.creditScore || 0) >= 700) earnPerRun *= 1.08;
-    if (state.buffs.addicted) earnPerRun *= 0.7;
-    earnPerRun *= getWeatherWorkMultiplier(jobId, state);
-    if (isCh1 && jobId === 'store') earnPerRun /= 2;
-    earnPerRun = Math.floor(earnPerRun);
-    let statGainPerRun = Math.floor(2 * state.buffs.speech_gain * ((stat === 'force' || stat === 'insight') ? (1 + (eqBonus.expBonus || 0)) : 1));
-    if (state.path === stat) statGainPerRun += 1;
-    if (stat === 'force') statGainPerRun = Math.max(1, Math.floor(statGainPerRun * (1 + (homeBonus.forceGain || 0))));
-    if (stat === 'insight') statGainPerRun = Math.max(1, Math.floor(statGainPerRun * (1 + (homeBonus.insightGain || 0))));
-    const totalEarn = earnPerRun * runs;
-    const totalStatGain = statGainPerRun * runs;
-    state.ap = Math.max(0, Number(state.ap || 0) - Number(cost || 0) * runs);
-    state.money += totalEarn;
-    state.stats[stat] = Number(state.stats?.[stat] || 0) + totalStatGain;
-    state.flags.dailyWorkCount = (state.flags.dailyWorkCount || 0) + runs;
-    if(!state.workCount) state.workCount = { delivery: 0, construction: 0, store: 0, bodyguard: 0, stunt: 0, hacker: 0 };
-    state.workCount[jobId] = (state.workCount[jobId] || 0) + runs;
-    addDiaryMoneyFlow(totalEarn, state);
-    addDiaryStep(runs, state);
-    setDiaryLastAction(`連續打工：${jobId} x${runs}`, state);
-    adjustCreditScore(Math.max(2, Math.floor(runs * 3)), '連續打工', true);
+    let freeStreak = 0;
+    let completed = 0;
+    let sumEarnPostDebt = 0;
+    for (let i = 0; i < maxRuns; i++) {
+        const freeWork = state.skills.includes("我窮我驕傲") && Math.random() < 0.1;
+        const apResult = consumeApWithSurvivalRules(freeWork ? 0 : cost, `連續打工：${jobId}`, state);
+        if (!apResult.ok) break;
+        if (freeWork) freeStreak++;
+        const workBoost = state.buffs.workBoost || 1;
+        let finalEarn = baseEarn * state.buffs.work * (state.buffs[jobId] || 1) * state.buffs.cat_bonus * workBoost * getSectWorkMultiplier() * talent.workMult * emotion.workMult * seasonFx.work * (homeBonus.workMult || 1) * pathWorkMult * bikeWorkMult * courierMult * xiaoYeStoreMult * (1 + (eqBonus.workBonus || 0) + (jobId === 'store' ? (eqBonus.storeBonus || 0) : 0));
+        if (state.stats.rep > 120) finalEarn *= 1.1; else if (state.stats.rep < 50) finalEarn *= 0.9;
+        if ((state.creditScore || 0) >= 700) finalEarn *= 1.08;
+        if (state.buffs.addicted) finalEarn *= 0.7;
+        finalEarn *= getWeatherWorkMultiplier(jobId, state);
+        if (isCh1 && jobId === 'store') finalEarn /= 2;
+        if (typeof isInMainQuestBuffer === 'function' && isInMainQuestBuffer(state)) {
+            finalEarn *= 1 + (typeof getMainQuestBufferBonus === 'function' ? getMainQuestBufferBonus(state) : 0.12);
+        }
+        finalEarn = Math.floor(finalEarn);
+        let statGain = Math.floor(2 * state.buffs.speech_gain * ((stat === 'force' || stat === 'insight') ? (1 + (eqBonus.expBonus || 0)) : 1));
+        if (state.path === stat) statGain += 1;
+        if (stat === 'force') statGain = Math.max(1, Math.floor(statGain * (1 + (homeBonus.forceGain || 0))));
+        if (stat === 'insight') statGain = Math.max(1, Math.floor(statGain * (1 + (homeBonus.insightGain || 0))));
+        let bonusCash = 0;
+        let debtCut = 0;
+        if ((state.creditScore || 0) < 300) {
+            debtCut = Math.floor(finalEarn * 0.5);
+            finalEarn -= debtCut;
+        }
+        sumEarnPostDebt += finalEarn;
+        state.money += finalEarn;
+        state.stats[stat] = Number(state.stats?.[stat] || 0) + statGain;
+        addDiaryMoneyFlow(finalEarn, state);
+        state.flags.dailyWorkCount = (state.flags.dailyWorkCount || 0) + 1;
+        try { if (typeof bumpFirstWeekTask === 'function') bumpFirstWeekTask('workAny', 1); } catch (e) {}
+        adjustCreditScore(jobId === 'store' || jobId === 'delivery' ? 8 : 5, '穩定打工', true);
+        if (jobId === 'delivery') adjustFactionFavor('couriers', 2, '跑單還算可靠', true);
+        if (jobId === 'store') adjustFactionFavor('residents', 1, '至少超商班沒出包', true);
+        adjustHeartStat('hope', 1, '撐過一天', true);
+        if (jobId === 'bodyguard' || jobId === 'stunt') adjustHeartStat('innerDemon', 1, '又被現實揍一輪', true);
+        recordJianghuTendency('order', 1);
+        if ((eqBonus.extraWorkCashChance || 0) > 0 && Math.random() < eqBonus.extraWorkCashChance) {
+            bonusCash = eqBonus.extraWorkCash || 200;
+            state.money += bonusCash;
+            addDiaryMoneyFlow(bonusCash, state);
+        }
+        if (Math.random() < (0.12 + (talent.eventBonus || 0))) addSocialFeedPost(`「{shortName}今天又在 ${jobId === 'store' ? '超商' : jobId === 'delivery' ? '路上' : jobId === 'construction' ? '工地' : jobId === 'hacker' ? '網咖' : jobId === 'stunt' ? '片場' : '保全圈'} 撐了一天。」`, 'positive', '#底層求生');
+        if ((state.buffs.workBoostRemaining || 0) > 0) {
+            state.buffs.workBoostRemaining--;
+            if (state.buffs.workBoostRemaining <= 0) {
+                state.buffs.workBoost = 1.0;
+                state.buffs.workBoostRemaining = 0;
+            }
+        }
+        if (!state.workCount) state.workCount = { delivery: 0, construction: 0, store: 0, bodyguard: 0, stunt: 0, hacker: 0 };
+        state.workCount[jobId] = (state.workCount[jobId] || 0) + 1;
+        completed++;
+        if (state.workCount[jobId] === 10 && !state.flags[`work_event_${jobId}_10`]) {
+            state.flags[`work_event_${jobId}_10`] = true;
+            window.checkAchievements();
+            const milestoneMessages = {
+                delivery: { title: "外送達人", content: "妳完成了第十趟外送。老鳥阿忠拍拍妳的肩：「以後跟著我跑，單子分你一些。」", effect: () => { state.buffs.delivery = (state.buffs.delivery || 1) + 0.1; return "外送報酬永久 +10%"; } },
+                construction: { title: "工地認證", content: "工頭老周遞給妳一瓶保力達B：「我看你身手不錯，粗重活優先給你。」", effect: () => { state.buffs.construction = (state.buffs.construction || 1) + 0.15; return "工地報酬永久 +15%"; } },
+                store: { title: "熟客信任", content: "常來買菸的阿伯多塞了兩百塊：「妹妹，你做事認真，這個給你買飲料。」", effect: () => { state.buffs.store = (state.buffs.store || 1) + 0.1; state.buffs.speech_gain = 2; return "超商報酬 +10%，話術獲取翻倍"; } },
+                bodyguard: { title: "金牌保鑣", content: "妳護送的老闆給了妳一張名片：「下次直接找我，不用透過仲介。」", effect: () => { state.buffs.bodyguard = (state.buffs.bodyguard || 1) + 0.2; return "保鑣報酬永久 +20%"; } },
+                stunt: { title: "替身之王", content: "導演對妳讚不絕口：「妳是我看過最能挨打的女演員！下一場戲主角替身就找妳了！」", effect: () => { state.buffs.stunt = (state.buffs.stunt || 1) + 0.2; state.stats.thickSkin += 5; return "替身報酬 +20%，臉皮 +5"; } },
+                hacker: { title: "暗網傳說", content: "妳在網咖代練的帳號打上了全服第一，土豪直接匯了一筆獎金給妳。", effect: () => { state.buffs.hacker = (state.buffs.hacker || 1) + 0.2; state.stats.insight += 5; return "代練報酬 +20%，洞察 +5"; } }
+            };
+            const msg = milestoneMessages[jobId];
+            if (msg) showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-4">${msg.title}</h2><p class="text-gray-200 mb-4">${msg.content}</p><p class="text-green-400 font-bold border p-2 border-green-500/50 rounded bg-green-900/30">${msg.effect()}</p><button onclick="closeModal()" class="premium-btn mt-6 text-center">收下</button>`);
+        }
+        if (state.workCount[jobId] === 25 && !state.flags[`work_event_${jobId}_25`]) {
+            state.flags[`work_event_${jobId}_25`] = true;
+            const secondMilestoneMessages = {
+                delivery: { title: "外送車神", content: "妳創下了單日最高外送紀錄。平台寄來了一塊金牌和 $5000 獎金。", effect: () => { state.money += 5000; return "獲得獎金 $5000"; } },
+                construction: { title: "工地扛霸子", content: "工頭退休前，把整個班底交給妳打理。妳現在是這區的工地女王了。", effect: () => { state.money += 3000; state.stats.force += 10; return "武力 +10，獎金 $3000"; } },
+                store: { title: "超商之鬼", content: "妳被總公司評選為「年度最佳員工」，獎金 $10000 和一面錦旗。", effect: () => { state.money += 10000; state.stats.rep += 20; return "獲得 $10000，聲望 +20"; } },
+                bodyguard: { title: "地下保鏢傳說", content: "妳保護過的大老闆們聯名推薦妳進入「高端安全顧問」名單。", effect: () => { state.stats.rep += 30; state.stats.force += 8; return "聲望 +30，武力 +8"; } },
+                stunt: { title: "動作明星", content: "有經紀公司找上門，想簽妳當武打演員。", effect: () => { state.money += 15000; state.stats.rep += 40; return "獲得 $15000，聲望 +40"; } },
+                hacker: { title: "資安天才", content: "妳在代練時發現了一個系統漏洞，回報後獲得官方獎金 $20000。", effect: () => { state.money += 20000; state.stats.insight += 10; return "獲得 $20000，洞察 +10"; } }
+            };
+            const msg2 = secondMilestoneMessages[jobId];
+            if (msg2) showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-4">${msg2.title}</h2><p class="text-gray-200 mb-4">${msg2.content}</p><p class="text-green-400 font-bold border p-2 border-green-500/50 rounded bg-green-900/30">${msg2.effect()}</p><button onclick="closeModal()" class="premium-btn mt-6 text-center">收下</button>`);
+        }
+        if (jobId === 'store' && state.workCount[jobId] === 50 && !state.flags.work_event_store_50) {
+            state.flags.work_event_store_50 = true;
+            addInventoryItem('超商報廢護腕');
+            showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-4">大夜班遺產</h2><p class="text-gray-200 mb-4">店長把一副壓箱底的護腕塞給妳：『這本來要報廢，但看妳被奧客折磨成這樣，留著吧。』</p><p class="text-green-400 font-bold border p-2 border-green-500/50 rounded bg-green-900/30">獲得【超商報廢護腕】</p><button onclick="closeModal()" class="premium-btn mt-6 text-center">默默收下</button>`);
+        }
+    }
+    if (completed <= 0) {
+        showToast('AP 不足，無法連續打工。');
+        return;
+    }
+    if (freeStreak > 0) showToast(`🔥 連續打工中有 ${freeStreak} 次沒耗 AP（我窮我驕傲）！`);
+    addDiaryStep(completed, state);
+    setDiaryLastAction(`連續打工：${jobId} x${completed}`, state);
+    if (completed > 0 && sumEarnPostDebt / completed < 300 && Math.random() < 0.3) {
+        setTimeout(() => showToast(formatNarrativeText(`（{shortName}心想：${getRandomMetaphor('poor')}）`, state, { replaceLegacyAlias: true })), 500);
+    }
     const moneyDelta = Number(state.money || 0) - moneyBefore;
     const statDelta = Number(state.stats?.[stat] || 0) - statBefore;
-    showModal(`<h2 class="text-2xl font-serif text-emerald-400 mb-3">📦 連續打工結算</h2><p class="text-gray-300 text-sm mb-2">任務：${jobId}｜執行 ${runs}/${maxRuns} 次</p><p class="text-emerald-300 text-sm mb-1">總收入：${moneyDelta >= 0 ? '+' : ''}$${moneyDelta}</p><p class="text-cyan-300 text-sm mb-3">${stat} ${statDelta >= 0 ? '+' : ''}${statDelta}</p><p class="text-[11px] text-slate-400 mb-3">${runs < maxRuns ? '因 AP 不足提前結束。' : '連續執行完成。'}</p><button onclick="closeModal()" class="premium-btn text-center !mb-0 border-emerald-500/40">知道了</button>`);
+    showModal(`<h2 class="text-2xl font-serif text-emerald-400 mb-3">📦 連續打工結算</h2><p class="text-gray-300 text-sm mb-2">任務：${jobId}｜執行 ${completed}/${maxRuns} 次</p><p class="text-emerald-300 text-sm mb-1">總收入：${moneyDelta >= 0 ? '+' : ''}$${moneyDelta}</p><p class="text-cyan-300 text-sm mb-3">${stat} ${statDelta >= 0 ? '+' : ''}${statDelta}</p><p class="text-[11px] text-slate-400 mb-3">${completed < maxRuns ? '因 AP 不足或無法再承接而提前結束。' : '連續執行完成。'}</p><button onclick="closeModal()" class="premium-btn text-center !mb-0 border-emerald-500/40">知道了</button>`);
+    const collapsed = resolveZeroApForcedAftermath(`連續打工：${jobId}`, state);
     triggerSave();
     renderCurrentView();
+    if (collapsed) return;
 };
 
 // ------------------------------------------
@@ -41192,8 +41269,14 @@ function renderDojo() {
     const drawItem = (title, level, desc, output, outVal, nextVal, cost, facility) => {
         html += `<div class="glass-panel !p-5 flex flex-col gap-3 bg-gradient-to-br from-gray-800 to-gray-900 border-l-4 border-l-gray-500/50 hover:border-l-amber-500 transition-colors"><div class="flex justify-between items-start"><div><h3 class="font-bold text-lg text-gray-200">${title} <span class="text-amber-400 text-sm ml-1 font-mono">Lv.${level}</span></h3><p class="text-xs text-gray-400 mt-1">${desc}</p></div><span class="text-[10px] text-gray-300 border border-gray-600 px-2 py-0.5 rounded bg-gray-800/40 font-mono">${output}: ${outVal}</span></div><div class="border-t border-white/5 pt-3 flex justify-between items-center"><span class="text-[10px] text-gray-500">下一級: ${nextVal}</span><button ${state.money < cost ? 'disabled' : ''} onclick="upgradeDojo('${facility}', ${cost})" class="premium-btn !w-auto !mb-0 px-4 py-1.5 text-sm flex items-center gap-2"><span>升級</span><span class="text-[10px] text-amber-200/70 font-mono">-$${cost}</span></button></div></div>`;
     };
-    drawItem('殘破木人樁', state.dojo.dummy, '離線武力經驗', '產出', `${state.dojo.dummy * 15}/hr`, `${(state.dojo.dummy + 1) * 15}/hr`, dummyCost, 'dummy');
-    drawItem('內功靜室', state.dojo.meditation, '離線洞察內力', '產出', `${state.dojo.meditation * 10}/hr`, `${(state.dojo.meditation + 1) * 10}/hr`, medCost, 'meditation');
+    const _dLv = Math.max(1, Number(state.dojo.dummy || 1));
+    const _mLv = Math.max(0, Number(state.dojo.meditation || 0));
+    const dummyMemPerHr = Math.floor(5 * (1 + _dLv * 0.3));
+    const dummyMemNextHr = Math.floor(5 * (1 + (_dLv + 1) * 0.3));
+    const chiPerHr = Math.floor(3 * (1 + _mLv * 0.4));
+    const chiNextHr = Math.floor(3 * (1 + (_mLv + 1) * 0.4));
+    drawItem('殘破木人樁', state.dojo.dummy, '離線累積木人記憶（戰鬥「木人樁的記憶」資源，不再直接加永久武力）', '產出', `${dummyMemPerHr}/hr`, `${dummyMemNextHr}/hr`, dummyCost, 'dummy');
+    drawItem('內功靜室', state.dojo.meditation, '離線累積冥想內力（戰鬥「吐納回春」）', '產出', `${chiPerHr}/hr`, `${chiNextHr}/hr`, medCost, 'meditation');
     drawItem('靜脈藥浴', state.dojo.herb, '提高最大 HP', '加成', `+${state.dojo.herb * 20} HP`, `+${(state.dojo.herb + 1) * 20} HP`, herbCost, 'herb');
     html += `</div>${aqiangCard}
         <div class="grid md:grid-cols-2 gap-4">
@@ -42191,7 +42274,7 @@ window.hitWoodenDummy = function(slot) {
     woodenDummyState.idx += 1;
     if (woodenDummyState.idx >= woodenDummyState.order.length) {
         const combo = woodenDummyState.combo;
-        state.cultivation.dummyCombo = Math.min(200, (state.cultivation.dummyCombo || 0) + combo);
+        state.cultivation.dummyCombo = Math.min(100, (state.cultivation.dummyCombo || 0) + combo);
         state.stats.force += combo >= 15 ? 3 : combo >= 10 ? 2 : 1;
         if (combo >= 20) state.flags.dummyDamageBuffUntil = Math.max(state.currentDay + 1, state.flags.dummyDamageBuffUntil || 0);
         showModal(`<h2 class="text-2xl font-serif text-amber-500 mb-4">🥊 挑戰結算</h2><p class="text-gray-300 mb-4">連擊 ${combo}/20｜失誤 ${woodenDummyState.misses}</p><p class="text-green-400 font-bold border border-green-500/40 p-3 rounded bg-green-900/20">武力 +${combo >= 15 ? 3 : combo >= 10 ? 2 : 1}${combo >= 20 ? '｜明日硬派傷害 +5%' : ''}｜木人記憶 +${combo}</p><button onclick="closeModal()" class="premium-btn mt-6 text-center">收拳</button>`);
@@ -45117,7 +45200,8 @@ function calculateOfflineEarnings() {
     }
     
     const now = Date.now();
-    const elapsedHrs = (now - parseInt(lastSaved)) / 3600000;
+    const lastTs = parseInt(lastSaved, 10);
+    const elapsedHrs = Number.isFinite(lastTs) ? Math.max(0, (now - lastTs) / 3600000) : 0;
 
     if (!state.buffs) state.buffs = {};
     const beforeStored = state.buffs.storedEnergy || 0;
@@ -45150,13 +45234,10 @@ function calculateOfflineEarnings() {
     const dummyLvl = state.dojo.dummy || 1;
     
     let moneyReward = 0;
-    let expReward = 0;
     if (state.flags.chap1_cleared) {
-        const expBuff = state.buffs ? (state.buffs.dojo_exp || 1) : 1;
         moneyReward = Math.floor(actualHrs * 200 * (1 + dummyLvl * 0.5));
-        expReward = Math.floor(actualHrs * 10 * (1 + dummyLvl * 0.5) * expBuff);
         state.money += moneyReward;
-        state.stats.force += expReward;
+        // 離線結算不再增加永久武力（避免放置／離線等同外掛式武力暴漲）；木人記憶／內力／殘頁等修煉資源仍照常累積。
 
         const dummyGain = Math.floor(actualHrs * 5 * (1 + dummyLvl * 0.3));
         const chiGain = Math.floor(actualHrs * 3 * (1 + (state.dojo.meditation || 0) * 0.4));
@@ -45235,7 +45316,6 @@ function calculateOfflineEarnings() {
             msg += `<p class="text-gray-300 text-sm italic mb-4">妳離開了 ${actualHrs.toFixed(1)} 小時，經過了 ${passedDays} 天。</p>`;
             msg += `<div class="bg-gray-900/80 p-4 rounded-xl space-y-2 font-mono text-xs border border-white/5 shadow-inner mb-6">`;
             if (moneyReward > 0) msg += `<div class="text-green-400 flex justify-between"><span>打工/武館收益</span> <span>+$${moneyReward}</span></div>`;
-            if (expReward > 0) msg += `<div class="text-blue-400 flex justify-between"><span>武力成長</span> <span>+${expReward}</span></div>`;
             if (storedEnergyGain > 0) msg += `<div class="text-cyan-400 flex justify-between"><span>厚積薄發儲能</span> <span>+${storedEnergyGain}</span></div><div class="text-cyan-300 text-[11px] pt-1">教學：每 50 精力可換 5 次 x2.0 打工收益，已加入首頁與打工頁。</div>`;
             if (liteTick.gangDelta > 0) msg += `<div class="text-violet-300 flex justify-between"><span>街頭勢力自然回溫</span> <span>+${liteTick.gangDelta}</span></div>`;
             if (liteTick.bondDelta > 0) msg += `<div class="text-pink-300 flex justify-between"><span>夥伴日常互動</span> <span>羈絆 +${liteTick.bondDelta}</span></div>`;
@@ -45251,11 +45331,10 @@ function calculateOfflineEarnings() {
         }
         state.currentDay += passedDays;
         processSectWeekly(true);
-    } else if (moneyReward > 0 || expReward > 0 || storedEnergyGain > 0) {
+    } else if (moneyReward > 0 || storedEnergyGain > 0) {
         let msg = `<h2 class="text-2xl font-serif text-amber-500 mb-4 tracking-wider">【時間流逝】</h2><p class="text-gray-300 text-sm italic mb-6">妳離開了 ${actualHrs.toFixed(1)} 小時。</p>`;
         msg += `<div class="bg-gray-900/80 p-4 rounded-xl space-y-3 font-mono text-sm border border-white/5 shadow-inner mb-6">`;
         if (moneyReward > 0) msg += `<div class="text-green-400 flex justify-between border-b border-white/5 pb-2"><span>自動賺取</span> <span>+$${moneyReward}</span></div>`;
-        if (expReward > 0) msg += `<div class="text-red-400 flex justify-between"><span>武力經驗</span> <span>+${expReward}</span></div>`;
         if (storedEnergyGain > 0) msg += `<div class="text-cyan-400 flex justify-between"><span>厚積薄發儲能</span> <span>+${storedEnergyGain}</span></div><div class="text-cyan-300 text-[11px]">提示：每 50 精力可啟動 5 次 x2.0 打工收益。</div>`;
         msg += `</div>`;
         msg += `<button onclick="closeModal()" class="premium-btn text-center text-sm font-bold tracking-wider">確認</button>`;
