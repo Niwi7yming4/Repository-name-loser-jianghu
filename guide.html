@@ -156,7 +156,7 @@ footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--line);color:v
 <div class="nav-group"><div class="nav-group-title lzh">封面</div><div class="nav-group-title len">Cover</div><a class="nav-item lzh" href="#cover">TL;DR 導覽</a><a class="nav-item len" href="#cover">TL;DR tour</a></div>
 <div class="nav-group"><div class="nav-group-title lzh">Part I｜遊戲體量</div><div class="nav-group-title len">Part I · Scale</div>
 <a class="nav-item lzh" href="#p1-scale">檔案與技術架構</a><a class="nav-item len" href="#en-p1-scale">Files &amp; tech stack</a>
-<a class="nav-item lzh" href="#p1-systems">14 大核心系統</a><a class="nav-item len" href="#en-p1-systems">14 core systems</a>
+<a class="nav-item lzh" href="#p1-systems">16 大核心系統</a><a class="nav-item len" href="#en-p1-systems">16 core systems</a>
 <a class="nav-item lzh" href="#p1-numbers">內容規模量化</a><a class="nav-item len" href="#en-p1-numbers">Content metrics</a></div>
 <div class="nav-group"><div class="nav-group-title lzh">Part II｜劇情深度</div><div class="nav-group-title len">Part II · Story</div>
 <a class="nav-item lzh" href="#p2-theme">主題與美學</a><a class="nav-item len" href="#en-p2-theme">Themes &amp; aesthetics</a>
@@ -169,6 +169,9 @@ footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--line);color:v
 <a class="nav-item lzh" href="#g-c">C. 屬性建構流派</a><a class="nav-item len" href="#en-g-c">C. Stat builds</a>
 <a class="nav-item lzh" href="#g-d">D. 12 章通關路線</a><a class="nav-item len" href="#en-g-d">D. Chapters 1–12</a>
 <a class="nav-item sub lzh" href="#ch1">第 1～1.5 章</a><a class="nav-item sub len" href="#en-ch1">Ch. 1–1.5</a>
+<a class="nav-item sub lzh" href="#ch1_5_debt">插曲一：討債公司</a>
+<a class="nav-item sub lzh" href="#ch2_5_lab">插曲二：司徒實驗室</a>
+<a class="nav-item sub lzh" href="#ch3_5_vacuum">插曲三：地下秩序真空期</a>
 <a class="nav-item sub lzh" href="#ch2">第 2 章</a><a class="nav-item sub len" href="#en-ch2">Chapter 2</a>
 <a class="nav-item sub lzh" href="#ch3">第 3 章（司徒）</a><a class="nav-item sub len" href="#en-ch3">Ch. 3 (Situo)</a>
 <a class="nav-item sub lzh" href="#ch4">第 4 章三岔</a><a class="nav-item sub len" href="#en-ch4">Ch. 4 branches</a>
@@ -177,11 +180,16 @@ footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--line);color:v
 <a class="nav-item sub lzh" href="#ch12">第 12 章</a><a class="nav-item sub len" href="#en-ch12">Chapter 12</a>
 <a class="nav-item lzh" href="#g-e">E. 全結局達成表</a><a class="nav-item len" href="#en-g-e">E. Endings checklist</a>
 <a class="nav-item lzh" href="#g-f">F. 雨晴隱藏線</a><a class="nav-item len" href="#en-g-f">F. RainQing hidden arc</a>
+<a class="nav-item lzh" href="#g-f2">F2. 雨晴小事互動</a>
+<a class="nav-item lzh" href="#g-bounty">G0. 懸賞板系統</a>
 <a class="nav-item lzh" href="#g-g">G. 夥伴羈絆 4 階</a><a class="nav-item len" href="#en-g-g">G. Companion bonds (4 tiers)</a>
 <a class="nav-item lzh" href="#g-h">H. 六大門派系統</a><a class="nav-item len" href="#en-g-h">H. Six sect systems</a>
 <a class="nav-item lzh" href="#g-i">I. 記憶迴廊</a><a class="nav-item len" href="#en-g-i">I. Memory corridor</a>
 <a class="nav-item lzh" href="#g-j">J. 深淵 / 裏城</a><a class="nav-item len" href="#en-g-j">J. Abyss / inner city</a>
 <a class="nav-item lzh" href="#g-k">K. 世界變異</a><a class="nav-item len" href="#en-g-k">K. World mutations</a>
+<a class="nav-item sub lzh" href="#g-k2">K2. 變體遭遇詳表</a>
+<a class="nav-item sub lzh" href="#g-k-qi">K·產學收割紀元攻略</a>
+<a class="nav-item sub lzh" href="#g-k3">K3. 道具欄全目錄</a>
 <a class="nav-item lzh" href="#g-l">L. 經濟循環</a><a class="nav-item len" href="#en-g-l">L. Economy loop</a>
 <a class="nav-item lzh" href="#g-m">M. 成就速刷</a><a class="nav-item len" href="#en-g-m">M. Achievement routes</a>
 <a class="nav-item lzh" href="#g-n">N. 存檔 / NG+</a><a class="nav-item len" href="#en-g-n">N. Saves / NG+</a></div>
@@ -197,8 +205,8 @@ footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--line);color:v
 <div class="cover" id="cover">
 <h1 class="lzh">敗犬江湖 <span style="color:var(--cyan-soft);font-size:0.75em;">· 攻略與深度分析</span></h1>
 <h1 class="len">Baidog Jianghu <span style="color:var(--cyan-soft);font-size:0.75em;">· Guide &amp; deep dive</span></h1>
-<div class="subtitle lzh">Ultimate Director's Cut｜Full Edition｜Save Schema v4</div>
-<div class="subtitle len">Ultimate Director's Cut · Full Edition · Save schema v4</div>
+<div class="subtitle lzh">Ultimate Director's Cut｜Full Edition｜Save Schema v4｜v2.1+ 世界變體 DLC 已上線</div>
+<div class="subtitle len">Ultimate Director's Cut · Full Edition · Save schema v4 · v2.1+ World Variant DLC launch</div>
 <div class="lead lzh" style="position:relative;max-width:720px;">
 一份為台灣都市武俠文字冒險《敗犬江湖》整理的 <mark>全劇透、全系統、全結局</mark> 攻略書，兼具遊戲體量觀察、劇情主題分析、玩家路線規劃與缺點批評。無外部依賴，可離線閱讀，建議直接以瀏覽器開啟。
 </div>
@@ -206,19 +214,19 @@ footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--line);color:v
 A <mark>full-spoiler, all-systems, all-endings</mark> guide to the Taiwan urban-wuxia text adventure <em>Baidog Jianghu</em>: scale notes, thematic reading, route planning, and critique. No external assets required—open in a browser, works offline.
 </div>
 <div class="sigstrip">
-<span class="chip lzh">📦 3.26 MB</span><span class="chip len">📦 3.26 MB</span>
-<span class="chip lzh">📜 42,485 行</span><span class="chip len">📜 42,485 lines</span>
-<span class="chip cyan lzh">🎮 12 主線章 + 中間章 + 導演剪輯</span><span class="chip cyan len">🎮 12 chapters + interlude + Director's Cut</span>
+<span class="chip lzh">📦 約 3.40 MiB+</span><span class="chip len">📦 ~3.40 MiB+</span>
+<span class="chip lzh">📜 51,000+ 行</span><span class="chip len">📜 51,000+ lines</span>
+<span class="chip cyan lzh">🎮 12 主線章 + 中間章三連 + 導演剪輯</span><span class="chip cyan len">🎮 12 chapters + 3 interludes + Director's Cut</span>
 <span class="chip rose lzh">☔ 雨晴隱藏線</span><span class="chip rose len">☔ RainQing hidden route</span>
-<span class="chip emerald lzh">🏯 5 門派教義</span><span class="chip emerald len">🏯 Five sect tenets</span>
+<span class="chip emerald lzh">🏯 6 門派教義</span><span class="chip emerald len">🏯 Six sect tenets</span>
 <span class="chip violet lzh">♾️ 記憶迴廊 + 深淵循環</span><span class="chip violet len">♾️ Memory corridor + abyss loop</span>
 <span class="chip lzh">🏆 15 格緣之書 + 隱藏結局</span><span class="chip len">🏆 15 fate-book slots + secret endings</span>
 </div>
 <div class="tiny lzh" style="margin-top:1.2rem;position:relative;color:var(--ink-3);">
-本攻略行號對照於 <code>C:\Users\ASUS\Desktop\拜犬江湖.html</code>。檔案內 <code>SYSTEM_MAP</code> 註解偶有偏移，以下皆以實際程式位置為準。
+本攻略行號對照於 <code>C:\Users\ASUS\Desktop\敗犬江湖\遊戲原文件\拜犬江湖.html</code>（單檔約 3610000+ bytes／46,500+ 行，2026-04 最新版）。檔內 <code>SYSTEM_MAP</code> 註解可能落後於大改版，以下皆以實際 Grep／閱讀位置為準。v2.1+ DLC 新增六大變異獨立主線與 40+ 分支結局。
 </div>
 <div class="tiny len" style="margin-top:1.2rem;position:relative;color:var(--ink-3);">
-Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comment line numbers may drift; treat in-file positions as ground truth.
+Line references assume <code>C:\Users\ASUS\Desktop\敗犬江湖\遊戲原文件\拜犬江湖.html</code> (~3.61 MiB / 46,500+ lines, Apr 2026 build). v2.1+ DLC adds six mutation main plots and 40+ branch endings. <code>SYSTEM_MAP</code> annotations can lag after major patches—prefer grep and in-file reads.
 </div>
 </div>
 <div class="guide-stream-lzh lzh">
@@ -229,31 +237,31 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </p>
 <h3 id="p1-scale">1. 檔案與技術架構</h3>
 <div class="stat-grid">
-<div class="stat-card"><div class="label">檔案體積</div><div class="value">3.26 MB</div><div class="desc">單一 .html 檔</div></div>
-<div class="stat-card"><div class="label">程式碼行數</div><div class="value">42,485</div><div class="desc">HTML + CSS + JS 合計</div></div>
+<div class="stat-card"><div class="label">檔案體積</div><div class="value">約 3.40 MiB</div><div class="desc">3566348 bytes；十進位約 3.57 MB</div></div>
+<div class="stat-card"><div class="label">程式碼行數</div><div class="value">46,357</div><div class="desc">HTML + CSS + JS 合計（PowerShell）</div></div>
 <div class="stat-card"><div class="label">存檔格式</div><div class="value">v4</div><div class="desc"><code>BDOG1:</code> LZ-String 壓縮</div></div>
 <div class="stat-card"><div class="label">外部依賴</div><div class="value">2</div><div class="desc">Tailwind CDN + lz-string</div></div>
-<div class="stat-card"><div class="label">主 <code>storyNodes</code></div><div class="value">L16052+</div><div class="desc">加上 8 處 <code>Object.assign</code> 補丁</div></div>
-<div class="stat-card"><div class="label">敘事補丁</div><div class="value">L32460+</div><div class="desc">導演剪輯長版 5–10 章</div></div>
+<div class="stat-card"><div class="label">主 <code>storyNodes</code></div><div class="value">L14891–L18553</div><div class="desc">見 <code>SYSTEM_MAP</code>；v2.1+ 新增變異主線 registers 約 16 次 <code>Object.assign</code> 叠層</div></div>
+<div class="stat-card"><div class="label">敘事補丁</div><div class="value">多區段</div><div class="desc"><code>SYSTEM_MAP.data.storyPatches</code> 列八處行號（導演剪輯等）</div></div>
 </div>
 <div class="panel amber">
 <div class="panel-title">🏗️ 架構一覽</div>
 <ul>
 <li><strong>前端</strong>：純 HTML + Tailwind（CDN 載入，含 suppressTailwindCdnWarning）+ 內嵌 CSS 動畫（雨、霓虹、聚光燈等場景）。</li>
-<li><strong>資料層</strong>：約 30 個常數字典（<code>notebookData</code>、<code>feedSystemData</code>、<code>itemDB</code>、<code>equipmentDB</code>、<code>AFFIX_DATABASE</code>、<code>memoryFragmentsData</code>、<code>urbanLegendsData</code>、<code>classicsCatalog</code>、<code>homeDecorCatalog</code>、<code>strayAnimalCatalog</code>…）。</li>
+<li><strong>資料層</strong>：以頂層 <code>const …</code> 常數表為主。2026-04 對 <code>遊戲原文件/拜犬江湖.html</code> 全檔 regex 粗掃（僅計宣告列）：<strong>47+ 個資料物件</strong>（<code>*DB</code> 10 + <code>*Data</code> 4 + <code>*Catalog</code> 9 + <code>*Pool</code> 21 + <code>*Defs</code> 3 + 其他 map）。舊版「28 個資料庫」已過時；v2.1+ 新增變異與 DLC 系統增加了資料物件總數。</li>
 <li><strong>敘事層</strong>：一個主 <code>storyNodes</code> 物件 + 延後載入節點（L1194–L1750）+ 後期 <code>Object.assign</code> 分段合併。</li>
 <li><strong>引擎層</strong>：主迴圈 <code>masterTick</code>（1 秒間隔）、<code>renderCurrentView</code> 路由、<code>updateHUD</code> 狀態條、<code>finalizeCombatChoice</code> 戰鬥結算、<code>encodeSaveData</code> 存檔。</li>
-<li><strong>開發者索引</strong>：<code>SYSTEM_MAP</code>（L984–L1026）是檔案自身的目錄，註解行號已略微過期但結構仍精準。</li>
+<li><strong>開發者索引</strong>：<code>SYSTEM_MAP</code>（約 L998 起）是檔案自身的目錄；大改版後註解行號可能落後，結構仍可用於定位。</li>
 </ul>
 </div>
-<h3 id="p1-systems">2. 14 大核心系統</h3>
+<h3 id="p1-systems">2. 16 大核心系統</h3>
 <div class="table-wrap">
 <table>
 <thead><tr><th>系統</th><th>程式入口</th><th>功能概要</th></tr></thead>
 <tbody>
 <tr><td class="name">回合戰鬥</td><td class="id">finalizeCombatChoice</td><td>四態度克制 + 戰意崩潰 + 狂暴 + 小遊戲門檻修正</td></tr>
 <tr><td class="name">劇情節點</td><td class="id">storyNodes</td><td>type: story / combat / choice；主線 + 導演剪輯 + 中間章</td></tr>
-<tr><td class="name">門派系統</td><td class="id">openSectFactionMechanic</td><td>5 派教義、招募、訓練、商店、分舵、派系戰、夜市</td></tr>
+<tr><td class="name">門派系統</td><td class="id">openSectFactionMechanic</td><td>6 派教義、招募、訓練、商店、分舵、派系戰、夜市</td></tr>
 <tr><td class="name">夥伴羈絆</td><td class="id">companionBondSkillDB</td><td>6 位夥伴 × 4 階被動技能</td></tr>
 <tr><td class="name">記憶迴廊</td><td class="id">enterMemoryCorridorRouteNode</td><td>Roguelike 爬塔，含事件／菁英／隱藏王</td></tr>
 <tr><td class="name">深淵 / 裏城</td><td class="id">state.abyss</td><td>結晶、祝福、詛咒、無限重玩</td></tr>
@@ -263,6 +271,8 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <tr><td class="name">導演剪輯</td><td class="id">evaluateDirectorCutEnding</td><td>以道德軸（俠／野心／秩序／混亂）判定終局</td></tr>
 <tr><td class="name">派遣 / 打工</td><td class="id">派遣欠費機制</td><td>離線結算、儲備精力、200% 爆發</td></tr>
 <tr><td class="name">存檔 v4</td><td class="id">encodeSaveData / migrateState</td><td>LZ-String 壓縮字串，可貼在雲端硬碟</td></tr>
+<tr><td class="name">懸賞板</td><td class="id">bountyBoard / refreshBountyBoardIfNeeded</td><td>每週 3 任務、週末重置、獎勵梯級升級；chap1_cleared 後解鎖</td></tr>
+<tr><td class="name">中間章三連</td><td class="id">chap1_5_debt / chap2_5_lab / chap3_5_vacuum</td><td>討債公司 → 實驗室 → 地下秩序真空期；自動觸發、帳本 / 日誌道具、三岔選擇影響第四章</td></tr>
 <tr><td class="name">成就圖鑑</td><td class="id">achievementsDB</td><td>按 group 分類（戰鬥 / 經濟 / 羈絆 / 特殊 / 輪迴）</td></tr>
 <tr><td class="name">第三空間 / 頂樓日記</td><td class="id">openThirdSpaceImmersive</td><td>沉浸打工發呆、凝視計時、古籍共讀；<code>thirdSpaceVisitLog</code> 記錄、狀態詩句、日記閱讀器含閃回段</td></tr>
 </tbody>
@@ -270,11 +280,10 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </div>
 <h3 id="p1-numbers">3. 內容規模量化</h3>
 <div class="stat-grid">
-<div class="stat-card"><div class="label">主線章</div><div class="value">12 + 0.5</div><div class="desc">1→1.5→12，含中間章</div></div>
+<div class="stat-card"><div class="label">主線章</div><div class="value">12 + 3</div><div class="desc">1→1.5→2→2.5→3→3.5→...12，含中間章</div></div>
 <div class="stat-card"><div class="label">緣之書結局</div><div class="value">15</div><div class="desc">+ 11/12 章另計旗標</div></div>
 <div class="stat-card"><div class="label">核心夥伴</div><div class="value">6</div><div class="desc">鐵叔 / 小夜 / 阿傑 / 金錢豹 / 雨晴 / 曉語</div></div>
-<div class="stat-card"><div class="label">門派教義</div><div class="value">5</div><div class="desc">外送 / 禪健 / 太極 / 唐門 / 霓虹</div></div>
-<div class="stat-card"><div class="label">住房等級</div><div class="value">4</div><div class="desc">地下室 → 頂加 → 套房 → 豪宅</div></div>
+<div class="stat-card"><div class="label">門派教義</div><div class="value">6</div><div class="desc">外送 / 禪健 / 太極 / 唐門 / 霓虹 / 里民（在地自治）</div></div>
 <div class="stat-card"><div class="label">世界變異</div><div class="value">6</div><div class="desc">靈氣 / 傳說 / 記憶 / 因果 / 市場 / 裏城</div></div>
 <div class="stat-card"><div class="label">稀有度階</div><div class="value">6</div><div class="desc">凡品→良品→稀有→史詩→傳說→神話</div></div>
 <div class="stat-card"><div class="label">態度小遊戲</div><div class="value">4</div><div class="desc">節奏 / 記憶 / 辯駁 / 忍耐</div></div>
@@ -287,13 +296,13 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <h2>Part II · 劇情深度與內容分析</h2>
 <h3 id="p2-theme">1. 主題與美學：都市武林中的「敗犬」詩學</h3>
 <p>
-「敗犬」一詞源自日文<em>「負け犬」</em>（maketainu），原指三十歲以上、未婚未育的女性。《敗犬江湖》把這個標籤直接寫成遊戲副主角 <strong>阿琳（林阿琳，25 歲）</strong> 的處境：頂樓加蓋、欠租、泡麵度日、夢想早已被現實磨平——但遊戲以<mark>武俠江湖的外殼</mark>包住這份都市挫敗，讓她同時在「繳房租」與「闖武林」之間往返。
+「敗犬」一詞源自日文<em>「負け犬」</em>（maketainu），原指三十歲以上、未婚未育的女性。《敗犬江湖》背景下，主角 <strong>阿琳（林阿琳，25 歲）</strong> 的處境：泡麵度日、夢想早已被現實的磨損——但遊戲以<mark>武俠江湖的外殼</mark>包住這份都市挫敗，讓她在「闖武林與尋找自我」之間往返。
 </p>
 <div class="panel rose">
 <div class="panel-title">🏮 四大主題支柱</div>
 <ul>
 <li><strong>自嘲美學</strong>：每一則廢文、每一次認慫勝利、臉皮 ≥150 的「賴帳」、臉皮 300 的結局——遊戲把「輸不丟人」做成機制。</li>
-<li><strong>台灣在地江湖</strong>：星咖啡、頂樓加蓋、夜市、便利商店大夜班、派遣、里長伯、廢棄武館——把武俠套進真實地景，卻不刻意奇觀化。</li>
+<li><strong>台灣在地江湖</strong>：星咖啡、夜市、便利商店大夜班、派遣、里長伯、廢棄武館——把武俠套進真實地景，卻不刻意奇觀化。</li>
 <li><strong>母女羈絆</strong>：母親 <strong>林淑儀</strong> 是一切的錨——她教妳馬步，她留下錄音「不要活成我」，她的遺願貫穿雨晴線到導演剪輯第 10 章。</li>
 <li><strong>單身女性生存</strong>：租屋壓力、身體疲勞、社群焦慮、被動消失、被當成閒置資產——這些寫實痛點被做進 AP、信用、欠租、廢文牆權重等數字裡。</li>
 </ul>
@@ -350,7 +359,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li><strong>記憶碎片圖鑑</strong>：母親日記、鐵叔／金錢幫典故以可收集殘片組成前史。</li>
 <li><strong>廢文牆擬真</strong>：每日 10–15 則動態貼文影射當前事件（變異、欠租、門派），低成本維持世界活性。</li>
 <li><strong>「德賈維」系統</strong>：NG+ 各地點有冷卻的既視感短句（<code>dejaVuEventPool</code>／<code>triggerDejaVu</code>）。舊版以 <code>pendingDejaVu</code> 推送的寫法僅作概念參考。</li>
-<li><strong>名詞本地化</strong>：星咖啡（Starbucks 諧擬）、霓虹夜總會（紫醉金迷）、信義區豪宅、廢棄武館——地景即人物。</li>
+<li><strong>名詞本地化</strong>：星咖啡（Starbucks 諧擬）、霓虹夜總會（紫醉金迷）、廢棄武館——地景即人物。</li>
 </ul>
 </section>
 <section class="part" id="part3">
@@ -359,16 +368,16 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 本攻略以「先活下來 → 再站起來 → 再談翻身」為節奏。每一節都附上<strong>實際出自遊戲 DB 的數字</strong>（屬性門檻、AP、金額、章節旗標），並用可檢索的 <code>程式名稱</code> 標注來源，方便玩家直接與遊戲內系統對照。
 </p>
 <h2 id="g-a">A · 新手 7 天 SOP（Day 1–7）</h2>
-<p>第一章的節奏是<strong>七日內穩住房租與基礎屬性，再準備打小九</strong>。目標：Day7 時身上仍有 ≥ $3,000、街坊信任 ≥ 20、備有 2 瓶基礎飲品、AP 機制上手。</p>
+<p>第一章的節奏是<strong>七日內穩住房租與基礎屬性，再準備打小九</strong>。目標：Day7 時身上仍有 ≥ $3,000、街坊信任 ≥ 20、備有 2 瓶基礎飲品、AP 機制上手。本 SOP 對應 v2.1+ 版本屬性門檻更新。</p>
 <div class="panel amber">
 <div class="panel-title">📅 每日行動表</div>
 <ol>
 <li><strong>Day 1</strong>：看完開場對話 → 到 Hub 先選擇<em>打工</em>（消耗 AP、拿基礎現金）。目標 $600+。<strong>切勿</strong> Day1 就衝小九。</li>
-<li><strong>Day 2–3</strong>：白天打工、晚上跑 1–2 個隨機事件（<code>encounter_*</code>）。碰到<em>混混 / 流浪狗 / 醉漢</em>優先用【硬派】或【取巧】練手感；【認慫】可換臉皮。</li>
+<li><strong>Day 2–3</strong>：白天打工、晚上跑 1–2 個隨機事件（<code>encounter_*</code>）。碰到<em>混混 / 流浪狗 / 醉漢</em>優先用【硬派】或【取巧】練手感；【認慫】可換臉皮。v2.1+ 混混難度下調（HP 38 / willpower 22）為新手友善。</li>
 <li><strong>Day 4</strong>：準備值 ≥ 20 後，<strong>鐵叔</strong>會在公園釋出<em>回憶戰教學</em>，照著走能白拿示範：戰意條、崩潰追擊節奏。</li>
 <li><strong>Day 5</strong>：去超商打工解鎖<strong>小夜</strong>（夜班津貼 +20%）；HP &lt; 60 請回家睡覺而不是硬撐。</li>
 <li><strong>Day 6</strong>：繳清房租 $2,000（<code>chap1_rent_paid</code>）。沒錢就使用<em>派遣</em>，或臉皮 ≥ 100 去<em>路邊乞討</em>（0 AP）。</li>
-<li><strong>Day 7</strong>：準備值 ≥ 28、HP 滿、AP 滿 → 至武館觸發 <strong>小九</strong>。小九 HP 135、戰意 88<span class="muted">（劇情基底）</span>；<strong><code>combatTurns ≥ 4</code></strong>（HUD 出現「🔥 狂暴」）起進入狂暴加壓，與筆記本／司徒戰一致。</li>
+<li><strong>Day 7</strong>：準備值 ≥ 28、HP 滿、AP 滿 → 至武館觸發 <strong>小九</strong>。小九 HP 135、戰意 88<span class="muted">（劇情基底；v2.1+ 動態加成約 ×0.9—1.1）</span>；<strong><code>combatTurns ≥ 4</code></strong>（HUD 出現「🔥 狂暴」）起進入狂暴加壓，與筆記本／司徒戰一致。</li>
 </ol>
 </div>
 <div class="callout tip"><div class="callout-title">🪙 Day 1–7 致命錯誤排行</div>
@@ -402,18 +411,35 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </ul>
 </div>
 <h3>3. 態度小遊戲（可選）</h3>
+<p>實際由 <code>startRealtimeAttitudeMinigame(type)</code> 驅動，四種模式機制如下：</p>
 <div class="table-wrap">
 <table>
-<thead><tr><th>態度</th><th>玩法</th><th>成功效果</th><th>失敗代價</th></tr></thead>
+<thead><tr><th>態度</th><th>小遊戲標題</th><th>操作說明</th><th>計分規則</th></tr></thead>
 <tbody>
-<tr><td class="name">硬派</td><td>節奏連打（spacebar tempo）</td><td>本次判定 −30% 門檻、大成功追 +1 傷害</td><td>反傷、下回合 −1 能量</td></tr>
-<tr><td class="name">取巧</td><td>記憶配對（翻牌）</td><td>−20% 門檻、觸發<em>暗器掩護</em></td><td>被識破、洞察暫 −3</td></tr>
-<tr><td class="name">話術</td><td>辯駁選項（3 段 QTE 文字）</td><td>−25% 門檻、戰意額外 −4</td><td>被反嘴、希望 −2</td></tr>
-<tr><td class="name">認慫</td><td>時機鬆手（bar 對準安全格）</td><td>−30% 門檻、對面攻擊 −3</td><td>臉皮 +0 但聲望 −4</td></tr>
+<tr><td class="name">硬派 <code>hard</code></td><td>👊 節奏連打</td><td>在計時內瘋狂點擊「TAP」按鈕，累積到目標點數</td><td>每次點擊 +1；timer 輪詢 80ms；未達目標即失敗</td></tr>
+<tr><td class="name">取巧 <code>smart</code></td><td>🧠 記憶配對</td><td>按照顯示的 L/R 序列（正常 4–5 步、簡易模式 3 步）依序點擊正確方向</td><td>命中 +1～+3（連擊加成 <code>1+⌊streak/2⌋</code>）；誤按 −1；全對即成功</td></tr>
+<tr><td class="name">話術 <code>speech</code></td><td>🗣️ 選擇辯駁</td><td>3 輪（簡易 2 輪）A/B 文字選項；每輪 +2 分；全輪答完後看總分</td><td>正確答案固定：輪1「妳只是運氣好」→A；輪2「妳根本沒人挺」→B；輪3「今天妳一定倒」→A</td></tr>
+<tr><td class="name">認慫 <code>surrender</code></td><td>🙇 時機忍耐</td><td>維持穩定節奏點擊 TAP，保持在「安全節拍」區間內</td><td>偏差過大扣分；持續穩定直到計時結束即成功</td></tr>
 </tbody>
 </table>
 </div>
-<p class="muted">設定頁可選「永遠直接判定 / 永遠小遊戲 / 每次詢問」。<strong>手機玩家建議預設直接判定</strong>，只在 Boss 戰才切到小遊戲；連敗 3 次會自動降難。</p>
+<div class="callout tip"><div class="callout-title">💡 實用細節</div>
+<ul style="margin:0;padding-left:1.2em;">
+<li><strong>簡易模式</strong>（設定 <code>expansionSettings.attitudeMinigameSimple</code>）：記憶配對縮至 3 步、辯駁縮至 2 輪，降低操作難度。</li>
+<li><strong>連敗保護</strong>：<code>failStreak ≥ 2</code> 後目標分數自動下調，畫面顯示青色警告「操作難度已降低」。</li>
+<li><strong>提前結算</strong>：任意時刻可按「提前結算」按鈕強制結算當前分數（不一定達標）。</li>
+<li><strong>分數即時顯示</strong>：<code>#attitude-mini-score</code> 元素即時更新。</li>
+<li>設定頁可選「永遠直接判定 / 永遠小遊戲 / 每次詢問」。<strong>手機玩家建議預設直接判定</strong>，只在 Boss 戰才切到小遊戲。</li>
+</ul>
+</div>
+<div class="panel cyan">
+<div class="panel-title">🎮 態度小遊戲視覺回饋（新）</div>
+<ul>
+<li><strong>敵意圖即時顯示</strong>（<code>displayAttitudeIntentUI</code>）：Boss 準備使用特定態度時，畫面頂部浮現短暫的意圖提示文字（附顏色）。例如：「他準備用硬派壓制」→ 紅色橫幅；「她在尋找說話時機」→ 紫色橫幅。持續 2 秒後淡出。</li>
+<li><strong>音效層</strong>（<code>playAttitudeMinigameSFX</code>）：成功為清脆音、<em>完美</em>為上揚三連音、失敗為低沉失誤音（手機需已播放過一次聲音才能觸發）。</li>
+<li><strong>手機震動</strong>（<code>vibrateAttitudeMinigameResult</code>）：完美成功震動強度 1.0（需 navigator.vibrate 支援）、一般成功 0.5、失敗 0.3。</li>
+</ul>
+</div>
 <h3>4. 出手優先序快表</h3>
 <div class="panel emerald">
 <ol>
@@ -476,15 +502,15 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="chapter" id="ch1">
 <div class="chapter-head"><div class="title">第 1 章 · 七日序幕</div><div class="meta">Day 1–7｜chap1_cleared</div></div>
 <div class="chapter-body">
-<p><strong>啟動</strong>：開局即啟動。<strong>目標</strong>：Day7 打完小九、繳清房租、搬到頂樓加蓋。</p>
+<p><strong>啟動</strong>：開局即啟動。<strong>目標</strong>：Day7 打完小九、繳清房租、強化基礎戰力。v2.1+ 永遠住在頂樓加蓋。</p>
 <h5>關鍵節點</h5>
 <ul>
-<li><strong>房東林阿姨催租</strong>（Day 3、Day 6）：繳清 $2,000 → <code>ch1_rent_paid</code>；賴帳需臉皮 ≥ 80 + 話術 ≥ 40，失敗聲望 −12。</li>
+<li><strong>房東林阿姨催租</strong>（Day 3、Day 6）：繳清 $2,000 → <code>ch1_rent_paid</code>；賴帳需臉皮 ≥ 80 + 話術 ≥ 40，失敗聲望 −12。v2.1+ 起始住房為<strong>頂樓加蓋（固定）</strong>，無搬家選項。</li>
 <li><strong>鐵叔回憶戰教學</strong>（Day 4+，準備值 ≥ 20）：在公園被鐵叔攔下，照著走即可。</li>
 <li><strong>Boss · 小九</strong>（Day 7+，準備值 ≥ 28）：HP 135／戰意 88<span class="muted">（基底）</span>。打法：【取巧】→【話術】破戰意 → 崩潰時【硬派】20 傷收尾。</li>
 </ul>
 <h5>結算</h5>
-<p>通關 → <code>chap1_cleared = true</code>；自動搬家地下室→頂樓加蓋（AP 4→5、HP 回復 0.2→0.5）。</p>
+<p>通關 → <code>chap1_cleared = true</code>；固定住房為頂樓加蓋（AP +0 相對開局、HP 回復 0.5）。</p>
 </div>
 </div>
 <div class="chapter" id="ch1_5">
@@ -497,6 +523,24 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li><strong>未觸發</strong>：不影響主線，但導演剪輯第 10 章母女場面會只剩一句。</li>
 </ul>
 <div class="callout secret"><div class="callout-title">🎁 稀有副本</div>此章沒有戰鬥、沒有敵人，是純敘事章，但影響後續雨晴共感起始分與「母親的擁抱」永久 +20 HP 取得條件。</div>
+</div>
+</div>
+<div class="chapter" id="ch1_5_debt">
+<div class="chapter-head"><div class="title">🏢 DLC 中間章一· 討債公司</div><div class="meta">觸發：chap1_cleared、自動切入（延遲 300ms）</div></div>
+<div class="chapter-body">
+<p>第一章通關後自動觸發。節點 ID：<code>chap1_5_debt_opener</code>。場景：廢棄商辦大樓，點鈔機聲從樓上傳來。</p>
+<h5>戰鬥流程</h5>
+<ul>
+<li><strong>L1 催收陰影（<code>chap1_5_debt_l1_1</code>）</strong>：雙敵「點鈔機傀儡」HP 40 + 「催收幽靈」HP 50。<br/>牆壁上有母親簽過名的借據——日期是她離開武館的那一年。<br/>勝利後自動取得雨晴日記殘頁<strong>『寄不出去的信』</strong>（<code>fragment_letter</code>）。</li>
+<li><strong>L2 帳房對決（<code>chap1_5_debt_l2</code>）</strong>：Boss「陳帳房」HP 100（司徒摘星的金牌帳簿員）。<br/>勝後取得道具<strong>『金錢幫帳本殘頁』</strong> + 旗標 <code>jessica_schedule_gained</code>（Jessica 直播時間表）。</li>
+</ul>
+<h5>結算</h5>
+<p>逃生梯牆上，用立可白寫著母親名字——那是鐵叔的筆跡。選「離開」後：</p>
+<ul>
+<li><code>adjustBondValue('tieShu', +3)</code>（母親真相）</li>
+<li><code>chap1_5_debt_completed = true</code></li>
+</ul>
+<div class="callout tip"><div class="callout-title">🔗 連鎖效果</div>取得<strong>帳本殘頁</strong>後，第二章終章時 Jessica 知情旗標觸發機率提升；搭配 <code>jessica_evidence</code> 路線可讓聲望 +40 加算。</div>
 </div>
 </div>
 <div class="chapter" id="ch2">
@@ -515,7 +559,22 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </ul></li>
 </ul>
 <h5>結算</h5>
-<p><code>chap2_cleared</code>；若聲望 ≥ 150 解鎖<strong>城中村套房</strong>（月租 $25,000、AP 7）。</p>
+<p><code>chap2_cleared</code>；永遠住在頂樓加蓋。AP 上限由風水產物加成決定。</p>
+</div>
+</div>
+<div class="chapter" id="ch2_5_lab">
+<div class="chapter-head"><div class="title">🧪 DLC 中間章二· 司徒摘星的實驗室</div><div class="meta">觸發：chap2_cleared、自動切入</div></div>
+<div class="chapter-body">
+<p>Jessica 戰敗後自動觸發（延遲 300ms）。節點 ID：<code>chap2_5_lab_opener</code>。場景：地下曠綠光培養槽。</p>
+<h5>戰鬥流程</h5>
+<ul>
+<li><strong>核心發現（<code>chap2_5_lab_discovery</code>）</strong>：對話魔性場景，培養槽發現與母親相似的身耀。旗標 <code>chap2_5_lab_seen_mother = true</code>。</li>
+<li><strong>Boss ・ 白老鼠博士（<code>chap2_5_lab_battle</code>）</strong>： HP 120。
+勝利後自動發放日谘殘頁 <strong><code>fragment_sunshower</code>（第二場太陽雨）</strong> + 道具<strong>『司徒摘星實驗日賌』</strong>。</li>
+</ul>
+<h5>結算</h5>
+<p>日賌最後一頁寫著：「建議改用其女作為替代載體」。<code>adjustBondValue('xiaoYe', +2)</code>（實驗揭露）。此殗對第三章司徒動機有重要媓企，並記錄於雨晴日記。</p>
+<div class="callout warn"><div class="callout-title">⚠️ 剗層命令</div>末端 Boss 戰斗後預設回到 Hub，不重新觸發 司徒主线。實驗日賌為後期邀請立場的小道具。</div>
 </div>
 </div>
 </section>
@@ -548,12 +607,34 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="panel cyan">
 <ul>
 <li><strong>A · 鎮壓三方（hero_true 武林盟主）</strong>：選「把勢力版圖推平」。需要 <strong>聲望 ≥ 180 + 武力 ≥ 100</strong>。後續在第 5–10 章會背負「秩序守護者」壓力，但結局達成 <code>hero_true</code>。</li>
-<li><strong>B · 接管黑市（godfather 影子教父）</strong>：選「把金錢幫留存的地下網絡接下來」。需要 <strong>野心（ambition）≥ 60</strong>，通常由第 3 章選 loser + 第 2 章私吞情報堆上來。結局 <code>godfather</code>，並直接解鎖信義區豪宅（與現金門檻路徑分開）。</li>
+<li><strong>B · 接管黑市（godfather 影子教父）</strong>：選「把金錢幫留存的地下網絡接下來」。需要 <strong>野心（ambition）≥ 60</strong>，通常由第 3 章選 loser + 第 2 章私吞情報堆上來。結局 <code>godfather</code>，並永久掌握地下經濟脈絡。門檻路徑分開）。</li>
 <li><strong>C · 放棄權力（wanderer 隱世高手）</strong>：選「把鑰匙交給里長伯」。需要 <strong>俠義（justice）≥ 70、野心 ≤ 30</strong>。鎖定 <code>wanderer</code>，後續章節大多以金錢豹同伴為敘事焦點。</li>
 </ul>
 </div>
 <div class="callout tip"><div class="callout-title">🧭 怎麼選？</div>
 若妳這輪已打算跑 15 結局全收，建議第一輪先選 C（wanderer）把<code>wanderer</code> 結局與「真·敗犬」兩面封頂，NG+ 再跑 A 和 B。<strong>一輪完成一條大岔</strong>。</div>
+</div>
+</div>
+<div class="chapter" id="ch3_5_vacuum">
+<div class="chapter-head"><div class="title">⚖️ DLC 中間章三· 地下秩序真空期</div><div class="meta">觸發：chap3_cleared（司徒倒下後）、三岔選擇</div></div>
+<div class="chapter-body">
+<p>司徒摘星倒下，地下社會出現⸺物流、情報、金流三條線同時真空。節點 ID：<code>chap3_5_vacuum_opener</code>。</p>
+<h5>三分支（鐵叔問：妳要先穩住哪一條？）</h5>
+<div class="panel cyan">
+<ul>
+<li><strong>【物流線】貨運站門口</strong>（<code>chap3_5_logistics</code>）：外送員互毆事件，單戰「外送員甲」HP 50。勝後 <code>adjustBondValue('longBo', +2)</code>（物流穩定）。對第四章<em>丐幫門派</em>影響力值有加成。</li>
+<li><strong>【情報線】網咖黑客</strong>（<code>chap3_5_intel</code>）：對戰「對立駭客」HP 60。勝後取得道具<strong>『金錢幫洗錢檔案』</strong>，解鎖第四章 A 路線（武林盟主）的內線牌。</li>
+<li><strong>【金流線】錢莊決定</strong>（<code>chap3_5_finance</code>）：純選擇節點，不需戰鬥。
+<ul>
+<li>「收編王姐」→ <code>chap3_5_finance_recruit = true</code>，王姐後期成為金流分舵鏡像角色。</li>
+<li>「驅逐王姐」→ <code>chap3_5_finance_expel = true</code>，第四章金流塞道被清空，敵方勢力值下降。</li>
+</ul></li>
+</ul>
+</div>
+<h5>結算（<code>chap3_5_vacuum_complete</code>）</h5>
+<p>「三條線妳都穩住了，地下社會開始重新排序。第四章的戰爭會因妳今天的選擇而改變。」<br/>
+<strong>選擇效果持久</strong>：物流→丐幫加成；情報→第四章 A 路線補強；金流→收/驅影響後期勢力佈局。</p>
+<div class="callout secret"><div class="callout-title">💡 與第四章的連鎖</div>三分支<strong>只能選一路</strong>（其他兩路保持開放但不計分）。三路全選需要三輪 NG+ 才能疊滿第四章最優解。</div>
 </div>
 </div>
 </section>
@@ -565,7 +646,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <ul>
 <li><strong>園區保險箱</strong>：需洞察 ≥ 90 破解，內含 Jessica 的舊照片與<strong>母親的工作筆記</strong>。拿到後 <code>chap5SafeDone = true</code>，第 6 章心門解鎖。</li>
 <li><strong>母親未接來電</strong>：Hub 夜晚會響電話無人聲，持續到第 6 章。每次接聽希望 +1、心魔 +1（記憶碎片）。</li>
-<li>解鎖第三住房<strong>城中村套房</strong>（若未達成，下次聲望 ≥ 150 即可解鎖）。</li>
+<li>補全角色故事線與新戰技解鎖。</li>
 </ul>
 </div>
 </div>
@@ -648,28 +729,68 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </table>
 </div>
 <div class="callout spoiler"><div class="callout-title">✨ 羈絆之光（隱藏加成）</div>
-若 3 個以上夥伴羈絆 ≥ 70（包含 aqiang_saved 時的阿強），自動觸發<strong>羈絆之光</strong>：頂樓集結送別場景、NG+ 起始羈絆 +10。獨立於上述 9 結局之外，會與任一結局疊加。</div>
+若 3 個以上夥伴羈絆 ≥ 70（包含 aqiang_saved 時的阿強），自動觸發<strong>羈絆之光</strong>：最終集結送別場景、NG+ 起始羈絆 +10。獨立於上述 9 結局之外，會與任一結局疊加。</div>
 </div>
 </div>
 <div class="chapter" id="ch11">
-<div class="chapter-head"><div class="title">第 11 章 · 血脈殘響（擴充）</div><div class="meta">需累積 ≥ 10 枚記憶碎片</div></div>
+<div class="chapter-head"><div class="title">第 11 章 · 血脈殘響（擴充）</div><div class="meta">chap10_cleared｜需累積 ≥ 10 枚記憶碎片</div></div>
 <div class="chapter-body">
-<p>記憶迴廊第 10 層心門開啟後進入。這一章的 Boss 是<strong>母親淑儀的殘影</strong>，實質上是玩家與母親未盡之事的具象化。</p>
-<ul>
-<li><strong>封卷</strong>：選擇封存母親身分真相 → 心魔 −8、雨晴共感 +6（保護姊妹）。</li>
-<li><strong>揭幕</strong>：選擇讓真相公開 → 聲望 +14、希望 +5，但<em>里長伯與鐵叔的信任 −10</em>。</li>
-</ul>
+<p>節點起點：<code>chap11_bloodline_echo_start</code>（雨夜收到含母親與雨晴名字的舊錄音）。背景 <code>bg-rooftop-night</code>，進入前建議先確認雨晴共感 ≥ 50，否則後半段會少一個緩衝選項。</p>
+<h5>流程概覽</h5>
+<ol>
+<li><strong>選擇進入路線</strong>：「進入記憶迴廊深層」（設 <code>memoryCorridorDeepDive = true</code>）或「先回中途之家」（雨晴共感 +3，不減任何東西）。第二選項是安全墊，不影響解鎖。</li>
+<li><strong>迴廊入口（<code>chap11_memory_corridor_gate</code>）</strong>：
+  <ul>
+  <li>【洞察 ≥ 96】先讀規則 → 洞察 +2、雨晴共感 +2 → <code>chap11_mid_guardian</code></li>
+  <li>【硬派 ≥ 95】直接闖入 → HP −10 → <code>chap11_mid_guardian</code></li>
+  </ul>
+</li>
+<li><strong>回聲守衛（<code>chap11_mid_guardian</code>）</strong>：「無臉守衛」只會重複玩家說過最狠的話。
+  <ul>
+  <li>【話術 ≥ 98】反駁自己的過去 → 聲望 +8</li>
+  <li>【認慫 臉皮 ≥ 122】承認怕 → HP +15、雨晴共感 +3</li>
+  </ul>
+</li>
+<li><strong>血緣回聲核心（<code>chap11_boss_blood_echo</code>）：最終抉擇</strong></li>
+</ol>
+<div class="table-wrap">
+<table>
+<thead><tr><th>選擇</th><th>旗標</th><th>獎勵 / 代價</th><th>後續影響</th></tr></thead>
+<tbody>
+<tr><td><strong>把回聲封存</strong>（守住現在）</td><td><code>chap11_choice = 'seal'</code></td><td>$+1,800；雨晴共感 +5</td><td>storyTitle「血脈殘響：封卷」；endingKeyword「守住當下」；利於雨晴結局</td></tr>
+<tr><td><strong>把回聲公開</strong>（讓真相流血）</td><td><code>chap11_choice = 'reveal'</code></td><td>聲望 +14；心魔 +6</td><td>storyTitle「血脈殘響：揭幕」；endingKeyword「真相流血」；後章 jessica 知情率提升</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 攻略建議</div>
+若目標是雨晴結局，選「封卷」；若目標是高聲望的英雄/揭露路線，選「揭幕」。兩者皆觸發 <code>chap11_cleared = true</code>，不影響第 12 章解鎖，但 endingKeyword 字串會出現在緣之書截圖頁。</div>
 </div>
 </div>
 <div class="chapter" id="ch12">
-<div class="chapter-head"><div class="title">第 12 章 · 棄神之地</div><div class="meta">需完成「裏城裂隙」世界變異 1 次</div></div>
+<div class="chapter-head"><div class="title">第 12 章 · 棄神之地</div><div class="meta">chap11_cleared｜需完成「裏城裂隙」世界變異 1 次</div></div>
 <div class="chapter-body">
-<p>這一章將敗犬江湖的城市「裏城」與現實台北重疊。Boss 是<strong>敗犬集合體</strong>（阿琳自己的鏡像）。</p>
-<ul>
-<li><strong>斬斷因果</strong>：心魔 −10、$−3,000、獲得「俐落人」被動（NG+ 起始俠義 +8）。</li>
-<li><strong>背負因果（吸收）</strong>：心魔 +12、+$2,500、獲得「裏城信物」（解鎖深淵專屬商店折扣）。</li>
-</ul>
-<p class="muted">第 11、12 章非每輪必跑，但<strong>想要解鎖長詩《關於雨晴》</strong>需搭配雨晴共感 ≥ 85 + 日記 5 張（見 F 節）。</p>
+<p>節點起點：<code>chap12_forsaken_land_start</code>。裏城裂隙完全打開，城市開始疊影。整章分三段：</p>
+<ol>
+<li><strong>裂隙前線（<code>chap12_frontline</code>）</strong>：
+  <ul>
+  <li>【硬派 ≥ 108】先穩住街區 → 聲望 +6、$+1,200</li>
+  <li>【洞察 ≥ 112】先拆裂隙供給（取巧路線）→ $+2,200</li>
+  </ul>
+</li>
+<li><strong>神棄抉擇（<code>chap12_final_choice</code>）</strong>：妳站在裂隙中心，聽見很多版本的自己。</li>
+</ol>
+<div class="table-wrap">
+<table>
+<thead><tr><th>終局路線</th><th>旗標</th><th>獎勵 / 代價</th><th>後續影響</th></tr></thead>
+<tbody>
+<tr><td><strong>斬斷因果</strong></td><td><code>chap12_path = 'cut'</code></td><td>聲望 +10；心魔 −10</td><td>storyTitle「棄神之地：斷鏈」；<code>endings.forsaken = 'cut'</code>；NG+ 起始俠義 +8（俐落人被動）</td></tr>
+<tr><td><strong>吸收因果</strong></td><td><code>chap12_path = 'absorb'</code></td><td>$+2,500；心魔 +12</td><td>storyTitle「棄神之地：背負」；<code>endings.forsaken = 'absorb'</code>；解鎖深淵商店折扣</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn"><div class="callout-title">⚠️ 屬性需求注意</div>
+裂隙前線兩條路分別需武力 108 或洞察 112。純話術流可能兩者都沒達標，建議在第 10 章整頓期先補一次武力或洞察突破訓練。若兩條都選不了，預設強制進入「吸收」結局。</div>
+<p class="muted">第 11、12 章非每輪必跑，但<strong>想要解鎖長詩《關於雨晴》</strong>需搭配雨晴共感 ≥ 85 + 日記 5 張（見 F 節）。第 12 章通關後 <code>chap12_cleared = true</code>，是深淵無限層的解鎖條件之一。</p>
 </div>
 </div>
 </section>
@@ -699,7 +820,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="key">godfather · 第 4 章三岔 B</div>
 <div class="name">影子教父</div>
 <div class="cond">第 4 章選「接管黑市」；野心 ≥ 80 + 混亂 ≥ 50（第 3 章 loser 可加速）。</div>
-<div class="reward">信義區豪宅解鎖、NG+ 起始資金</div>
+<div class="reward">【大俠】稱號、永久影響力提升、NG+ 起始資金 +$5,000</div>
 </div>
 <div class="ending-card wander">
 <div class="key">wanderer · 第 4 章三岔 C</div>
@@ -711,7 +832,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="key">community_master · 第 10 章結算</div>
 <div class="name">武館宗師</div>
 <div class="cond">俠義 ≥ 80 + 秩序 ≥ 60；搭配鐵叔／阿傑羈絆 ≥ 50。</div>
-<div class="reward">【宗師】稱號、聲望 +25，自動升級頂加→套房</div>
+<div class="reward">【宗師】稱號、聲望 +25，NG+ 固有能力 +15</div>
 </div>
 <div class="ending-card dark">
 <div class="key">fallen_hero · 導演剪輯</div>
@@ -836,6 +957,49 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 雨晴線有個反直覺設定：<strong>共感不能用刷的</strong>。遊戲內部設了<code>traces</code> 去重，一天只會認一次「共撐一傘」、一次「陪看雲」。所以要跑這條線，<em>請分天去做</em>，並搭配晴雨天氣切換（隨機事件觸發不同選項）。</div>
 </section>
 <section>
+<h2 id="g-f2">F2 · 雨晴小事互動詳表（<code>getRainQingSmallMomentPool</code>）</h2>
+<p>共感值除了透過日記殘頁被動解鎖外，還可以由「小事互動」主動累積。每種互動有 <code>traces</code> 去重（同類每天只算一次）。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>互動類型</th><th>觸發方式</th><th>共感 +</th><th>額外效果</th></tr></thead>
+<tbody>
+<tr><td class="name">陪她看雲</td><td>選【不說話，就這樣坐著】</td><td class="num">+2</td><td>心魔 −1</td></tr>
+<tr><td class="name">淋雨不跑</td><td>雨天與她相遇時，不選退避</td><td class="num">+3</td><td>HP −5（值得）</td></tr>
+<tr><td class="name">送空白筆記本</td><td>揹包有【空白筆記本】道具時觸發對話選項</td><td class="num">+5</td><td>一次性；解鎖筆記本特殊台詞</td></tr>
+<tr><td class="name">記住她提過的地方</td><td>廢文牆提及操場 / 便當店後，對話主動提起</td><td class="num">+4</td><td>解鎖 <code>fragment_playground</code> 提早觸發</td></tr>
+<tr><td class="name">一起站在大雨裡</td><td>暴雨事件雙人相遇（隨機觸發）</td><td class="num">+6</td><td>特殊場景台詞；HP −8</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">📅 每日上限</div>
+同一天內，「陪她看雲」與「淋雨不跑」只各計一次（<code>traces</code> 去重）。要快速累積共感，建議<strong>每天跑一個、保持 10 天</strong>，比同一天刷兩次更有效。</div>
+</section>
+<section>
+<h2 id="g-bounty">G0 · 懸賞板系統（<code>bountyBoard</code>）</h2>
+<p>懸賞板是 <strong>chap1_cleared</strong> 後解鎖的每週循環任務板。Hub 選單出現<strong>📋 懸賞板</strong>按鈕，點擊即刷新當週任務（<code>initializeBountyBoardTasks</code>）。</p>
+<h3>機制規則</h3>
+<div class="panel amber">
+<ul>
+<li><strong>每週刷新</strong>：<code>bountyBoard.week</code> 以 <code>Math.floor(currentDay / 7)</code> 判斷，週差異時自動重置任務池（<code>refreshBountyBoardIfNeeded</code>）。</li>
+<li><strong>每週 3 任務</strong>：從全任務池隨機抽 3 條，<code>bountyBoard.completed</code> 記錄已完成 ID（週重置時清空）。</li>
+<li><strong>完成條件</strong>：通關指定節點或達成條件後，呼叫 <code>completeBountyTask(taskId)</code> 即標記完成。</li>
+</ul>
+</div>
+<h3>已知任務池（<code>getBountyTaskPool</code>）</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>任務 ID</th><th>任務名</th><th>需求條件</th><th>獎勵</th></tr></thead>
+<tbody>
+<tr><td class="id">bounty_urban_legend</td><td class="name">超商怪談調查</td><td>chap1_cleared</td><td>$800 + 洞察 +2</td></tr>
+<tr><td class="id">bounty_chess_spirit</td><td class="name">棋靈王委託</td><td>龍伯羈絆 ≥ 20</td><td>$1,200 + 命理點 +30</td></tr>
+<tr><td class="id">bounty_cat_syndicate</td><td class="name">偷貓集團追查</td><td>金錢豹羈絆 ≥ 15</td><td>$600 + 金錢豹羈絆 +5</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 懸賞板最大化</div>
+每週三條都接，優先完成「棋靈王委託」（命理點最稀缺）。金錢豹羈絆低於 15 的新手可先刷「超商怪談」，兩條疊完再衝貓集團。</div>
+</section>
+<section>
 <h2 id="g-g">G · 夥伴羈絆（<code>companionBondSkillDB</code>）</h2>
 <p>五位核心夥伴 + 雨晴（獨立四階系統）。羈絆值累積方式：日常對話、對戰協力、貼心小事件。</p>
 <div class="table-wrap">
@@ -952,8 +1116,93 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </table>
 </div>
 <p class="muted">三件可重複購買，效果疊加到 <code>newGamePlusLegacy</code>。刷到深度 30+ 會進入本機排行榜。</p>
-<h2 id="g-k">K · 世界變異六型</h2>
-<p><code>activeMutationCatalog</code> 的六種世界變異改寫了大部分隨機事件。三種選擇 <em>抵抗 / 適應 / 利用</em> 影響不同屬性獎勵與副作用。</p>
+<h2 id="g-k">K · 世界變異六型 + v2.1 DLC 分支結局</h2>
+<p><code>activeMutationCatalog</code> 定義了六種世界變異，v2.1+ 各自配置獨立主線與 40+ 分支結局。不同於 v1.x 的「隨機遭遇改寫」，DLC 引入<strong>變異主線節點</strong>（<code>startMutationMainline(mutationId, s)</code>）與<strong>變異結局判定</strong>（<code>evaluateVariantEnding(mutationId, s)</code>）。</p>
+<div class="panel cyan">
+<div class="panel-title">🎭 DLC 主線開啟條件與分支判定</div>
+<ul>
+<li><strong>靈氣復甦主線</strong>（<code>startMutationMainline('aura_revival', s)</code>）
+<ul>
+<li><strong>觸發</strong>：Day 40+ 且戰鬥次數 ≥ 30 時自動浮顯「化龍專班公告」。</li>
+<li><strong>分支分岔</strong>：見下表四線，決定當輪迴的靈氣路徑走向；一輪只能選一條。</li>
+<li><strong>結局計分</strong>：根據選擇與後續決策（破解帳、炎上值、法會選擇等）決定 reform / tyrant / ghosts / loser 四結局。</li>
+</ul></li>
+<li><strong>都市傳說主線</strong>（<code>startMutationMainline('urban_legend_alive', s)</code>）
+<ul>
+<li><strong>觸發</strong>：Day 61+ 且靈氣主線已完成（<code>qiLing.completed = true</code>）+ 曾進入超商 / 公園 POI 一次。</li>
+<li><strong>分支分岔</strong>：七章故事線，選擇改寫 NPC 對待妳的態度；結局計分來自「妳是否揭露真相」與「是否救了怪談受害者」。</li>
+<li><strong>隱藏結局觸發</strong>：雨晴共感 ≥ 60 時額外解鎖「姊妹共振」結局。</li>
+</ul></li>
+<li><strong>記憶汙染主線</strong>（<code>startMutationMainline('memory_leak', s)</code>）
+<ul>
+<li><strong>觸發</strong>：Day 50+ 且心魔 ≥ 30 時自動切入。</li>
+<li><strong>分支分岔</strong>：三選一（清潔心魔 vs 接納心魔 vs 遺忘心魔），各對應希望 / 心魔 / 俠義軸上的不同路徑。</li>
+<li><strong>隱藏結局</strong>：選「遺忘」後若俠義 ≥ 80，解鎖「在霧中前行」結局（NG+ 起始洞察 +8）。</li>
+</ul></li>
+<li><strong>因果反噬主線</strong>（<code>startMutationMainline('karma_backlash', s)</code>）
+<ul>
+<li><strong>觸發</strong>：Day 55+ 且派遣失手 ≥ 5 次。</li>
+<li><strong>分支分岔</strong>：五個關鍵人物債務選擇（房東 / 房東 / 里長伯 / 黑市頭 / 金錢幫餘黨），每個延後 3–8 天或取得 $500–$2,000 獎勵。</li>
+<li><strong>結局判定</strong>：若五人皆取得好感（總共 +15 聲望），解鎖「命債相消」結局（永久信用 +50）。</li>
+</ul></li>
+<li><strong>市場瘋狂主線</strong>（<code>startMutationMainline('market_madness', s)</code>）
+<ul>
+<li><strong>觸發</strong>：Day 65+ 且現金 ≥ $10,000。</li>
+<li><strong>分支分岔</strong>：黑市金融遊戲五輪，選槓桿倍數 1x / 5x / 12x；單輪贏家或賭客，結局差異 $5,000–$50,000。</li>
+<li><strong>隱藏結局</strong>：五輪全勝且野心 ≥ 70，解鎖「金融鬼才」結局（NG+ 起始資金 +$20,000）。</li>
+</ul></li>
+<li><strong>裏城裂隙主線</strong>（<code>startMutationMainline('inner_city_rift', s)</code>）
+<ul>
+<li><strong>觸發</strong>：Day 70+ 且第 12 章已完成（chap12_cleared = true）。</li>
+<li><strong>分支分岔</strong>：六層無限塔攻略，每層可選「收集碎片 / 救助受困者 / 探索空隙」三項。</li>
+<li><strong>結局判定</strong>：累計碎片 ≥ 50 + 救助 ≥ 8 人，解鎖 「雙城守護者」結局（裏城結晶永久 +30%）。</li>
+</ul></li>
+</ul>
+</div>
+
+<h3 id="g-k-ending-matrix">K·DLC 結局矩陣（變異 × 分支路線 = 40+ 結局）</h3>
+<p>每個變異主線對應 4–8 個分支結局。下表列出觸發條件。結局會寫入 <code>state.variantEndings[mutationId]</code>，於導演剪輯第 10 章時疊加計分。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>變異</th><th>分支結局</th><th>觸發條件</th><th>獎勵概述</th></tr></thead>
+<tbody>
+<tr><td rowspan="4">靈氣復甦</td><td class="name">產學正道</td><td><code>qiPath = 'orthodox' + reform</code></td><td>聲望 +25、NG+ 魅力傳承</td></tr>
+<tr><td class="name">地下皇帝</td><td><code>qiPath = 'heretic' + tyrant</code></td><td>$+8,000、NG+ 野心 +10</td></tr>
+<tr><td class="name">鬼魅之友</td><td><code>qiPath = 'orthodox' + ghosts</code></td><td>心魔 −15、可馴化走火者</td></tr>
+<tr><td class="name">敗犬歸來</td><td><code>qiPath = 'loser'</code> + 臉皮 ≥ 120</td><td>臉皮 +20、$+2,000</td></tr>
+
+<tr><td rowspan="5">都市傳說</td><td class="name">真相獵人</td><td>揭露三起傳說真相</td><td>聲望 +30、洞察 +5</td></tr>
+<tr><td class="name">傳說保護者</td><td>救下五名受害者</td><td>希望 +20、聲望 +15</td></tr>
+<tr><td class="name">共感姊妹</td><td>揭露真相 + 雨晴共感 ≥ 65</td><td>解鎖雨晴「怪談破曉」分支</td></tr>
+<tr><td class="name">傳說之人</td><td>全程 ≤ 2 次血量掉落</td><td>臉皮 −0（怪談難度減半）</td></tr>
+<tr><td class="name">都市獵袭者</td><td>擊敗五隻傳說級怪物</td><td>武力 +8、戰技「驅魅剋鬼」</td></tr>
+
+<tr><td rowspan="4">記憶汙染</td><td class="name">淨心高手</td><td>選清潔心魔 + 完成五章淨心任務</td><td>心魔永久 −20%、希望上限 +20</td></tr>
+<tr><td class="name">與魔共舞</td><td>選接納心魔 + 黑化度 ≥ 80</td><td>新技能「心魔纏繞」、野心 +10</td></tr>
+<tr><td class="name">在霧中前行</td><td>選遺忘心魔 + 俠義 ≥ 80</td><td>NG+ 洞察 +8、可看到「前世碎片」</td></tr>
+<tr><td class="name">失心漂流者</td><td>心魔到達 160 未實施任何清淨</td><td>轉換到「遺忘」路線，NG+ 心魔 +25</td></tr>
+
+<tr><td rowspan="4">因果反噬</td><td class="name">命債相消</td><td>五人好感皆觸發 + 總聲望 +15</td><td>信用永久 +50、每週債務 −$200</td></tr>
+<tr><td class="name">債務領主</td><td>全部五人皆延後金額最大</td><td>$+15,000（總計），NG+ 現金 +$5,000</td></tr>
+<tr><td class="name">孤島倖存者</td><td>五人皆避免且不聞不問</td><td>孤獨被動「無人救我」：戰鬥中友軍牌失效</td></tr>
+<tr><td class="name">贖罪者</td><td>償還最多筆債務 + 俠義 ≥ 80</td><td>每筆償還帶來希望 +5 加乘效應</td></tr>
+
+<tr><td rowspan="5">市場瘋狂</td><td class="name">金融鬼才</td><td>五輪全勝 + 野心 ≥ 70</td><td>NG+ 現金 +$20,000、交易傭金 −25%</td></tr>
+<tr><td class="name">黑市掮客</td><td>三輪以上使用 12x 槓桿</td><td>黑市每週利息 5%（固定相比 12%）</td></tr>
+<tr><td class="name">分散投資家</td><td>五輪分勝負、無巨額輸贏</td><td>穩定被動：派遣穩定度 +20%</td></tr>
+<tr><td class="name">金融破產戶</td><td>五輪虧超 $50,000</td><td>觸發「重生之路」支線（懸賞加倍）</td></tr>
+<tr><td class="name">白手起家</td><td>以最低槓桿逆轉全勝</td><td>新稱號「螞蟻征」、每筆交易 +2% 獎金</td></tr>
+
+<tr><td rowspan="4">裏城裂隙</td><td class="name">雙城守護者</td><td>碎片 ≥ 50 + 救助 ≥ 8 人</td><td>裏城結晶永久 +30%、可招募「裏影使者」</td></tr>
+<tr><td class="name">碎片獵集者</td><td>碎片 ≥ 80 + 探索 ≥ 12 層</td><td>解鎖「衰落探險家」職業牌</td></tr>
+<tr><td class="name">孤獨亡靈</td><td>全程不救任何人、僅收集</td><td>被動「孤影」：取得獨特暗黑卡牌</td></tr>
+<tr><td class="name">空隙化身</td><td>在空隙層數逗留 ≥ 20 回合</td><td>解鎖「裏城獨語」詩篇、成就「孤月冥想」</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout secret"><div class="callout-title">⭐ v2.1 隱藏條件（多結局堆疊）</div>
+同一輪迴中若同時達成<strong>兩個變異主線</strong>（例：靈氣 + 都市傳說），對應結局會於第 10 章導演剪輯時<strong>同時計分結算</strong>，最後取得的緣之書結局會帶有「疊層標籤」（例：「true_loser_spirit_keeper」= 真敗犬 + 傳說保護者）。此類硬核結局共計 15 個，用來鼓勵玩家「一輪內跑滿多變異」。</div>
+
 <div class="table-wrap">
 <table>
 <thead><tr><th>優先序</th><th>變異</th><th>抵抗</th><th>適應</th><th>利用</th></tr></thead>
@@ -969,9 +1218,265 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </div>
 <div class="callout warn"><div class="callout-title">⚠️ 變異同時觸發時的優先序</div>
 <code>mutationPriority</code> 寫死：裏城裂隙 &gt; 因果反噬 &gt; 都市傳說 &gt; 靈氣復甦 &gt; 記憶汙染 &gt; 市場瘋狂。兩種以上同日觸發，會被替換為優先序最高的那種變體事件；觸發機率基礎 60%，單日變體 ≥3／≥5 次另有遞減；若上一場也是變體再乘 0.8（筆記本「同日變體疲勞」條目）。</div>
+<h4>產學靈氣主線（v2.0 · <code>state.qiLing</code>）</h4>
+<h4>世界紀元時間軸（<code>BDOG_PHASE_DAY</code>）</h4>
+<p>遊戲以「Day」為紀元計時。世界變異的主動相態由下表控制，並影響 Hub 介面、遭遇事件池、NPC 對話。「6 種變異同時存在」已過時——實際是<strong>逐步切換的相態時間軸</strong>，由 <code>getBdogWorldState()</code> 計算 <code>active_variant</code>。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Day 範圍</th><th>紀元名稱</th><th>active_variant</th><th>解鎖條件</th></tr></thead>
+<tbody>
+<tr><td class="num">Day 1–60</td><td>靈氣復甦期</td><td><code>aura_revival</code></td><td>觸發靈氣變異 + <code>qiAuraRevivalNarrativeUnlockGateOk</code></td></tr>
+<tr><td class="num">Day 61–120</td><td>都市傳說期</td><td><code>urban_myth</code></td><td>Day ≥ 61 且 <code>qiLing.completed</code> + <code>bd_qi_derangement_trace</code> + POI 踩點（<code>poolVisits ≥ 1</code>）</td></tr>
+<tr><td class="num">Day 115–130</td><td>融合過渡期</td><td>transition（漸變）</td><td>自動；<code>transition_state.progress</code> 從 0→1</td></tr>
+<tr><td class="num">Day 121–150</td><td>混合期（Fusion-I）</td><td><code>fusion_i</code></td><td><code>lupiFusionGateOk</code> 通過（雙星下降條件）</td></tr>
+<tr><td class="num">Day 151+</td><td>回歸期</td><td>（衰退）</td><td>自動；變異遭遇 weight 遞減</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 都市傳說期解鎖注意</div>光靠 Day 61 到達<strong>不夠</strong>。還需要：① 先通關產學線（<code>qiLing.completed = true</code>）② 取得「走火入魔痕跡」（<code>bd_qi_derangement_trace</code>，qi_m02 選離開時觸發）③ 在任一地圖 POI 被標記一次（<code>poolVisits ≥ 1</code>）。三條件都滿才觸發。</div>
+<h4 id="g-k-qi">產學收割紀元完整攻略（<code>qi-ling-harvest-core / mid</code>）</h4>
+<p>共 14 個節點（<code>qi_m01–qi_m14_endings</code>）。<strong>強制跨日</strong>：每節完成後 <code>qiLing.lastBeatDay</code> 更新，次日才能繼續下一節。</p>
+<div class="callout warn"><div class="callout-title">⚠️ 關鍵前置</div>靈氣復甦變異觸發後，Hub 出現「化龍專班招募告示」即可開始。簽約路線（認慫）武力 +15 但靈骨債 +18%；拒絕路線（硬派）洞察 +3 但錯過初期福利，三條選擇皆可推進主線。</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>節點</th><th>標題</th><th>核心事件</th><th>最佳路線 / 門檻</th><th>重要效果</th></tr></thead>
+<tbody>
+<tr><td class="id">qi_m01</td><td>A1·化龍專班招標中</td><td>野雞大學招募靈氣修煉班</td><td>【認慫】報名：武力 +15；但靈骨債 +18%</td><td>旗標 <code>qi_a1_route</code>；簽約解鎖試讀本</td></tr>
+<tr><td class="id">qi_m02</td><td>A2·走火入魔的個案</td><td>室友小黑被黑衣回收組帶走</td><td>【取巧】藏樣本 → 取得「<strong>小黑的靈髓樣本</strong>」（後期炎上值 +80）</td><td><code>bd_qi_derangement_trace = true</code>（都市傳說期解鎖必要條件）</td></tr>
+<tr><td class="id">qi_m03</td><td>A3·焚化爐廢件</td><td>後山焚化爐發現「休學回鄉」真相</td><td>Boss：黑衣回收組 HP 92 / 意志 52；【取巧 洞察≥48】勝 = 取得手機照片（炎上 +120）</td><td><code>qi_crematorium_photos</code>；敗不影響主線但炎上值低</td></tr>
+<tr><td class="id">qi_m04</td><td>A4·餌法老鼠會陷阱</td><td>廟口道士揭露「免費靈氣是借款、畢業即收割」</td><td>純敘事；自動 cur=5</td><td><code>qi_bait_revealed</code></td></tr>
+<tr><td class="id">qi_m05</td><td>A5·靈骨債務枷鎖</td><td>停止修煉後收到追債簡訊</td><td>純敘事；<strong>從此每日債務 tick 啟動</strong></td><td><code>qi_debt_system_on</code>；債務強制推到 35%</td></tr>
+<tr><td class="id">qi_m06</td><td>A6·地下道士的改機符籙</td><td>四條路破解靈骨債</td><td>① 花 $8,000（洞察≥80 成功率 80%）→ 債歸零；② 臉皮≥100 反向上傳（債 = −10）；③ 話術≥100 系統當機 7 日；④ 硬撐</td><td>第②路線業力 +5；僅此節點可讓 debt 歸零</td></tr>
+<tr><td class="id">qi_m07</td><td>A7·鬼魅比人心好</td><td>廢棄大樓遇到走火入魔學長怪物</td><td>純敘事 → 取得「學長錄音」（炎上 +90）</td><td><code>qi_senpai_recording = true</code>；希望 −3</td></tr>
+<tr><td class="id">qi_m08</td><td>A8·廢文牆的炎上反撲</td><td>用所有證據引發炎上</td><td>純敘事；炎上值 = 三項證據加總（照片 +120 + 樣本 +80 + 錄音 +90）</td><td><code>qiLing.heat</code> 大幅上升；社群 feed 聯動</td></tr>
+<tr><td class="id">qi_m09</td><td>A9·功德業障資本化</td><td>深山放生法會其實是強制捐獻靈髓</td><td>【取巧 洞察≥80】偷錄影 → 炎上 +100；打工 → +$5,000 但業力 +28；認慫 → 臉皮 +5</td><td><code>qi_ritual_video</code>（取巧路線）</td></tr>
+<tr><td class="id">qi_m10</td><td>A10·模範生學長的善意</td><td>校董特助陳敬堯攔截</td><td>無迴避 → 強制戰鬥</td><td>Boss：陳敬堯</td></tr>
+<tr><td class="id">qi_m11</td><td>A11·化龍法會前夜</td><td>集結準備策略</td><td>① 集結盟友（鐵叔≥40 + 小夜≥40）；② 與走火者站同邊（聲望 −15）；③ 單刀赴會</td><td>影響 A13 Boss 難度</td></tr>
+<tr><td class="id">qi_m12</td><td>A12·迎王與出巡</td><td>校董車隊出巡吸取市民靈氣</td><td>純敘事，自動推進</td><td>cur = 13</td></tr>
+<tr><td class="id">qi_m13</td><td>A13·百鬼夜行 vs 財神出巡</td><td>化龍法會主會場終戰</td><td>Boss：校董/財團化身 HP 195 / 意志 125；【取巧 洞察≥55 + 炎上≥120】用輿論斷供能（最高傷害）；話術≥70 拆論點轟意志</td><td>炎上值低時只能靠話術或硬派</td></tr>
+<tr><td class="id">qi_m14</td><td>A14·產學收割紀元·終</td><td>校董落敗，選擇結局</td><td>見下表</td><td><code>qiLing.completed = true</code>；觸發都市傳說期解鎖倒計時</td></tr>
+</tbody>
+</table>
+</div>
+<h5>四個結局路線</h5>
+<div class="table-wrap">
+<table>
+<thead><tr><th>結局</th><th>選項</th><th>效果</th><th>適用目標</th></tr></thead>
+<tbody>
+<tr><td><strong>reform（正道）</strong></td><td>接管學校、關學分盤</td><td>聲望 +25；<code>qiPath = 'orthodox'</code>；學分盤敘事解鎖</td><td>高聲望、英雄路線</td></tr>
+<tr><td><strong>tyrant（邪道）</strong></td><td>坐上辦公桌繼續收割</td><td>$+8,000；業力 +40；<code>qiPath = 'heretic'</code></td><td>金錢流派</td></tr>
+<tr><td><strong>ghosts（鬼魅）</strong></td><td>與走火者守在巷口</td><td><code>qiPath = 'orthodox'</code></td><td>心魔管理 / 雨晴線兼容</td></tr>
+<tr><td><strong>loser（敗犬）</strong></td><td>回超商大夜班</td><td>臉皮 +20</td><td>臉皮流 / 完美敗犬</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 炎上值最大化</div>qi_m02 選「藏樣本」、qi_m03 勝戰取得照片、qi_m07 取得錄音 → 三項全齊，qi_m08 炎上值大幅提升（+290 基礎）。這是 qi_m13 取巧選項唯一解鎖條件（heat ≥ 120）。若錯過，Boss 戰只能靠話術或硬派。</div>
+<h4>混合期 Fusion-I 事件（<code>fusion_i</code>，Day 121–150）</h4>
+<p>產學線通關 + 都市傳說期後，Day 121+ 且 <code>lupiFusionGateOk</code> 通過，<code>active_variant</code> 切換為 <code>fusion_i</code>。遭遇池新增 7+ 個靈氣 × 怪談混合事件（visibilityTag = <code>FUSION_fusion_i</code>）：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>節點 ID</th><th>簡介</th><th>weight</th></tr></thead>
+<tbody>
+<tr><td class="id">encounter_bdog_fusion_echo</td><td>靈氣與怪談共振迴聲</td><td>1.4</td></tr>
+<tr><td class="id">encounter_bdog_fusion_park_spirit</td><td>榕樹公園混合靈性</td><td>1.3</td></tr>
+<tr><td class="id">encounter_bdog_fusion_talisman_ghost</td><td>電路板符籙的靈魂</td><td>1.2</td></tr>
+<tr><td class="id">encounter_bdog_fusion_capsule_dog</td><td>膠囊玩具機的投靠犬</td><td>1.1</td></tr>
+<tr><td class="id">encounter_bdog_fusion_vending_ghost</td><td>自動販賣機的怨靈</td><td>1.0</td></tr>
+<tr><td class="id">encounter_bdog_fusion_ring_whisper</td><td>電鈴的低語</td><td>0.9</td></tr>
+<tr><td class="id">encounter_bdog_fusion_temple_tears 等</td><td>廟宇眼淚・狗人・盪鞦韆叔叔・機器喝飲料等</td><td>見遊戲檔</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">Day 121 起整體遭遇乘數約 0.79（<code>getBdogRegression121EncounterMul</code>），節奏放緩；雙星同輝條件觸發時部分彩蛋事件解鎖。</p>
+<h4>主線節點對話補丁（<code>mutationDialogPatches</code>）</h4>
+<p>以下 12 個 <code>nodeId</code> 在敘事進場時，若當前作用中變異 id 有對應字串，會<strong>額外插入</strong>一段括號敘事（不覆寫原節點全文）。第二欄為該節點有定義的變異 key。<span class="muted">遊戲檔約 L29118。</span></p>
+<div class="table-wrap">
+<table>
+<thead><tr><th><code>nodeId</code></th><th>已定義變異 key</th></tr></thead>
+<tbody>
+<tr><td class="id">chap5_director_start</td><td>memory_leak, aura_revival, urban_legend_alive, market_madness, karma_backlash, inner_city_rift</td></tr>
+<tr><td class="id">chap5_director_rescue</td><td>inner_city_rift, karma_backlash, memory_leak, aura_revival</td></tr>
+<tr><td class="id">chap7_live_stream</td><td>market_madness, urban_legend_alive, memory_leak, karma_backlash, inner_city_rift</td></tr>
+<tr><td class="id">chap8_temple_probe</td><td>aura_revival, karma_backlash, urban_legend_alive, memory_leak, market_madness</td></tr>
+<tr><td class="id">chap9_jessica_last_stand</td><td>memory_leak, inner_city_rift, aura_revival, karma_backlash, market_madness</td></tr>
+<tr><td class="id">chap3_funeral_prep</td><td>karma_backlash, urban_legend_alive, memory_leak, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap3_start</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap7_director_start</td><td>market_madness, urban_legend_alive, memory_leak, karma_backlash, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap7_jessica_court</td><td>market_madness, karma_backlash, memory_leak, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap9_director_start</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap9_jessica_final</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap9_jessica_truth</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+</tbody>
+</table>
+</div>
+<h4>日常遭遇變體映射（<code>encounterVariantMap</code>）</h4>
+<p>隨機遭遇先以 <code>baseEventId</code> 命中表列，再依作用中變異 id 換成對應變體事件 id（例：<code>encounter_thug</code> + <code>aura_revival</code> → <code>encounter_thug_aura</code>）。<span class="muted">遊戲檔約 L28202；共 11 個 base。</span></p>
+<div class="table-wrap">
+<table>
+<thead><tr><th><code>baseEventId</code></th><th>變體映射（變異 id → 事件 id）</th></tr></thead>
+<tbody>
+<tr><td class="id">encounter_thug</td><td>aura_revival→encounter_thug_aura；urban_legend_alive→encounter_thug_legend；karma_backlash→encounter_thug_karma；memory_leak→encounter_thug_memory；inner_city_rift→encounter_thug_rift</td></tr>
+<tr><td class="id">encounter_dog</td><td>aura_revival→encounter_dog_aura；urban_legend_alive→encounter_dog_legend；memory_leak→encounter_dog_memory</td></tr>
+<tr><td class="id">encounter_drunk</td><td>karma_backlash→encounter_drunk_karma；memory_leak→encounter_drunk_memory；aura_revival→encounter_drunk_aura</td></tr>
+<tr><td class="id">encounter_streamer</td><td>memory_leak→encounter_streamer_memory；urban_legend_alive→encounter_streamer_legend；market_madness→encounter_streamer_market</td></tr>
+<tr><td class="id">encounter_scam</td><td>market_madness→encounter_scam_market；urban_legend_alive→encounter_scam_legend；karma_backlash→encounter_scam_karma</td></tr>
+<tr><td class="id">encounter_new_lost_child</td><td>inner_city_rift→encounter_lost_child_rift；memory_leak→encounter_lost_child_memory</td></tr>
+<tr><td class="id">encounter_beggar</td><td>memory_leak→encounter_beggar_memory；karma_backlash→encounter_beggar_karma；inner_city_rift→encounter_beggar_rift</td></tr>
+<tr><td class="id">encounter_mlm</td><td>market_madness→encounter_mlm_market；urban_legend_alive→encounter_mlm_legend</td></tr>
+<tr><td class="id">encounter_cult</td><td>aura_revival→encounter_cult_aura；urban_legend_alive→encounter_cult_legend；karma_backlash→encounter_cult_karma</td></tr>
+<tr><td class="id">encounter_new_robbery</td><td>karma_backlash→encounter_robbery_karma；market_madness→encounter_robbery_market</td></tr>
+<tr><td class="id">encounter_new_phone_snatcher</td><td>memory_leak→encounter_phone_memory；urban_legend_alive→encounter_phone_legend</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">通關產學線可解鎖成就 <code>qi_ling_harvest_clear</code>（見 M 節）。實際台詞字串以遊戲檔為準。</p>
+<h3 id="g-k2">K2 · 世界變異 DLC 事件攻略（變體遭遇詳表）</h3>
+<p>以下為 <code>deferredIntegratedSystemNodes</code> 中所有已實作的變體節點逐條攻略。每則「Base 遭遇 + 作用中變異」組合只在六成機率下觸發替換（機率受疲勞遞減）。括號內為觸發該變體所需的作用變異。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Base 遭遇</th><th>變異</th><th>節點 ID</th><th>標題</th><th>最佳選擇 / 門檻</th><th>獎勵</th></tr></thead>
+<tbody>
+<tr><td rowspan="5">encounter_thug<br/><span class="muted">巷口混混</span></td>
+<td>靈氣復甦</td><td class="id">encounter_thug_aura</td><td>靈氣纏身的混混</td><td>【洞察 ≥ 70】引導反噬</td><td>$320 + 洞察 +2 + <strong>靈氣結晶碎片</strong></td></tr>
+<tr><td>都市傳說</td><td class="id">encounter_thug_legend</td><td>（見 encounter_thug_legend）</td><td>—</td><td>—</td></tr>
+<tr><td>因果反噬</td><td class="id">encounter_thug_karma</td><td>（見 encounter_thug_karma）</td><td>—</td><td>—</td></tr>
+<tr><td>記憶汙染</td><td class="id">encounter_thug_memory</td><td>記得妳上輩子的混混</td><td>【認慫 臉皮 ≥ 118】順著他演</td><td>臉皮 +4 + $260</td></tr>
+<tr><td>裏城裂隙</td><td class="id">encounter_thug_rift</td><td>影子裡的第二個混混</td><td>【洞察 ≥ 82】踩掉真正的影子</td><td><strong>裏城結晶</strong> + 洞察 +3</td></tr>
+<tr><td rowspan="3">encounter_dog<br/><span class="muted">黑狗</span></td>
+<td>靈氣復甦</td><td class="id">encounter_dog_aura</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td>都市傳說</td><td class="id">encounter_dog_legend</td><td>影子不對的黑狗</td><td>【敗犬 臉皮 ≥ 120】蹲下來聊天</td><td>旗標 <code>dogTemporaryFriend</code> + 臉皮 +5</td></tr>
+<tr><td>記憶汙染</td><td class="id">encounter_dog_memory</td><td>牠記得妳沒養過牠</td><td>【認慫 臉皮 ≥ 125】跟牠一起哭</td><td>臉皮 +5 + <strong>記憶錨點</strong></td></tr>
+<tr><td rowspan="3">encounter_drunk<br/><span class="muted">醉漢</span></td>
+<td>靈氣復甦</td><td class="id">encounter_drunk_aura</td><td>會念咒的醉漢</td><td>【洞察 ≥ 85】記下咒文</td><td>洞察 +3 + <strong>靈氣結晶碎片</strong></td></tr>
+<tr><td>因果反噬</td><td class="id">encounter_drunk_karma</td><td>宿怨醉漢</td><td>【話術 ≥ 90】道歉止戰</td><td>心魔 −5 + 聲望 +4</td></tr>
+<tr><td>記憶汙染</td><td class="id">encounter_drunk_memory</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td rowspan="3">encounter_streamer<br/><span class="muted">直播主</span></td>
+<td>記憶汙染</td><td class="id">encounter_streamer_memory</td><td>鏡頭裡的陌生少女</td><td>【洞察 ≥ 80】一起直播</td><td>$1,000 + 聲望 +6</td></tr>
+<tr><td>都市傳說</td><td class="id">encounter_streamer_legend</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td>市場瘋狂</td><td class="id">encounter_streamer_market</td><td>直播間的便當詐</td><td>【話術 ≥ 90】談聯盟抽成</td><td>$1,100 + 話術 +2</td></tr>
+<tr><td rowspan="3">encounter_scam<br/><span class="muted">愛心筆/詐騙</span></td>
+<td>市場瘋狂</td><td class="id">encounter_scam_market</td><td>開運靈筆推銷團</td><td>【話術 ≥ 85】反向推銷</td><td>$800</td></tr>
+<tr><td>都市傳說</td><td class="id">encounter_scam_legend</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td>因果反噬</td><td class="id">encounter_scam_karma</td><td>愛心筆的舊帳</td><td>【話術 ≥ 80】收下他的道歉</td><td>心魔 −8 + $400</td></tr>
+<tr><td rowspan="2">encounter_new_lost_child<br/><span class="muted">超商失落孩童</span></td>
+<td>裏城裂隙</td><td class="id">encounter_lost_child_rift</td><td>未發生的孩子</td><td>【敗犬 臉皮 ≥ 150】帶他回家一天</td><td><strong>裏城結晶 ×3</strong> + 希望 +10</td></tr>
+<tr><td>記憶汙染</td><td class="id">encounter_lost_child_memory</td><td>他叫得出妳的小名</td><td>陪他坐一下</td><td>希望 +8；推送 déjà vu 旗標</td></tr>
+<tr><td rowspan="3">encounter_beggar<br/><span class="muted">老乞丐</span></td>
+<td>記憶汙染</td><td class="id">encounter_beggar_memory</td><td>乞丐認得妳</td><td>收下破紅包</td><td>$200 + 希望 +5</td></tr>
+<tr><td>因果反噬</td><td class="id">encounter_beggar_karma</td><td>來討債的乞丐</td><td>丟給他 $300</td><td>心魔 −6（花費 $300）</td></tr>
+<tr><td>裏城裂隙</td><td class="id">encounter_beggar_rift</td><td>半透明的乞丐</td><td>放下一份便當就走</td><td>聲望 +3 + 希望 +4（花費 $80）</td></tr>
+<tr><td rowspan="2">encounter_mlm<br/><span class="muted">直銷組</span></td>
+<td>市場瘋狂</td><td class="id">encounter_mlm_market</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td>都市傳說</td><td class="id">encounter_mlm_legend</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td rowspan="2">encounter_cult<br/><span class="muted">邪教</span></td>
+<td>靈氣復甦</td><td class="id">encounter_cult_aura</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td>都市傳說</td><td class="id">encounter_cult_legend</td><td>（遊戲檔）</td><td>—</td><td>—</td></tr>
+<tr><td rowspan="2">便當妖<br/><span class="muted">market_madness 專屬</span></td>
+<td>市場瘋狂</td><td class="id">encounter_bento_yao</td><td>便當妖</td><td>HP 90、意圖「擺成米其林」；surrender 路線可不戰</td><td>投降路線省血；正面戰 $500+</td></tr>
+<tr><td>市場瘋狂</td><td class="id">encounter_streamer_market</td><td>直播間便當詐（同上）</td><td>—</td><td>—</td></tr>
+<tr><td>都市傳說具現化</td><td class="id">encounter_red_girl</td><td>紅衣小女孩</td><td>HP 130、攻勢少但可投降；<code>canSurrender = true</code></td><td>選投降可免傷通關；戰勝聲望 +8</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 變體刷法建議</div>
+<ol>
+<li><strong>靈氣結晶碎片</strong>（合成靈氣被動素材）：主動觸發「靈氣復甦」變異，然後在巷口混混 / 醉漢遭遇中選洞察路線。每日可拿 1–2 枚。</li>
+<li><strong>裏城結晶 ×3</strong>（高值）：觸發「裏城裂隙」，找「超商失落孩童」遭遇，選【敗犬 臉皮 ≥ 150】一次拿三枚。</li>
+<li><strong>記憶錨點</strong>：「記憶汙染」+ 黑狗事件，選認慫路線。在記憶迴廊解鎖後提升深層進入機率。</li>
+<li><strong>心魔清除</strong>：「因果反噬」配「愛心筆舊帳」（心魔 −8）或「宿怨醉漢」（心魔 −5），是中後期心魔管理的主要外掛手段。</li>
+</ol></div>
+<div class="callout warn"><div class="callout-title">⚠️ 雙星下降（shuangxing_descent）</div>
+<code>encounterVariantMap</code> 中混混/醉漢/直播主/詐騙/失落孩童均有 <code>shuangxing_descent</code> 映射，但此變異目前不在 <code>activeMutationCatalog</code> 內（需開局特定 DLC 選項啟用）。若在存檔中看到該旗標，代表進入了彩蛋段落。</div>
 </section>
 <section>
-<h2 id="g-l">L · 經濟循環與裝備</h2>
+<h2 id="g-k3">K3 · 道具欄全目錄（<code>itemDB</code>）</h2>
+<p>遊戲共有四類道具：<strong>消耗品</strong>（可主動使用）、<strong>鑰匙</strong>（劇情觸發/門檻）、<strong>技能書</strong>（使用後永久加分）、<strong>戰利品</strong>（無法使用，收藏展示）。下表按類型分組，標示取得路徑與效果。</p>
+<h4>消耗品</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>道具</th><th>效果</th><th>取得方式</th></tr></thead>
+<tbody>
+<tr><td class="name">能量飲料</td><td>AP +3</td><td>超商打工；夜市購買</td></tr>
+<tr><td class="name">大補丸</td><td>HP +50</td><td>唐門藥房；懸賞板獎勵</td></tr>
+<tr><td class="name">米酒頭</td><td>HP +20；進入「醉酒」狀態 3 回合（可超常發揮）</td><td>夜市購買</td></tr>
+<tr><td class="name">唐門提神香</td><td>AP +3；洞察 +2</td><td>小夜 Tier 1 羈絆後取得</td></tr>
+<tr><td class="name">過期礦泉水</td><td>AP +1</td><td>里長伯贈送（日常對話）</td></tr>
+<tr><td class="name">夜市幸運餅乾</td><td>命理 +8；HP +4</td><td>夜市；陣頭慶典</td></tr>
+<tr><td class="name">龍伯的買命錢</td><td>房租暫停 3 天（<code>rentFreezeUntil</code>）</td><td>龍伯羈絆 ≥ 40 後對話觸發</td></tr>
+<tr><td class="name">海風明信片</td><td>希望 +20</td><td>蘇曉語澎湖旅途後寄回</td></tr>
+<tr><td class="name">半價房租券</td><td>下一期房租減半（一次性）</td><td>黑市；龍伯秘道</td></tr>
+<tr><td class="name">一次性護身符</td><td>HP +60；護盾 3 回合</td><td>廟會遶境；都市傳說事件</td></tr>
+<tr><td class="name">鹹光餅</td><td>HP +10</td><td>廟會現場</td></tr>
+<tr><td class="name">科學麵</td><td>HP +6；AP +1</td><td>颱風天事件；超商</td></tr>
+<tr><td class="name">阿嬤涼茶</td><td>HP +16；賭癮 −8</td><td>夜市阿嬤攤；賭場事件</td></tr>
+<tr><td class="name">夜市折價券</td><td>$+80；AP +1</td><td>套圈圈攤掉落</td></tr>
+<tr><td class="name">臨時激勵令</td><td>HP +25；AP +2</td><td>門派貢獻 ≥ 50 後可領</td></tr>
+<tr><td class="name">貢獻護符</td><td>門派貢獻獲取 +20%（持續 7 天）</td><td>門派商店</td></tr>
+<tr><td class="name">新鮮鮪魚</td><td>HP +30</td><td>魚市場事件（偷取或購買）</td></tr>
+<tr><td class="name">新夜市招待券</td><td>（遊戲檔）</td><td>市場聲望 &gt; 80 時 50% 機率取得</td></tr>
+</tbody>
+</table>
+</div>
+<h4>技能書（使用後永久加分）</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>道具</th><th>效果</th><th>取得方式</th></tr></thead>
+<tbody>
+<tr><td class="name">生鏽柴刀</td><td>武力 +5（含 memory 文字：三十年老刀）</td><td>鐵叔退隱前贈送</td></tr>
+<tr><td class="name">暗器殘譜</td><td>洞察 +5；武力 +2</td><td>黑市；唐門委託獎勵</td></tr>
+<tr><td class="name">天魔殘頁</td><td>話術 +10；臉皮 +10</td><td>記憶迴廊深層；高難度懸賞</td></tr>
+<tr><td class="name">金錢幫債務重組筆記</td><td>貸款利息永久減半（一次性）</td><td>第2章獨立事件</td></tr>
+<tr><td class="name">金錢幫殘黨名單</td><td>派遣失手率 −10%</td><td>黑市流出；chap2_cleared 後</td></tr>
+<tr><td class="name">命理契約書</td><td>命理 +180；話術 +4</td><td>化龍專班深入事件</td></tr>
+<tr><td class="name">基礎靈氣導引術·試用版</td><td>（需先簽 <code>qi_contract_signed</code>）靈氣體系啟動</td><td>化龍專班入學贈品</td></tr>
+<tr><td class="name">龍伯的殘局簿</td><td>（含 memory 文字）</td><td>龍伯高羈絆後遺贈</td></tr>
+</tbody>
+</table>
+</div>
+<h4>鑰匙道具（劇情用）</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>道具</th><th>用途 / 門檻</th><th>取得方式</th></tr></thead>
+<tbody>
+<tr><td class="name">金錢幫帳本殘頁</td><td>第 2 章 Jessica 知情路線；chap1_5_debt L2 通關後取得</td><td>中間章一 Boss 陳帳房</td></tr>
+<tr><td class="name">司徒摘星實驗日誌</td><td>第 3 章司徒動機路線；chap2_5_lab 通關後取得</td><td>中間章二 Boss 司徒實驗室</td></tr>
+<tr><td class="name">金錢幫洗錢檔案</td><td>第 4 章情報線最強武器（聲望 +40 可能）</td><td>中間章三情報線勝後</td></tr>
+<tr><td class="name">雨晴的舊傘</td><td>解鎖雨晴結局（<code>rainQing_endingUnlocked</code>）；需共感 ≥ 80 + 日記 ≥ 4 張</td><td>雨晴主線終局節點</td></tr>
+<tr><td class="name">母親的玉佩</td><td>含 memory 文字；記憶迴廊觸發條件之一</td><td>第 5 章母親篇事件</td></tr>
+<tr><td class="name">母親的擁抱</td><td>永久 HP 上限 +20 被動（特定條件）</td><td>第 11 章封卷路線 + 雨晴共感 ≥ 90</td></tr>
+<tr><td class="name">里長伯的人情</td><td>可用在特定 NPC 攔截事件</td><td>里長伯羈絆早期贈送</td></tr>
+<tr><td class="name">買命銅錢 / 第二枚</td><td>讓啞巴張協助一次</td><td>第 1 章主線；武館地下室</td></tr>
+<tr><td class="name">金錢幫帳本</td><td>使用可選「公開媒體」或「勒索 Jessica」；影響多條結局</td><td>第 2–3 章事件</td></tr>
+<tr><td class="name">裏城結晶</td><td>深淵商店貨幣；記憶迴廊升層素材</td><td>裏城裂隙變異遭遇</td></tr>
+<tr><td class="name">靈氣結晶碎片</td><td>靈氣主線合成素材</td><td>靈氣復甦變異遭遇</td></tr>
+<tr><td class="name">記憶錨點</td><td>記憶迴廊「穩定層」進入道具</td><td>記憶汙染變異：黑狗認慫路線</td></tr>
+<tr><td class="name">點鈔機</td><td>黑市 / 派遣收益微幅提升（永久旗標）</td><td>啞巴張借出（第 2 章主線）</td></tr>
+<tr><td class="name">武館法拍撤銷書</td><td>第 1 章最終目標；保住武館</td><td>第 1 章主線完成</td></tr>
+</tbody>
+</table>
+</div>
+<h4>DLC / 雨晴線獨有道具</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>道具</th><th>效果</th><th>取得方式</th></tr></thead>
+<tbody>
+<tr><td class="name">日記殘頁（fragment_letter）</td><td>「寄不出去的信」；觸發雨晴記憶節點</td><td>中間章一 L1 通關後；空白筆記本互動</td></tr>
+<tr><td class="name">日記殘頁（fragment_sunshower）</td><td>「第二場太陽雨」；共感事件觸發素材</td><td>中間章二 Boss 通關後</td></tr>
+<tr><td class="name">日記殘頁（fragment_grave）</td><td>墓前補完殘頁</td><td>雨晴主線墓前場景</td></tr>
+<tr><td class="name">日記殘頁（fragment_afterglow）</td><td>共感 ≥ 92 時額外觸發</td><td>墓前場景隱藏條件</td></tr>
+<tr><td class="name">神明的護符</td><td>陣頭事件贈送；持有期間對廟宇事件較熟悉</td><td>陣頭邀約（消耗 3 AP）</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout tip"><div class="callout-title">💡 道具優先取得順序（效益最大化）</div>
+<ol>
+<li><strong>金錢幫帳本殘頁</strong>（中間章一）→ 影響第 2 章 Jessica 路線，決定後期聲望天花板。</li>
+<li><strong>金錢幫債務重組筆記</strong>（第 2 章）→ 利息砍半，全場最高 CP 道具，越早用越省。</li>
+<li><strong>龍伯的買命錢</strong>→ 房租壓力峰期（第 5–7 章）留用，可塞進緊急救援時間。</li>
+<li><strong>裏城結晶</strong>→ 深淵解鎖後只能用裏城結晶兌換強化，建議開「裏城裂隙」後每天至少屯一枚。</li>
+<li><strong>記憶錨點</strong>→ 記憶迴廊第 6 層以上需要，先屯著慢慢用。</li>
+</ol>
+</div>
 <p>敗犬江湖的經濟是<strong>現金 + 信用評分 + 房租倒數</strong>三軸聯動。主線不接則靠經濟系統補糧。</p>
 <h3>四大收入源</h3>
 <div class="panel amber">
@@ -993,21 +1498,10 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li><strong>NPC 同框遭遇</strong>：<code>npcSchedules.crossover</code> 在公園／市場／道場等時段觸發雙人短劇，各有 <code>crossover_*_seen</code> 一次性旗標。</li>
 </ol>
 </div>
-<h3>四階住房（<code>housingTierDB</code>）</h3>
-<div class="table-wrap">
-<table>
-<thead><tr><th>房型</th><th>AP</th><th>週租</th><th>HP 回復</th><th>解鎖</th></tr></thead>
-<tbody>
-<tr><td class="name">地下室</td><td class="num">4</td><td class="num">$2,000</td><td class="num">0.2</td><td>開局</td></tr>
-<tr><td class="name">頂樓加蓋</td><td class="num">5</td><td class="num">$8,000</td><td class="num">0.5</td><td>chap1_cleared</td></tr>
-<tr><td class="name">城中村套房</td><td class="num">7</td><td class="num">$25,000</td><td class="num">1.0</td><td>chap2_cleared + 聲望 ≥ 150</td></tr>
-<tr><td class="name">信義區豪宅</td><td class="num">10</td><td class="num">$80,000</td><td class="num">2.0</td><td>(chap5_cleared 或 chap10_cleared) +（現金 ≥ $100,000 <strong>或</strong>（聲望 ≥ 200 且現金 ≥ $85,000））；或 godfather 結局</td></tr>
-</tbody>
-</table>
-</div>
-<div class="callout warn"><div class="callout-title">🚨 信義區豪宅門檻</div>
-除 <code>godfather</code> 直接解鎖外，一般需第 5 或第 10 章已通關，並滿足<strong>現金 $100,000</strong>，或<strong>聲望 ≥ 200 且現金 ≥ $85,000</strong>。第一輪純英雄線仍偏緊，但已比舊版單一 $100K 門檻多一條聲望退路。</div>
+<h4>NG+ 結局門檻</h4>
+<p>除 <code>godfather</code> 直接解鎖外，一般需第 5 或第 10 章已通關，並滿足<strong>現金 $100,000</strong>，或<strong>聲望 ≥ 200 且現金 ≥ $85,000</strong>。第一輪純英雄線仍偏緊，但已比舊版單一 $100K 門檻多一條聲望退路。</p>
 <h3>飲食 Buff（<code>getFoodLifestyleEffects</code>）</h3>
+<div class="panel cyan">
 <ul>
 <li><strong>四季春茶</strong>：洞察 +5、話術門檻 −5（一日）</li>
 <li><strong>珍珠奶茶</strong>：武力 +5、臉皮 +3（一日）</li>
@@ -1016,7 +1510,22 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li><strong>冬瓜茶</strong>：臉皮 +10、乞討收益 +20%</li>
 <li><strong>母女飲</strong>：四屬性 +5</li>
 </ul>
-<p class="muted">打 Boss 前一小時記得去飲料店，通常最高 CP 值是「冬瓜茶 +吃霸王餐」組合。</p>
+</div>
+<p class="muted">打 Boss 前一小時記得去飲料店，通常最高 CP 值是「冬瓜茶 +吃霸王餐」組合。v2.1+ 起每日最多購買 3 次飲食。</p>
+<h3 id="g-housing-v21">v2.1+ 住房系統與房租機制</h3>
+<div class="panel amber">
+<div class="panel-title">🏠 永遠住在頂樓加蓋</div>
+<ul>
+<li><strong>固定住房</strong>：v2.1+ 起，阿琳永遠住在<strong>頂樓加蓋</strong>，無搬家選項。AP 上限不再由房型決定，改由<strong>風水產物系統</strong>加成。</li>
+<li><strong>房租每週</strong>：$8,000 / 週（Day 6 催繳時須繳清）。臉皮 ≥ 150 可 15% 機率賴帳成功。</li>
+<li><strong>HP 恢復</strong>：每夜在房內睡眠可回復 50% 最大 HP（固定值）。</li>
+<li><strong>AP 上限</strong>：基礎 5 + 風水產物加成（詳見L2631 <code>getFengShuiApBonus</code>）。</li>
+</ul>
+</div>
+<div class="callout tip">
+<div class="callout-title">💡 風水產物 = 新的進度系統</div>
+原住房升級已替換為主動收集風水道具，每件 0.2–1.0 貢獻值，累積後提升 AP 上限。此法避免固定的「幾章後自動升級」僵化流程，改為玩家可自由決定何時投入資源。
+</div>
 <h2 id="g-m">M · 成就速刷</h2>
 <div class="panel emerald">
 <ul>
@@ -1030,7 +1539,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li><strong>被社會遺忘</strong>：連續 7 天不動作。</li>
 </ul>
 </div>
-<p>成就圖鑑（<code>achievementsDB</code>，約 L16253 起）共 <strong>60+ 條</strong>（含輪迴類「二世為人」「打敗前世自己」「鏡前和解」「認慫也是路」等），全收仍須多輪 NG+。</p>
+<p>成就圖鑑（<code>achievementsDB</code>，約 L17089 起）共 <strong>70</strong> 條（含輪迴類「二世為人」「打敗前世自己」「鏡前和解」「認慫也是路」與產學線 <code>qi_ling_harvest_clear</code> 等），全收仍須多輪 NG+。</p>
 <h2 id="g-n">N · 存檔 / NG+ / 跨輪迴繼承</h2>
 <h3>存檔格式</h3>
 <p>存檔以 <code>BDOG1:</code> + LZ-String <code>compressToEncodedURIComponent</code> 壓縮。讀檔會自動校驗 <code>checksum</code>；校驗失敗與一般解析錯誤會分開提示。舊版存檔可經 <code>SAVE_MIGRATORS</code> 升級至當前 schema，成功時會提示「已自 vX 升級至 v4」。</p>
@@ -1039,6 +1548,10 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li>槽位 #1 / #2 / #3 對應 <code>udg_save_v4_slot_1/2/3</code>。</li>
 <li>匯出字串可直接貼進雲端筆記、Discord，無外部依賴。</li>
 </ul>
+<h3>同內容不重寫主槽（v2.0「增量存檔」）</h3>
+<p><code>saveGame</code> 仍每次呼叫 <code>encodeSaveData(state)</code> 產生完整壓縮字串；若與上一筆寫入的 payload 相同，則<strong>跳過</strong>對主槽 <code>udg_save_v4</code>／備份槽的重複 <code>localStorage.setItem</code>，以減少卡頓。時間戳與多槽位軌跡仍會更新。這是 I/O 層優化，並非「存檔字串變短」或 diff 演算法。</p>
+<h3>輪迴幣與 NG／NG++（v2.0）</h3>
+<p>新輪迴結算時合併前世資源為 <code>state.rebornCoin</code>（註解：命理點、迴廊幣、深淵結晶等折算），並遞增 <code>flags.new_game_plus_cycle</code>。自第二輪起 <code>flags.ngp_plus_plus_unlocked</code> 等邏輯配合 NG++ 獎勵（程式內對第二輪起每輪永久 <code>baseMaxHp</code> +10 等）。深淵商店與記憶迴廊經濟與本幣的關係請以檔內註解與商店 UI 為準。</p>
 <h3>NG+ 繼承（<code>newGamePlusLegacy</code>）</h3>
 <div class="panel violet">
 <ul>
@@ -1055,18 +1568,18 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </section>
 <section class="part" id="part4">
 <h2>Part IV · 當前版本的缺點與風險</h2>
-<p class="muted">以下均為對照 <code>拜犬江湖.html</code>（v4 存檔 schema）逐行驗證出的真缺陷，避免空泛評價。</p>
+<p class="muted">以下均為對照 <code>遊戲原文件/拜犬江湖.html</code>（v4 存檔 schema）逐行驗證出的真缺陷，避免空泛評價。</p>
 <h3 id="flaw-tech">1. 技術架構的三個硬傷</h3>
 <div class="panel rose">
 <h4>① storyNodes 被 12 層 Object.assign 覆寫，除錯地獄</h4>
-<p>主 <code>storyNodes</code> 定義在 L11xxx，之後至少出現 <strong>12 次</strong> <code>Object.assign(storyNodes, { ... })</code>（L28900+、L31100+、L42000+ 多處）。這種「熱補丁」混在主檔：</p>
+<p>主 <code>storyNodes</code> 大區塊見 <code>SYSTEM_MAP</code>（約 L14891–L18553）；之後仍穿插 <strong>約 12 次</strong> <code>Object.assign(storyNodes, { … })</code> 與多組 <code>registerStoryNodes</code> 模組合併（實際行號隨改版漂移，需以 Grep 為準）。這種「熱補丁」混在主檔：</p>
 <ul>
 <li>同一 node ID 出現 2–3 次，後補丁覆蓋前者，讀程式碼時必須手動追蹤每個覆寫順序。</li>
 <li>例如第 4 章 <code>hero_true</code> 分支在主定義裡只有殘骸；真正的文本要等到 L42xxx 才被補上。</li>
 <li>重構風險：任何 refactor / 壓縮工具如果改變 key 順序，就會整條劇情錯亂。</li>
 </ul>
-<h4>② 所有資料與 UI 塞在單檔 &gt; 45000 行</h4>
-<p>整個遊戲（含 LZ-String、Tailwind CDN link、<code>SYSTEM_MAP</code>、28 個資料庫、事件、戰鬥 UI）共 <strong>45000+ 行</strong>、2.6 MB。單檔優點是免安裝、好分享，但：</p>
+<h4>② 所有資料與 UI 塞在單檔（約 46,357 行）</h4>
+<p>整個遊戲（含 LZ-String、Tailwind CDN link、<code>SYSTEM_MAP</code>、大量常數字典、事件、戰鬥 UI）單檔約 <strong>46,357 行</strong>、<strong>3566348 bytes（約 3.40 MiB）</strong>。單檔優點是免安裝、好分享，但：</p>
 <ul>
 <li>編輯器卡頓嚴重（VSCode 開啟需 3–5 秒，Cursor 需要 partial load）。</li>
 <li>沒有模組切分，重複 helper 被多次定義（例如 <code>getRandomInt</code> 類、<code>applyBossMutationFlavorOnEnter</code> 的前向宣告分散在 4 個位置）。</li>
@@ -1079,8 +1592,8 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="panel amber">
 <h4>① 狂暴觸發（已與筆記本對齊）</h4>
 <p>目前版本已將小九／司徒／相關受擊路徑統一為 <code>combatTurns ≥ 4</code>（HUD「🔥 狂暴」）再進入加壓，與筆記本「戰意與狂暴」條目一致；舊攻略若仍寫「不同 Boss 不同門檻」請以本節為準。</p>
-<h4>② 信義區豪宅門檻（已加聲望退路）</h4>
-<p><code>housingTierDB.villa</code> 除 <code>godfather</code> 外，可在通關第 5 或第 10 章後，以<strong>現金 $100,000</strong>或<strong>聲望 ≥ 200 且現金 ≥ $85,000</strong>解鎖。非教父線仍偏肝，但已非單一現金硬門檻。</p>
+<h4>② NG+ 結局獎勵路徑（豪宅購置資格已改為NG+獎勵）</h4>
+<p>v2.1+ 起，信義區豪宅不再是可居住房型，惟某些NG+結局可獲得「豪宅購置資格」。完成第5或第10章主線後，達成<strong>現金 $100,000</strong>或<strong>聲望 ≥ 200 且現金 ≥ $85,000</strong>之資本新星、地下教父、武道正宗後即獲贈。NG+ 開局仍預設住在頂樓加蓋，AP 上限由風水產物決定。</p>
 <h4>③ 緣之書 15 格 + 導演剪輯 9 格，關鍵 flag 互相衝突</h4>
 <p><code>evaluateDirectorCutEnding()</code>／<code>resolveDirectorCutEnding()</code> 會讀取 <code>jessica_executed</code>、<code>aqiang_saved</code>、<code>chap8_cleared_route</code> 等。程式上<strong>處決 Jessica</strong>與<strong>是否救阿強</strong>為兩段獨立旗標（阿強選項註明與上一題 Jessica 抉擇獨立），<strong>可同時成立</strong>；僅敘事上可能感到張力，並非存檔層級的互斥鎖。</p>
 <h4>④ 世界變異觸發機率堆疊後失效</h4>
@@ -1094,8 +1607,8 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <p><code>rainQingDiaryFragmentDB</code> 的 5 片日記全部由共感值 15/30/45/60/80 被動解鎖。遊戲內<strong>沒有任何 UI 指引</strong>，只有廢文池偶爾出現「好像有日記本」的提示；第一次玩家有 90% 以上會漏掉 60/80 那兩段，直接跑去打第 12 章。</p>
 <h4>② 司徒摘星支線後期劇情被第 5 章整併吞掉</h4>
 <p>第 3 章重點 Boss 司徒摘星被擊敗後，第 5 章讓 Jessica 成為實際終極反派；司徒摘星的動機（集團鬥爭）到第 11 章才在片尾郵件中交代，<em>中間 6 章完全沒他的戲份</em>，第一輪玩家通常已忘記他是誰。</p>
-<h4>③ 六大門派戲份失衡</h4>
-<p><code>sectFactions</code> 給了六派完整 story / 特殊資源，但劇情上只有<strong>外送員互助聯盟</strong>與<strong>禪修·極致健身集團</strong>有獨立章節支線。唐氏製藥、霓虹影視、里長伯、太極雲端幾乎只剩<em>商店 + 週薪 + 1 段開場白</em>，選它們像是在選背景皮膚。</p>
+<h4>③ 六大門派支線（已補齊版 vs 舊印象）</h4>
+<p>現行程式在 <code>sectStoryArcs</code>／<code>sectStoryFinaleArcs</code> 為<strong>六派皆配置多段 arc 與掌門終章</strong>；若仍覺得「戲份感」不均，多半是敘事節奏與 Hub 曝光度問題，而非早期版本「僅兩派有獨立章感」的完全空白。舊攻略若只寫兩派有支線，請以本句與遊戲檔對照更新。</p>
 <h4>④ 白靈聖母立場搖擺</h4>
 <p>第 7 章是盟友，第 8 章反派，第 10 章又有「她其實被汙染」線，第 12 章可救可殺。<code>storyNodes</code> 被 4 層覆寫導致她的動機前後矛盾；玩家若照順序走完 7→8→10→12 會出現<strong>「妳明明上週才幫過我」</strong>但系統毫無 flag 記憶的現象。</p>
 </div>
@@ -1103,7 +1616,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="panel slate">
 <ul>
 <li><strong>戰鬥主介面資訊過載</strong>：同時顯示 HP / 戰意 / AP / Break Combo / Enrage Timer / 變異 debuff 條 / 四種態度按鈕 + 派卡區，在 1366×768 螢幕會擠成一坨，手機更直接錯位。</li>
-<li><strong>成就與結局面板缺少過濾</strong>：15 結局、28 成就、6 變異、10 層心門全堆在 Notebook 同一 tab，沒分頁、沒排序，找一個條件要滑 4 螢幕。</li>
+<li><strong>成就與結局面板缺少過濾</strong>：15 結局、70 條成就圖鑑、6 變異、10 層心門全堆在 Notebook 同一 tab，沒分頁、沒排序，找一個條件要滑 4 螢幕。</li>
 <li><strong>派卡牌庫沒有戰鬥外預覽</strong>：只能在戰鬥中看已觸發效果，入派前無法讀整張派卡描述，玩家常常「加入後才發現不合流派」。</li>
 <li><strong>房租倒數 UI</strong>：首頁 meta 區會顯示「下次繳租 Day X（還剩 Y 日）」（舊版僅週租金字樣、易忽略）。</li>
 </ul>
@@ -1119,7 +1632,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <tr><td class="name">敘事</td><td class="num">A-</td><td>自嘲台味武俠濃度滿點，雨晴線壓軸精采；司徒摘星與聖母動機稍嫌飄</td></tr>
 <tr><td class="name">系統深度</td><td class="num">A</td><td>四態度 × 派卡 × 變異 × 緣之書交織，單人獨立作品級別</td></tr>
 <tr><td class="name">平衡</td><td class="num">B-</td><td>臉皮流仍強勢；未入門派線已有單次屬性補償；深淵永久商品每項上限 8 次後較可控</td></tr>
-<tr><td class="name">技術</td><td class="num">C+</td><td>45000 行單檔 + 12 層 Object.assign，除錯成本高</td></tr>
+<tr><td class="name">技術</td><td class="num">C+</td><td>約 46,357 行單檔 + 12 層 Object.assign，除錯成本高</td></tr>
 <tr><td class="name">UX</td><td class="num">B-</td><td>密度壓倒新手、缺少分頁與進度指引</td></tr>
 <tr><td class="name">整體</td><td class="num">B+ / 四顆半星（滿五）</td><td>一款值得花 15 小時 + 兩輪 NG+ 深挖的單人作品</td></tr>
 </tbody>
@@ -1129,36 +1642,36 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <ol>
 <li>狂暴觸發已統一為 <code>combatTurns ≥ 4</code>（見上文）。</li>
 <li>雨晴共感跨過日記殘頁門檻時會有 toast 提示（仍建議搭配 F 節分天攻略）。</li>
-<li>信義區豪宅已增加「聲望 ≥ 200 + 現金 ≥ $85,000」替代路徑（仍須 chap5 或 chap10）。</li>
+<li>信義區豪宅已改為結局獎勵：資本新星、地下教父、武道正宗達成後可於 NG+ 中獲得豪宅購置資格（仍須 chap5 或 chap10 + 金錢條件）。</li>
 </ol>
 </div>
 </section>
 <footer>
-<p class="lzh">敗犬江湖 · 攻略與分析 · 本檔離線版<br/><span class="muted">依據 SAVE_SCHEMA_VERSION 4 遊戲檔（2.6 MB，45000+ 行）整理</span></p>
-<p class="len">Baidog Jianghu · Guide &amp; analysis · offline edition<br/><span class="muted">Based on save schema v4 game file (~2.6 MB, 45000+ lines)</span></p>
+<p class="lzh">敗犬江湖 · 攻略與分析 · 本檔離線版<br/><span class="muted">依據 SAVE_SCHEMA_VERSION 4 遊戲檔（約 3.40 MiB，46,357 行）整理</span></p>
+<p class="len">Baidog Jianghu · Guide &amp; analysis · offline edition<br/><span class="muted">Based on save schema v4 game file (~3.40 MiB, 46,357 lines)</span></p>
 </footer>
 </div>
 <div class="guide-stream-en len">
 <section id="en-p1">
 <h2>Part I · Observation of game size</h2>
-<p class="lead">"The Lost Dogs" is a movie based on<strong>Single HTML file</strong>A personal development work that carries all game logic - a file that can be run offline and saved in the cloud. It's more complex than your average Twine/Ren'Py text adventure, in fact close to<mark>"CRPG + sect management + Roguelike tower climbing + urban simulation community"</mark>of hybrid scale.</p>
+<p class="lead"><em>Baidog Jianghu</em> (<em>敗犬江湖</em>) is a Taiwan-set urban wuxia text adventure shipped as <strong>one self-contained HTML file</strong>—offline-friendly and trivial to mirror, yet far heavier than a typical Twine or Ren'Py vignette. Its systems sit somewhere between <mark>CRPG pressure-cooker choices, sect management, roguelike tower dives, and a faux social-feed simulator</mark>. This guide is fully spoilered and needs nothing beyond a browser.</p>
 <h3 id="en-p1-scale">1. Archives and technical architecture</h3>
 <div class="stat-grid">
-<div class="stat-card"><div class="label">File size</div><div class="value">3.26 MB</div><div class="desc">Single .html file</div></div>
-<div class="stat-card"><div class="label">lines of code</div><div class="value">42,485</div><div class="desc">HTML + CSS + JS total</div></div>
+<div class="stat-card"><div class="label">File size</div><div class="value">~3.40 MiB</div><div class="desc">3566348 bytes; ~3.57 MB decimal</div></div>
+<div class="stat-card"><div class="label">lines of code</div><div class="value">46,357</div><div class="desc">HTML + CSS + JS total (PowerShell)</div></div>
 <div class="stat-card"><div class="label">Archive format</div><div class="value">v4</div><div class="desc"><code>BDOG1:</code>LZ-String compression</div></div>
 <div class="stat-card"><div class="label">external dependencies</div><div class="value">2</div><div class="desc">Tailwind CDN + lz-string</div></div>
-<div class="stat-card"><div class="label">host<code>storyNodes</code></div><div class="value">L16052+</div><div class="desc">plus 8 places<code>Object.assign</code>patch</div></div>
-<div class="stat-card"><div class="label">narrative patch</div><div class="value">L32460+</div><div class="desc">Director’s Cut Long Version Chapters 5–10</div></div>
+<div class="stat-card"><div class="label">host <code>storyNodes</code></div><div class="value">L14891–L18553</div><div class="desc">See <code>SYSTEM_MAP</code>; ~12 <code>Object.assign</code> / <code>registerStoryNodes</code> patches</div></div>
+<div class="stat-card"><div class="label">narrative patch</div><div class="value">multi-span</div><div class="desc"><code>SYSTEM_MAP.data.storyPatches</code> lists eight anchor lines</div></div>
 </div>
 <div class="panel amber">
 <div class="panel-title">🏗️ Architecture overview</div>
 <ul>
 <li><strong>front end</strong>: Pure HTML + Tailwind (CDN loading, including suppressTailwindCdnWarning) + embedded CSS animation (rain, neon, spotlight, etc. scenes).</li>
-<li><strong>data layer</strong>: about 30 constant dictionaries (<code>notebookData</code>、<code>feedSystemData</code>、<code>itemDB</code>、<code>equipmentDB</code>、<code>AFFIX_DATABASE</code>、<code>memoryFragmentsData</code>、<code>urbanLegendsData</code>、<code>classicsCatalog</code>、<code>homeDecorCatalog</code>、<code>strayAnimalCatalog</code>…）。</li>
+<li><strong>data layer</strong>: large tables live as top-level <code>const …</code> blobs. A Apr&nbsp;2026 regex pass over <code>遊戲原文件/拜犬江湖.html</code> (declaration lines only) counted <strong><code>*DB</code> 10</strong>, <strong><code>*Data</code> 4</strong>, <strong><code>*Catalog</code> 9</strong>, <strong><code>*Pool</code> 21</strong>, <strong><code>*Defs</code> 3</strong>, plus <code>AFFIX_DATABASE</code> and several <code>*Map</code> tables. The old marketing number “28 databases” no longer maps cleanly—treat it as obsolete.</li>
 <li><strong>narrative layer</strong>: a master<code>storyNodes</code>Object + Lazy Load Node (L1194–L1750) + Post<code>Object.assign</code>Merge segments.</li>
 <li><strong>engine layer</strong>: main loop<code>masterTick</code>(1 second interval),<code>renderCurrentView</code>routing,<code>updateHUD</code>status bar,<code>finalizeCombatChoice</code>battle settlement,<code>encodeSaveData</code>Archive.</li>
-<li><strong>Developer Index</strong>：<code>SYSTEM_MAP</code>(L984–L1026) is the directory of the file itself, annotated line numbers are slightly out of date but the structure is still accurate.</li>
+<li><strong>Developer Index</strong>: <code>SYSTEM_MAP</code> (from ~L998) is the in-file table of contents; line hints can lag after large patches but the structure still helps navigation.</li>
 </ul>
 </div>
 <h3 id="en-p1-systems">2. 14 major core systems</h3>
@@ -1168,7 +1681,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <tbody>
 <tr><td class="name">Turn-based combat</td><td class="id">finalizeCombatChoice</td><td>Four Attitude Restraint + Collapse of Fighting Will + Violence + Mini Game Threshold Correction</td></tr>
 <tr><td class="name">plot point</td><td class="id">storyNodes</td><td>type: story / combat / choice; main plot + director's cut + middle chapter</td></tr>
-<tr><td class="name">martial arts system</td><td class="id">openSectFactionMechanic</td><td>5 faction doctrine, recruitment, training, shop, helm, faction war, night market</td></tr>
+<tr><td class="name">martial arts system</td><td class="id">openSectFactionMechanic</td><td>6 faction doctrines, recruitment, training, shop, helm, faction war, night market</td></tr>
 <tr><td class="name">Partner bond</td><td class="id">companionBondSkillDB</td><td>6 partners × level 4 passive skills</td></tr>
 <tr><td class="name">memory corridor</td><td class="id">enterMemoryCorridorRouteNode</td><td>Roguelike tower climbing, including events/elite/hidden king</td></tr>
 <tr><td class="name">abyss / inner city</td><td class="id">state.abyss</td><td>Crystallization, Blessing, Curse, Infinite Replay</td></tr>
@@ -1188,7 +1701,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="stat-card"><div class="label">Main chapter</div><div class="value">12 + 0.5</div><div class="desc">1→1.5→12, including the middle chapter</div></div>
 <div class="stat-card"><div class="label">The ending of Book of Fate</div><div class="value">15</div><div class="desc">+ Chapter 11/12 additional flags</div></div>
 <div class="stat-card"><div class="label">core partners</div><div class="value">6</div><div class="desc">Uncle Tie / Xiaoye / Ajie / Golden Leopard / Yuqing / Xiaoyu</div></div>
-<div class="stat-card"><div class="label">sect doctrine</div><div class="value">5</div><div class="desc">Delivery/Zenjian/Tai Chi/Tangmen/Neon</div></div>
+<div class="stat-card"><div class="label">sect doctrine</div><div class="value">6</div><div class="desc">Delivery / Zen / Tai Chi / Tang / Neon / Residents (local civics)</div></div>
 <div class="stat-card"><div class="label">housing class</div><div class="value">4</div><div class="desc">Basement → Penthouse → Suite → Luxury House</div></div>
 <div class="stat-card"><div class="label">world mutation</div><div class="value">6</div><div class="desc">Aura / legend / memory / cause and effect / market / inner city</div></div>
 <div class="stat-card"><div class="label">rarity level</div><div class="value">6</div><div class="desc">Common → Good → Rare → Epic → Legend → Myth</div></div>
@@ -1869,6 +2382,50 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </div>
 <div class="callout warn"><div class="callout-title">⚠️ Priority when mutations are triggered at the same time</div>
 <code>mutationPriority</code>Write to Death: Fissures in the inner city &gt; Cause and Effect Backlash &gt; Urban Legends &gt; Resurrection of Spiritual Energy &gt; Memory Pollution &gt; Market Crazy. If two or more events are triggered on the same day, they will be replaced by the variant event with the highest priority; the triggering probability is basically 60%, and will decrease if there are ≥3/≥5 variations in a single day; if the previous event was also a variant, multiply it by 0.8 (Notebook "Same Day Variant Fatigue" entry).</div>
+<h4>Industry–academia spirit arc (v2.0 · <code>state.qiLing</code>)</h4>
+<p>Beyond the “spiritual resurgence” world mutation, the build adds a <strong>qi-ling / industry harvest</strong> storyline: nodes register via <code>registerStoryNodes('qi-ling-harvest-core')</code>, <code>registerStoryNodes('qi-ling-harvest-mid')</code>, etc.; <code>ensureQiLingArcState</code> keeps <code>state.qiLing</code> fields (debt, heat, villager hype, <code>flags.qiPath</code>, …). Notebook entries such as <code>mut_dlc_arc</code> and <code>qi_*</code> summarize in-fiction lore.</p>
+<h4>Mainline dialog patches (<code>mutationDialogPatches</code>)</h4>
+<p>For these 12 <code>nodeId</code>s, entering the node may <strong>prepend bracketed flavor</strong> when an active mutation id has a matching string (it does not replace the whole node). Column two lists mutation keys defined for that node.<span class="muted">Game file ~L29118.</span></p>
+<div class="table-wrap">
+<table>
+<thead><tr><th><code>nodeId</code></th><th>Mutation keys with copy</th></tr></thead>
+<tbody>
+<tr><td class="id">chap5_director_start</td><td>memory_leak, aura_revival, urban_legend_alive, market_madness, karma_backlash, inner_city_rift</td></tr>
+<tr><td class="id">chap5_director_rescue</td><td>inner_city_rift, karma_backlash, memory_leak, aura_revival</td></tr>
+<tr><td class="id">chap7_live_stream</td><td>market_madness, urban_legend_alive, memory_leak, karma_backlash, inner_city_rift</td></tr>
+<tr><td class="id">chap8_temple_probe</td><td>aura_revival, karma_backlash, urban_legend_alive, memory_leak, market_madness</td></tr>
+<tr><td class="id">chap9_jessica_last_stand</td><td>memory_leak, inner_city_rift, aura_revival, karma_backlash, market_madness</td></tr>
+<tr><td class="id">chap3_funeral_prep</td><td>karma_backlash, urban_legend_alive, memory_leak, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap3_start</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap7_director_start</td><td>market_madness, urban_legend_alive, memory_leak, karma_backlash, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap7_jessica_court</td><td>market_madness, karma_backlash, memory_leak, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap9_director_start</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap9_jessica_final</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+<tr><td class="id">chap9_jessica_truth</td><td>memory_leak, karma_backlash, market_madness, urban_legend_alive, aura_revival, inner_city_rift</td></tr>
+</tbody>
+</table>
+</div>
+<h4>Random encounter variant map (<code>encounterVariantMap</code>)</h4>
+<p>Resolve <code>baseEventId</code> first, then swap to the mapped variant event id for whichever mutation is active (example: <code>encounter_thug</code> + <code>aura_revival</code> → <code>encounter_thug_aura</code>).<span class="muted">Game file ~L28202; 11 base ids.</span></p>
+<div class="table-wrap">
+<table>
+<thead><tr><th><code>baseEventId</code></th><th>mutation id → variant event id</th></tr></thead>
+<tbody>
+<tr><td class="id">encounter_thug</td><td>aura_revival→encounter_thug_aura；urban_legend_alive→encounter_thug_legend；karma_backlash→encounter_thug_karma；memory_leak→encounter_thug_memory；inner_city_rift→encounter_thug_rift</td></tr>
+<tr><td class="id">encounter_dog</td><td>aura_revival→encounter_dog_aura；urban_legend_alive→encounter_dog_legend；memory_leak→encounter_dog_memory</td></tr>
+<tr><td class="id">encounter_drunk</td><td>karma_backlash→encounter_drunk_karma；memory_leak→encounter_drunk_memory；aura_revival→encounter_drunk_aura</td></tr>
+<tr><td class="id">encounter_streamer</td><td>memory_leak→encounter_streamer_memory；urban_legend_alive→encounter_streamer_legend；market_madness→encounter_streamer_market</td></tr>
+<tr><td class="id">encounter_scam</td><td>market_madness→encounter_scam_market；urban_legend_alive→encounter_scam_legend；karma_backlash→encounter_scam_karma</td></tr>
+<tr><td class="id">encounter_new_lost_child</td><td>inner_city_rift→encounter_lost_child_rift；memory_leak→encounter_lost_child_memory</td></tr>
+<tr><td class="id">encounter_beggar</td><td>memory_leak→encounter_beggar_memory；karma_backlash→encounter_beggar_karma；inner_city_rift→encounter_beggar_rift</td></tr>
+<tr><td class="id">encounter_mlm</td><td>market_madness→encounter_mlm_market；urban_legend_alive→encounter_mlm_legend</td></tr>
+<tr><td class="id">encounter_cult</td><td>aura_revival→encounter_cult_aura；urban_legend_alive→encounter_cult_legend；karma_backlash→encounter_cult_karma</td></tr>
+<tr><td class="id">encounter_new_robbery</td><td>karma_backlash→encounter_robbery_karma；market_madness→encounter_robbery_market</td></tr>
+<tr><td class="id">encounter_new_phone_snatcher</td><td>memory_leak→encounter_phone_memory；urban_legend_alive→encounter_phone_legend</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">Clearing the qi-ling arc unlocks <code>qi_ling_harvest_clear</code> (section M). Exact prose lives in the HTML build.</p>
 </section>
 <section>
 <h2 id="en-g-l">L · Economic circulation and equipment</h2>
@@ -1927,7 +2484,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li><strong>Forgotten by society</strong>: Inactive for 7 consecutive days.</li>
 </ul>
 </div>
-<p>Achievement Illustrated (<code>achievementsDB</code>, starting from about L16253) in total<strong>60+ items</strong>(Including the reincarnation categories of "Becoming a Human in Two Times", "Defeating Yourself in the Past Life", "Reconciling in front of the Mirror", "Allowing to Give in", etc.), you still need multiple rounds of NG+ to receive them all.</p>
+<p>Achievement atlas (<code>achievementsDB</code>, around L17089) lists <strong>70</strong> entries (including NG+ mirrors and <code>qi_ling_harvest_clear</code>); full completion still expects multiple NG+ loops.</p>
 <h2 id="en-g-n">N · Archive / NG+ / Cross-reincarnation inheritance</h2>
 <h3>Archive format</h3>
 <p>Archive with<code>BDOG1:</code> + LZ-String <code>compressToEncodedURIComponent</code>compression. Reading files will automatically verify<code>checksum</code>; Verification failures and general parsing errors will be prompted separately. Old version archives are available<code>SAVE_MIGRATORS</code>Upgrade to the current schema. When successful, it will prompt "Upgraded from vX to v4".</p>
@@ -1936,6 +2493,10 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <li>Slot #1 / #2 / #3 corresponds<code>udg_save_v4_slot_1/2/3</code>。</li>
 <li>Exported strings can be directly pasted into cloud notes and Discord without external dependencies.</li>
 </ul>
+<h3>Skip redundant main-slot writes (v2.0 “delta save”)</h3>
+<p><code>saveGame</code> still calls <code>encodeSaveData(state)</code> every time to build the full compressed payload. If the payload matches the last write, the game <strong>skips</strong> rewriting <code>udg_save_v4</code> / its backup slot in <code>localStorage</code> to reduce jank; timestamps and per-slot keys still update. This is an I/O optimization—not a shorter save string or a binary diff format.</p>
+<h3><code>rebornCoin</code> and NG / NG++ (v2.0)</h3>
+<p>On new-cycle setup, prior resources fold into <code>state.rebornCoin</code> (per in-file comments: fortune points, corridor coins, abyss crystals, …), and <code>flags.new_game_plus_cycle</code> increments. From the second cycle onward, <code>flags.ngp_plus_plus_unlocked</code> pairs with NG++ perks (e.g. permanent <code>baseMaxHp</code> +10 each qualifying cycle—verify exact rules in code/UI).</p>
 <h3>NG+ inheritance (<code>newGamePlusLegacy</code>）</h3>
 <div class="panel violet">
 <ul>
@@ -1951,18 +2512,18 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </section>
 <section class="part" id="en-part4">
 <h2>Part IV · Disadvantages and risks of the current version</h2>
-<p class="muted">The following are comparisons<code>拜犬江湖.html</code>(v4 archive schema) Verify the real defects line by line to avoid empty evaluations.</p>
+<p class="muted">The following compares <code>遊戲原文件/拜犬江湖.html</code> (save schema v4) line by line to avoid vague critique.</p>
 <h3 id="en-flaw-tech">1. Three flaws in technical architecture</h3>
 <div class="panel rose">
 <h4>① storyNodes is overwritten by 12 layers of Object.assign, debugging hell</h4>
-<p>host<code>storyNodes</code>Defined in L11xxx, after which at least<strong>12 times</strong> <code>Object.assign(storyNodes, { ... })</code>(L28900+, L31100+, L42000+ multiple locations). This "hot patch" is mixed in the main file:</p>
+<p>The main <code>storyNodes</code> span is indexed in <code>SYSTEM_MAP</code> (~L14891–L18553); later merges add roughly <strong>twelve</strong> <code>Object.assign(storyNodes, { … })</code> layers plus several <code>registerStoryNodes</code> modules (line anchors drift—grep the file). That hot-patch style means:</p>
 <ul>
 <li>The same node ID appears 2–3 times, and the later patch overwrites the former. When reading the code, you must manually track the order of each overwrite.</li>
 <li>For example Chapter 4<code>hero_true</code>The branches are just remains in the main definition; the real text won't be filled in until L42xxx.</li>
 <li>Refactoring risk: If any refactor/compression tool changes the key order, the entire plot will be messed up.</li>
 </ul>
-<h4>② All data and UI are packed into a single file &gt; 45,000 rows</h4>
-<p>The entire game (including LZ-String, Tailwind CDN link,<code>SYSTEM_MAP</code>, 28 databases, events, combat UI) in total<strong>45000+ lines</strong>, 2.6 MB. The advantage of single file is that it requires no installation and is easy to share, but:</p>
+<h4>② All data and UI live in one ~46k-line file</h4>
+<p>The shipped game (LZ-String, Tailwind CDN link, <code>SYSTEM_MAP</code>, large constant dictionaries, events, combat UI) is about <strong>46,357 lines</strong> and <strong>3566348 bytes (~3.40 MiB)</strong> in one HTML. Pros: portable and shareable; cons:</p>
 <ul>
 <li>The editor is severely stuck (VSCode takes 3–5 seconds to open, Cursor requires partial load).</li>
 <li>Without module sharding, duplicate helpers are defined multiple times (e.g.<code>getRandomInt</code>kind,<code>applyBossMutationFlavorOnEnter</code>The forward declaration is scattered in 4 positions).</li>
@@ -1990,8 +2551,8 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <p><code>rainQingDiaryFragmentDB</code>The 5 pieces of diary are all passively unlocked by the empathy value 15/30/45/60/80. In game<strong>No UI guidance</strong>, only the "There seems to be a diary" prompt appears occasionally in the scrap pool; more than 90% of first-time players will miss the 60/80 paragraphs and go directly to Chapter 12.</p>
 <h4>② The later plot of Situ Zhaixing branch was completely swallowed up by Chapter 5</h4>
 <p>After the key boss of Chapter 3, Situ Zhaixing, was defeated, Chapter 5 made Jessica the actual ultimate villain; Situ Zhaixing’s motivation (group struggle) was not explained in the end-of-credits email until Chapter 11.<em>There is no role for him in the middle 6 chapters.</em>, the first round player has usually forgotten who he is.</p>
-<h4>③ The roles of the six major sects are unbalanced</h4>
-<p><code>sectFactions</code>The six factions were given a complete story/special resources, but the plot only<strong>Delivery Workers Mutual Aid Alliance</strong>and<strong>Zen·Extreme Fitness Group</strong>There are independent chapter branches. Tang’s Pharmaceuticals, Neon Films, Li Changbo, and Tai Chi Cloud are almost the only ones left<em>Shop + weekly salary + 1 opening line</em>, selecting them is like selecting a background skin.</p>
+<h4>③ Six-sect branches (modern build vs old impression)</h4>
+<p>Current code wires <code>sectStoryArcs</code> / <code>sectStoryFinaleArcs</code> for <strong>all six factions</strong> with multi-part arcs and finale beats. If some routes still <em>feel</em> thinner, it is mostly pacing and Hub spotlight—not the early “only two factions had chapters” blank slate. Update any legacy walkthrough that still claims only two sects get arcs.</p>
 <h4>④ The position of Our Lady of Bai Ling fluctuates</h4>
 <p>Chapter 7 is an ally, Chapter 8 is a villain, Chapter 10 has the "she is actually contaminated" line, and Chapter 12 can be saved or killed.<code>storyNodes</code>Being overwritten by 4 layers caused her motives to be inconsistent; if the player completes 7→8→10→12 in order, she will appear<strong>"You obviously just helped me last week."</strong>But the system has no flag memory.</p>
 </div>
@@ -1999,7 +2560,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <div class="panel slate">
 <ul>
 <li><strong>Information overload in the main battle interface</strong>: Simultaneously displaying HP / Fighting Spirit / AP / Break Combo / Enrage Timer / Mutation debuff bar / Four Attitude Buttons + Card Zone, it will be crowded into a pile on a 1366×768 screen, and the mobile phone will be directly misaligned.</li>
-<li><strong>Achievement and ending panels lack filtering</strong>: 15 endings, 28 achievements, 6 mutations, and 10 levels of heart gates are all piled up in the same tab of Notebook. There is no pagination or sorting. To find a condition, you have to swipe 4 screens.</li>
+<li><strong>Achievement and ending panels lack filtering</strong>: 15 endings, 70 achievement rows, 6 mutations, and 10 heart-gate floors share one Notebook tab—no pagination or sort; expect lots of scrolling.</li>
 <li><strong>There is no out-of-combat preview for the Paika deck.</strong>: You can only see the triggered effects during battle. You cannot read the entire faction card description before joining the faction. Players often "find out that they don't fit the faction after joining."</li>
 <li><strong>Rent countdown UI</strong>: The meta area on the homepage will display "Next rent payment Day</li>
 </ul>
@@ -2015,7 +2576,7 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 <tr><td class="name">narrative</td><td class="num">A-</td><td>The self-deprecating Taiwanese martial arts is full of concentration, and the finale of "Rain and Clear Line" is brilliant; the motivations of Situ Zhaixing and Our Lady are a little too flamboyant</td></tr>
 <tr><td class="name">System depth</td><td class="num">A</td><td>Four Attitudes × Pika × Mutation × Book of Fate Intertwined, a single-player independent work level</td></tr>
 <tr><td class="name">balance</td><td class="num">B-</td><td>The cheeky flow is still strong; the uninitiated line has a single attribute compensation; the abyss permanent product is more controllable after the upper limit of 8 times per item</td></tr>
-<tr><td class="name">technology</td><td class="num">C+</td><td>45,000 rows per file + 12 layers of Object.assign, high debugging cost</td></tr>
+<tr><td class="name">technology</td><td class="num">C+</td><td>~46,357-line single file + 12 Object.assign layers, high debugging cost</td></tr>
 <tr><td class="name">UX</td><td class="num">B-</td><td>Density overwhelms novices, lack of paging and progress guidance</td></tr>
 <tr><td class="name">overall</td><td class="num">B+ / four and a half stars (out of five)</td><td>A solo title worth spending 15 hours + two rounds of NG+ digging into</td></tr>
 </tbody>
@@ -2030,8 +2591,8 @@ Line references point to your local game HTML path. <code>SYSTEM_MAP</code> comm
 </div>
 </section>
 <footer>
-<p>Lost Dog Jianghu · Strategy and Analysis · Offline version of this file<br><span class="muted">Organized based on SAVE_SCHEMA_VERSION 4 game files (2.6 MB, 45000+ lines)</span></br></p>
-<p>Baidog Jianghu · Guide &amp; analysis · offline edition<br><span class="muted">Based on save schema v4 game file (~2.6 MB, 45000+ lines)</span></br></p>
+<p>Lost Dog Jianghu · Strategy and Analysis · Offline version of this file<br><span class="muted">Organized from SAVE_SCHEMA v4 build (~3.40 MiB, 46,357 lines)</span></br></p>
+<p>Baidog Jianghu · Guide &amp; analysis · offline edition<br><span class="muted">Based on save schema v4 game file (~3.40 MiB, 46,357 lines)</span></br></p>
 </footer>
 </div>
 </main>
